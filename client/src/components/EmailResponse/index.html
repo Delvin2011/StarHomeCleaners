@@ -1,0 +1,51 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <form>
+      <input type="text" id="subject" placeholder="Subject" /> <br />
+      <input type="email" id="email" placeholder="Receiver email" /> <br />
+      <textarea name="text" id="text" cols="30" rows="10"></textarea> <br />
+      <input type="submit" value="Submit" />
+    </form>
+//JQuery CDN To make Http Call
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+      $("form").on("submit", e => {
+        e.preventDefault(); //disable the browser behaviour
+//Grab the value that the user is typing.
+        const email = $("#email")
+          .val()
+          .trim();
+        const subject = $("#subject")
+          .val()
+          .trim();
+        const text = $("#text")
+          .val()
+          .trim();
+//store the value in an object
+        const data = {
+          email,
+          subject,
+          text
+        };
+//Send the data to the server (send the data to the email path so that the server can get the data)
+        $.post("/email", data)
+          .then(() => {
+            window.location.href = "/email/sent";
+          })
+          .catch(() => {
+            window.location.href = "/error";
+          });
+      });
+    </script>
+  </body>
+</html>
+
+-->
