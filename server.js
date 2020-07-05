@@ -6,8 +6,8 @@ const path = require('path');
 //const sendMail = require('./mail');
 const { log } = console;
 const app = express();
-//const port = process.env.PORT || 5000; //post that host
-const port = 5000;
+const port = process.env.PORT || 5000; //post that host
+//const port = 5000;
 const cors = require('cors');
 
 
