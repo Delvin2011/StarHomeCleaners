@@ -23,10 +23,10 @@ if (process.env.NODE_ENV !== 'production') require('dotenv').config();
 app.use(cors()); //allows cross origin request
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, 'client/public'))); //allows us to serve a certain file inside a path
+  app.use(express.static(path.join(__dirname, 'client/build'))); //allows us to serve a certain file inside a path
 
   app.get('*', function(req, res) { //
-    res.sendFile(path.join(__dirname, 'client/public', 'index.html'));
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
   });
 }
 
@@ -75,7 +75,7 @@ app.post('/email', (req, res) => {
 
 /*// Render home page
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client/public', 'index.html'));
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
 
 // Error page
