@@ -91,11 +91,8 @@ export default function CleaningPage(props) {
                     <h3 className={classes.title}>StarHome Cleaners</h3>
                   </div>
                   <div className={classes.description}>
-                    <p style = {{color: "black"}}>
-                      An artist of considerable range, Chet Faker — the name taken by
-                      Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs
-                      and records all of his own music, giving it a warm, intimate
-                      feel with a solid groove structure.{" "}
+                    <p className={classes.description}>
+                    Offering high quality janitorial cleaning services, that leaves your home sparkling clean. Our team is well trained, experienced and always ready transform your space into the cleanest and healthiest place.
                     </p>
                   </div>
                 </div>
@@ -143,10 +140,10 @@ export default function CleaningPage(props) {
             </div>
             <GridContainer justify="center" style = {{"textAlign": "center"}}>
               <GridItem xs={12} sm={12} md={8}>
-                <h2 className={classes.title}>Cleaning Services Offered</h2>
-                <h5 className={classes.description}>
-                  LaVie WebHome empowers businesses with its cutting-edge digital inbound marketing techniques that includes Web UI/UX designs, Web Application Development, Search Engine Optimized (SEO) content, E-commerce Plartforms, Explainer videos and Domain/Email Registration. 
-                </h5>
+                <h3 className={classes.title}>Cleaning Services Offered</h3>
+                <p className={classes.description}>
+                  For a cleaning service that guarantees your satisfaction, book with us and we can handle your indoors or outdoors or pool cleaning needs.
+                </p>
               </GridItem>
             </GridContainer>
             <GridContainer justify="center">
