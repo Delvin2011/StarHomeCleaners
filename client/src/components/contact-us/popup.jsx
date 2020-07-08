@@ -1,7 +1,7 @@
 import React from 'react';  
-import {Popup,PopupInner,Form,Button,LogoContainer,CloseButton,SignInNotifier,Response,Errors} from './popup-styles'; 
+import {Popup,PopupInner,Form,LogoContainer,CloseButton,SignInNotifier,Response,Errors} from './popup-styles';  //Button
 import FormInput from "../form-input/form-input";
-
+import CustomButton from "../CustomButtons/Button";
 import Logo from '../../assets/img/logo1.png';
 class ContactUs extends React.Component {  
     constructor(){
@@ -74,14 +74,14 @@ class ContactUs extends React.Component {
                             {response ? 
                                         <div>
                                             <Response>{response}</Response>
-                                            <Button onClick = {this.props.closePopup}> CLOSE</Button> 
+                                            <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit'  onClick = {this.props.closePopup} style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>CLOSE</CustomButton></p> 
                                         </div>
                                         : error ?
                                             <div>
                                                 <Errors>Email Not Sent!!!!</Errors>
-                                                <Button type = 'submit'> RESEND</Button>  
+                                                <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit'  style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>RESEND</CustomButton></p>  
                                             </div>
-                                            : <Button type = 'submit'> SEND</Button> 
+                                            : <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit'  style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>SEND</CustomButton></p> 
                             }
                                                                              
                         </Form>
@@ -90,18 +90,18 @@ class ContactUs extends React.Component {
                         <div>
                             <CloseButton className = 'remove-button' onClick = {this.props.closePopupPhone} style = {{color : "black"}}>&#10005;</CloseButton> 
                             <LogoContainer src={Logo}/>
-                            <SignInNotifier style = {{color : "black"}}>
+                            <SignInNotifier style = {{color : "#4a4a4a"}}>
                                 <br></br>
                                 <br></br>
-                                <h2 style = {{color : "black"}}>Please contact us on:</h2>
-                                <h4 style = {{color : "black"}}>+27 78 724 3693</h4>
+                                <h2 style = {{color : "#4a4a4a"}}>Contact us on:</h2>
+                                <h4 style = {{color : "#4a4a4a"}}>+27 78 724 3693</h4>
                                 <br></br>
                                 <br></br>
-                                <h2 style = {{color : "black"}}>Alternatively:</h2>
-                                <h4 style = {{color : "black"}}>+27 83 765 6895</h4>
+                                <h2 style = {{color : "#4a4a4a"}}>Alternatively:</h2>
+                                <h4 style = {{color : "#4a4a4a"}}>+27 65 299 2030</h4>
                                 <br></br>
                                 <br></br>
-                                <Button type = 'submit' onClick={this.props.closePopupPhone}> Close</Button> 
+                                <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit' onClick={this.props.closePopupPhone} style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>CLOSE</CustomButton></p>
                             </SignInNotifier>
                         </div>
                         : this.props.showPopupGetQuote?
@@ -115,14 +115,15 @@ class ContactUs extends React.Component {
                                 {response ? 
                                             <div>
                                                 <Response>{response}</Response>
-                                                <Button onClick = {this.props.closePopupGetQuote}> CLOSE</Button> 
+                                                <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit'  onClick = {this.props.closePopupGetQuote} style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>CLOSE</CustomButton></p>
                                             </div>
                                             : error ?
                                                 <div>
                                                     <Errors>Email Not Sent!!!!</Errors>
-                                                    <Button type = 'submit'> RESEND</Button>  
+                                                    <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit'  style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>RESEND</CustomButton></p>  
                                                 </div>
-                                                : <Button type = 'submit'> SEND</Button> 
+                                                : <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit'  style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>SEND</CustomButton></p>
+ 
                                 }
                                                                                 
                             </Form>

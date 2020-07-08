@@ -90,8 +90,11 @@ export const Options = styled.div`
   font-size: 14px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     @media screen and (max-width: 800px){
-      grid-template-columns: repeat(3, 1fr);  
+      grid-template-columns: repeat(2, 1fr);  
       font-size: 14px;
+      justify-items: left;
+      text-align: left;
+      grid-gap: 10px;
     }
 `;
 
@@ -127,6 +130,7 @@ export const Options3 = styled.div`
   @media screen and (max-width: 800px){
       margin-left: 2px;  
       margin-right: 2px; 
+      
     }
 `;
 
