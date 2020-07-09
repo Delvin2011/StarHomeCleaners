@@ -106,6 +106,7 @@ class Cleaner extends React.Component {
           cleanMonth: false,
           cleanOnceOFF: false,
           cleanWeek: false,
+          statusCleanOnceOFF: false,
           maintMonth: false,
           maintQuat: false,
           maintYear: false,
@@ -205,11 +206,12 @@ class Cleaner extends React.Component {
     }
 
     handleOnceOFF () {
-      this.setState({cleanOnceOFF: this.state.cleanWeek === true ? false : !this.state.cleanOnceOFF,
+      this.setState({cleanOnceOFF: !this.state.cleanOnceOFF,
       priceCleanOnce : this.state.cleanOnceOFF? 0 : 1});
     }
 
     handleCleanWeek () {
+      //this.state.cleanOnceOFF === true ? this.setState ({cleanWeek: false}) : this.setState({cleanWeek: !this.state.cleanWeek,
       this.setState({cleanWeek: !this.state.cleanWeek,
       priceCleanWeek : this.state.cleanWeek? 0 : 0.90});
     }
@@ -231,7 +233,7 @@ class Cleaner extends React.Component {
     
     handleMaintYear () {
       this.setState({maintYear: !this.state.maintYear,
-      priceMaintYear : this.state.maintYear? 0 : 0.9});
+      priceMaintYear : this.state.maintYear? 0 : 1});
     }
 
 
@@ -401,6 +403,13 @@ const x = "" + this.state.dateTime;
 const y = "" + this.state.dateTime2;
 const poolTime = "" + this.state.dateTimePool;
 
+const cleanOnceStatus = this.state.cleanMonth || this.state.cleanWeek ? true : false;
+const cleanWeekStatus = this.state.cleanOnceOFF || this.state.cleanMonth ? true : false;
+const cleanMonthStatus = this.state.cleanOnceOFF || this.state.cleanWeek ? true : false;
+
+const maintMonthStatus = this.state.maintYear || this.state.maintQuat ? true : false;
+const maintQuatStatus = this.state.maintMonth || this.state.maintYear ? true : false;
+const maintYearStatus = this.state.maintMonth || this.state.maintQuat ? true : false;
 return (
           <div>            
             <Popup>  
@@ -692,17 +701,17 @@ return (
                                     <Message2>Estimated Costs</Message2>
                                     {this.state.PoolClean?
                                         <Message>
-                                          <Checkbox toggle label = "  Once OFF" onChange={ this.handleOnceOFF } priceCleanOnce =  {this.state.priceCleanOnce}/>
-                                          <Checkbox toggle label = "  Weekly" onChange={ this.handleCleanWeek } priceCleanWeek =  {this.state.priceCleanWeek}/>
-                                          <Checkbox toggle label = "  Monthly" onChange={ this.handleCleanMonth } priceCleanMonth =  {this.state.priceCleanMonth}/>
+                                          <Checkbox toggle label = "  Once OFF" onChange={ this.handleOnceOFF }  disabled = {cleanOnceStatus} priceCleanOnce =  {this.state.priceCleanOnce}/>
+                                          <Checkbox toggle label = "  Weekly" onChange={ this.handleCleanWeek }  disabled = {cleanWeekStatus} priceCleanWeek =  {this.state.priceCleanWeek}/>
+                                          <Checkbox toggle label = "  Monthly" onChange={ this.handleCleanMonth }  disabled = {cleanMonthStatus} priceCleanMonth =  {this.state.priceCleanMonth}/>
                                         Total : R {totalPool.toFixed(2)} 
                                         </Message>
                                       
                                       :  this.state.PoolMaint ?
                                       <Message>       
-                                          <Checkbox toggle label = "  Monthly" onChange={ this.handleMaintMonth } priceMaintMonth =  {this.state.priceMaintMonth}/>
-                                          <Checkbox toggle label = "  Quaterly" onChange={ this.handleMaintQuat } priceMaintQuat =  {this.state.priceMaintQuat}/>
-                                          <Checkbox toggle label = "  Yearly" onChange={ this.handleMaintYear } priceMaintYear =  {this.state.priceMaintYear}/>
+                                          <Checkbox toggle label = "  Monthly" onChange={ this.handleMaintMonth } disabled = {maintMonthStatus} priceMaintMonth =  {this.state.priceMaintMonth}/>
+                                          <Checkbox toggle label = "  Quaterly" onChange={ this.handleMaintQuat } disabled = {maintQuatStatus} priceMaintQuat =  {this.state.priceMaintQuat}/>
+                                          <Checkbox toggle label = "  Yearly" onChange={ this.handleMaintYear } disabled = {maintYearStatus} priceMaintYear =  {this.state.priceMaintYear}/>
                                         Total : R {totalPool.toFixed(2)} 
                                         </Message>
 

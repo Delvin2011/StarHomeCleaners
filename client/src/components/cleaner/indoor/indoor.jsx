@@ -1,7 +1,8 @@
 import React from 'react';  
-import {Popup,PopupInner,Form,CloseButton,Response,Errors,Message4,Details,Right,ContentTitle,Title} from '../outdoor/outdoor-styles'; 
+import {Popup,PopupInner,LogoContainer,Form,CloseButton,Response,Errors,Message4,Details,Right,ContentTitle,Title} from '../outdoor/outdoor-styles'; 
 import CustomButton from "../../CustomButtons/Button";
 import FormInput from '../../form-input/form-input';
+import Logo from '../../../assets/img/logo1.png';
 //import { Form } from "react-bootstrap";
 
 class Indoor extends React.Component {  
@@ -90,7 +91,7 @@ class Indoor extends React.Component {
             <Popup>  
                 <PopupInner>                   
                         <CloseButton className = 'remove-button' onClick = {this.props.closePopup} >&#10005;</CloseButton>  
-  
+                        <LogoContainer src= {Logo} />
                         <Title> Enter Contact Details
                         </Title>
                         

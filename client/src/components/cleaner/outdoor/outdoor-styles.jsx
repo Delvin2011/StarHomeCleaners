@@ -11,19 +11,21 @@ export const Button = styled(CustomButton)`
     justify-content: center; 
 `;
 
+
+
 export const LogoContainer = styled.img`
       height: 70px;
-      width: 250x;
+      width: 70px;
       display: block;
-        margin-left: 0px;
+      margin-top: -20px;
+        margin-left: auto;
         margin-right: auto;
 
       @media screen and (max-width: 800px){
-        height: 45px;
-        width: 180px;  
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
+       width: auto;
+       padding: 0;  
+       height: 60px;
+       width: 60px; 
     }
 `;
 

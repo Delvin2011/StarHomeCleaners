@@ -107,8 +107,11 @@ export const Options5 = styled.div`
     font-size: 14px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     @media screen and (max-width: 800px){
-      grid-template-columns: 25% 15% 20% 10% 30%; 
+      grid-template-columns: repeat(2, 1fr);
       font-size: 12px;
+      justify-items: left;
+      text-align: left;
+      grid-gap: 10px;
     }
 
 `;
