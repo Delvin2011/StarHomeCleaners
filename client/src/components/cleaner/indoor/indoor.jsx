@@ -90,7 +90,7 @@ class Indoor extends React.Component {
         return (  
             <Popup>  
                 <PopupInner>                   
-                        <CloseButton className = 'remove-button' onClick = {this.props.closePopup} >&#10005;</CloseButton>  
+                        <CloseButton className = 'remove-button' style = {{"color":"black"}} onClick = {this.props.closePopup} >&#10005;</CloseButton>  
                         <LogoContainer src= {Logo} />
                         <Title> Enter Contact Details
                         </Title>

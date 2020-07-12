@@ -2,6 +2,7 @@ import React from 'react';
 import {Popup,PopupInner,ContentTitle,CloseButton,LogoContainer2,TabsContainer,RangeSliderContainer,Options,Options2,Options3,Wall,Window,Machine,Stove,Fridge,Wardrobe,Message,Message2,Wheelbarrow, Options4,Options5,Info,Flowers,Driveway,Maintanance,Installations,ServicePool,Options3p1} from './popupCleaner-styles'; 
 import Outdoor from './outdoor/outdoor';
 import Indoor from './indoor/indoor';
+import Pool from './pool/pool';
 import IndoorTCs from './indoor/TCs/indoorTCs';
 import { Checkbox } from 'semantic-ui-react';
 
@@ -71,6 +72,7 @@ class Cleaner extends React.Component {
           max: new Date(2090, 2, 10, 12, 30),
           showPopupIndoor: false,
           showPopupOutdoor: false,
+          showPopupPool: false,
           picked: false,
           picked2: false,
           picked3: false,
@@ -135,6 +137,8 @@ class Cleaner extends React.Component {
           bedPrice: 0,
           bathPrice: 0,
           total2: 0,
+          totalPool: 0,
+          serviceInterval: "",
           hrs: 0,
           poolHrs: 0,
           bedRooms : 0,
@@ -235,6 +239,7 @@ class Cleaner extends React.Component {
       this.setState({maintYear: !this.state.maintYear,
       priceMaintYear : this.state.maintYear? 0 : 1});
     }
+
 
 
     pick(event) {
@@ -341,6 +346,23 @@ class Cleaner extends React.Component {
       });
     }
 
+    selectOutdoor(event) {
+      this.setState({
+        showPopupOutdoor: !this.state.showPopupOutdoor,
+        value: event.target.innerText,
+        total2: this.state.value < 2.1 ? (this.state.price7 + this.state.price8 + this.state.price9 + this.state.price10)  + 50 : 50 +(((this.state.value - 2) * 40) + (this.state.price7 + this.state.price8 + this.state.price9 + this.state.price10))
+      });
+    }
+
+    selectPool(event) {
+      this.setState({
+        showPopupPool: !this.state.showPopupPool,
+        value: event.target.innerText,
+        totalPool: this.state.PoolClean ? (250 + (this.state.poolHrs - 1)*18)*(this.state.priceCleanOnce + this.state.priceCleanWeek + this.state.priceCleanMonth) : this.state.PoolMaint ? (500 + (this.state.poolHrs - 1)*18)*(this.state.priceMaintMonth + this.state.priceMaintQuat + this.state.priceMaintYear) : 0,
+        serviceInterval : this.state.priceCleanOnce > 0 ? "One OFF" : this.state.priceCleanWeek > 0 ? "Weekly" : this.state.priceCleanMonth || this.state.priceMaintMonth > 0 ? "Monthly" : this.state.priceMaintQuat > 0 ? "Quartely" : this.state.priceMaintYear > 0 ? "Yearly" : "One OFF"
+      });
+    }
+
   handleChange2 = date => {
     this.logs4.shift()
     this.logs4.unshift("" + date);
@@ -369,13 +391,7 @@ class Cleaner extends React.Component {
   }
   
 
-  selectOutdoor(event) {
-    this.setState({
-      showPopupOutdoor: !this.state.showPopupOutdoor,
-      value: event.target.innerText,
-      total2: this.state.value < 2.1 ? (this.state.price7 + this.state.price8 + this.state.price9 + this.state.price10)  + 50 : 50 +(((this.state.value - 2) * 40) + (this.state.price7 + this.state.price8 + this.state.price9 + this.state.price10))
-    });
-  }
+
 
 showTcsIn(event) {
     this.setState({
@@ -572,15 +588,15 @@ return (
                                 </ContentTitle>
                                 <Options4>
                                 
-                                <Tooltip title="Inside Wadrobe" aria-label="add"><Fab style={{width: "80px", height: "80px"}}><Wheelbarrow onClick={this.pick7.bind(this)} picked7 = {this.state.picked7}/></Fab></Tooltip> 
+                                <Tooltip open = {this.state.picked7} onClose = {!this.state.picked7} onOpen = {this.pick7.bind(this)} title="Yard Cleaning" aria-label="add"><Fab style={{width: "80px", height: "80px"}}><Wheelbarrow onClick={this.pick7.bind(this)} picked7 = {this.state.picked7}/></Fab></Tooltip> 
 
                                     {this.state.Mower ?
                                       <Tooltip title="Lawn Mowing" aria-label="add"><Fab style={{width: "80px", height: "80px"}}><LogoContainer2 src={LawnMowerSelect} onClick={this.Mow.bind(this)}/></Fab></Tooltip> 
                                       :
                                       <Tooltip title="Lawn Mowing" aria-label="add"><Fab style={{width: "80px", height: "80px"}}><LogoContainer2 src={LawnMower} onClick={this.Mow.bind(this)}/></Fab></Tooltip> 
                                     }
-                                    <Tooltip title="Flower Bedding" aria-label="add"><Fab style={{width: "80px", height: "80px"}}><Flowers onClick={this.pick8.bind(this)} picked8 = {this.state.picked8}/></Fab></Tooltip> 
-                                    <Tooltip title="Driveway Cleaning" aria-label="add"><Fab style={{width: "80px", height: "80px"}}><Driveway onClick={this.pick9.bind(this)} picked9 = {this.state.picked9}/></Fab></Tooltip> 
+                                    <Tooltip open = {this.state.picked8} onClose = {!this.state.picked8} onOpen = {this.pick8.bind(this)} title="Flower Bedding" aria-label="add"><Fab style={{width: "80px", height: "80px"}}><Flowers onClick={this.pick8.bind(this)} picked8 = {this.state.picked8}/></Fab></Tooltip> 
+                                    <Tooltip open = {this.state.picked9} onClose = {!this.state.picked9} onOpen = {this.pick9.bind(this)} title="Driveway Cleaning" aria-label="add"><Fab style={{width: "80px", height: "80px"}}><Driveway onClick={this.pick9.bind(this)} picked9 = {this.state.picked9}/></Fab></Tooltip> 
                                 </Options4>
                                 <ContentTitle> Service Details & Costs
                                   <span><hr width="300"/></span>
@@ -671,7 +687,7 @@ return (
                                 <Options3p1>                               
                                   <Tooltip title="General Pool Cleaning" aria-label="add"><Fab style={{width: "80px", height: "80px"}}><Installations onClick={this.genPoolClean.bind(this)} PoolClean = {this.state.PoolClean}/></Fab></Tooltip> 
                                   <Tooltip title="Periodic Pool Maintanance" aria-label="add"><Fab style={{width: "80px", height: "80px"}}><Maintanance onClick={this.periodMaint.bind(this)} PoolMaint = {this.state.PoolMaint}/></Fab></Tooltip> 
-                                  <Tooltip title="Pool Repairs" aria-label="add"><Fab style={{width: "80px", height: "80px"}}><ServicePool onClick={this.pick9.bind(this)} picked9 = {this.state.picked9}/></Fab></Tooltip> 
+                                  <Tooltip title="Pool Repairs - Coming Soon" aria-label="add"><Fab style={{width: "80px", height: "80px"}}><ServicePool onClick={this.pick9.bind(this)} picked9 = {this.state.picked9}/></Fab></Tooltip> 
                                 </Options3p1>
                                 <ContentTitle> Service Details & Costs
                                   <span><hr width="300"/></span>
@@ -720,7 +736,7 @@ return (
                                       }
                                   </div>
                                 </Options3>
-                                <p style = {{"textAlign" : "center"}}><CustomButton onClick={this.selectOutdoor.bind(this)} style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>Book Service</CustomButton></p> 
+                                <p style = {{"textAlign" : "center"}}><CustomButton onClick={this.selectPool.bind(this)} style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>Book Service</CustomButton></p> 
 
                             </div> 
                           )
@@ -743,7 +759,10 @@ return (
               : null
             }
 
-            
+            {this.state.showPopupPool ?
+              <Pool showPopupPool = {this.state.showPopupPool} closePopup={this.props.closePopup} dateTime = {this.state.dateTimePool} total = {this.state.totalPool} time = {this.state.poolHrs} poolCleaning = {this.state.PoolCleanService} poolMaintanence = {this.state.PoolMaintService} serviceInterval = {this.state.serviceInterval}/>
+              : null
+            }
             {this.state.showTcIn ?
               <IndoorTCs showTcIn = {this.state.showTcIn} closeTcIn={this.showTcsIn.bind(this)}/>
               : null

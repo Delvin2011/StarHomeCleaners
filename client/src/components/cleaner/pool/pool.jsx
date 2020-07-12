@@ -1,8 +1,9 @@
 
 import React from 'react';  
-import {Popup,PopupInner,Form,Button,LogoContainer,CloseButton,Response,Errors,Message4,Details,Right,ContentTitle,Title} from './outdoor-styles'; 
+import {Popup,PopupInner,Form,LogoContainer,CloseButton,Response,Errors,Message4,Details,Right,ContentTitle,Title} from '../outdoor/outdoor-styles'; 
 import CustomButton from "../../CustomButtons/Button";
 import FormInput from '../../form-input/form-input';
+import Logo from '../../../assets/img/logo1.png';
 //import { Form } from "react-bootstrap";
 
 class Outdoor extends React.Component {  
@@ -55,7 +56,7 @@ class Outdoor extends React.Component {
             "subject": "Outdoors Cleaning Services",
             "comments": data.get('comments'),
             "address": data.get('address'),
-            "natureOfServices": "Outdoors",
+            "natureOfServices": "Pool",
             "homeDetails": this.props.time + " hrs",
             "extraServices": this.props.wheelbarrow + ", " + this.props.windows + ", " + this.props.box + ", " + this.props.mower,
             "date": dateTime.replace("GMT+0200 (South Africa Standard Time)",""),
@@ -97,8 +98,8 @@ class Outdoor extends React.Component {
         return (  
             <Popup>  
                 <PopupInner>                   
-                        <CloseButton className = 'remove-button' onClick = {this.props.closePopup} >&#10005;</CloseButton>  
-                        <LogoContainer src="https://i.ibb.co/Ln0mXVc/logo.png"/>   
+                        <CloseButton className = 'remove-button' style = {{"color":"black"}} onClick = {this.props.closePopup} >&#10005;</CloseButton>  
+                        <LogoContainer src= {Logo} />   
                         <Title> Enter Contact Details </Title>                                    
                             <Form className = 'COD-form' onSubmit = {this.handleSubmit}>                
                                 <Details> 
@@ -112,13 +113,14 @@ class Outdoor extends React.Component {
                                     <Right >
                                         <ContentTitle> Nature of Services
                                         </ContentTitle>
-                                            <Message4>Outdoors</Message4>
+                                            <Message4>Pool</Message4>
                                         <ContentTitle> Required Services
                                         </ContentTitle>
-                                            <Message4>{this.props.wheelbarrow}</Message4>
-                                            <Message4>{this.props.windows}</Message4>
-                                            <Message4>{this.props.box}</Message4>
-                                            <Message4>{this.props.mower}</Message4>
+                                            <Message4>{this.props.poolCleaning}</Message4>
+                                            <Message4>{this.props.poolMaintanence}</Message4>
+                                            <ContentTitle> Services Intervals
+                                        </ContentTitle>
+                                        <Message4>{this.props.serviceInterval}</Message4>
                                         <ContentTitle> Time allocation
                                         </ContentTitle>
                                             <Message4>{this.props.time} hrs</Message4>
@@ -127,7 +129,7 @@ class Outdoor extends React.Component {
                                         <Message4>{this.state.dateTime.replace("GMT+0200 (South Africa Standard Time)","")}</Message4>
                                         <ContentTitle> Total Costs
                                         </ContentTitle>
-                                            <Message4> R {this.props.total}</Message4>
+                                            <Message4> R {this.props.total.toFixed(2)}</Message4>
                                     </Right>  
                                  </Details> 
                                     {response ? 
