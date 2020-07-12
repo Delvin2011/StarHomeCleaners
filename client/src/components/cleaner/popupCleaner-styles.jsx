@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import CustomButton from '../custom-button/custom-button';
 import Tabs from 'react-bootstrap/Tabs';
+import Fab from '@material-ui/core/Fab';
 import {Washer} from '@styled-icons/boxicons-solid/Washer';
 import { css } from 'styled-components';
 import { GiStoneWall } from "react-icons/gi";
@@ -61,6 +62,16 @@ export const Button = styled(CustomButton)`
     display: flex;
     align-items: center;
     justify-content: center; 
+`;
+
+export const Fab2 = styled(Fab)`
+      height: 80px;
+      width: 80px;
+
+      @media screen and (max-width: 800px){ 
+       height: 50px;
+       width: 50px;
+    }
 `;
 
 export const LogoContainer = styled.img`

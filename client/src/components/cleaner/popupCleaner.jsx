@@ -1,5 +1,5 @@
 import React from 'react';  
-import {Popup,PopupInner,ContentTitle,CloseButton,LogoContainer2,TabsContainer,RangeSliderContainer,Options,Options2,Options3,Wall,Window,Machine,Stove,Fridge,Wardrobe,Message,Message2,Wheelbarrow, Options4,Options5,Info,Flowers,Driveway,Maintanance,Installations,ServicePool,Options3p1} from './popupCleaner-styles'; 
+import {Popup,PopupInner,ContentTitle,CloseButton,LogoContainer2,TabsContainer,RangeSliderContainer,Options,Options2,Options3,Wall,Window,Machine,Stove,Fridge,Fab2,Wardrobe,Message,Message2,Wheelbarrow, Options4,Options5,Info,Flowers,Driveway,Maintanance,Installations,ServicePool,Options3p1} from './popupCleaner-styles'; 
 import Outdoor from './outdoor/outdoor';
 import Indoor from './indoor/indoor';
 import Pool from './pool/pool';
@@ -588,15 +588,15 @@ return (
                                 </ContentTitle>
                                 <Options4>
                                 
-                                <Tooltip open = {this.state.picked7} onClose = {!this.state.picked7} onOpen = {this.pick7.bind(this)} title="Yard Cleaning" aria-label="add"><Fab style={{width: "80px", height: "80px"}}><Wheelbarrow onClick={this.pick7.bind(this)} picked7 = {this.state.picked7}/></Fab></Tooltip> 
+                                <Tooltip open={this.state.picked7}  title="Yard Cleaning" aria-label="add"><Fab2><Wheelbarrow onClick={this.pick7.bind(this)} picked7 = {this.state.picked7}/></Fab2></Tooltip> 
 
                                     {this.state.Mower ?
-                                      <Tooltip title="Lawn Mowing" aria-label="add"><Fab style={{width: "80px", height: "80px"}}><LogoContainer2 src={LawnMowerSelect} onClick={this.Mow.bind(this)}/></Fab></Tooltip> 
+                                      <Tooltip open = {true} title="Lawn Mowing" aria-label="add"><Fab2><LogoContainer2 src={LawnMowerSelect} onClick={this.Mow.bind(this)}/></Fab2></Tooltip> 
                                       :
-                                      <Tooltip title="Lawn Mowing" aria-label="add"><Fab style={{width: "80px", height: "80px"}}><LogoContainer2 src={LawnMower} onClick={this.Mow.bind(this)}/></Fab></Tooltip> 
+                                      <Tooltip open = {false} title="Lawn Mowing" aria-label="add"><Fab2><LogoContainer2 src={LawnMower} onClick={this.Mow.bind(this)}/></Fab2></Tooltip> 
                                     }
-                                    <Tooltip open = {this.state.picked8} onClose = {!this.state.picked8} onOpen = {this.pick8.bind(this)} title="Flower Bedding" aria-label="add"><Fab style={{width: "80px", height: "80px"}}><Flowers onClick={this.pick8.bind(this)} picked8 = {this.state.picked8}/></Fab></Tooltip> 
-                                    <Tooltip open = {this.state.picked9} onClose = {!this.state.picked9} onOpen = {this.pick9.bind(this)} title="Driveway Cleaning" aria-label="add"><Fab style={{width: "80px", height: "80px"}}><Driveway onClick={this.pick9.bind(this)} picked9 = {this.state.picked9}/></Fab></Tooltip> 
+                                    <Tooltip  open={this.state.picked8}  title="Flower Bedding" aria-label="add"><Fab2 ><Flowers onClick={this.pick8.bind(this)} picked8 = {this.state.picked8}/></Fab2></Tooltip> 
+                                    <Tooltip  open={this.state.picked9}  title="Driveway Cleaning" aria-label="add"><Fab2 ><Driveway onClick={this.pick9.bind(this)} picked9 = {this.state.picked9}/></Fab2></Tooltip> 
                                 </Options4>
                                 <ContentTitle> Service Details & Costs
                                   <span><hr width="300"/></span>
