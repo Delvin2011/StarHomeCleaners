@@ -84,6 +84,7 @@ class Cleaner extends React.Component {
           picked9: false,
           PoolClean: false,
           PoolMaint: false,
+          PoolRepair: false,
           events: this.logs,
           events2: this.logs2,
           events3: this.logs3,
@@ -326,6 +327,12 @@ class Cleaner extends React.Component {
       });
     }
 
+    perPoolRepair(event) {
+      this.setState({
+        PoolRepair: !this.state.PoolRepair
+      });
+    }
+
     Mow(event) {
       this.setState({
         Mower: !this.state.Mower,
@@ -409,7 +416,7 @@ showTcsOut(event) {
 
 render() {  
 const total = 150 + this.state.bedPrice + this.state.bathPrice + this.state.price + this.state.price2 + this.state.price3 + this.state.price4 + this.state.price5 + this.state.price6 + this.state.priceDetergent;
-const total2 = this.state.value < 2.1 ? (this.state.price7 + this.state.price8 + this.state.price9 + this.state.price10)  + 50 : 50 +(((this.state.value - 2) * 40) + (this.state.price7 + this.state.price8 + this.state.price9 + this.state.price10));
+const total2 = this.state.hrs < 2.1 ? (this.state.price7 + this.state.price8 + this.state.price9 + this.state.price10)  + 50 : 50 +(((this.state.hrs - 2) * 40) + (this.state.price7 + this.state.price8 + this.state.price9 + this.state.price10));
 
 const totalClean = this.state.PoolClean ? (250 + (this.state.poolHrs - 1)*18)*(this.state.priceCleanOnce + this.state.priceCleanWeek + this.state.priceCleanMonth) : 0;//             this.state.poolHrs * (this.state.PoolCleanPrice + this.state.PoolMaintPrice);
 const totalMaint = this.state.PoolMaint ? (500 + (this.state.poolHrs - 1)*18)*(this.state.priceMaintMonth + this.state.priceMaintQuat + this.state.priceMaintYear) : 0;//             this.state.poolHrs * (this.state.PoolCleanPrice + this.state.PoolMaintPrice);
@@ -490,12 +497,12 @@ return (
                                       <span><hr width="300"/></span>
                                     </ContentTitle>
                                     <Options2>
-                                      <Tooltip title="Walls" aria-label="add"><Fab><Wall onClick={this.pick.bind(this)} picked = {this.state.picked}/></Fab></Tooltip>
-                                      <Tooltip title="Windows" aria-label="add"><Fab><Window onClick={this.pick2.bind(this)} picked2 = {this.state.picked2}/></Fab></Tooltip> 
-                                      <Tooltip title="Laundry" aria-label="add"><Fab><Machine onClick={this.pick3.bind(this)} picked3 = {this.state.picked3}/></Fab></Tooltip>                                    
-                                      <Tooltip title="Inside Oven" aria-label="add"><Fab><Stove icon={stoveIcon} onClick={this.pick4.bind(this)} picked4 = {this.state.picked4}/></Fab></Tooltip>
-                                      <Tooltip title="Inside Wadrobe" aria-label="add"><Fab><Wardrobe icon={wardrobeIcon}  onClick={this.pick5.bind(this)} picked5 = {this.state.picked5}/></Fab></Tooltip>
-                                      <Tooltip title="Inside Fridge" aria-label="add"><Fab><Fridge icon={fridgeIcon} onClick={this.pick6.bind(this)} picked6 = {this.state.picked6}/></Fab></Tooltip>
+                                      <Tooltip open = {this.state.picked} title="Walls" aria-label="add"><Fab><Wall onClick={this.pick.bind(this)} picked = {this.state.picked}/></Fab></Tooltip>
+                                      <Tooltip open = {this.state.picked2} title="Windows" aria-label="add"><Fab><Window onClick={this.pick2.bind(this)} picked2 = {this.state.picked2}/></Fab></Tooltip> 
+                                      <Tooltip open = {this.state.picked3} title="Laundry" aria-label="add"><Fab><Machine onClick={this.pick3.bind(this)} picked3 = {this.state.picked3}/></Fab></Tooltip>                                    
+                                      <Tooltip open = {this.state.picked4} title="Inside Oven" aria-label="add"><Fab><Stove icon={stoveIcon} onClick={this.pick4.bind(this)} picked4 = {this.state.picked4}/></Fab></Tooltip>
+                                      <Tooltip open = {this.state.picked5} title="Inside Wadrobe" aria-label="add"><Fab><Wardrobe icon={wardrobeIcon}  onClick={this.pick5.bind(this)} picked5 = {this.state.picked5}/></Fab></Tooltip>
+                                      <Tooltip open = {this.state.picked6} title="Inside Fridge" aria-label="add"><Fab><Fridge icon={fridgeIcon} onClick={this.pick6.bind(this)} picked6 = {this.state.picked6}/></Fab></Tooltip>
                                     </Options2>                        
                                     <ContentTitle> Service Details & Costs
                                       <span><hr width="300"/></span>
@@ -685,9 +692,9 @@ return (
                                   <span><hr width="300"/></span>
                                 </ContentTitle>
                                 <Options3p1>                               
-                                  <Tooltip title="General Pool Cleaning" aria-label="add"><Fab style={{width: "80px", height: "80px"}}><Installations onClick={this.genPoolClean.bind(this)} PoolClean = {this.state.PoolClean}/></Fab></Tooltip> 
-                                  <Tooltip title="Periodic Pool Maintanance" aria-label="add"><Fab style={{width: "80px", height: "80px"}}><Maintanance onClick={this.periodMaint.bind(this)} PoolMaint = {this.state.PoolMaint}/></Fab></Tooltip> 
-                                  <Tooltip title="Pool Repairs - Coming Soon" aria-label="add"><Fab style={{width: "80px", height: "80px"}}><ServicePool onClick={this.pick9.bind(this)} picked9 = {this.state.picked9}/></Fab></Tooltip> 
+                                  <Tooltip open={this.state.PoolClean} title="General Pool Cleaning" aria-label="add"><Fab style={{width: "80px", height: "80px"}}><Installations onClick={this.genPoolClean.bind(this)} PoolClean = {this.state.PoolClean}/></Fab></Tooltip> 
+                                  <Tooltip open={this.state.PoolMaint} title="Periodic Pool Maintanance" aria-label="add"><Fab style={{width: "80px", height: "80px"}}><Maintanance onClick={this.periodMaint.bind(this)} PoolMaint = {this.state.PoolMaint}/></Fab></Tooltip> 
+                                  <Tooltip open={this.state.PoolRepair} title="Pool Repairs - Coming Soon" aria-label="add"><Fab style={{width: "80px", height: "80px"}}><ServicePool onClick={this.perPoolRepair.bind(this)} PoolRepair = {this.state.PoolRepair}/></Fab></Tooltip> 
                                 </Options3p1>
                                 <ContentTitle> Service Details & Costs
                                   <span><hr width="300"/></span>
