@@ -60,6 +60,7 @@ class Cleaner extends React.Component {
   logsAreaHours = [];
   locationPool = [];
   poolTimes = [];
+  logsPoolHours = [];
 
 
     constructor(){
@@ -93,6 +94,7 @@ class Cleaner extends React.Component {
           events5: this.logs5,
           events6: this.logs6,
           eventsAreaHours: this.logsAreaHours,
+          eventsPoolHours: this.logsPoolHours,
           locPool: this.locationPool,
           PoolTime: this.poolTimes,
           value2: "",
@@ -168,6 +170,7 @@ class Cleaner extends React.Component {
         this.handleMaintYear = this.handleMaintYear.bind(this);
 
         this.handleDropdownAreaSize = this.handleDropdownAreaSize.bind(this);
+        this.handlePoolAreaSize = this.handlePoolAreaSize.bind(this);
     }
 
     handleDropdownChange(e) {
@@ -193,6 +196,14 @@ class Cleaner extends React.Component {
           areaHours: e.target.value
         });
       }
+
+      handlePoolAreaSize(e) {
+        this.logsPoolHours.shift();
+        this.logsPoolHours.unshift("Working Hours : " + e.target.value + " hrs");
+          this.setState({ selectValue: e.target.value,
+            poolHrs: e.target.value
+          });
+        }
     handleDropdownChange3(e) {
       this.logs3.shift();
       this.logs3.unshift("Location : " + e.target.value);
@@ -228,7 +239,6 @@ class Cleaner extends React.Component {
     }
 
     handleCleanWeek () {
-      //this.state.cleanOnceOFF === true ? this.setState ({cleanWeek: false}) : this.setState({cleanWeek: !this.state.cleanWeek,
       this.setState({cleanWeek: !this.state.cleanWeek,
       priceCleanWeek : this.state.cleanWeek? 0 : 0.90});
     }
@@ -660,7 +670,7 @@ return (
                                 <ContentTitle> Details <Info onClick = {this.showTcsOut.bind(this)} showTcOut = {this.state.showTcOut}/>
                                   <span><hr width="300"/></span>
                                 </ContentTitle>
-                                <Options5>
+                                <Options>
                                     <DatePicker
                                           selected={this.state.dateTimePool}
                                           value={this.state.dateTimePool}
@@ -673,7 +683,7 @@ return (
                                           timeCaption="time"
                                           dateFormat="MMMM d, yyyy h:mm aa"
                                           shouldCloseOnSelect={false} />
-                                    <select id="dropdown2" onChange={this.handleDropdownPool} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
+                                      <select id="dropdown2" onChange={this.handleDropdownPool} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
                                           <option value="N/A">Location</option>
                                           <option value="Boksburg">Boksburg</option>
                                           <option value="Edenvale">Edenvale</option>
@@ -681,20 +691,17 @@ return (
                                           <option value="Springs">Springs</option>
                                           <option value="Germiston">Germiston</option>
                                       </select>    
-                                      <div style = {{color: 'grey', fontSize : "14px"}}>Pool Area Size: </div>                  
-                                  <RangeSliderContainer color="red" >
-                                  
-                                    <InputRange
-                                      maxValue={10}
-                                      minValue={0}
-                                      valueLabel = {this.state.maxLabels}
-                                      value={this.state.poolHrs}
-                                      onChange={poolHrs => this.setState({ poolHrs })}
-                                      formatLabel={value => `${""}`}
-                                      />
-                                  </RangeSliderContainer>
-                                  <div style = {{color: 'grey', fontSize : "14px"}}>{this.state.poolHrs} hrs</div>
-                                </Options5>
+                                      <h4 style = {{color: 'grey', fontSize : "14px", marginTop : "0px"}}>Work hours : </h4>    
+                                      <select id="areaSize" onChange={this.handlePoolAreaSize} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
+                                          <option value="0">No. of Hours</option>
+                                          <option value="1">1 Hour</option>
+                                          <option value="2">2 Hours</option>
+                                          <option value="3">3 Hours</option>
+                                          <option value="4">4 Hours</option>
+                                          <option value="5">5 Hours</option>
+                                          <option value="6">6 Hours</option>
+                                      </select>
+                                </Options>
                                 <ContentTitle> Required Services
                                   <span><hr width="300"/></span>
                                 </ContentTitle>
@@ -712,10 +719,7 @@ return (
 
                                     <EventLog logs={this.state.locPool}/>
 
-                                    {this.state.poolHrs  === 0 ? null
-                                      :
-                                      <Message>Working Hours : {this.state.poolHrs} hrs</Message>  
-                                    }  
+                                    <EventLog logs={this.state.eventsPoolHours}/>
                                     {this.state.PoolTime.length !== 0 ?
                                       <Message>Date : {poolTime.replace("GMT+0200 (South Africa Standard Time)","")}</Message> 
                                     : null
@@ -764,7 +768,7 @@ return (
                 </PopupInner>  
             </Popup>            
             {this.state.showPopupOutdoor ?
-              <Outdoor showPopupOutdoor = {this.state.showPopupOutdoor} closePopup={this.props.closePopup} dateTime = {this.state.dateTime2} total = {this.state.total2} time = {this.state.hrs} wheelbarrow = {this.state.value8} mower = {this.state.value11} windows = {this.state.value9} box = {this.state.value10} />
+              <Outdoor showPopupOutdoor = {this.state.showPopupOutdoor} closePopup={this.props.closePopup} dateTime = {this.state.dateTime2} total = {this.state.total2} time = {this.state.areaHours} wheelbarrow = {this.state.value8} mower = {this.state.value11} windows = {this.state.value9} box = {this.state.value10} />
               : null
             } 
 

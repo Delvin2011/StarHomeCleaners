@@ -43,6 +43,7 @@ class Outdoor extends React.Component {
       handleSubmit(event) {
         event.preventDefault();
         const form = event.target;
+        console.log(form);
         const data = new FormData(form);
         const {dateTime} = this.state;
         console.log(data.get('email'));
@@ -140,9 +141,9 @@ class Outdoor extends React.Component {
                                     : error ?
                                         <div>
                                             <Errors>Email Not Sent!!!!</Errors> 
-                                            <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit' onClick= {this.handleSubmit} style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>RESEND</CustomButton></p>
+                                            <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit'  style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>RESEND</CustomButton></p>
                                         </div>
-                                        : <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit' style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>BOOK SERVICE</CustomButton></p>
+                                        : <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit'  style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>BOOK SERVICE</CustomButton></p>
 
                                     } 
                                 </Form>                             

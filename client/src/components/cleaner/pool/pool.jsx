@@ -6,7 +6,7 @@ import FormInput from '../../form-input/form-input';
 import Logo from '../../../assets/img/logo1.png';
 //import { Form } from "react-bootstrap";
 
-class Outdoor extends React.Component {  
+class Pool extends React.Component {  
     constructor(props){
         super(props);   
         this.state = {
@@ -43,9 +43,10 @@ class Outdoor extends React.Component {
       handleSubmit(event) {
         event.preventDefault();
         const form = event.target;
+        console.log(form);
         const data = new FormData(form);
         const {dateTime} = this.state;
-
+        console.log(data.get('email'));
        fetch('/email', {
         method: 'post',
         headers: {'Content-Type': 'application/json'},
@@ -53,17 +54,18 @@ class Outdoor extends React.Component {
             "email" : data.get('email'),
             "customerName" : data.get('customerName'),
             "phoneNumber": data.get('phoneNumber'),
-            "subject": "Outdoors Cleaning Services",
+            "subject": "Pool Services",
             "comments": data.get('comments'),
             "address": data.get('address'),
             "natureOfServices": "Pool",
-            "homeDetails": this.props.time + " hrs",
-            "extraServices": this.props.wheelbarrow + ", " + this.props.windows + ", " + this.props.box + ", " + this.props.mower,
+            "timeAllocation": this.props.time + " hrs",
+            "serviceIntervals": this.props.serviceInterval,
+            "extraServices": this.props.poolCleaning + ", " + this.props.poolMaintanence,
             "date": dateTime.replace("GMT+0200 (South Africa Standard Time)",""),
             "costs": "R " + this.props.total
         })
           })
-          .then((response) => response.json())
+          .then((response) => {response.json();console.log(response)})
           .then((result) => {
             this.setState({ response: result.message });
             console.log('Success:', result.message);
@@ -141,9 +143,9 @@ class Outdoor extends React.Component {
                                     : error ?
                                         <div>
                                             <Errors>Email Not Sent!!!!</Errors> 
-                                            <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit' onClick= {this.props.closePopup} style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>RESEND</CustomButton></p>
+                                            <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit'  style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>RESEND</CustomButton></p>
                                         </div>
-                                        : <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit' onClick= {this.props.closePopup} style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>BOOK SERVICE</CustomButton></p>
+                                        : <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit'  style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>BOOK SERVICE</CustomButton></p>
 
                                     } 
                                 </Form>                             
@@ -154,4 +156,4 @@ class Outdoor extends React.Component {
 }  
 
 
-export default Outdoor; 
+export default Pool; 
