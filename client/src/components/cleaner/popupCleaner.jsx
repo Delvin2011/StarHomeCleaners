@@ -57,6 +57,7 @@ class Cleaner extends React.Component {
   logs4 = [];
   logs5 = [];
   logs6 = [];
+  logsAreaHours = [];
   locationPool = [];
   poolTimes = [];
 
@@ -91,6 +92,7 @@ class Cleaner extends React.Component {
           events4: this.logs4,
           events5: this.logs5,
           events6: this.logs6,
+          eventsAreaHours: this.logsAreaHours,
           locPool: this.locationPool,
           PoolTime: this.poolTimes,
           value2: "",
@@ -132,6 +134,7 @@ class Cleaner extends React.Component {
           priceCleanOnce: 0,
           priceCleanMonth: 0,
           priceCleanWeek: 0,
+          areaHours: 0,
           priceMaintMonth: 0,
           priceMaintQuat: 0,
           priceMaintYear: 0,
@@ -163,6 +166,8 @@ class Cleaner extends React.Component {
         this.handleMaintMonth = this.handleMaintMonth.bind(this);
         this.handleMaintQuat = this.handleMaintQuat.bind(this);
         this.handleMaintYear = this.handleMaintYear.bind(this);
+
+        this.handleDropdownAreaSize = this.handleDropdownAreaSize.bind(this);
     }
 
     handleDropdownChange(e) {
@@ -180,7 +185,14 @@ class Cleaner extends React.Component {
           bathPrice: e.target.value === "1"? 20 : e.target.value === "2"? 40 : e.target.value === "3"? 60 : e.target.value === "4"? 80 : e.target.value === "5"? 100 : 0,
           bathRooms: e.target.value === "1"? e.target.value + " Bathroom" : e.target.value  + " Bathrooms"});
         }
-    
+
+        handleDropdownAreaSize(e) {
+      this.logsAreaHours.shift();
+      this.logsAreaHours.unshift("Working Hours : " + e.target.value + " hrs");
+        this.setState({ selectValue: e.target.value,
+          areaHours: e.target.value
+        });
+      }
     handleDropdownChange3(e) {
       this.logs3.shift();
       this.logs3.unshift("Location : " + e.target.value);
@@ -357,7 +369,7 @@ class Cleaner extends React.Component {
       this.setState({
         showPopupOutdoor: !this.state.showPopupOutdoor,
         value: event.target.innerText,
-        total2: this.state.value < 2.1 ? (this.state.price7 + this.state.price8 + this.state.price9 + this.state.price10)  + 50 : 50 +(((this.state.value - 2) * 40) + (this.state.price7 + this.state.price8 + this.state.price9 + this.state.price10))
+        total2: this.state.areaHours < 2.1 ? (this.state.price7 + this.state.price8 + this.state.price9 + this.state.price10)  + 50 : 50 +(((this.state.areaHours - 2) * 40) + (this.state.price7 + this.state.price8 + this.state.price9 + this.state.price10))
       });
     }
 
@@ -416,7 +428,7 @@ showTcsOut(event) {
 
 render() {  
 const total = 150 + this.state.bedPrice + this.state.bathPrice + this.state.price + this.state.price2 + this.state.price3 + this.state.price4 + this.state.price5 + this.state.price6 + this.state.priceDetergent;
-const total2 = this.state.hrs < 2.1 ? (this.state.price7 + this.state.price8 + this.state.price9 + this.state.price10)  + 50 : 50 +(((this.state.hrs - 2) * 40) + (this.state.price7 + this.state.price8 + this.state.price9 + this.state.price10));
+const total2 = this.state.areaHours < 2.1 ? (this.state.price7 + this.state.price8 + this.state.price9 + this.state.price10)  + 50 : 50 +(((this.state.areaHours - 2) * 40) + (this.state.price7 + this.state.price8 + this.state.price9 + this.state.price10));
 
 const totalClean = this.state.PoolClean ? (250 + (this.state.poolHrs - 1)*18)*(this.state.priceCleanOnce + this.state.priceCleanWeek + this.state.priceCleanMonth) : 0;//             this.state.poolHrs * (this.state.PoolCleanPrice + this.state.PoolMaintPrice);
 const totalMaint = this.state.PoolMaint ? (500 + (this.state.poolHrs - 1)*18)*(this.state.priceMaintMonth + this.state.priceMaintQuat + this.state.priceMaintYear) : 0;//             this.state.poolHrs * (this.state.PoolCleanPrice + this.state.PoolMaintPrice);
@@ -497,12 +509,12 @@ return (
                                       <span><hr width="300"/></span>
                                     </ContentTitle>
                                     <Options2>
-                                      <Tooltip open = {this.state.picked} title="Walls" aria-label="add"><Fab><Wall onClick={this.pick.bind(this)} picked = {this.state.picked}/></Fab></Tooltip>
-                                      <Tooltip open = {this.state.picked2} title="Windows" aria-label="add"><Fab><Window onClick={this.pick2.bind(this)} picked2 = {this.state.picked2}/></Fab></Tooltip> 
-                                      <Tooltip open = {this.state.picked3} title="Laundry" aria-label="add"><Fab><Machine onClick={this.pick3.bind(this)} picked3 = {this.state.picked3}/></Fab></Tooltip>                                    
-                                      <Tooltip open = {this.state.picked4} title="Inside Oven" aria-label="add"><Fab><Stove icon={stoveIcon} onClick={this.pick4.bind(this)} picked4 = {this.state.picked4}/></Fab></Tooltip>
-                                      <Tooltip open = {this.state.picked5} title="Inside Wadrobe" aria-label="add"><Fab><Wardrobe icon={wardrobeIcon}  onClick={this.pick5.bind(this)} picked5 = {this.state.picked5}/></Fab></Tooltip>
-                                      <Tooltip open = {this.state.picked6} title="Inside Fridge" aria-label="add"><Fab><Fridge icon={fridgeIcon} onClick={this.pick6.bind(this)} picked6 = {this.state.picked6}/></Fab></Tooltip>
+                                      <Tooltip title="Walls" aria-label="add"><Fab><Wall onClick={this.pick.bind(this)} picked = {this.state.picked}/></Fab></Tooltip>
+                                      <Tooltip title="Windows" aria-label="add"><Fab><Window onClick={this.pick2.bind(this)} picked2 = {this.state.picked2}/></Fab></Tooltip> 
+                                      <Tooltip title="Laundry" aria-label="add"><Fab><Machine onClick={this.pick3.bind(this)} picked3 = {this.state.picked3}/></Fab></Tooltip>                                    
+                                      <Tooltip title="Inside Oven" aria-label="add"><Fab><Stove icon={stoveIcon} onClick={this.pick4.bind(this)} picked4 = {this.state.picked4}/></Fab></Tooltip>
+                                      <Tooltip title="Inside Wadrobe" aria-label="add"><Fab><Wardrobe icon={wardrobeIcon}  onClick={this.pick5.bind(this)} picked5 = {this.state.picked5}/></Fab></Tooltip>
+                                      <Tooltip title="Inside Fridge" aria-label="add"><Fab><Fridge icon={fridgeIcon} onClick={this.pick6.bind(this)} picked6 = {this.state.picked6}/></Fab></Tooltip>
                                     </Options2>                        
                                     <ContentTitle> Service Details & Costs
                                       <span><hr width="300"/></span>
@@ -555,7 +567,7 @@ return (
                                 <ContentTitle> Details <Info onClick = {this.showTcsOut.bind(this)} showTcOut = {this.state.showTcOut}/>
                                   <span><hr width="300"/></span>
                                 </ContentTitle>
-                                <Options5>
+                                <Options>
                                     <DatePicker
                                           selected={this.state.dateTime2}
                                           value={this.state.dateTime2}
@@ -576,34 +588,31 @@ return (
                                           <option value="Springs">Springs</option>
                                           <option value="Germiston">Germiston</option>
                                       </select>    
-                                      <div style = {{color: 'grey', fontSize : "14px"}}>Area Size: </div>                  
-                                  <RangeSliderContainer color="red" >
-                                  
-                                    <InputRange
-                                      maxValue={10}
-                                      minValue={0}
-                                      valueLabel = {this.state.maxLabels}
-                                      value={this.state.hrs}
-                                      onChange={hrs => this.setState({ hrs })}
-                                      formatLabel={value => `${""}`}
-                                      />
-                                  </RangeSliderContainer>
-                                  <div style = {{color: 'grey', fontSize : "14px"}}>{this.state.hrs} hrs</div>
-                                </Options5>
+                                      <h4 style = {{color: 'grey', fontSize : "14px", marginTop : "0px"}}>Work hours : </h4>    
+                                      <select id="areaSize" onChange={this.handleDropdownAreaSize} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
+                                          <option value="0">No. of Hours</option>
+                                          <option value="1">1 Hour</option>
+                                          <option value="2">2 Hours</option>
+                                          <option value="3">3 Hours</option>
+                                          <option value="4">4 Hours</option>
+                                          <option value="5">5 Hours</option>
+                                          <option value="6">6 Hours</option>
+                                      </select>
+                                </Options>
                                 <ContentTitle> Required Services
                                   <span><hr width="300"/></span>
                                 </ContentTitle>
                                 <Options4>
                                 
-                                <Tooltip open={this.state.picked7}  title="Yard Cleaning" aria-label="add"><Fab2><Wheelbarrow onClick={this.pick7.bind(this)} picked7 = {this.state.picked7}/></Fab2></Tooltip> 
+                                <Tooltip title="Yard Cleaning" aria-label="add"><Fab2><Wheelbarrow onClick={this.pick7.bind(this)} picked7 = {this.state.picked7}/></Fab2></Tooltip> 
 
                                     {this.state.Mower ?
-                                      <Tooltip open = {true} title="Lawn Mowing" aria-label="add"><Fab2><LogoContainer2 src={LawnMowerSelect} onClick={this.Mow.bind(this)}/></Fab2></Tooltip> 
+                                      <Tooltip title="Lawn Mowing" aria-label="add"><Fab2><LogoContainer2 src={LawnMowerSelect} onClick={this.Mow.bind(this)}/></Fab2></Tooltip> 
                                       :
-                                      <Tooltip open = {false} title="Lawn Mowing" aria-label="add"><Fab2><LogoContainer2 src={LawnMower} onClick={this.Mow.bind(this)}/></Fab2></Tooltip> 
+                                      <Tooltip title="Lawn Mowing" aria-label="add"><Fab2><LogoContainer2 src={LawnMower} onClick={this.Mow.bind(this)}/></Fab2></Tooltip> 
                                     }
-                                    <Tooltip  open={this.state.picked8}  title="Flower Bedding" aria-label="add"><Fab2 ><Flowers onClick={this.pick8.bind(this)} picked8 = {this.state.picked8}/></Fab2></Tooltip> 
-                                    <Tooltip  open={this.state.picked9}  title="Driveway Cleaning" aria-label="add"><Fab2 ><Driveway onClick={this.pick9.bind(this)} picked9 = {this.state.picked9}/></Fab2></Tooltip> 
+                                    <Tooltip  title="Flower Bedding" aria-label="add"><Fab2 ><Flowers onClick={this.pick8.bind(this)} picked8 = {this.state.picked8}/></Fab2></Tooltip> 
+                                    <Tooltip  title="Driveway Cleaning" aria-label="add"><Fab2 ><Driveway onClick={this.pick9.bind(this)} picked9 = {this.state.picked9}/></Fab2></Tooltip> 
                                 </Options4>
                                 <ContentTitle> Service Details & Costs
                                   <span><hr width="300"/></span>
@@ -614,10 +623,8 @@ return (
 
                                     <EventLog logs={this.state.events5}/>
 
-                                    {this.state.hrs  === 0 ? null
-                                      :
-                                      <Message>Working Hours : {this.state.hrs} hrs</Message>  
-                                    }  
+                                    <EventLog logs={this.state.eventsAreaHours}/>
+
                                     {this.state.events6.length !== 0 ?
                                       <Message>Date : {y.replace("GMT+0200 (South Africa Standard Time)","")}</Message> 
                                     : null
@@ -692,9 +699,9 @@ return (
                                   <span><hr width="300"/></span>
                                 </ContentTitle>
                                 <Options3p1>                               
-                                  <Tooltip open={this.state.PoolClean} title="General Pool Cleaning" aria-label="add"><Fab style={{width: "80px", height: "80px"}}><Installations onClick={this.genPoolClean.bind(this)} PoolClean = {this.state.PoolClean}/></Fab></Tooltip> 
-                                  <Tooltip open={this.state.PoolMaint} title="Periodic Pool Maintanance" aria-label="add"><Fab style={{width: "80px", height: "80px"}}><Maintanance onClick={this.periodMaint.bind(this)} PoolMaint = {this.state.PoolMaint}/></Fab></Tooltip> 
-                                  <Tooltip open={this.state.PoolRepair} title="Pool Repairs - Coming Soon" aria-label="add"><Fab style={{width: "80px", height: "80px"}}><ServicePool onClick={this.perPoolRepair.bind(this)} PoolRepair = {this.state.PoolRepair}/></Fab></Tooltip> 
+                                  <Tooltip   title="General Pool Cleaning" aria-label="add"><Fab style={{width: "80px", height: "80px"}}><Installations onClick={this.genPoolClean.bind(this)} PoolClean = {this.state.PoolClean}/></Fab></Tooltip> 
+                                  <Tooltip  title="Periodic Pool Maintanance" aria-label="add"><Fab style={{width: "80px", height: "80px"}}><Maintanance onClick={this.periodMaint.bind(this)} PoolMaint = {this.state.PoolMaint}/></Fab></Tooltip> 
+                                  <Tooltip  title="Pool Repairs - Coming Soon" aria-label="add"><Fab style={{width: "80px", height: "80px"}}><ServicePool onClick={this.perPoolRepair.bind(this)} PoolRepair = {this.state.PoolRepair}/></Fab></Tooltip> 
                                 </Options3p1>
                                 <ContentTitle> Service Details & Costs
                                   <span><hr width="300"/></span>
