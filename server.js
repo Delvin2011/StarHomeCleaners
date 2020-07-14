@@ -3,7 +3,7 @@
 //require('dotenv').config();
 const express = require('express');
 const path = require('path');
-//const sendMail = require('./mail');
+const sendMail = require('./mail');
 const { log } = console;
 const app = express();
 const port = process.env.PORT || 5000; //post that host
@@ -68,19 +68,19 @@ app.post('/email', (req, res) => {
 
    console.log(emailBody);
  
-   /* sendMail(email,subject,emailBody, function(err, data) {
+    sendMail(email,subject,emailBody, function(err, data) {
         if (err) {
             log('ERROR: ', err);
             return res.status(500).json({ message: err.message || 'Internal Error' });
         }
         log('Email sent!!!');
         return res.json({ message: 'Email sent!!!!!' });
-    });*/
+    });
 
 });
 
 
-/*// Render home page
+// Render home page
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
@@ -93,7 +93,7 @@ app.get('/error', (req, res) => {
 // Email sent page
 app.get('/email/sent', (req, res) => {
     res.sendFile(path.join(__dirname, 'EmailResponse', 'emailMessage.html'));
-});*/
+});
 
 
 
