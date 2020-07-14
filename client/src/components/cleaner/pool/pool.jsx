@@ -22,7 +22,8 @@ class Pool extends React.Component {
             option: false,
             option2: false,
             HowOften: '',
-            dateTime: "" + this.props.dateTime
+            dateTime: "" + this.props.dateTime,
+            response: ''
         }
         this.handleDropdownChange = this.handleDropdownChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -43,10 +44,9 @@ class Pool extends React.Component {
       handleSubmit(event) {
         event.preventDefault();
         const form = event.target;
-        console.log(form);
         const data = new FormData(form);
         const {dateTime} = this.state;
-        console.log(data.get('email'));
+
        fetch('/email', {
         method: 'post',
         headers: {'Content-Type': 'application/json'},
@@ -65,10 +65,10 @@ class Pool extends React.Component {
             "costs": "R " + this.props.total
         })
           })
-          .then((response) => {response.json();console.log(response)})
-          .then((result) => {
-            this.setState({ response: result.message });
-            console.log('Success:', result.message);
+          //.then((response) => {response.json();console.log(response.ok)})
+          .then((response) => {
+            this.setState({ response: response.status });
+            console.log('Success:', response.status);
           })
           .catch((error) => {
             this.setState({ error: error });
@@ -134,13 +134,13 @@ class Pool extends React.Component {
                                             <Message4> R {this.props.total.toFixed(2)}</Message4>
                                     </Right>  
                                  </Details> 
-                                    {response ? 
+                                    {response === 200 ? 
                                         <div>
-                                            <Response>{response}</Response>
+                                            <Response>Email Sent!!!!</Response>
                                             <p style = {{"textAlign" : "center"}}><CustomButton onClick= {this.props.closePopup} style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>CLOSE</CustomButton></p> 
 
                                         </div>
-                                    : error ?
+                                    : response === 500 || response === 404 ?
                                         <div>
                                             <Errors>Email Not Sent!!!!</Errors> 
                                             <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit'  style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>RESEND</CustomButton></p>

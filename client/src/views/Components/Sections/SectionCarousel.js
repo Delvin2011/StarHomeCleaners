@@ -34,7 +34,7 @@ export default function SectionCarousel() {
     autoplay: true
   };
   return (
-    <div className={classe.section} style = {{marginTop: "-125px"}}>
+    <div className={classe.section} style = {{marginTop: "-100px"}}>
 
       <div className={classe.container}>
       <h3 className={classe.title} style = {{color : "#3C4858","fontWeight":"bold"}}>Clients{"'"} Feedback</h3>
@@ -45,11 +45,11 @@ export default function SectionCarousel() {
                 <div>
                   <img src={image1} alt="First slide" className="slick-image" />
                   <div className="slick-caption" >
-                  <h3 style = {{marginBottom: "50px"}}>
+                  <h3 >
                   <BsPeopleCircle className={classes.icons} /> 
                   {" "}TB Tapfumanei
                     </h3>
-                    <h4 style = {{marginBottom: "70px"}}>
+                    <h4 >
                       <RiMessage3Line className={classes.icons} />
                       {" "}Yellowstone National Park, United States
                     </h4>
@@ -62,11 +62,11 @@ export default function SectionCarousel() {
                     className="slick-image"
                   />
                   <div className="slick-caption">
-                  <h3 style = {{marginBottom: "50px"}}>
+                  <h3 >
                   <BsPeopleCircle className={classes.icons} /> 
                   {" "}TB Tapfumanei
                     </h3>
-                    <h4 style = {{marginBottom: "70px"}}>
+                    <h4 >
                       <RiMessage3Line className={classes.icons} />
                       {" "} Somewhere Beyond, United States
                     </h4>
@@ -75,11 +75,11 @@ export default function SectionCarousel() {
                 <div>
                   <img src={image3} alt="Third slide" className="slick-image" />
                   <div className="slick-caption">
-                  <h3 style = {{marginBottom: "50px"}}>
+                  <h3 >
                   <BsPeopleCircle className={classes.icons} /> 
                       {" "}TB Tapfumanei
                     </h3>
-                    <h4 style = {{marginBottom: "70px"}}>
+                    <h4 >
                       <RiMessage3Line className={classes.icons}/>
                       {" "}Yellowstone National Park, United States
                     </h4>

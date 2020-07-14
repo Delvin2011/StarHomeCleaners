@@ -55,12 +55,9 @@ class Indoor extends React.Component {
           "costs": "R " + this.props.total
         })
 
-          })
-          .then((response) => {response.json();console.log(response)}
-          )
-          .then((result) => {
-            this.setState({ response: result.message });
-            console.log('Success:', result.message);
+          }).then((response) => {
+            this.setState({ response: response.status });
+            console.log('Success:', response.status);
           })
           .catch((error) => {
             this.setState({ error: error });
@@ -125,13 +122,13 @@ class Indoor extends React.Component {
                                     </Right>  
 
                                     </Details> 
-                                    {response ? 
+                                    {response === 200  ? 
                                         <div>
-                                            <Response>{response}</Response>
+                                            <Response>Email Sent!!!!</Response>
                                             <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit' onClick= {this.props.closePopup} style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>CLOSE</CustomButton></p> 
 
                                         </div>
-                                        : error ?
+                                        : response === 500 || response === 404 ?
                                             <div>
                                                 <Errors>Email Not Sent!!!!</Errors>
                                                 <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit' style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>RESEND</CustomButton></p> 

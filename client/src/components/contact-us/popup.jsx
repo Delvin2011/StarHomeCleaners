@@ -36,10 +36,10 @@ class ContactUs extends React.Component {
           "comments": data.get('comments')
         })
           })
-          .then((response) => response.json())
-          .then((result) => {
-            this.setState({ response: result.message });
-            console.log('Success:', result.message);
+          //.then((response) => response.json())
+          .then((response) => {
+            this.setState({ response: response.status });
+            console.log('Success:', response.status);
           })
           .catch((error) => {
             this.setState({ error: error });
@@ -71,12 +71,12 @@ class ContactUs extends React.Component {
                             <FormInput type = 'tel' name = 'phoneNumber' value = {phoneNumber} onChange = {this.handleChange} label = 'Phone Number' required/>
                             <FormInput type = 'text' name = 'subject' value = {subject} onChange = {this.handleChange} label = 'Subject' required/>                            
                             <FormInput type = 'text' name = 'comments' value = {comments} onChange = {this.handleChange} label = 'Comments' rows="4" required/>
-                            {response ? 
+                            {response === 200 ? 
                                         <div>
-                                            <Response>{response}</Response>
+                                            <Response>Email Sent!!!!</Response>
                                             <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit'  onClick = {this.props.closePopup} style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>CLOSE</CustomButton></p> 
                                         </div>
-                                        : error ?
+                                        : response === 500 || response === 404 ?
                                             <div>
                                                 <Errors>Email Not Sent!!!!</Errors>
                                                 <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit'  style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>RESEND</CustomButton></p>  
