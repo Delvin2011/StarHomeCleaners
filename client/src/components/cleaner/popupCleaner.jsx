@@ -1,5 +1,5 @@
 import React from 'react';  
-import {Popup,PopupInner,ContentTitle,CloseButton,LogoContainer2,TabsContainer,RangeSliderContainer,Options,Options2,Options3,Wall,Window,Machine,Stove,Fridge,Fab2,Wardrobe,Message,Message2,Wheelbarrow, Options4,Options5,Info,Flowers,Driveway,Maintanance,Installations,ServicePool,Options3p1} from './popupCleaner-styles'; 
+import {Popup,PopupInner,ContentTitle,CloseButton,LogoContainer2,TabsContainer,RangeSliderContainer,Options,Options2,Options3,GenCleanIcon,AfterBuildIcon,EndTenancyIcon,SanitiseIcon,Fab2,Message,Message2,Wheelbarrow, Options4,Options5,Info,Flowers,Driveway,Maintanance,Installations,ServicePool,Options3p1} from './popupCleaner-styles'; 
 import Outdoor from './outdoor/outdoor';
 import Indoor from './indoor/indoor';
 import Pool from './pool/pool';
@@ -75,10 +75,37 @@ class Cleaner extends React.Component {
           showPopupIndoor: false,
           showPopupOutdoor: false,
           showPopupPool: false,
-          picked: false,
-          picked2: false,
-          picked3: false,
-          picked4: false,
+
+          IndoorGenClean: false,
+          IndoorAfterBuildClean: false,
+          IndoorEndTenancyClean: false,
+          IndoorSanitise: false,
+          IndoorCleanService: "",
+          IndoorAfterBuildCleanService: "",
+          IndoorEndTenancyCleanService: "",
+          IndoorSanitiseService: "",
+          IndoorCleanPrice: 0,
+          IndoorAfterBuildCleanPrice: 0,
+          IndoorEndTenancyCleanPrice: 0,
+          IndoorSanitisePrice: 0,
+          priceDetergent: 0,
+          priceGenIndoorCleanOnce: 0,
+          priceGenIndoorCleanWeek: 0,
+          priceGenIndoorCleanMonth: 0,
+          priceGenIndoorCleanWalls: 0,
+          priceGenIndoorCleanWindows: 0,
+          priceGenIndoorCleanLaundry: 0,
+          priceAfterBuildIndoorCleanWalls: 0,
+          priceAfterBuildIndoorCleanWindows: 0,
+          priceSanitiseIndoorOnceOFF: 0,
+          priceSanitiseIndoorMonth: 0,
+          genIndoorCleanOnce: false,
+          genIndoorCleanWeek: false,
+          genIndoorCleanMonth: false,
+          sanitiseIndoorOnceOFF: false,
+          sanitiseIndoorMonth: false,
+          
+
           picked5: false,
           picked6: false,
           picked7: false,
@@ -97,10 +124,6 @@ class Cleaner extends React.Component {
           eventsPoolHours: this.logsPoolHours,
           locPool: this.locationPool,
           PoolTime: this.poolTimes,
-          value2: "",
-          value3: "",
-          value4: "",
-          value5: "",
           value6: "",
           value7: "",
           value8: "",
@@ -120,10 +143,7 @@ class Cleaner extends React.Component {
           value: 0,
           maxLabels: "Larger",
           Mower: false,
-          price: 0,
-          price2: 0,
-          price3: 0,
-          price4: 0,
+
           price5: 0,
           price6: 0,
           price7: 0,
@@ -161,6 +181,32 @@ class Cleaner extends React.Component {
         this.handleDropdownChange5 = this.handleDropdownChange5.bind(this);
         this.handleDropdownPool = this.handleDropdownPool.bind(this);
         this.handleChecked = this.handleChecked.bind(this);
+
+        /***********Indoor Services Handling*************/
+        this.genIndoorCleanOnce = this.genIndoorCleanOnce.bind(this);
+        this.genIndoorCleanWeek = this.genIndoorCleanWeek.bind(this);
+        this.genIndoorCleanMonth= this.genIndoorCleanMonth.bind(this);
+
+        this.genIndoorCleanWalls= this.genIndoorCleanWalls.bind(this);
+        this.genIndoorCleanWindows= this.genIndoorCleanWindows.bind(this);
+        this.genIndoorCleanLaundry= this.genIndoorCleanLaundry.bind(this);
+
+        this.afterBuildIndoorCleanWalls= this.afterBuildIndoorCleanWalls.bind(this);
+        this.afterBuildIndoorCleanWindows= this.afterBuildIndoorCleanWindows.bind(this);
+
+        this.endTenancyIndoorCleanWalls= this.endTenancyIndoorCleanWalls.bind(this);
+        this.endTenancyIndoorCleanWindows= this.endTenancyIndoorCleanWindows.bind(this);
+
+        this.sanitiseIndoorOnceOFF= this.sanitiseIndoorOnceOFF.bind(this);
+        this.sanitiseIndoorMonth= this.sanitiseIndoorMonth.bind(this);
+
+
+
+
+
+
+
+        /***********Pool Services Handling*************/
         this.handleOnceOFF = this.handleOnceOFF.bind(this);
         this.handleCleanWeek = this.handleCleanWeek.bind(this);
         this.handleCleanMonth = this.handleCleanMonth.bind(this);
@@ -168,6 +214,9 @@ class Cleaner extends React.Component {
         this.handleMaintMonth = this.handleMaintMonth.bind(this);
         this.handleMaintQuat = this.handleMaintQuat.bind(this);
         this.handleMaintYear = this.handleMaintYear.bind(this);
+
+
+
 
         this.handleDropdownAreaSize = this.handleDropdownAreaSize.bind(this);
         this.handlePoolAreaSize = this.handlePoolAreaSize.bind(this);
@@ -264,16 +313,114 @@ class Cleaner extends React.Component {
     }
 
 
-
-    pick(event) {
+/***********Indoor Services Handling*************/
+    genIndoorClean(event) {
       this.setState({
-        picked: !this.state.picked,
-        value2: this.state.picked? null : "Cleaning walls",
-        price: this.state.picked? 0 : 30
+        IndoorGenClean: this.state.IndoorAfterBuildClean === true || this.state.IndoorEndTenancyClean === true || this.state.IndoorSanitise === true ? false : !this.state.IndoorGenClean,
+        IndoorCleanService: this.state.IndoorAfterBuildClean === true || this.state.IndoorEndTenancyClean === true || this.state.IndoorSanitise === true || this.state.IndoorGenClean? null : "General",
+        IndoorCleanPrice: this.state.IndoorGenClean? 0 : 30
       });
-     
     }
-    pick2(event) {
+
+    afterBuildIndoorClean(event) {
+      this.setState({
+        IndoorAfterBuildClean: this.state.IndoorGenClean === true || this.state.IndoorEndTenancyClean === true || this.state.IndoorSanitise === true ? false : !this.state.IndoorAfterBuildClean,
+        IndoorAfterBuildCleanService: this.state.IndoorGenClean === true || this.state.IndoorEndTenancyClean === true || this.state.IndoorSanitise === true || this.state.IndoorAfterBuildClean? null : "After Builders",
+        IndoorAfterBuildCleanPrice: this.state.IndoorAfterBuildClean? 0 : 30
+      });
+    }
+
+    endTenancyIndoorClean(event) {
+      this.setState({
+        IndoorEndTenancyClean: this.state.IndoorAfterBuildClean === true || this.state.IndoorGenClean === true || this.state.IndoorSanitise === true ? false : !this.state.IndoorEndTenancyClean,
+        IndoorEndTenancyCleanService: this.state.IndoorAfterBuildClean === true || this.state.IndoorGenClean === true || this.state.IndoorSanitise === true || this.state.IndoorEndTenancyClean? null : "End of Tenancy",
+        IndoorEndTenancyCleanPrice: this.state.IndoorEndTenancyClean? 0 : 30
+      });
+    }
+
+    sanitiseIndoorClean(event) {
+      this.setState({
+        IndoorSanitise: this.state.IndoorAfterBuildClean === true || this.state.IndoorEndTenancyClean === true || this.state.IndoorGenClean === true ? false : !this.state.IndoorSanitise,
+        IndoorSanitiseService: this.state.IndoorAfterBuildClean === true || this.state.IndoorEndTenancyClean === true || this.state.IndoorGenClean === true || this.state.IndoorSanitise? null : "Antiviral Sanitisation",
+        IndoorSanitisePrice: this.state.IndoorSanitise? 0 : 30
+      });
+    }
+
+    genIndoorCleanOnce () {
+      this.setState({genIndoorCleanOnce: !this.state.genIndoorCleanOnce,
+      priceGenIndoorCleanOnce : this.state.genIndoorCleanOnce? 0 : 1});
+    }
+
+    genIndoorCleanWeek () {
+      this.setState({genIndoorCleanWeek: !this.state.genIndoorCleanWeek,
+      priceGenIndoorCleanWeek : this.state.genIndoorCleanWeek? 0 : 0.9});
+    }
+
+    genIndoorCleanMonth () {
+      this.setState({genIndoorCleanMonth: !this.state.genIndoorCleanMonth,
+      priceGenIndoorCleanMonth : this.state.genIndoorCleanMonth? 0 : 0.95});
+    }
+
+    genIndoorCleanWalls () {
+      this.setState({genIndoorCleanWalls: !this.state.genIndoorCleanWalls,
+      priceGenIndoorCleanWalls : this.state.genIndoorCleanWalls? 0 : 60});
+    }
+
+    genIndoorCleanWindows () {
+      this.setState({genIndoorCleanWindows: !this.state.genIndoorCleanWindows,
+      priceGenIndoorCleanWindows : this.state.genIndoorCleanWindows? 0 : 40});
+    }
+
+    genIndoorCleanLaundry () {
+      this.setState({genIndoorCleanLaundry: !this.state.genIndoorCleanLaundry,
+      priceGenIndoorCleanLaundry : this.state.genIndoorCleanLaundry? 0 : 50});
+    }
+
+
+    afterBuildIndoorCleanWalls () {
+      this.setState({afterBuildIndoorCleanWalls: !this.state.afterBuildIndoorCleanWalls,
+      priceAfterBuildIndoorCleanWalls : this.state.afterBuildIndoorCleanWalls? 0 : 80});
+    }
+
+     afterBuildIndoorCleanWindows () {
+      this.setState({afterBuildIndoorCleanWindows: !this.state.afterBuildIndoorCleanWindows,
+      priceAfterBuildIndoorCleanWindows : this.state.afterBuildIndoorCleanWindows? 0 : 60});
+    }
+
+    endTenancyIndoorCleanWalls () {
+      this.setState({endTenancyIndoorCleanWalls: !this.state.endTenancyIndoorCleanWalls,
+      priceEndTenancyIndoorCleanWalls : this.state.endTenancyIndoorCleanWalls? 0 : 70});
+    }
+
+    endTenancyIndoorCleanWindows () {
+      this.setState({endTenancyIndoorCleanWindows: !this.state.endTenancyIndoorCleanWindows,
+      priceEndTenancyIndoorCleanWindows : this.state.endTenancyIndoorCleanWindows? 0 : 50});
+    }
+
+
+    sanitiseIndoorOnceOFF () {
+      this.setState({sanitiseIndoorOnceOFF: !this.state.sanitiseIndoorOnceOFF,
+      priceSanitiseIndoorOnceOFF : this.state.sanitiseIndoorOnceOFF? 0 : 1});
+    }
+
+    sanitiseIndoorMonth () {
+      this.setState({sanitiseIndoorMonth: !this.state.sanitiseIndoorMonth,
+      priceSanitiseIndoorMonth : this.state.sanitiseIndoorMonth? 0 : 0.9});
+    }
+
+
+
+
+    genPoolClean(event) {
+      this.setState({
+        PoolClean: this.state.PoolMaint === true ? false : !this.state.PoolClean,
+        PoolCleanService: this.state.PoolMaint === true || this.state.PoolClean? null : "General Pool Cleaning",
+        PoolCleanPrice: this.state.PoolMaint === true || this.state.PoolClean? 0 : 177
+      });
+    }
+
+
+    /*pick2(event) {
       this.setState({
         picked2: !this.state.picked2,
         value3: this.state.picked2? null : "Cleaning windows",
@@ -293,7 +440,11 @@ class Cleaner extends React.Component {
         value5: this.state.picked4? null : "Inside Oven",
         price4: this.state.picked4? 0 : 25
       });
-    }
+    }*/
+
+
+
+
     pick5(event) {
       this.setState({
         picked5: !this.state.picked5,
@@ -444,6 +595,11 @@ const totalClean = this.state.PoolClean ? (250 + (this.state.poolHrs - 1)*18)*(t
 const totalMaint = this.state.PoolMaint ? (500 + (this.state.poolHrs - 1)*18)*(this.state.priceMaintMonth + this.state.priceMaintQuat + this.state.priceMaintYear) : 0;//             this.state.poolHrs * (this.state.PoolCleanPrice + this.state.PoolMaintPrice);
 const totalPool = totalClean + totalMaint;
 
+const totalGenIndoorClean = this.state.genIndoorCleanOnce || this.state.genIndoorCleanWeek || this.state.genIndoorCleanMonth? (150 + this.state.bedPrice + this.state.bathPrice + this.state.priceGenIndoorCleanWalls + this.state.priceGenIndoorCleanWindows + this.state.priceGenIndoorCleanLaundry) * (this.state.priceGenIndoorCleanOnce + this.state.priceGenIndoorCleanWeek + this.state.priceGenIndoorCleanMonth) : 0;
+const totalAfterBuildIndoorClean = 180 + this.state.bedPrice + this.state.bathPrice + this.state.priceAfterBuildIndoorCleanWalls + this.state.priceAfterBuildIndoorCleanWindows;
+const totalEndTenancyIndoorClean =  180 + this.state.bedPrice + this.state.bathPrice + this.state.priceEndTenancyIndoorCleanWalls + this.state.priceEndTenancyIndoorCleanWindows;
+const totalSanitiseIndoor = (230 + this.state.bedPrice + this.state.bathPrice) * (this.state.priceSanitiseIndoorOnceOFF + this.state.priceSanitiseIndoorMonth);
+
 const x = "" + this.state.dateTime;
 const y = "" + this.state.dateTime2;
 const poolTime = "" + this.state.dateTimePool;
@@ -451,6 +607,13 @@ const poolTime = "" + this.state.dateTimePool;
 const cleanOnceStatus = this.state.cleanMonth || this.state.cleanWeek ? true : false;
 const cleanWeekStatus = this.state.cleanOnceOFF || this.state.cleanMonth ? true : false;
 const cleanMonthStatus = this.state.cleanOnceOFF || this.state.cleanWeek ? true : false;
+
+const sanitiseOnceStatus = this.state.sanitiseIndoorMonth ? true : false;
+const sanitiseMonthStatus = this.state.sanitiseIndoorOnceOFF ? true : false;
+
+const genIndoorCleanOnceStatus = this.state.genIndoorCleanMonth || this.state.genIndoorCleanWeek ? true : false;
+const genIndoorCleanWeekStatus = this.state.genIndoorCleanOnce || this.state.genIndoorCleanMonth ? true : false;
+const genIndoorCleanMonthStatus = this.state.genIndoorCleanOnce || this.state.genIndoorCleanWeek ? true : false;
 
 const maintMonthStatus = this.state.maintYear || this.state.maintQuat ? true : false;
 const maintQuatStatus = this.state.maintMonth || this.state.maintYear ? true : false;
@@ -515,17 +678,15 @@ return (
                                       </select> 
 
                                     </Options>
-                                    <ContentTitle> Extra Services
+                                    <ContentTitle> Cleaning Services
                                       <span><hr width="300"/></span>
                                     </ContentTitle>
-                                    <Options2>
-                                      <Tooltip title="Walls" aria-label="add"><Fab><Wall onClick={this.pick.bind(this)} picked = {this.state.picked}/></Fab></Tooltip>
-                                      <Tooltip title="Windows" aria-label="add"><Fab><Window onClick={this.pick2.bind(this)} picked2 = {this.state.picked2}/></Fab></Tooltip> 
-                                      <Tooltip title="Laundry" aria-label="add"><Fab><Machine onClick={this.pick3.bind(this)} picked3 = {this.state.picked3}/></Fab></Tooltip>                                    
-                                      <Tooltip title="Inside Oven" aria-label="add"><Fab><Stove icon={stoveIcon} onClick={this.pick4.bind(this)} picked4 = {this.state.picked4}/></Fab></Tooltip>
-                                      <Tooltip title="Inside Wadrobe" aria-label="add"><Fab><Wardrobe icon={wardrobeIcon}  onClick={this.pick5.bind(this)} picked5 = {this.state.picked5}/></Fab></Tooltip>
-                                      <Tooltip title="Inside Fridge" aria-label="add"><Fab><Fridge icon={fridgeIcon} onClick={this.pick6.bind(this)} picked6 = {this.state.picked6}/></Fab></Tooltip>
-                                    </Options2>                        
+                                    <Options4>
+                                      <Tooltip title="General Cleaning" aria-label="add"><Fab2><GenCleanIcon onClick={this.genIndoorClean.bind(this)} IndoorGenClean = {this.state.IndoorGenClean}/></Fab2></Tooltip>
+                                      <Tooltip title="After Builders Cleaning" aria-label="add"><Fab2><AfterBuildIcon onClick={this.afterBuildIndoorClean.bind(this)} IndoorAfterBuildClean = {this.state.IndoorAfterBuildClean}/></Fab2></Tooltip> 
+                                      <Tooltip title="End of Tenancy Cleaning" aria-label="add"><Fab2><EndTenancyIcon onClick={this.endTenancyIndoorClean.bind(this)} IndoorEndTenancyClean = {this.state.IndoorEndTenancyClean}/></Fab2></Tooltip>                                    
+                                      <Tooltip title="Antiviral Sanitisation" aria-label="add"><Fab2><SanitiseIcon onClick={this.sanitiseIndoorClean.bind(this)} IndoorSanitise = {this.state.IndoorSanitise}/></Fab2></Tooltip>
+                                    </Options4>                        
                                     <ContentTitle> Service Details & Costs
                                       <span><hr width="300"/></span>
                                     </ContentTitle>
@@ -542,25 +703,72 @@ return (
                                                             
                                       </div>
                                       <div>
-                                        <Message2>Extra Services</Message2>
-                                        <Message>{this.state.value2}</Message>
-                                        <Message>{this.state.value3}</Message>
-                                        <Message>{this.state.value4}</Message>
-                                        <Message>{this.state.value5}</Message>
-                                        <Message>{this.state.value6}</Message>
-                                        <Message>{this.state.value7}</Message>
+                                        <Message2>Cleaning Service</Message2>
+                                        <Message>{this.state.IndoorCleanService}</Message>
+                                        <Message>{this.state.IndoorAfterBuildCleanService}</Message>
+                                        <Message>{this.state.IndoorEndTenancyCleanService}</Message>
+                                        <Message>{this.state.IndoorSanitiseService}</Message>
+                                        {this.state.IndoorCleanService?
+                                        <div>
+                                          <Message2>Extra Services</Message2>
+                                          <Message style = {{"margin-top" : "0px"}}>
+                                            <Checkbox toggle label = "  Walls" onChange={ this.genIndoorCleanWalls }   priceGenIndoorCleanWalls =  {this.state.priceGenIndoorCleanWalls}/>
+                                            <Checkbox toggle label = "  Windows" onChange={ this.genIndoorCleanWindows }   priceGenIndoorCleanWindows =  {this.state.priceGenIndoorCleanWindows}/>
+                                            <Checkbox toggle label = "  Laundry" onChange={ this.genIndoorCleanLaundry }   priceGenIndoorCleanLaundry =  {this.state.priceGenIndoorCleanLaundry}/>
+                                          </Message>
+                                        </div>
+
+                                        : this.state.IndoorAfterBuildCleanService?
+                                        <div>
+                                          <Message2>Extra Services</Message2>
+                                          <Message style = {{"margin-top" : "0px"}}>
+                                            <Checkbox toggle label = "  Walls" onChange={ this.afterBuildIndoorCleanWalls }   priceAfterBuildIndoorCleanWalls =  {this.state.priceAfterBuildIndoorCleanWalls}/>
+                                            <Checkbox toggle label = "  Windows" onChange={ this.afterBuildIndoorCleanWindows }   priceAfterBuildIndoorCleanWindows =  {this.state.priceAfterBuildIndoorCleanWindows}/>
+                                           </Message>
+                                        </div>
+
+                                        : this.state.IndoorEndTenancyCleanService?
+                                        <div>
+                                          <Message2>Extra Services</Message2>
+                                          <Message style = {{"margin-top" : "0px"}}>
+                                            <Checkbox toggle label = "  Walls" onChange={ this.endTenancyIndoorCleanWalls }   priceEndTenancyIndoorCleanWalls =  {this.state.priceEndTenancyIndoorCleanWalls}/>
+                                            <Checkbox toggle label = "  Windows" onChange={ this.endTenancyIndoorCleanWindows }   priceEndTenancyIndoorCleanWindows =  {this.state.priceEndTenancyIndoorCleanWindows}/>
+                                          </Message>
+                                        </div>
+                                          : null
+                                        }
+                                        
                                       </div>
                                       <div>
                                       <Message2>Costs</Message2>
-                                          {this.state.bedPrice > 0 || this.state.bathPrice > 0 ?
-                                            <Message style  = {{"text-transform" : "none"}}><Checkbox toggle label = "  Detergents(R52)" onChange={ this.handleChecked } priceDetergent =  {this.state.priceDetergent}/></Message>
-                                            : null
-                                          }                          
-                                          {this.state.bedPrice > 0 || this.state.bathPrice > 0 ?
-                                            <Message>Total : R {total} </Message>
-                                          
+                                          {this.state.IndoorCleanService?
+                                          <Message>
+                                            <Checkbox toggle label = "  Once OFF" onChange={ this.genIndoorCleanOnce }  disabled = {genIndoorCleanOnceStatus} priceGenIndoorCleanOnce =  {this.state.priceGenIndoorCleanOnce}/>
+                                            <Checkbox toggle label = "  Weekly" onChange={ this.genIndoorCleanWeek }  disabled = {genIndoorCleanWeekStatus} priceGenIndoorCleanWeek =  {this.state.priceGenIndoorCleanWeek}/>
+                                            <Checkbox toggle label = "  Monthly" onChange={ this.genIndoorCleanMonth }  disabled = {genIndoorCleanMonthStatus} priceGenIndoorCleanMonth =  {this.state.priceGenIndoorCleanMonth}/>
+                                            Total : R {totalGenIndoorClean.toFixed(2)} 
+                                          </Message>
+
+                                            : this.state.IndoorAfterBuildCleanService?
+                                            <Message>
+                                            Total : R {totalAfterBuildIndoorClean.toFixed(2)} 
+                                          </Message>
+
+                                          : this.state.IndoorEndTenancyCleanService?
+                                            <Message>
+                                            Total : R {totalEndTenancyIndoorClean.toFixed(2)} 
+                                          </Message>
+
+                                          : this.state.IndoorSanitiseService?
+                                            <Message>
+                                            <Checkbox toggle label = "  Once OFF" onChange={ this.sanitiseIndoorOnceOFF }  disabled = {sanitiseOnceStatus} priceSanitiseIndoorOnceOFF =  {this.state.priceSanitiseIndoorOnceOFF}/>
+                                            <Checkbox toggle label = "  Monthly" onChange={ this.sanitiseIndoorMonth }  disabled = {sanitiseMonthStatus} priceSanitiseIndoorMonth =  {this.state.priceSanitiseIndoorMonth}/>
+                                            Total : R {totalSanitiseIndoor.toFixed(2)} 
+                                          </Message>
+
                                           : null
-                                          }
+                                          }                          
+
                                       </div>
                                     </Options3> 
  

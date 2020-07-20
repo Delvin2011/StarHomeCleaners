@@ -18,6 +18,11 @@ import { GiFishingNet } from "react-icons/gi";
 import {AiTwotoneTool} from "react-icons/ai";
 import { TiArrowRepeatOutline } from "react-icons/ti";
 
+
+import {GiVacuumCleaner} from 'react-icons/gi';
+import {AiTwotoneBuild} from 'react-icons/ai';
+import {FaUserClock} from 'react-icons/fa';
+import {GiSpray} from 'react-icons/gi';
 // 
 
 
@@ -322,37 +327,7 @@ color: red;
 const y = css`
 color: yellow;
 `;
-const picks = props => {
-  if (props.picked) {
-    return y;
-  }
-  else
-  return r;
-};
 
-const picks2 = props => {
-  if (props.picked2) {
-    return y;
-  }
-  else
-  return r;
-};
-
-const picks3 = props => {
-  if (props.picked3) {
-    return y;
-  }
-  else
-  return r;
-};
-
-const picks4 = props => {
-  if (props.picked4) {
-    return y;
-  }
-  else
-  return r;
-};
 
 const picks5 = props => {
   if (props.picked5) {
@@ -410,18 +385,7 @@ const PoolMaint = props => {
   return r;
 };
 
-export const Wall = styled(GiStoneWall)`
-  color: red;
-  width: 42px;
-  height: 42px;
-  justify-items: center;
-  cursor: pointer;
-  ${picks};
-  @media screen and (max-width: 800px){
-    width: 40px;
-    height: 40px;
-}
-`;
+
 
 
 export const Item = styled.div`
@@ -465,34 +429,93 @@ export const Item = styled.div`
   }
 `;
 
+/***********Indoor Services Handling*************/
+const IndoorGenClean = props => {
+  if (props.IndoorGenClean) {
+    return y;
+  }
+  else
+  return r;
+};
 
-export const Window = styled(RiWindowsLine)`
+const IndoorAfterBuildClean = props => {
+  if (props.IndoorAfterBuildClean) {
+    return y;
+  }
+  else
+  return r;
+};
+
+const IndoorEndTenancyClean = props => {
+  if (props.IndoorEndTenancyClean) {
+    return y;
+  }
+  else
+  return r;
+};
+
+const IndoorSanitise = props => {
+  if (props.IndoorSanitise) {
+    return y;
+  }
+  else
+  return r;
+};
+
+
+export const GenCleanIcon = styled(GiVacuumCleaner)`
   color: red;
   width: 50px;
   height: 50px;
   justify-items: center;
   cursor: pointer;
-  ${picks2};
+  ${IndoorGenClean};
+  @media screen and (max-width: 800px){
+    width: 40px;
+    height: 40px;
+}
+`;
+
+export const AfterBuildIcon = styled(AiTwotoneBuild)`
+  color: red;
+  width: 50px;
+  height: 50px;
+  justify-items: center;
+  cursor: pointer;
+  ${IndoorAfterBuildClean};
   @media screen and (max-width: 800px){
     width: 40px;
   height: 40px;
 }
 `;
 
-export const Machine = styled(Washer)`
+export const EndTenancyIcon = styled(FaUserClock)`
   color: red;
   width: 50px;
   height: 50px;
   justify-items: center;
   cursor: pointer;
-  ${picks3};
+  ${IndoorEndTenancyClean};
   @media screen and (max-width: 800px){
     width: 40px;
   height: 40px;
 }
 `;
 
-export const Stove = styled(Icon)`
+
+export const SanitiseIcon = styled(GiSpray)`
+  color: red;
+  width: 50px;
+  height: 50px;
+  justify-items: center;
+  cursor: pointer;
+  ${IndoorSanitise};
+  @media screen and (max-width: 800px){
+    width: 40px;
+  height: 40px;
+}
+`;
+/*export const Stove = styled(Icon)`
   color: red;
   font-size: 38px;
   justify-items: center;
@@ -502,7 +525,7 @@ export const Stove = styled(Icon)`
     width: 40px;
   height: 40px;
 }
-`;
+`;*/
 
 export const Wardrobe = styled(Icon)`
   color: red;

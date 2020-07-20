@@ -92,7 +92,7 @@ export default function CleaningPage(props) {
                   </div>
                   <div className={classes.description}>
                     <p className={classes.description}>
-                    Offering high quality janitorial cleaning services, that leaves your home sparkling clean. Our team is well trained, experienced and always ready transform your space into the cleanest and healthiest place.
+                    Offering high quality janitorial cleaning services, that leaves your home sparkling clean. Our team is well trained, experienced and always ready to transform your space into the cleanest and healthiest place.
                     </p>
                   </div>
                 </div>
