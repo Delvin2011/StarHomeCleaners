@@ -1,4 +1,3 @@
-
 import React from 'react';  
 import {Popup,PopupInner,Form,LogoContainer,CloseButton,Response,Errors,Message4,Details,Right,ContentTitle,Title} from '../outdoor/outdoor-styles'; 
 import CustomButton from "../../CustomButtons/Button";

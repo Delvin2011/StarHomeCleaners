@@ -38,12 +38,12 @@ app.listen(port, error => {
 
 // email, subject, text (receiving data from the client)
 app.post('/email', (req, res) => {
-    const { customerName,phoneNumber,subject, email, address, comments,natureOfServices,homeDetails, extraServices, date, costs,pickup,delivery,timeAllocation,serviceIntervals} = req.body;
+    const { customerName,phoneNumber,subject, email, address, comments,natureOfServices,homeDetails, extraServices, date, costs,pickup,delivery,timeAllocation,serviceIntervals,requiredServices} = req.body;
     
     var emailBody = "";
     if(subject === "Outdoors Cleaning Services" || subject === "Indoors Cleaning Services") {
 
-        emailBody = "Good Sir/Madam" + '\n\n' + "Would like to request for services with the below details: " + '\n\n\t' + "Nature of service : " + natureOfServices + '\n\t' + "Details : " + homeDetails + '\n\t' + "Services : " + extraServices  + 
+        emailBody = "Good Sir/Madam" + '\n\n' + "Would like to request for services with the below details: " + '\n\n\t' + "Nature of service : " + natureOfServices + '\n\t' + "Details : " + homeDetails + '\n\t' +  "Required Service : " + requiredServices   + '\n\t' + "Service Intervals: " + serviceIntervals  + '\n\t' + "Extra Services : " + extraServices  + 
        '\n\t' + "Date : " + date + '\n\t' + "Physical Address : " + address + '\n\t' + "Comments : " + comments + '\n\t' + "Agreed cost payable after services : " + costs + '\n\n' + "Yours faithfully" +  '\n\n' + customerName + '\n' + phoneNumber
 
    }

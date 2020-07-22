@@ -104,7 +104,10 @@ class Cleaner extends React.Component {
           genIndoorCleanMonth: false,
           sanitiseIndoorOnceOFF: false,
           sanitiseIndoorMonth: false,
-          
+          totalIndoor: 0,
+          serviceIntervalGenIndoorClean: "",
+          serviceIntervalIndoorSanitise: "",
+          serviceIntervalIndoor: "",
 
           picked5: false,
           picked6: false,
@@ -214,9 +217,6 @@ class Cleaner extends React.Component {
         this.handleMaintMonth = this.handleMaintMonth.bind(this);
         this.handleMaintQuat = this.handleMaintQuat.bind(this);
         this.handleMaintYear = this.handleMaintYear.bind(this);
-
-
-
 
         this.handleDropdownAreaSize = this.handleDropdownAreaSize.bind(this);
         this.handlePoolAreaSize = this.handlePoolAreaSize.bind(this);
@@ -346,6 +346,7 @@ class Cleaner extends React.Component {
       });
     }
 
+
     genIndoorCleanOnce () {
       this.setState({genIndoorCleanOnce: !this.state.genIndoorCleanOnce,
       priceGenIndoorCleanOnce : this.state.genIndoorCleanOnce? 0 : 1});
@@ -363,37 +364,44 @@ class Cleaner extends React.Component {
 
     genIndoorCleanWalls () {
       this.setState({genIndoorCleanWalls: !this.state.genIndoorCleanWalls,
+      genIndoorCleanWallsService : this.state.genIndoorCleanWalls? null : "Cleaning Walls",
       priceGenIndoorCleanWalls : this.state.genIndoorCleanWalls? 0 : 60});
     }
 
     genIndoorCleanWindows () {
       this.setState({genIndoorCleanWindows: !this.state.genIndoorCleanWindows,
+        genIndoorCleanWindowsService : this.state.genIndoorCleanWindows? null : "Cleaning Windows",
       priceGenIndoorCleanWindows : this.state.genIndoorCleanWindows? 0 : 40});
     }
 
     genIndoorCleanLaundry () {
       this.setState({genIndoorCleanLaundry: !this.state.genIndoorCleanLaundry,
+        genIndoorCleanLaundryService : this.state.genIndoorCleanLaundry? null : "Laundry",
       priceGenIndoorCleanLaundry : this.state.genIndoorCleanLaundry? 0 : 50});
     }
 
 
     afterBuildIndoorCleanWalls () {
       this.setState({afterBuildIndoorCleanWalls: !this.state.afterBuildIndoorCleanWalls,
+        afterBuildIndoorCleanWallsService : this.state.afterBuildIndoorCleanWalls? null : "Cleaning Walls",
       priceAfterBuildIndoorCleanWalls : this.state.afterBuildIndoorCleanWalls? 0 : 80});
     }
 
      afterBuildIndoorCleanWindows () {
       this.setState({afterBuildIndoorCleanWindows: !this.state.afterBuildIndoorCleanWindows,
+      afterBuildIndoorCleanWindowsService : this.state.afterBuildIndoorCleanWindows? null : "Cleaning Windows",
       priceAfterBuildIndoorCleanWindows : this.state.afterBuildIndoorCleanWindows? 0 : 60});
     }
 
     endTenancyIndoorCleanWalls () {
       this.setState({endTenancyIndoorCleanWalls: !this.state.endTenancyIndoorCleanWalls,
+      endTenancyIndoorCleanWallsService : this.state.endTenancyIndoorCleanWalls? null : "Cleaning Walls",
       priceEndTenancyIndoorCleanWalls : this.state.endTenancyIndoorCleanWalls? 0 : 70});
     }
 
     endTenancyIndoorCleanWindows () {
       this.setState({endTenancyIndoorCleanWindows: !this.state.endTenancyIndoorCleanWindows,
+        endTenancyIndoorCleanWindowsService : this.state.endTenancyIndoorCleanWindows? null : "Cleaning Windows",
       priceEndTenancyIndoorCleanWindows : this.state.endTenancyIndoorCleanWindows? 0 : 50});
     }
 
@@ -408,41 +416,19 @@ class Cleaner extends React.Component {
       priceSanitiseIndoorMonth : this.state.sanitiseIndoorMonth? 0 : 0.9});
     }
 
-
-
-
-    genPoolClean(event) {
+    selectIndoor(event) {
       this.setState({
-        PoolClean: this.state.PoolMaint === true ? false : !this.state.PoolClean,
-        PoolCleanService: this.state.PoolMaint === true || this.state.PoolClean? null : "General Pool Cleaning",
-        PoolCleanPrice: this.state.PoolMaint === true || this.state.PoolClean? 0 : 177
-      });
+        showPopupIndoor: !this.state.showPopupIndoor,
+        value: event.target.innerText,
+        totalIndoor: this.state.genIndoorCleanOnce || this.state.genIndoorCleanWeek || this.state.genIndoorCleanMonth? (150 + this.state.bedPrice + this.state.bathPrice + this.state.priceGenIndoorCleanWalls + this.state.priceGenIndoorCleanWindows + this.state.priceGenIndoorCleanLaundry) * (this.state.priceGenIndoorCleanOnce + this.state.priceGenIndoorCleanWeek + this.state.priceGenIndoorCleanMonth) : 0 +
+        this.state.IndoorAfterBuildClean ?  180 + this.state.bedPrice + this.state.bathPrice + this.state.priceAfterBuildIndoorCleanWalls + this.state.priceAfterBuildIndoorCleanWindows : 0 +
+        this.state.IndoorEndTenancyClean ? 180 + this.state.bedPrice + this.state.bathPrice + this.state.priceEndTenancyIndoorCleanWalls + this.state.priceEndTenancyIndoorCleanWindows : 0 +
+        this.state.IndoorSanitise ? (230 + this.state.bedPrice + this.state.bathPrice) * (this.state.priceSanitiseIndoorOnceOFF + this.state.priceSanitiseIndoorMonth) : 0,
+        serviceIntervalIndoor: this.state.priceSanitiseIndoorOnceOFF || this.state.priceGenIndoorCleanOnce> 0 ? "Once OFF" : this.state.priceGenIndoorCleanWeek > 0 ? "Weekly" : this.state.priceSanitiseIndoorMonth || this.state.priceGenIndoorCleanMonth > 0 ? "Monthly" : "Once OFF",
+        //serviceIntervalGenIndoorClean : this.state.priceGenIndoorCleanOnce > 0 ? "Once OFF" : this.state.priceGenIndoorCleanWeek > 0 ? "Weekly" : this.state.priceGenIndoorCleanMonth > 0 ? "Monthly" : null
+      
+       });
     }
-
-
-    /*pick2(event) {
-      this.setState({
-        picked2: !this.state.picked2,
-        value3: this.state.picked2? null : "Cleaning windows",
-        price2: this.state.picked2? 0 : 30
-      });
-    }
-    pick3(event) {
-      this.setState({
-        picked3: !this.state.picked3,
-        value4: this.state.picked3? null : "Laundry & Ironing",
-        price3: this.state.picked3? 0 : 50
-      });
-    }
-    pick4(event) {
-      this.setState({
-        picked4: !this.state.picked4,
-        value5: this.state.picked4? null : "Inside Oven",
-        price4: this.state.picked4? 0 : 25
-      });
-    }*/
-
-
 
 
     pick5(event) {
@@ -518,13 +504,6 @@ class Cleaner extends React.Component {
         this.setState({[name]: value});
     }
 
-    selectIndoor(event) {
-      this.setState({
-        showPopupIndoor: !this.state.showPopupIndoor,
-        value: event.target.innerText,
-        total: 150 + this.state.bedPrice + this.state.bathPrice + this.state.price + this.state.price2 + this.state.price3 + this.state.price4 + this.state.price5 + this.state.price6 + this.state.priceDetergent
-      });
-    }
 
     selectOutdoor(event) {
       this.setState({
@@ -596,9 +575,10 @@ const totalMaint = this.state.PoolMaint ? (500 + (this.state.poolHrs - 1)*18)*(t
 const totalPool = totalClean + totalMaint;
 
 const totalGenIndoorClean = this.state.genIndoorCleanOnce || this.state.genIndoorCleanWeek || this.state.genIndoorCleanMonth? (150 + this.state.bedPrice + this.state.bathPrice + this.state.priceGenIndoorCleanWalls + this.state.priceGenIndoorCleanWindows + this.state.priceGenIndoorCleanLaundry) * (this.state.priceGenIndoorCleanOnce + this.state.priceGenIndoorCleanWeek + this.state.priceGenIndoorCleanMonth) : 0;
-const totalAfterBuildIndoorClean = 180 + this.state.bedPrice + this.state.bathPrice + this.state.priceAfterBuildIndoorCleanWalls + this.state.priceAfterBuildIndoorCleanWindows;
-const totalEndTenancyIndoorClean =  180 + this.state.bedPrice + this.state.bathPrice + this.state.priceEndTenancyIndoorCleanWalls + this.state.priceEndTenancyIndoorCleanWindows;
-const totalSanitiseIndoor = (230 + this.state.bedPrice + this.state.bathPrice) * (this.state.priceSanitiseIndoorOnceOFF + this.state.priceSanitiseIndoorMonth);
+const totalAfterBuildIndoorClean = this.state.IndoorAfterBuildClean ?  180 + this.state.bedPrice + this.state.bathPrice + this.state.priceAfterBuildIndoorCleanWalls + this.state.priceAfterBuildIndoorCleanWindows : 0;
+const totalEndTenancyIndoorClean =  this.state.IndoorEndTenancyClean ? 180 + this.state.bedPrice + this.state.bathPrice + this.state.priceEndTenancyIndoorCleanWalls + this.state.priceEndTenancyIndoorCleanWindows : 0;
+const totalSanitiseIndoor = this.state.IndoorSanitise ? (230 + this.state.bedPrice + this.state.bathPrice) * (this.state.priceSanitiseIndoorOnceOFF + this.state.priceSanitiseIndoorMonth) : 0;
+const totalIndoor = totalGenIndoorClean + totalAfterBuildIndoorClean + totalEndTenancyIndoorClean + totalSanitiseIndoor;
 
 const x = "" + this.state.dateTime;
 const y = "" + this.state.dateTime2;
@@ -618,6 +598,8 @@ const genIndoorCleanMonthStatus = this.state.genIndoorCleanOnce || this.state.ge
 const maintMonthStatus = this.state.maintYear || this.state.maintQuat ? true : false;
 const maintQuatStatus = this.state.maintMonth || this.state.maintYear ? true : false;
 const maintYearStatus = this.state.maintMonth || this.state.maintQuat ? true : false;
+
+console.log(this.state.priceSanitiseIndoorMonth);
 return (
           <div>            
             <Popup>  
@@ -746,24 +728,24 @@ return (
                                             <Checkbox toggle label = "  Once OFF" onChange={ this.genIndoorCleanOnce }  disabled = {genIndoorCleanOnceStatus} priceGenIndoorCleanOnce =  {this.state.priceGenIndoorCleanOnce}/>
                                             <Checkbox toggle label = "  Weekly" onChange={ this.genIndoorCleanWeek }  disabled = {genIndoorCleanWeekStatus} priceGenIndoorCleanWeek =  {this.state.priceGenIndoorCleanWeek}/>
                                             <Checkbox toggle label = "  Monthly" onChange={ this.genIndoorCleanMonth }  disabled = {genIndoorCleanMonthStatus} priceGenIndoorCleanMonth =  {this.state.priceGenIndoorCleanMonth}/>
-                                            Total : R {totalGenIndoorClean.toFixed(2)} 
+                                            Total : R {totalIndoor.toFixed(2)} 
                                           </Message>
 
                                             : this.state.IndoorAfterBuildCleanService?
                                             <Message>
-                                            Total : R {totalAfterBuildIndoorClean.toFixed(2)} 
+                                            Total : R {totalIndoor.toFixed(2)} 
                                           </Message>
 
                                           : this.state.IndoorEndTenancyCleanService?
                                             <Message>
-                                            Total : R {totalEndTenancyIndoorClean.toFixed(2)} 
+                                            Total : R {totalIndoor.toFixed(2)} 
                                           </Message>
 
                                           : this.state.IndoorSanitiseService?
                                             <Message>
                                             <Checkbox toggle label = "  Once OFF" onChange={ this.sanitiseIndoorOnceOFF }  disabled = {sanitiseOnceStatus} priceSanitiseIndoorOnceOFF =  {this.state.priceSanitiseIndoorOnceOFF}/>
                                             <Checkbox toggle label = "  Monthly" onChange={ this.sanitiseIndoorMonth }  disabled = {sanitiseMonthStatus} priceSanitiseIndoorMonth =  {this.state.priceSanitiseIndoorMonth}/>
-                                            Total : R {totalSanitiseIndoor.toFixed(2)} 
+                                            Total : R {totalIndoor.toFixed(2)} 
                                           </Message>
 
                                           : null
@@ -981,7 +963,8 @@ return (
             } 
 
             {this.state.showPopupIndoor ?
-              <Indoor showPopupIndoor = {this.state.showPopupIndoor} closePopup={this.props.closePopup} dateTime = {this.state.dateTime} total = {this.state.total} wall = {this.state.value2} windows = {this.state.value3} machine = {this.state.value4} stove = {this.state.value5} wardrobe = {this.state.value6} fridge = {this.state.value7} bedRooms = {this.state.bedRooms} bathRooms = {this.state.bathRooms}/>
+              <Indoor showPopupIndoor = {this.state.showPopupIndoor} closePopup={this.props.closePopup} dateTime = {this.state.dateTime} totalIndoor = {this.state.totalIndoor} genIndoorCleanWallsService = {this.state.genIndoorCleanWallsService} genIndoorCleanWindowsService = {this.state.genIndoorCleanWindowsService} genIndoorCleanLaundryService = {this.state.genIndoorCleanLaundryService} afterBuildIndoorCleanWallsService = {this.state.afterBuildIndoorCleanWallsService} serviceIntervalIndoor = {this.state.serviceIntervalIndoor} 
+              afterBuildIndoorCleanWindowsService = {this.state.afterBuildIndoorCleanWindowsService} endTenancyIndoorCleanWallsService = {this.state.endTenancyIndoorCleanWallsService} endTenancyIndoorCleanWindowsService = {this.state.endTenancyIndoorCleanWindowsService} bedRooms = {this.state.bedRooms} bathRooms = {this.state.bathRooms} IndoorCleanService = {this.state.IndoorCleanService} IndoorAfterBuildCleanService = {this.state.IndoorAfterBuildCleanService} IndoorEndTenancyCleanService = {this.state.IndoorEndTenancyCleanService} IndoorSanitiseService = {this.state.IndoorSanitiseService}/>
               : null
             }
 

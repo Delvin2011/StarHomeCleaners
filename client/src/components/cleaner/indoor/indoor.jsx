@@ -50,9 +50,11 @@ class Indoor extends React.Component {
           "address": data.get('address'),
           "natureOfServices": "Indoors",
           "homeDetails": this.props.bedRooms + " and " + this.props.bathRooms,
-          "extraServices": this.props.wall + ", " + this.props.windows + ", " + this.props.machine + ", " + this.props.stove + ", " + this.props.wardrobe + ", " + this.props.fridge,
+          "requiredServices": this.props.IndoorCleanService + ", " + this.props.IndoorAfterBuildCleanService + ", " + this.props.IndoorEndTenancyCleanService + ", " + this.props.IndoorSanitiseService,
+          "serviceIntervals": this.props.serviceIntervalIndoor, // + "," + this.state.serviceIntervalIndoorSanitise,
+          "extraServices": this.props.genIndoorCleanWallsService + ", " + this.props.genIndoorCleanWindowsService + ", " + this.props.genIndoorCleanLaundryService + ", " + this.props.afterBuildIndoorCleanWallsService + ", " + this.props.afterBuildIndoorCleanWindowsService + ", " + this.props.endTenancyIndoorCleanWallsService + ", " + this.props.endTenancyIndoorCleanWindowsService,
           "date": dateTime.replace("GMT+0200 (South Africa Standard Time)",""),
-          "costs": "R " + this.props.total
+          "costs": "R " + this.props.totalIndoor
         })
 
           }).then((response) => {
@@ -108,17 +110,26 @@ class Indoor extends React.Component {
                                         <ContentTitle> Home Details </ContentTitle>                                   
                                             <Message4>{this.props.bedRooms}</Message4>
                                             <Message4>{this.props.bathRooms}</Message4>
-                                        <ContentTitle> Extra Services </ContentTitle>                                   
-                                            <Message4>{this.props.wall}</Message4>
-                                            <Message4>{this.props.windows}</Message4>
-                                            <Message4>{this.props.machine}</Message4>
-                                            <Message4>{this.props.stove}</Message4>
-                                            <Message4>{this.props.wardrobe}</Message4>
-                                            <Message4>{this.props.fridge}</Message4>
+                                        <ContentTitle> Required Services </ContentTitle>                                   
+                                            <Message4>{this.props.IndoorCleanService}</Message4>
+                                            <Message4>{this.props.IndoorAfterBuildCleanService}</Message4>
+                                            <Message4>{this.props.IndoorEndTenancyCleanService}</Message4>
+                                            <Message4>{this.props.IndoorSanitiseService}</Message4>
+                                        <ContentTitle> Extra Services </ContentTitle> 
+                                            <Message4>{this.props.genIndoorCleanWallsService}</Message4>
+                                            <Message4>{this.props.genIndoorCleanWindowsService}</Message4>
+                                            <Message4>{this.props.genIndoorCleanLaundryService}</Message4>
+                                            <Message4>{this.props.afterBuildIndoorCleanWallsService}</Message4>
+                                            <Message4>{this.props.afterBuildIndoorCleanWindowsService}</Message4>
+                                            <Message4>{this.props.endTenancyIndoorCleanWallsService}</Message4>
+                                            <Message4>{this.props.endTenancyIndoorCleanWindowsService}</Message4>
+                                        <ContentTitle> Services Intervals</ContentTitle> 
+                                            <Message4>{this.props.serviceIntervalIndoor}</Message4>
+                                            
                                         <ContentTitle> Date </ContentTitle>                                    
                                             <Message4>{this.state.dateTime.replace("GMT+0200 (South Africa Standard Time)","")}</Message4>
                                         <ContentTitle> Total Costs </ContentTitle>                                    
-                                            <Message4> R {this.props.total}</Message4>
+                                            <Message4> R {this.props.totalIndoor}</Message4>
                                     </Right>  
 
                                     </Details> 
