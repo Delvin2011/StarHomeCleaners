@@ -4,12 +4,15 @@ import Outdoor from './outdoor/outdoor';
 import Indoor from './indoor/indoor';
 import Pool from './pool/pool';
 import IndoorTCs from './indoor/TCs/indoorTCs';
+import IndoorServicesInfo from './indoor/TCs/indoorServicesInfo';
+import OutdoorServicesInfo from './outdoor/outdoorServicesInfo';
+import PoolServicesInfo from './pool/poolServicesInfo';
+
+
 import { Checkbox } from 'semantic-ui-react';
 
 import Fab from '@material-ui/core/Fab';
 import Tooltip from '@material-ui/core/Tooltip';
-
-
 
 import InputRange from 'react-input-range';
 import 'react-input-range/lib/css/index.css';
@@ -25,10 +28,6 @@ import CustomButton from "../CustomButtons/Button";
 import GridContainer from "../Grid/GridContainer";
 import GridItem from "../Grid/GridItem.js";
 import NavPills from "../NavPills/NavPills.js";
-
-import stoveIcon from '@iconify/icons-si-glyph/stove';
-import fridgeIcon from '@iconify/icons-whh/fridge';
-import wardrobeIcon from '@iconify/icons-mdi/wardrobe';
 
 import {GiVacuumCleaner} from 'react-icons/gi';
 import {GiWheelbarrow} from 'react-icons/gi';
@@ -431,6 +430,37 @@ class Cleaner extends React.Component {
     }
 
 
+    showTcsIn(event) {
+      this.setState({
+        showTcIn: !this.state.showTcIn,
+        value: event.target.innerText
+      });
+    }
+
+    showServicesInfo(event) {
+      this.setState({
+        showServicesInfo: !this.state.showServicesInfo
+      });
+    }
+
+    /**************Outdoor Services Handling********************/
+
+    showOutdoorServicesInfo(event) {
+      this.setState({
+        showOutdoorServicesInfo: !this.state.showOutdoorServicesInfo
+      });
+    }
+
+
+    /**************Pool Services Handling********************/
+    showPoolServicesInfo(event) {
+      this.setState({
+        showPoolServicesInfo: !this.state.showPoolServicesInfo
+      });
+    }
+
+
+
     pick5(event) {
       this.setState({
         picked5: !this.state.picked5,
@@ -550,22 +580,6 @@ class Cleaner extends React.Component {
   }
   
 
-
-
-showTcsIn(event) {
-    this.setState({
-      showTcIn: !this.state.showTcIn,
-      value: event.target.innerText
-    });
-  }
-
-showTcsOut(event) {
-  this.setState({
-    showTcOut: !this.state.showTcOut,
-    value: event.target.innerText
-  });
-}
-
 render() {  
 const total = 150 + this.state.bedPrice + this.state.bathPrice + this.state.price + this.state.price2 + this.state.price3 + this.state.price4 + this.state.price5 + this.state.price6 + this.state.priceDetergent;
 const total2 = this.state.areaHours < 2.1 ? (this.state.price7 + this.state.price8 + this.state.price9 + this.state.price10)  + 50 : 50 +(((this.state.areaHours - 2) * 40) + (this.state.price7 + this.state.price8 + this.state.price9 + this.state.price10));
@@ -660,7 +674,7 @@ return (
                                       </select> 
 
                                     </Options>
-                                    <ContentTitle> Cleaning Services
+                                    <ContentTitle> Cleaning Services <Info onClick = {this.showServicesInfo.bind(this)} showServicesInfo = {this.state.showServicesInfo}/>
                                       <span><hr width="300"/></span>
                                     </ContentTitle>
                                     <Options4>
@@ -764,7 +778,7 @@ return (
                           tabIcon: GiWheelbarrow,
                           tabContent: (
                             <div>
-                                <ContentTitle> Details <Info onClick = {this.showTcsOut.bind(this)} showTcOut = {this.state.showTcOut}/>
+                                <ContentTitle> Details 
                                   <span><hr width="300"/></span>
                                 </ContentTitle>
                                 <Options>
@@ -799,7 +813,7 @@ return (
                                           <option value="6">6 Hours</option>
                                       </select>
                                 </Options>
-                                <ContentTitle> Required Services
+                                <ContentTitle> Required Services <Info onClick = {this.showOutdoorServicesInfo.bind(this)} showOutdoorServicesInfo = {this.state.showOutdoorServicesInfo}/>
                                   <span><hr width="300"/></span>
                                 </ContentTitle>
                                 <Options4>
@@ -857,7 +871,7 @@ return (
                           tabIcon: FaSwimmingPool,
                           tabContent: ( 
                             <div>
-                                <ContentTitle> Details <Info onClick = {this.showTcsOut.bind(this)} showTcOut = {this.state.showTcOut}/>
+                                <ContentTitle> Details 
                                   <span><hr width="300"/></span>
                                 </ContentTitle>
                                 <Options>
@@ -892,7 +906,7 @@ return (
                                           <option value="6">6 Hours</option>
                                       </select>
                                 </Options>
-                                <ContentTitle> Required Services
+                                <ContentTitle> Required Services <Info onClick = {this.showPoolServicesInfo.bind(this)} showPoolServicesInfo = {this.state.showPoolServicesInfo}/>
                                   <span><hr width="300"/></span>
                                 </ContentTitle>
                                 <Options3p1>                               
@@ -976,6 +990,20 @@ return (
               <IndoorTCs showTcIn = {this.state.showTcIn} closeTcIn={this.showTcsIn.bind(this)}/>
               : null
             }
+            {this.state.showServicesInfo ?
+              <IndoorServicesInfo showServicesInfo = {this.state.showServicesInfo} closeServiceInfo={this.showServicesInfo.bind(this)}/>
+              : null
+            }
+            {this.state.showOutdoorServicesInfo ?
+              <OutdoorServicesInfo showOutdoorServicesInfo = {this.state.showOutdoorServicesInfo} closeOutdoorServiceInfo={this.showOutdoorServicesInfo.bind(this)}/>
+              : null
+            }
+            
+            {this.state.showPoolServicesInfo ?
+              <PoolServicesInfo showPoolServicesInfo = {this.state.showPoolServicesInfo} closePoolServiceInfo={this.showPoolServicesInfo.bind(this)}/>
+              : null
+            }
+
             </div>            
         );  
     }  

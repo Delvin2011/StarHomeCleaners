@@ -1,15 +1,8 @@
 import styled from 'styled-components';
 //import CustomButton from '../../custom-button/custom-button';
-import CustomButton from '../../../custom-button/custom-button';
+//import CustomButton from '~/custom-button/custom-button';
 //import {Link} from 'react-router-dom';
 
-export const Button = styled(CustomButton)`
-    position: center;
-    margin: auto; 
-    display: flex;
-    align-items: center;
-    justify-content: center; 
-`;
 
 
 export const LogoContainer = styled.img`

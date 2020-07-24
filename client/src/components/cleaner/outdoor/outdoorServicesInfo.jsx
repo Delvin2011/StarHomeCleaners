@@ -1,9 +1,9 @@
 import React from 'react';  
-import {Popup,PopupInner,Button,LogoContainer,CloseButton,TCList,Heading,Details,Title} from './indoorTCs-styles'; 
-import Logo from '../../../../assets/img/logo1.png';
-import CustomButton from "../../../CustomButtons/Button";
+import {Popup,PopupInner,Button,LogoContainer,CloseButton,TCList,Heading,Details,Title} from '../serviceInfoStyles'; 
+import Logo from '../../../assets/img/logo1.png';
+import CustomButton from "../../CustomButtons/Button";
 
-class IndoorTCs extends React.Component {  
+class OutdoorServicesInfo extends React.Component {  
     constructor(props){
         super(props);   
         this.state = {
@@ -16,12 +16,12 @@ class IndoorTCs extends React.Component {
         return (  
             <Popup>  
                 <PopupInner>                   
-                        <CloseButton className = 'remove-button' style = {{"color":"black"}} onClick = {this.props.closeTcIn} >&#10005;</CloseButton>  
+                        <CloseButton className = 'remove-button' style = {{"color":"black"}} onClick = {this.props.closeOutdoorServiceInfo} >&#10005;</CloseButton>  
                         <LogoContainer src= {Logo} />
-                        <Title> Enter Contact Details</Title>
+                        <Title> Outdoor Services</Title>
                         <Details style = {{"border-bottom":"none"}}>
                         <div>
-                        <Heading>Kitchen</Heading>
+                        <Heading>Yard Cleaning</Heading>
                             <TCList>
                                 <li>Dusting all accessible surfaces.</li>
                                 <li>Wiping mirrors and glass fixtures.</li>
@@ -32,7 +32,7 @@ class IndoorTCs extends React.Component {
                             </TCList>
                             </div>
                             <div  style = {{"border-left":"thin solid silver"}}>
-                            <Heading>Living Area</Heading>
+                            <Heading>Lawn Mowing</Heading>
                             <TCList>
                                 <li>Dusting all accessible surfaces.</li>
                                 <li>Wiping mirrors and glass fixtures.</li>
@@ -45,7 +45,7 @@ class IndoorTCs extends React.Component {
                         </Details>
                         <Details>
                         <div>
-                        <Heading>Bathroom</Heading>
+                        <Heading>Flower Bedding</Heading>
                             <TCList>
                                 <li>Dusting all accessible surfaces.</li>
                                 <li>Wiping mirrors and glass fixtures.</li>
@@ -56,7 +56,7 @@ class IndoorTCs extends React.Component {
                             </TCList>
                             </div>
                             <div  style = {{"border-left":"thin solid silver"}}>
-                            <Heading>Bedroom</Heading>
+                            <Heading>Driveway Cleaning</Heading>
                             <TCList>
                                 <li>Dusting all accessible surfaces.</li>
                                 <li>Wiping mirrors and glass fixtures.</li>
@@ -67,7 +67,7 @@ class IndoorTCs extends React.Component {
                             </TCList> 
                             </div> 
                         </Details>   
-                        <p style = {{"textAlign" : "center"}}><CustomButton  type = 'submit' onClick= {this.props.closeTcIn} style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>Close</CustomButton></p>     
+                        <p style = {{"textAlign" : "center"}}><CustomButton  type = 'submit' onClick= {this.props.closeOutdoorServiceInfo} style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>Close</CustomButton></p>     
                 </PopupInner>  
             </Popup>  
         );  
@@ -75,4 +75,4 @@ class IndoorTCs extends React.Component {
 }  
 
 
-export default IndoorTCs;
+export default OutdoorServicesInfo;
