@@ -79,10 +79,19 @@ export const TCList = styled.ul`
 text-align: left;
 color: #4a4a4a;
 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-letter-spacing: 1px;
+letter-spacing: 1.5px;
 font: 12px;
+
+    & > li {
+        line-height: 2;
+    }
+
 @media screen and (max-width: 800px){
     font: 10px;
+    & > li {
+        line-height: 1.2;
+        letter-spacing: 1px;
+    }
 }
 `;
 
@@ -93,6 +102,9 @@ export const Heading = styled.h3`
     align-items: center;
     color: #4a4a4a;
     font-weight : bold;
+    @media screen and (max-width: 800px){
+    font-size: 12px;
+}
 `;
 
 export const Details = styled.div`
@@ -112,4 +124,8 @@ export const Title = styled.h1`
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     align-items: center;
     color: #4a4a4a;
+
+    @media screen and (max-width: 800px){
+    font-size: 12px;
+}
 `;

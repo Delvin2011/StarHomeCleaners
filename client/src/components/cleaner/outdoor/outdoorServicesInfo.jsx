@@ -23,23 +23,23 @@ class OutdoorServicesInfo extends React.Component {
                         <div>
                         <Heading>Yard Cleaning</Heading>
                             <TCList>
-                                <li>Dusting all accessible surfaces.</li>
-                                <li>Wiping mirrors and glass fixtures.</li>
-                                <li>Wiping appliances.</li>
-                                <li>Folding clothes and arranging things.</li>
-                                <li>Wiping doors, door handles and switches.</li>
-                                <li>Cleaning lighting appliances and chandeliers.</li>
+                                <li>Cleaning up after the construction.</li>
+                                <li>Cleaning up after a party.</li>
+                                <li>Pruning and trimming trees and shrubs.</li>
+                                <li>Clearing away leaves, branches, and clutter.</li>
+                                <li>Weed Control.</li>
+                                <li>CRaking up leaves and composting them.</li>
                             </TCList>
                             </div>
                             <div  style = {{"border-left":"thin solid silver"}}>
                             <Heading>Lawn Mowing</Heading>
                             <TCList>
-                                <li>Dusting all accessible surfaces.</li>
-                                <li>Wiping mirrors and glass fixtures.</li>
-                                <li>Wiping appliances.</li>
-                                <li>Folding clothes and arranging things.</li>
-                                <li>Wiping doors, door handles and switches.</li>
-                                <li>Cleaning lighting appliances and chandeliers.</li>
+                                <li>Cutting overgrown grass lawn.</li>
+                                <li>Keeping the lawn green.</li>
+                                <li>Weed Control.</li>
+                                <li>Composting & manure.</li>
+                                <li>Cleaning up lawn debris.</li>
+                                <li>Lawn soil aeration.</li>
                             </TCList> 
                             </div> 
                         </Details>
@@ -47,23 +47,23 @@ class OutdoorServicesInfo extends React.Component {
                         <div>
                         <Heading>Flower Bedding</Heading>
                             <TCList>
-                                <li>Dusting all accessible surfaces.</li>
-                                <li>Wiping mirrors and glass fixtures.</li>
-                                <li>Wiping appliances.</li>
-                                <li>Folding clothes and arranging things.</li>
-                                <li>Wiping doors, door handles and switches.</li>
-                                <li>Cleaning lighting appliances and chandeliers.</li>
+                                <li>Mend flower beds & ridges.</li>
+                                <li>Plant new flowers.</li>
+                                <li>Remove weeds.</li>
+                                <li>Trim flowers.</li>
+                                <li>Soil aeration & watering.</li>
+                                <li>Adding manure & compost.</li>
                             </TCList>
                             </div>
                             <div  style = {{"border-left":"thin solid silver"}}>
                             <Heading>Driveway Cleaning</Heading>
                             <TCList>
-                                <li>Dusting all accessible surfaces.</li>
-                                <li>Wiping mirrors and glass fixtures.</li>
+                                <li>High pressure cleaning.</li>
+                                <li>Weed Control.</li>
                                 <li>Wiping appliances.</li>
-                                <li>Folding clothes and arranging things.</li>
-                                <li>Wiping doors, door handles and switches.</li>
-                                <li>Cleaning lighting appliances and chandeliers.</li>
+                                <li>Insects control.</li>
+                                <li>Repair dipped or cracked paving.</li>
+                                <li>Degrease pavements.</li>
                             </TCList> 
                             </div> 
                         </Details>   

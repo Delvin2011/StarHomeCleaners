@@ -1,5 +1,5 @@
 import React from 'react';  
-import {Popup,PopupInner,Button,LogoContainer,CloseButton,TCList,Heading,Details,Title} from './indoorTCs-styles'; 
+import {Popup,PopupInner,Button,LogoContainer,CloseButton,TCList,Heading,Details,Title} from '../../serviceInfoStyles';
 import Logo from '../../../../assets/img/logo1.png';
 import CustomButton from "../../../CustomButtons/Button";
 
@@ -18,28 +18,28 @@ class IndoorTCs extends React.Component {
                 <PopupInner>                   
                         <CloseButton className = 'remove-button' style = {{"color":"black"}} onClick = {this.props.closeTcIn} >&#10005;</CloseButton>  
                         <LogoContainer src= {Logo} />
-                        <Title> Enter Contact Details</Title>
+                        <Title>Standard Services Offered</Title>
                         <Details style = {{"border-bottom":"none"}}>
                         <div>
                         <Heading>Kitchen</Heading>
                             <TCList>
-                                <li>Dusting all accessible surfaces.</li>
-                                <li>Wiping mirrors and glass fixtures.</li>
-                                <li>Wiping appliances.</li>
-                                <li>Folding clothes and arranging things.</li>
-                                <li>Wiping doors, door handles and switches.</li>
-                                <li>Cleaning lighting appliances and chandeliers.</li>
+                                <li>Empting trash cans/bins.</li>
+                                <li>Clean counter tops, sinks, and cupboards.</li>
+                                <li>Clean stove & microwave & fridge.</li>
+                                <li>Clean tables and chairs.</li>
+                                <li>Washing dishes.</li>
+                                <li>Cleaning floors & walls & windows.</li>
                             </TCList>
                             </div>
                             <div  style = {{"border-left":"thin solid silver"}}>
                             <Heading>Living Area</Heading>
                             <TCList>
-                                <li>Dusting all accessible surfaces.</li>
-                                <li>Wiping mirrors and glass fixtures.</li>
-                                <li>Wiping appliances.</li>
-                                <li>Folding clothes and arranging things.</li>
-                                <li>Wiping doors, door handles and switches.</li>
-                                <li>Cleaning lighting appliances and chandeliers.</li>
+                                <li>Dusting electronic gadgets.</li>
+                                <li>Cleaning wall electrical switches.</li>
+                                <li>Dusting furniture & wall frames.</li>
+                                <li>Vacuum & mop floors surfaces.</li>
+                                <li>Clean interior windows.</li>
+                                <li>Dusting sofas.</li>
                             </TCList> 
                             </div> 
                         </Details>
@@ -47,23 +47,23 @@ class IndoorTCs extends React.Component {
                         <div>
                         <Heading>Bathroom</Heading>
                             <TCList>
-                                <li>Dusting all accessible surfaces.</li>
-                                <li>Wiping mirrors and glass fixtures.</li>
-                                <li>Wiping appliances.</li>
-                                <li>Folding clothes and arranging things.</li>
-                                <li>Wiping doors, door handles and switches.</li>
-                                <li>Cleaning lighting appliances and chandeliers.</li>
+                                <li>Clean counters & cabinets.</li>
+                                <li>Wiping & shining mirrors.</li>
+                                <li>Clean & disinfect toilet seats.</li>
+                                <li>Clean & disinfect shower & bathtub.</li>
+                                <li>Clean interior windows & sills.</li>
+                                <li>Mopping floors & empty bins.</li>
                             </TCList>
                             </div>
                             <div  style = {{"border-left":"thin solid silver"}}>
                             <Heading>Bedroom</Heading>
                             <TCList>
-                                <li>Dusting all accessible surfaces.</li>
-                                <li>Wiping mirrors and glass fixtures.</li>
-                                <li>Wiping appliances.</li>
-                                <li>Folding clothes and arranging things.</li>
-                                <li>Wiping doors, door handles and switches.</li>
-                                <li>Cleaning lighting appliances and chandeliers.</li>
+                                <li>Vacuum carpets or mop floors.</li>
+                                <li>Make beds.</li>
+                                <li>Fold clothes.</li>
+                                <li>Dusting furniture.</li>
+                                <li>Clean interior windows.</li>
+                                <li>Arrange wardrope on request.</li>
                             </TCList> 
                             </div> 
                         </Details>   
