@@ -69,7 +69,7 @@ export default function CleaningPage(props) {
     <div>
       <Header
         color="transparent"
-        brand="Lavie WebHome"
+        brand="StarHome Cleaners"
         rightLinks={<HeaderLinks />}
         fixed
         changeColorOnScroll={{

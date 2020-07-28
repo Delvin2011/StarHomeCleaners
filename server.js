@@ -66,7 +66,7 @@ app.post('/email', (req, res) => {
 
    }
 
-   console.log(emailBody);
+   //console.log(emailBody);
  
     sendMail(email,subject,emailBody, function(err, data) {
         if (err) {
@@ -94,6 +94,8 @@ app.get('/error', (req, res) => {
 app.get('/email/sent', (req, res) => {
     res.sendFile(path.join(__dirname, 'EmailResponse', 'emailMessage.html'));
 });
+
+
 
 
 
