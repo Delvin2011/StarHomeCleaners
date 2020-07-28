@@ -80,14 +80,14 @@ text-align: left;
 color: #4a4a4a;
 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 letter-spacing: 1.5px;
-font: 12px;
+font-size: 12px;
 
     & > li {
         line-height: 2;
     }
 
 @media screen and (max-width: 800px){
-    font: 10px;
+    font-siz: 10px;
     & > li {
         line-height: 1.2;
         letter-spacing: 1px;
