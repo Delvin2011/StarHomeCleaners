@@ -21,6 +21,7 @@ export const Content = styled.div`;
     font-size: 14px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     align-items: left;
+    text-align: justify;
     color: #4a4a4a;
     @media screen and (max-width: 800px){
     font-size: 12px;

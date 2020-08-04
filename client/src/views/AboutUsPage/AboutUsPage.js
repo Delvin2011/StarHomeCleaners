@@ -93,7 +93,7 @@ export default function LoginPage(props) {
                   <Heading>About Us</Heading>
                       <Content>Our services include Home Cleaning, Pool Cleaning & Maintanance and Antiviral Sanitisation.</Content>
                       <br/>
-                      <Content>By following quick and easy steps where you book service of choice online, we dispatch a StarHome Cleaner to yourhome and we render out services with absolute diligence.</Content>
+                      <Content>By following quick and easy steps where you book a service of choice online, we dispatch a StarHome Cleaner to your home and we render our services with absolute diligence.</Content>
                       <br/>
                       <Content>Our hiring process for the StarHome Cleaners, requires police clearance from any form of criminality, multilingualism with proficiency in English and vast experience in carrying out cleaning services.</Content>
                       <br/>
