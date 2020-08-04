@@ -12,7 +12,7 @@ import Card from "components/Card/Card.js";
 import CardHeader from "components/Card/CardHeader.js";
 //import CardFooter from "components/Card/CardFooter.js";
 //import CustomInput from "components/CustomInput/CustomInput.js";
-
+import {Heading, Container,Content} from "./AboutUsPage-styles";
 import styles from "assets/jss/material-kit-react/views/loginPage.js";
 
 import image from "assets/img/bg7.jpg";
@@ -43,12 +43,12 @@ export default function LoginPage(props) {
           backgroundPosition: "top center"
         }}
       >
-        <div className={classes.container} style={{width:"120%"}}>
+        <div className={classes.container} style={{width:"100%"}}>
           <GridContainer justify="center">
             <GridItem xs={12} sm={12} md={8}>
               <Card className={classes[cardAnimaton]}>
                 <form className={classes.form}>
-                  <CardHeader color="primary" className={classes.cardHeader} style={{color:"100vh"}}>
+                  <CardHeader color="primary" className={classes.cardHeader} >
                     <h4>Follow Us</h4>
                     <div className={classes.socialLine}>
                       <Button
@@ -85,25 +85,23 @@ export default function LoginPage(props) {
                         color="transparent"
                         onClick={e => e.preventDefault()}
                       >
-                        <i className={"fab fa-linkedin"} />
-                      </Button>
-                      <Button
-                        justIcon
-                        href="#pablo"
-                        target="_blank"
-                        color="transparent"
-                        onClick={e => e.preventDefault()}
-                      >
                         <i className={"fab fa-pinterest"} />
                       </Button>
                     </div>
                   </CardHeader>
-                  <p className={classes.divider} style={{color:"black"}}>About Us</p>
-                  <p style={{color:"black","margin-left": "15px"}}>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut</p>
-                  <p style={{color:"black","margin-left": "15px"}}>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut</p>
-                  <p style={{color:"black","margin-left": "15px"}}>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut</p>
-                  <p style={{color:"black","margin-left": "15px"}}>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut</p>
-                
+                  <Container>
+                  <Heading>About Us</Heading>
+                      <Content>Our services include Home Cleaning, Pool Cleaning & Maintanance and Antiviral Sanitisation.</Content>
+                      <br/>
+                      <Content>By following quick and easy steps where you book service of choice online, we dispatch a StarHome Cleaner to yourhome and we render out services with absolute diligence.</Content>
+                      <br/>
+                      <Content>Our hiring process for the StarHome Cleaners, requires police clearance from any form of criminality, multilingualism with proficiency in English and vast experience in carrying out cleaning services.</Content>
+                      <br/>
+                      <Content>Each morning before any of our StarHome Cleaners are dispatched, we ensure health checks are conducted and all hygiene protocols are adhered to.</Content>
+                      <br/>
+                      <Content>We always aim to deliver favourable services to our clients whilst exhibitng the highest level of professionalsm that gurantees your peace of mind.</Content>
+                      <br/>
+                  </Container>
                 </form>
               </Card>
             </GridItem>
