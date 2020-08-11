@@ -125,7 +125,7 @@ class ContactUs extends React.Component {
                                                 : <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit'  style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>SEND</CustomButton></p>
  
                                 }
-                                                                                
+                                                                    
                             </Form>
                         </div>
 

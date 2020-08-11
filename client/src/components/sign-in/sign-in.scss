@@ -1,0 +1,23 @@
+.sign-in {
+    width: 500px; //30vw (inital value); //30% of the view width
+    display: flex;
+    flex-direction: column; //to have all the elements in the sign-in to sit vertically
+
+    .title {
+        margin: 15px 0; //margin of 10 px, top and bottom
+    }
+
+    .buttons {
+        display: flex;
+        justify-content: space-between;
+
+        @media screen and (max-width: 800px) {
+            width: 10px;
+        }
+    }
+
+    @media screen and (max-width: 800px) {
+        width: 90%;
+    }
+
+}

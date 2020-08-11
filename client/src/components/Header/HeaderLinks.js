@@ -8,6 +8,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 // @material-ui/icons
 import { Apps } from "@material-ui/icons";
 import Cleaner from "components/cleaner/popupCleaner";
+import SignIn from "../sign-in/sign-in";
 // Icons
 import { IoLogoWhatsapp } from "react-icons/io";
 import { FaFacebook } from 'react-icons/fa';
@@ -16,6 +17,9 @@ import {MdLocationOn} from "react-icons/md";
 import {MdLocalPhone} from "react-icons/md";
 import {FaBlog} from "react-icons/fa";
 import {FaBookReader} from "react-icons/fa";
+import {GoSignIn} from "react-icons/go";
+import {GoSignOut} from "react-icons/go";
+
 
 
 import Contact from "../contact-us/contact-us";
@@ -25,14 +29,16 @@ import CustomDropdown from "components/CustomDropdown/CustomDropdown.js";
 import Button from "components/CustomButtons/Button.js";
 
 import styles from "assets/jss/material-kit-react/components/headerLinksStyle.js";
+import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
 
 const useStyles = makeStyles(styles);
 
-export default function HeaderLinks(props) {
+export default function HeaderLinks({currentUser}) {
   const classes = useStyles();
   const [Email, setEmail] = useState(false);
   const [Phone, setPhone] = useState(false);
   const [Booking, setBooking] = useState(false);
+  const [SigningIn, setSigningIn] = useState(false);
   return (
     <List className={classes.list}>
       <ListItem className={classes.listItem}>
@@ -88,6 +94,34 @@ export default function HeaderLinks(props) {
             <FaBlog className={classes.icons} /> Book  a Service
         </Button>
         </ListItem>
+
+        <ListItem className={classes.listItem}>
+
+        {currentUser?
+
+        <Button
+            //href="blogs-page"
+            color="transparent"
+            target="_blank"
+            className={classes.navLink}
+            onClick = {() => auth.signOut()}
+          >
+            <GoSignOut className={classes.icons} /> Sign Out
+        </Button>
+
+        :
+        <Button
+            //href="blogs-page"
+            color="transparent"
+            target="_blank"
+            className={classes.navLink}
+            onClick = {() => setSigningIn(!SigningIn)}
+          >
+            <GoSignIn className={classes.icons} /> Sign In
+        </Button>
+        }
+        </ListItem>
+
         <ListItem className={classes.listItem}>
 
           <Button
@@ -112,6 +146,11 @@ export default function HeaderLinks(props) {
 
         {Booking ?
           <Cleaner showPopup= {Booking} closePopup ={() => setBooking(!Booking)}/>          
+          : null
+        }
+
+        {SigningIn ?
+          <SignIn showPopupSignIn= {SigningIn} closePopupSignIn ={() => setSigningIn(!SigningIn)} currentUser = {currentUser}/>          
           : null
         }
     </List>

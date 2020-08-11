@@ -9,7 +9,8 @@ const app = express();
 const port = process.env.PORT || 5000; //post that host
 //const port = 5000;
 const cors = require('cors');
-
+const { Route } = require('react-router-dom');
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 // Data parsing (from the form to the backend)
 app.use(express.urlencoded({
@@ -94,6 +95,23 @@ app.get('/error', (req, res) => {
 app.get('/email/sent', (req, res) => {
     res.sendFile(path.join(__dirname, 'EmailResponse', 'emailMessage.html'));
 });
+
+app.post('/payment', (req, res) => {
+    const body = {
+      source: req.body.token.id,
+      amount: req.body.amount,
+      currency: 'zar'
+    };
+  
+    stripe.charges.create(body, (stripeErr, stripeRes) => {
+      if (stripeErr) {
+        res.status(500).send({ error: stripeErr });
+      } else {
+        res.status(200).send({ success: stripeRes });
+      }
+    });
+  });
+
 
 
 

@@ -67,17 +67,6 @@ export default function CleaningPage(props) {
   return (
 
     <div>
-      <Header
-        color="transparent"
-        brand="StarHome Cleaners"
-        rightLinks={<HeaderLinks />}
-        fixed
-        changeColorOnScroll={{
-          height: 50,
-          color: "white"
-        }}
-        {...rest}
-      />
       <Parallax small filter image={require("assets/img/profile-bg.jpg")} />
       <div className={classNames(classes.main, classes.mainRaised)}>
           <div className={classes.container}>

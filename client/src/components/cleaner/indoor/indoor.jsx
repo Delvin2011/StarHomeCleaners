@@ -1,9 +1,16 @@
 import React from 'react';  
 import {Popup,PopupInner,LogoContainer,Form,CloseButton,Response,Errors,Message4,Details,Right,ContentTitle,Title} from '../outdoor/outdoor-styles'; 
+import {CreditCardPayment,CASpayment,PaymentOptionsContainer} from './indoor-styles';
 import CustomButton from "../../CustomButtons/Button";
 import FormInput from '../../form-input/form-input';
 import Logo from '../../../assets/img/logo1.png';
-//import { Form } from "react-bootstrap";
+
+import Fab from '@material-ui/core/Fab';
+import Tooltip from '@material-ui/core/Tooltip';
+
+import StripeCheckoutButton from '../../stripe-button/stripe-button';
+
+
 
 class Indoor extends React.Component {  
     constructor(props){
@@ -21,15 +28,43 @@ class Indoor extends React.Component {
             option: false,
             option2: false,
             HowOften: '',
-            dateTime: "" + this.props.dateTime
+            dateTime: "" + this.props.dateTime,
+            IndoorCardPayment: false,
+            IndoorCashPayment: false
         }
         this.handleDropdownChange = this.handleDropdownChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        //this.handleSubmit1 = this.handleSubmit1.bind(this);
+
+        this.CreditCardPayment= this.CreditCardPayment.bind(this);
+        this.CashAfterServicePayment= this.CashAfterServicePayment.bind(this);
+        //this.Demo.simpleCart = this.Demo.simpleCart.bind(this);
     }
+
+
     handleDropdownChange(e) {
         this.setState({ selectValue: e.target.value });
       }
+
+      CreditCardPayment(event) {
+        this.setState({
+            IndoorCardPayment: this.state.IndoorCashPayment === true ? false : !this.state.IndoorCardPayment
+        });
+      }
+  
+      CashAfterServicePayment(event) {
+        this.setState({
+            IndoorCashPayment: this.state.IndoorCardPayment === true? false : !this.state.IndoorCashPayment
+        });
+      }
+      componentDidMount () {
+        const script = document.createElement("script");
+        script.src = "../../../assets/jss/simpleCarts";
+        script.async = true;
+        document.body.appendChild(script);
+    };
+
+    
+
 
       handleSubmit(event) {
         event.preventDefault();
@@ -37,7 +72,7 @@ class Indoor extends React.Component {
         console.log(form);
         const data = new FormData(form);
         const {dateTime} = this.state;
-        console.log(data.get('email'));
+        //console.log(data.get('email'));
        fetch('/email', {
         method: 'post',
         headers: {'Content-Type': 'application/json'},
@@ -129,31 +164,42 @@ class Indoor extends React.Component {
                                         <ContentTitle> Date </ContentTitle>                                    
                                             <Message4>{this.state.dateTime.replace("GMT+0200 (South Africa Standard Time)","")}</Message4>
                                         <ContentTitle> Total Costs </ContentTitle>                                    
-                                            <Message4> R {this.props.totalIndoor}</Message4>
+                                            <Message4> R { this.state.IndoorCashPayment?
+                                                this.props.totalIndoor + ' - ' + "CAS(Cash After Service)"
+                                                :
+                                                this.props.totalIndoor
+                                                }</Message4>
                                     </Right>  
-
                                     </Details> 
-                                    {response === 200  ? 
-                                        <div>
-                                            <Response>Email Sent!!!!</Response>
-                                            <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit' onClick= {this.props.closePopup} style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>CLOSE</CustomButton></p> 
 
-                                        </div>
-                                        : response === 500 || response === 404 ?
+                                    <Title> PAYMENT METHODS </Title>
+                                    <PaymentOptionsContainer>
+                                        <Tooltip title="CAS(Cash After Service)" aria-label="add"><Fab><CASpayment onClick={this.CashAfterServicePayment.bind(this)} IndoorCashPayment = {this.state.IndoorCashPayment}/></Fab></Tooltip>
+                                        <Tooltip title="Card Payment" aria-label="add"><Fab><CreditCardPayment onClick={this.CreditCardPayment.bind(this)} IndoorCardPayment = {this.state.IndoorCardPayment}/></Fab></Tooltip> 
+                                    </PaymentOptionsContainer>
+</Form>  
+                                    {   this.state.IndoorCashPayment ?
+
+                                            response === 200  ? 
                                             <div>
-                                                <Errors>Email Not Sent!!!!</Errors>
-                                                <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit' style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>RESEND</CustomButton></p> 
+                                                <Response>Email Sent!!!!</Response>
+                                                <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit' onClick= {this.props.closePopup} style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>CLOSE</CustomButton></p> 
 
                                             </div>
-                                            :    <p style = {{"textAlign" : "center"}}><CustomButton  type = 'submit' style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>BOOK SERVICE</CustomButton></p> 
+                                            : response === 500 || response === 404 ?
+                                                <div>
+                                                    <Errors>Email Not Sent!!!!</Errors>
+                                                    <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit' style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>RESEND</CustomButton></p> 
 
+                                                </div>
+                                                :    <p style = {{"textAlign" : "center"}}><CustomButton  type = 'submit' style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>BOOK SERVICE</CustomButton></p> 
+                                       
+                                        : this.state.IndoorCardPayment ?
+                                            <StripeCheckoutButton className = 'button' price = {this.props.totalIndoor}/>
+                                        : null
                                     } 
 
-                                 </Form> 
-
-                       
-                       
-                              
+                                           
                 </PopupInner>  
             </Popup>  
         );  
@@ -162,3 +208,8 @@ class Indoor extends React.Component {
 
 
 export default Indoor;
+
+
+
+
+

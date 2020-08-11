@@ -1,3 +1,19 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
+
+import './index.css';
+import App from './App';
+
+ReactDOM.render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+  document.getElementById('root')
+);
+
+
+/*
 import React from "react";
 import ReactDOM from "react-dom";
 import { createBrowserHistory } from "history";
@@ -7,6 +23,7 @@ import "assets/scss/material-kit-react.scss?v=1.8.0";
 import CleaningPage from "views/CleaningPage/CleaningPage.js";
 import AboutUsPage from "views/AboutUsPage/AboutUsPage.js";
 import MessengerCustomerChat from 'react-messenger-customer-chat';
+import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
 var hist = createBrowserHistory();
 
@@ -20,4 +37,4 @@ ReactDOM.render(
     </Switch>
   </Router>,
   document.getElementById("root")
-);
+);*/
