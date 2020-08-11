@@ -7,7 +7,7 @@ import IndoorTCs from './indoor/TCs/indoorTCs';
 import IndoorServicesInfo from './indoor/TCs/indoorServicesInfo';
 import OutdoorServicesInfo from './outdoor/outdoorServicesInfo';
 import PoolServicesInfo from './pool/poolServicesInfo';
-
+import PromptSinIn from './promptSinIn';
 
 import { Checkbox } from 'semantic-ui-react';
 
@@ -794,7 +794,7 @@ return (
                                           timeCaption="time"
                                           dateFormat="MMMM d, yyyy h:mm aa"
                                           shouldCloseOnSelect={false} />
-                                    <select id="dropdown2" onChange={this.handleDropdownChange5} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
+                                      <select id="dropdown2" onChange={this.handleDropdownChange5} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
                                           <option value="N/A">Location</option>
                                           <option value="Boksburg">Boksburg</option>
                                           <option value="Edenvale">Edenvale</option>
@@ -970,22 +970,39 @@ return (
                 </TabsContainer>
  
                 </PopupInner>  
-            </Popup>            
-            {this.state.showPopupOutdoor ?
-              <Outdoor showPopupOutdoor = {this.state.showPopupOutdoor} closePopup={this.props.closePopup} dateTime = {this.state.dateTime2} total = {this.state.total2} time = {this.state.areaHours} wheelbarrow = {this.state.value8} mower = {this.state.value11} windows = {this.state.value9} box = {this.state.value10} />
-              : null
+            </Popup> 
+
+            {this.state.showPopupOutdoor?
+              this.props.currentUser?
+              <Outdoor showPopupOutdoor = {this.state.showPopupOutdoor} currentUser = {this.props.currentUser} closePopup={this.props.closePopup} dateTime = {this.state.dateTime2} total = {this.state.total2} time = {this.state.areaHours} wheelbarrow = {this.state.value8} mower = {this.state.value11} windows = {this.state.value9} box = {this.state.value10} />
+                : !this.props.currentUser?
+                  <PromptSinIn currentUser = {this.props.currentUser} showPopupOutdoor = {this.state.showPopupOutdoor} closePopup={this.props.closePopup} dateTime = {this.state.dateTime2} total = {this.state.total2} time = {this.state.areaHours} wheelbarrow = {this.state.value8} mower = {this.state.value11} windows = {this.state.value9} box = {this.state.value10}/>
+                : null
+              :null
             } 
 
             {this.state.showPopupIndoor ?
-              <Indoor showPopupIndoor = {this.state.showPopupIndoor} closePopup={this.props.closePopup} dateTime = {this.state.dateTime} totalIndoor = {this.state.totalIndoor} genIndoorCleanWallsService = {this.state.genIndoorCleanWallsService} genIndoorCleanWindowsService = {this.state.genIndoorCleanWindowsService} genIndoorCleanLaundryService = {this.state.genIndoorCleanLaundryService} afterBuildIndoorCleanWallsService = {this.state.afterBuildIndoorCleanWallsService} serviceIntervalIndoor = {this.state.serviceIntervalIndoor} 
-              afterBuildIndoorCleanWindowsService = {this.state.afterBuildIndoorCleanWindowsService} endTenancyIndoorCleanWallsService = {this.state.endTenancyIndoorCleanWallsService} endTenancyIndoorCleanWindowsService = {this.state.endTenancyIndoorCleanWindowsService} bedRooms = {this.state.bedRooms} bathRooms = {this.state.bathRooms} IndoorCleanService = {this.state.IndoorCleanService} IndoorAfterBuildCleanService = {this.state.IndoorAfterBuildCleanService} IndoorEndTenancyCleanService = {this.state.IndoorEndTenancyCleanService} IndoorSanitiseService = {this.state.IndoorSanitiseService}/>
-              : null
+               this.props.currentUser?
+                <Indoor showPopupIndoor = {this.state.showPopupIndoor} currentUser = {this.props.currentUser} closePopup={this.props.closePopup} dateTime = {this.state.dateTime} totalIndoor = {this.state.totalIndoor} genIndoorCleanWallsService = {this.state.genIndoorCleanWallsService} genIndoorCleanWindowsService = {this.state.genIndoorCleanWindowsService} genIndoorCleanLaundryService = {this.state.genIndoorCleanLaundryService} afterBuildIndoorCleanWallsService = {this.state.afterBuildIndoorCleanWallsService} serviceIntervalIndoor = {this.state.serviceIntervalIndoor} 
+                afterBuildIndoorCleanWindowsService = {this.state.afterBuildIndoorCleanWindowsService} endTenancyIndoorCleanWallsService = {this.state.endTenancyIndoorCleanWallsService} endTenancyIndoorCleanWindowsService = {this.state.endTenancyIndoorCleanWindowsService} bedRooms = {this.state.bedRooms} bathRooms = {this.state.bathRooms} IndoorCleanService = {this.state.IndoorCleanService} IndoorAfterBuildCleanService = {this.state.IndoorAfterBuildCleanService} IndoorEndTenancyCleanService = {this.state.IndoorEndTenancyCleanService} IndoorSanitiseService = {this.state.IndoorSanitiseService}/>
+                : !this.props.currentUser?
+                  <PromptSinIn currentUser = {this.props.currentUser} showPopupIndoor = {this.state.showPopupIndoor} closePopup={this.props.closePopup} dateTime = {this.state.dateTime} totalIndoor = {this.state.totalIndoor} genIndoorCleanWallsService = {this.state.genIndoorCleanWallsService} genIndoorCleanWindowsService = {this.state.genIndoorCleanWindowsService} genIndoorCleanLaundryService = {this.state.genIndoorCleanLaundryService} afterBuildIndoorCleanWallsService = {this.state.afterBuildIndoorCleanWallsService} serviceIntervalIndoor = {this.state.serviceIntervalIndoor} 
+                afterBuildIndoorCleanWindowsService = {this.state.afterBuildIndoorCleanWindowsService} endTenancyIndoorCleanWallsService = {this.state.endTenancyIndoorCleanWallsService} endTenancyIndoorCleanWindowsService = {this.state.endTenancyIndoorCleanWindowsService} bedRooms = {this.state.bedRooms} bathRooms = {this.state.bathRooms} IndoorCleanService = {this.state.IndoorCleanService} IndoorAfterBuildCleanService = {this.state.IndoorAfterBuildCleanService} IndoorEndTenancyCleanService = {this.state.IndoorEndTenancyCleanService} IndoorSanitiseService = {this.state.IndoorSanitiseService}/>
+                : null
+
+              :null
             }
 
             {this.state.showPopupPool ?
-              <Pool showPopupPool = {this.state.showPopupPool} closePopup={this.props.closePopup} dateTime = {this.state.dateTimePool} total = {this.state.totalPool} time = {this.state.poolHrs} poolCleaning = {this.state.PoolCleanService} poolMaintanence = {this.state.PoolMaintService} serviceInterval = {this.state.serviceInterval}/>
-              : null
+               this.props.currentUser?
+                <Pool showPopupPool = {this.state.showPopupPool} currentUser = {this.props.currentUser} closePopup={this.props.closePopup} dateTime = {this.state.dateTimePool} total = {this.state.totalPool} time = {this.state.poolHrs} poolCleaning = {this.state.PoolCleanService} poolMaintanence = {this.state.PoolMaintService} serviceInterval = {this.state.serviceInterval}/>
+                : !this.props.currentUser?
+                  <PromptSinIn currentUser = {this.props.currentUser} showPopupPool = {this.state.showPopupPool} closePopup={this.props.closePopup} dateTime = {this.state.dateTimePool} total = {this.state.totalPool} time = {this.state.poolHrs} poolCleaning = {this.state.PoolCleanService} poolMaintanence = {this.state.PoolMaintService} serviceInterval = {this.state.serviceInterval}/>
+                : null
+
+              :null
             }
+
             {this.state.showTcIn ?
               <IndoorTCs showTcIn = {this.state.showTcIn} closeTcIn={this.showTcsIn.bind(this)}/>
               : null

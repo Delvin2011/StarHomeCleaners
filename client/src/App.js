@@ -65,7 +65,7 @@ class App extends React.Component {
         <Switch>
             <Route path="/sign-in" component={SignInAndSignUpPage} />
             <Route path="/about-us" component={AboutUsPage} />
-            <Route path="/" component={CleaningPage} />
+            <Route path="/" component={() => <CleaningPage currentUser={this.state.currentUser} />}/>
 
         </Switch>
       </div>
@@ -74,3 +74,5 @@ class App extends React.Component {
 }
 
 export default App;
+
+//component={CleaningPage} 

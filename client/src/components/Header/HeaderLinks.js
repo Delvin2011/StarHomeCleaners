@@ -145,7 +145,7 @@ export default function HeaderLinks({currentUser}) {
         }
 
         {Booking ?
-          <Cleaner showPopup= {Booking} closePopup ={() => setBooking(!Booking)}/>          
+          <Cleaner showPopup= {Booking} closePopup ={() => setBooking(!Booking)} currentUser = {currentUser}/>          
           : null
         }
 

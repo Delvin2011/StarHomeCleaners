@@ -56,14 +56,6 @@ class Indoor extends React.Component {
             IndoorCashPayment: this.state.IndoorCardPayment === true? false : !this.state.IndoorCashPayment
         });
       }
-      componentDidMount () {
-        const script = document.createElement("script");
-        script.src = "../../../assets/jss/simpleCarts";
-        script.async = true;
-        document.body.appendChild(script);
-    };
-
-    
 
 
       handleSubmit(event) {
@@ -121,7 +113,7 @@ class Indoor extends React.Component {
   render() {  
 
     const {customerName, email, phoneNumber,address,comments,response,error} = this.state;
-    console.log(response);
+    const {currentUser} = this.props;
         return (  
             <Popup>  
                 <PopupInner>                   
@@ -132,9 +124,18 @@ class Indoor extends React.Component {
                         
                                 <Form className = 'COD-form' onSubmit = {this.handleSubmit}> 
                                 <Details> 
-                                    <div style = {{"margin-left": "10%", width: "80%"}}>             
-                                        <FormInput type = 'text' name = 'customerName' value = {customerName} onChange = {this.handleChange} label = 'Customer Name & Surname' required/>
-                                        <FormInput type = 'email' name = 'email' value = {email} onChange = {this.handleChange} label = 'Email Address' required/>
+                                    <div style = {{"margin-left": "10%", width: "80%"}}>   
+                                    {this.props.currentUser?
+                                        <div>
+                                            <FormInput type = 'text' name = 'customerName' value = {currentUser.displayName} label = 'Customer Name & Surname' required/>
+                                            <FormInput type = 'email' name = 'email' value = {currentUser.email} label = 'Email Address' required/>
+                                        </div>
+                                        :
+                                        <div>
+                                            <FormInput type = 'text' name = 'customerName' value = {customerName} onChange = {this.handleChange} label = 'Customer Name & Surname' required/>
+                                            <FormInput type = 'email' name = 'email' value = {email} onChange = {this.handleChange} label = 'Email Address' required/>
+                                        </div>                                       
+                                    }          
                                         <FormInput type = 'tel' name = 'phoneNumber' value = {phoneNumber} onChange = {this.handleChange} label = 'Phone Number' required/>                           
                                         <FormInput type = 'text' name = 'address' value = {address} onChange = {this.handleChange} label = 'Physical address' rows="4" required/>                                                
                                         <FormInput type = 'text' name = 'comments' value = {comments} onChange = {this.handleChange} label = 'Comments'/>                                                                                                             
@@ -177,7 +178,7 @@ class Indoor extends React.Component {
                                         <Tooltip title="CAS(Cash After Service)" aria-label="add"><Fab><CASpayment onClick={this.CashAfterServicePayment.bind(this)} IndoorCashPayment = {this.state.IndoorCashPayment}/></Fab></Tooltip>
                                         <Tooltip title="Card Payment" aria-label="add"><Fab><CreditCardPayment onClick={this.CreditCardPayment.bind(this)} IndoorCardPayment = {this.state.IndoorCardPayment}/></Fab></Tooltip> 
                                     </PaymentOptionsContainer>
-</Form>  
+                                    </Form>  
                                     {   this.state.IndoorCashPayment ?
 
                                             response === 200  ? 
@@ -197,9 +198,7 @@ class Indoor extends React.Component {
                                         : this.state.IndoorCardPayment ?
                                             <StripeCheckoutButton className = 'button' price = {this.props.totalIndoor}/>
                                         : null
-                                    } 
-
-                                           
+                                    }                                          
                 </PopupInner>  
             </Popup>  
         );  

@@ -263,7 +263,7 @@ export default function CleaningPage(props) {
 
       {GetIndoorService?
       
-      <Cleaner showPopup= {GetIndoorService} closePopup ={() => setGetIndoorService(!GetIndoorService)}/>          
+      <Cleaner showPopup= {GetIndoorService} closePopup ={() => setGetIndoorService(!GetIndoorService)} currentUser = {this.props.currentUser} />          
       : null
     }
     </div>
@@ -271,7 +271,6 @@ export default function CleaningPage(props) {
 }
 
 /*      
-
   const [GetIndoorService, setGetIndoorService] = useState(false);
   const [GetOutdoorService, setGetOutdoorService] = useState(false);
 

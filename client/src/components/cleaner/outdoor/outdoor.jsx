@@ -95,7 +95,8 @@ class Outdoor extends React.Component {
   render() {  
 
     const {customerName, email, phoneNumber,address,comments,response,error} = this.state;
-        return (  
+    const {currentUser} = this.props;
+    return (  
             <Popup>  
                 <PopupInner>                   
                         <CloseButton className = 'remove-button' style = {{"color":"black"}} onClick = {this.props.closePopup} >&#10005;</CloseButton>  
@@ -104,8 +105,17 @@ class Outdoor extends React.Component {
                             <Form className = 'COD-form' onSubmit = {this.handleSubmit}>                
                                 <Details> 
                                     <div style = {{"margin-left": "10%", width: "80%"}}>             
-                                        <FormInput type = 'text' name = 'customerName' value = {customerName} onChange = {this.handleChange} label = 'Customer Name & Surname' required/>
-                                        <FormInput type = 'email' name = 'email' value = {email} onChange = {this.handleChange} label = 'Email Address' required/>
+                                    {this.props.currentUser?
+                                        <div>
+                                            <FormInput type = 'text' name = 'customerName' value = {currentUser.displayName} label = 'Customer Name & Surname' required/>
+                                            <FormInput type = 'email' name = 'email' value = {currentUser.email} label = 'Email Address' required/>
+                                        </div>
+                                        :
+                                        <div>
+                                            <FormInput type = 'text' name = 'customerName' value = {customerName} onChange = {this.handleChange} label = 'Customer Name & Surname' required/>
+                                            <FormInput type = 'email' name = 'email' value = {email} onChange = {this.handleChange} label = 'Email Address' required/>
+                                        </div>                                       
+                                    }
                                         <FormInput type = 'tel' name = 'phoneNumber' value = {phoneNumber} onChange = {this.handleChange} label = 'Phone Number' required/>                           
                                         <FormInput type = 'text' name = 'address' value = {address} onChange = {this.handleChange} label = 'Physical address' rows="4" required/>                                                
                                         <FormInput type = 'text' name = 'comments' value = {comments} onChange = {this.handleChange} label = 'Comments'/>                                                                                                             

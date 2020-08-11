@@ -19,7 +19,7 @@ class IndoorServicesInfo extends React.Component {
                         <CloseButton className = 'remove-button' style = {{"color":"black"}} onClick = {this.props.closeServiceInfo} >&#10005;</CloseButton>  
                         <LogoContainer src= {Logo} />
                         <Title> Cleaning Services</Title>
-                        <Details style = {{"border-bottom":"none"}}>
+                        <Details style = {{borderBottom:"none"}}>
                         <div>
                         <Heading>General Cleaning</Heading>
                             <TCList>

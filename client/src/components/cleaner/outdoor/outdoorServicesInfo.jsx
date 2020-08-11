@@ -19,7 +19,7 @@ class OutdoorServicesInfo extends React.Component {
                         <CloseButton className = 'remove-button' style = {{"color":"black"}} onClick = {this.props.closeOutdoorServiceInfo} >&#10005;</CloseButton>  
                         <LogoContainer src= {Logo} />
                         <Title> Outdoor Services</Title>
-                        <Details style = {{"border-bottom":"none"}}>
+                        <Details style = {{borderBottom:"none"}}>
                         <div>
                         <Heading>Yard Cleaning</Heading>
                             <TCList>

@@ -19,7 +19,7 @@ class PoolServicesInfo extends React.Component {
                         <CloseButton className = 'remove-button' style = {{"color":"black"}} onClick = {this.props.closePoolServiceInfo} >&#10005;</CloseButton>  
                         <LogoContainer src= {Logo} />
                         <Title> Pool Services</Title>
-                        <Details style = {{"border-bottom":"none"}}>
+                        <Details style = {{borderBottom:"none"}}>
                         <div>
                         <Heading>General Pool Cleaning</Heading>
                             <TCList>

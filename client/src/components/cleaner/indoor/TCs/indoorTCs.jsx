@@ -19,7 +19,7 @@ class IndoorTCs extends React.Component {
                         <CloseButton className = 'remove-button' style = {{"color":"black"}} onClick = {this.props.closeTcIn} >&#10005;</CloseButton>  
                         <LogoContainer src= {Logo} />
                         <Title>Standard Services Offered</Title>
-                        <Details style = {{"border-bottom":"none"}}>
+                        <Details style = {{borderBottom:"none"}}>
                         <div>
                         <Heading>Kitchen</Heading>
                             <TCList>
