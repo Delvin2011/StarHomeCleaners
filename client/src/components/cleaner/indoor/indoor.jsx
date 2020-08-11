@@ -127,12 +127,12 @@ class Indoor extends React.Component {
                                     <div style = {{"margin-left": "10%", width: "80%"}}>   
                                     {this.props.currentUser?
                                         <div>
-                                            <FormInput type = 'text' name = 'customerName' value = {currentUser.displayName} label = 'Customer Name & Surname' required/>
+                                            <FormInput type = 'text' name = 'customerName' value = {currentUser.displayName} label = 'Name & Surname' required/>
                                             <FormInput type = 'email' name = 'email' value = {currentUser.email} label = 'Email Address' required/>
                                         </div>
                                         :
                                         <div>
-                                            <FormInput type = 'text' name = 'customerName' value = {customerName} onChange = {this.handleChange} label = 'Customer Name & Surname' required/>
+                                            <FormInput type = 'text' name = 'customerName' value = {customerName} onChange = {this.handleChange} label = 'Name & Surname' required/>
                                             <FormInput type = 'email' name = 'email' value = {email} onChange = {this.handleChange} label = 'Email Address' required/>
                                         </div>                                       
                                     }          
