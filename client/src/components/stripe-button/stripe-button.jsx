@@ -89,11 +89,11 @@ import CustomButton from "../CustomButtons/Button";
                 <input type="hidden" name="return_url" value="https://yourApplication/paymentscreen" onChange={this.onInputChange}/>
                 <input type="hidden" name="cancel_url" value="https://yourApplication/paymentscreen" onChange={this.onInputChange}/>
                 <input type="hidden" name="notify_url" value="https://yourApplication/paymentscreen" onChange={this.onInputChange}/>
-                <input type="hidden" name="name_first" value="Tiks" onChange={this.onInputChange}/>
+                <input type="hidden" name="name_first" value="Testing" onChange={this.onInputChange}/>
                 <input type="hidden" name="email_address" value="t@gmail.com" onChange={this.onInputChange}/>
                 <input type="hidden" name="m_payment_id" value="1" onChange={this.onInputChange}/>
                 <input type="hidden" name="amount" value="100" onChange={this.onInputChange}/>
-                <input type="hidden" name="item_name" value="tiks" onChange={this.onInputChange}/>
+                <input type="hidden" name="item_name" value="Testing" onChange={this.onInputChange}/>
                 <input type="hidden" name="item_description" value="Pool service" onChange={this.onInputChange}/>
                 <input type="hidden" name="custom_int1" value="1" onChange={this.onInputChange}/>
     

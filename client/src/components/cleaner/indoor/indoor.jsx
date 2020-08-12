@@ -114,6 +114,7 @@ class Indoor extends React.Component {
 
     const {customerName, email, phoneNumber,address,comments,response,error} = this.state;
     const {currentUser} = this.props;
+    const {service} = "Indoors Cleaning Services";
         return (  
             <Popup>  
                 <PopupInner>                   
@@ -127,8 +128,8 @@ class Indoor extends React.Component {
                                     <div style = {{"margin-left": "10%", width: "80%"}}>   
                                     {this.props.currentUser?
                                         <div>
-                                            <FormInput type = 'text' name = 'customerName' value = {currentUser.displayName} label = 'Name & Surname' required/>
-                                            <FormInput type = 'email' name = 'email' value = {currentUser.email} label = 'Email Address' required/>
+                                            <FormInput type = 'text' name = 'customerName' value = {currentUser.displayName}  label = 'Name & Surname' required/>
+                                            <FormInput type = 'email' name = 'email' value = {currentUser.email}  label = 'Email Address' required/>
                                         </div>
                                         :
                                         <div>
@@ -186,10 +187,10 @@ class Indoor extends React.Component {
 
                                     <Title> PAYMENT METHODS </Title>
                                     <PaymentOptionsContainer>
-                                        <Test><Fab><CASpayment onClick={this.CashAfterServicePayment.bind(this)} IndoorCashPayment = {this.state.IndoorCashPayment}/></Fab><MessageTest>CAS (Cash After Service)</MessageTest></Test>
-                                        <Test><Fab><CreditCardPayment onClick={this.CreditCardPayment.bind(this)} IndoorCardPayment = {this.state.IndoorCardPayment}/></Fab><MessageTest>Online Payment</MessageTest></Test>
+                                        <Test><Fab><CASpayment onClick={this.CashAfterServicePayment.bind(this)} /></Fab><MessageTest>CAS (Cash After Service)</MessageTest></Test>
+                                        <Test><Fab><CreditCardPayment onClick={this.CreditCardPayment.bind(this)} /></Fab><MessageTest>Online Payment</MessageTest></Test>
                                     </PaymentOptionsContainer>
-                                    </Form>  
+                                     
                                     {   this.state.IndoorCashPayment ?
 
                                             response === 200  ? 
@@ -204,12 +205,15 @@ class Indoor extends React.Component {
                                                     <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit' style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>RESEND</CustomButton></p> 
 
                                                 </div>
-                                                :    <p style = {{"textAlign" : "center"}}><CustomButton  type = 'submit' style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>BOOK SERVICE</CustomButton></p> 
-                                       
-                                        : this.state.IndoorCardPayment ?
-                                            <StripeCheckoutButton className = 'button' price = {this.props.totalIndoor}/>
+                                                :    <p style = {{"textAlign" : "center"}}><CustomButton  type = 'submit' style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>BOOK SERVICE</CustomButton></p>                                    
                                         : null
-                                    }                                          
+                                    } 
+                                    </Form>    
+                                    {this.state.IndoorCardPayment ?
+                                        <StripeCheckoutButton service = {service} price = {this.props.totalIndoor}/>
+                                            : null
+                                    }
+
                 </PopupInner>  
             </Popup>  
         );  
