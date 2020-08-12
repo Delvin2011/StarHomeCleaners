@@ -57,8 +57,8 @@ export const PopupInner = styled.div`
     border-radius: 10px;  
     background: white;
     @media screen and (max-width: 800px){
-        left: 2.5%;  
-        right: 2.5%;  
+        left: 2%;  
+        right: 2%;  
         top: 10%;  
         bottom: 5%;
  
@@ -217,13 +217,16 @@ export const Message4 = styled.h2`
     color: #4a4a4a;
     letter-spacing: 2px;
     margin-left: 50px;
+    line-height: 2px;
     @media screen and (max-width: 800px){
-        margin-left: 25px;
+        margin-left: 15px;
         font-size: 12px;
+        line-height: 1px;
+        letter-spacing: 1px;
     }
 
     @media screen and (max-width: 1600px){ 
-        line-height: 1;
+        line-height: 1px;
     }
 
 `;
@@ -244,11 +247,17 @@ export const ContentTitle = styled.h1`
     align-items: left;
     color: #4a4a4a;
     margin-left: 20px;
+    line-height: 2px;
+
+    @media screen and (max-width: 1600px){ 
+        line-height: 1.5px;
+    }
 
     @media screen and (max-width: 800px){
         margin-left: 10px;
-        letter-spacing: 1.5px;
-    font-size: 12px;
+        letter-spacing: 1px;
+        font-size: 12px;
+        line-height: 1px;
     }
 `;
 
@@ -263,4 +272,20 @@ export const Title = styled.h1`
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     align-items: center;
     color: #4a4a4a;
+`;
+
+
+export const Test = styled.div`
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 2px;
+  justify-items: center;
+`;
+
+export const MessageTest = styled.h2`
+    font-size: 14px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    align-items: left;
+    color: #4a4a4a;
+    letter-spacing: 2px;
 `;

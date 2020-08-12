@@ -121,24 +121,34 @@ class Outdoor extends React.Component {
                                         <FormInput type = 'text' name = 'comments' value = {comments} onChange = {this.handleChange} label = 'Comments'/>                                                                                                             
                                     </div> 
                                     <Right >
-                                        <ContentTitle> Nature of Services
-                                        </ContentTitle>
+                                        <div style={{marginBottom:"20px"}}>
+                                            <ContentTitle> Nature of Services
+                                            </ContentTitle>
                                             <Message4>Outdoors</Message4>
+                                        </div>
+                                        <div style={{marginBottom:"20px"}}>
                                         <ContentTitle> Required Services
                                         </ContentTitle>
                                             <Message4>{this.props.wheelbarrow}</Message4>
                                             <Message4>{this.props.windows}</Message4>
                                             <Message4>{this.props.box}</Message4>
                                             <Message4>{this.props.mower}</Message4>
+                                        </div>
+                                        <div style={{marginBottom:"20px"}}>
                                         <ContentTitle> Time allocation
                                         </ContentTitle>
                                             <Message4>{this.props.time} hrs</Message4>
+                                        </div>
+                                        <div style={{marginBottom:"20px"}}>
                                         <ContentTitle> Date
                                         </ContentTitle>
                                         <Message4>{this.state.dateTime.replace("GMT+0200 (South Africa Standard Time)","")}</Message4>
+                                        </div>
+                                        <div style={{marginBottom:"20px"}}>
                                         <ContentTitle> Total Costs
                                         </ContentTitle>
                                             <Message4> R {this.props.total}</Message4>
+                                        </div>
                                     </Right>  
                                  </Details> 
                                     {response === 200 ? 

@@ -1,5 +1,5 @@
 import React from 'react';  
-import {Popup,PopupInner,LogoContainer,Form,CloseButton,Response,Errors,Message4,Details,Right,ContentTitle,Title} from '../outdoor/outdoor-styles'; 
+import {Popup,PopupInner,LogoContainer,Form,CloseButton,Response,Errors,Message4,Details,Right,ContentTitle,Title,Test,MessageTest} from '../outdoor/outdoor-styles'; 
 import {CreditCardPayment,CASpayment,PaymentOptionsContainer} from './indoor-styles';
 import CustomButton from "../../CustomButtons/Button";
 import FormInput from '../../form-input/form-input';
@@ -141,16 +141,23 @@ class Indoor extends React.Component {
                                         <FormInput type = 'text' name = 'comments' value = {comments} onChange = {this.handleChange} label = 'Comments'/>                                                                                                             
                                     </div>   
                                     <Right >
-                                        <ContentTitle> Nature of Services </ContentTitle>                                
+                                        <div style={{marginBottom:"20px"}}>
+                                            <ContentTitle> Nature of Services </ContentTitle>                                
                                             <Message4>Indoors</Message4>
+                                        </div>
+                                        <div style={{marginBottom:"20px"}}>
                                         <ContentTitle> Home Details </ContentTitle>                                   
                                             <Message4>{this.props.bedRooms}</Message4>
                                             <Message4>{this.props.bathRooms}</Message4>
+                                        </div>
+                                        <div style={{marginBottom:"20px"}}>
                                         <ContentTitle> Required Services </ContentTitle>                                   
                                             <Message4>{this.props.IndoorCleanService}</Message4>
                                             <Message4>{this.props.IndoorAfterBuildCleanService}</Message4>
                                             <Message4>{this.props.IndoorEndTenancyCleanService}</Message4>
                                             <Message4>{this.props.IndoorSanitiseService}</Message4>
+                                        </div>
+                                        <div style={{marginBottom:"20px"}}>
                                         <ContentTitle> Extra Services </ContentTitle> 
                                             <Message4>{this.props.genIndoorCleanWallsService}</Message4>
                                             <Message4>{this.props.genIndoorCleanWindowsService}</Message4>
@@ -159,11 +166,15 @@ class Indoor extends React.Component {
                                             <Message4>{this.props.afterBuildIndoorCleanWindowsService}</Message4>
                                             <Message4>{this.props.endTenancyIndoorCleanWallsService}</Message4>
                                             <Message4>{this.props.endTenancyIndoorCleanWindowsService}</Message4>
+                                        </div>
+                                        <div style={{marginBottom:"20px"}}>
                                         <ContentTitle> Services Intervals</ContentTitle> 
                                             <Message4>{this.props.serviceIntervalIndoor}</Message4>
-                                            
+                                        </div>
+                                        <div style={{marginBottom:"20px"}}>
                                         <ContentTitle> Date </ContentTitle>                                    
                                             <Message4>{this.state.dateTime.replace("GMT+0200 (South Africa Standard Time)","")}</Message4>
+                                        </div>  
                                         <ContentTitle> Total Costs </ContentTitle>                                    
                                             <Message4> R { this.state.IndoorCashPayment?
                                                 this.props.totalIndoor + ' - ' + "CAS(Cash After Service)"
@@ -175,8 +186,8 @@ class Indoor extends React.Component {
 
                                     <Title> PAYMENT METHODS </Title>
                                     <PaymentOptionsContainer>
-                                        <Tooltip title="CAS(Cash After Service)" aria-label="add"><Fab><CASpayment onClick={this.CashAfterServicePayment.bind(this)} IndoorCashPayment = {this.state.IndoorCashPayment}/></Fab></Tooltip>
-                                        <Tooltip title="Card Payment" aria-label="add"><Fab><CreditCardPayment onClick={this.CreditCardPayment.bind(this)} IndoorCardPayment = {this.state.IndoorCardPayment}/></Fab></Tooltip> 
+                                        <Test><Fab><CASpayment onClick={this.CashAfterServicePayment.bind(this)} IndoorCashPayment = {this.state.IndoorCashPayment}/></Fab><MessageTest>CAS (Cash After Service)</MessageTest></Test>
+                                        <Test><Fab><CreditCardPayment onClick={this.CreditCardPayment.bind(this)} IndoorCardPayment = {this.state.IndoorCardPayment}/></Fab><MessageTest>Online Payment</MessageTest></Test>
                                     </PaymentOptionsContainer>
                                     </Form>  
                                     {   this.state.IndoorCashPayment ?
