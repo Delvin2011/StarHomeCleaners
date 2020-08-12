@@ -288,4 +288,7 @@ export const MessageTest = styled.h2`
     align-items: left;
     color: #4a4a4a;
     letter-spacing: 2px;
+    @media screen and (max-width: 800px){
+        letter-spacing: 1px;
+    }
 `;

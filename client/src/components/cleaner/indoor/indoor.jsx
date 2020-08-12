@@ -177,7 +177,7 @@ class Indoor extends React.Component {
                                         </div>  
                                         <ContentTitle> Total Costs </ContentTitle>                                    
                                             <Message4> R { this.state.IndoorCashPayment?
-                                                this.props.totalIndoor + ' - ' + "CAS(Cash After Service)"
+                                                this.props.totalIndoor
                                                 :
                                                 this.props.totalIndoor
                                                 }</Message4>
