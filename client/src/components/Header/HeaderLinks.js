@@ -135,7 +135,7 @@ export default function HeaderLinks({currentUser}) {
         </ListItem>
 
         {Email ?
-          <Contact showPopup = {Email} closePopup={() => setEmail(!Email)}/>
+          <Contact showPopup = {Email} closePopup={() => setEmail(!Email)} currentUser = {currentUser}/>
           : null
         }
 

@@ -15,11 +15,10 @@ export default function SectionDownload() {
   const classes = useStyles();
   return (
     <div className={classes.section} style = {{marginTop: "-200px"}}>
-
       <div className={classes.container}>     
         <div className={classes.textCenter + " " + classes.sharingArea}>
           <GridContainer justify="center">
-            <h3 style = {{color : "#3C4858"}}>Thank you for working with us!</h3>
+            <h4 style = {{color : "#3C4858"}}>Thank you for working with us!</h4>
           </GridContainer>
           <Button color="twitter">
             <i className={classes.socials + " fab fa-twitter"} /> Follow
@@ -31,12 +30,27 @@ export default function SectionDownload() {
             <i className={classes.socials + " fab fa-instagram"} />
             Follow
           </Button>
-          <Button color="info">
-            <i className={classes.socials + " fab fa-linkedin"} /> Follow
-          </Button>
           <Button color="danger">
             <i className={classes.socials + " fab fa-pinterest"} /> Follow
           </Button>
+        </div>
+      </div>
+
+      <div className={classes.container} style = {{marginTop: "-50px"}}> 
+           
+        <div className={classes.textCenter + " " + classes.sharingArea}>
+          <GridContainer justify="center">
+            <h4 style = {{color : "#3C4858"}}>Secure Payment!</h4>
+          </GridContainer>
+          <Button color="gray">
+            <i className={classes.socials + " fab fa-cc-mastercard"} /> MasterCard
+          </Button>
+          <Button color="gray">
+            <i className={classes.socials + " fab fa-cc-visa"} /> Visa
+          </Button>
+          <Button color="gray">
+            <i className={classes.socials + " fab fa-cc-paypal"} /> PayPal
+                      </Button>
         </div>
       </div>
     </div>

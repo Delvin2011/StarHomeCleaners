@@ -1,5 +1,5 @@
 import React from 'react';  
-import {Popup,PopupInner,LogoContainer,Form,CloseButton,Response,Errors,Message4,Details,Right,ContentTitle,Title,Test,MessageTest} from '../outdoor/outdoor-styles'; 
+import {Popup,PopupInner,LogoContainer,Form,CloseButton,Response,Errors,Message4,Details,Right,ContentTitle,Title,PayGridSplit,PayOptions} from '../outdoor/outdoor-styles'; 
 import {CreditCardPayment,CASpayment,PaymentOptionsContainer} from './indoor-styles';
 import CustomButton from "../../CustomButtons/Button";
 import FormInput from '../../form-input/form-input';
@@ -177,7 +177,7 @@ class Indoor extends React.Component {
                                             <Message4>{this.state.dateTime.replace("GMT+0200 (South Africa Standard Time)","")}</Message4>
                                         </div>  
                                         <ContentTitle> Total Costs </ContentTitle>                                    
-                                            <Message4> R { this.state.IndoorCashPayment?
+                                            <Message4> R { this.state.CashPayment?
                                                 this.props.totalIndoor
                                                 :
                                                 this.props.totalIndoor
@@ -187,8 +187,8 @@ class Indoor extends React.Component {
 
                                     <Title> PAYMENT METHODS </Title>
                                     <PaymentOptionsContainer>
-                                        <Test><Fab><CASpayment onClick={this.CashAfterServicePayment.bind(this)} /></Fab><MessageTest>CAS (Cash After Service)</MessageTest></Test>
-                                        <Test><Fab><CreditCardPayment onClick={this.CreditCardPayment.bind(this)} /></Fab><MessageTest>Online Payment</MessageTest></Test>
+                                        <PayGridSplit><Fab><CASpayment onClick={this.CashAfterServicePayment.bind(this)} IndoorCashPayment = {this.state.IndoorCashPayment}/></Fab><PayOptions>CAS (Cash After Service)</PayOptions></PayGridSplit>
+                                        <PayGridSplit><Fab><CreditCardPayment onClick={this.CreditCardPayment.bind(this)} IndoorCardPayment = {this.state.IndoorCardPayment}/></Fab><PayOptions>Online Payment</PayOptions></PayGridSplit>
                                     </PaymentOptionsContainer>
                                      
                                     {   this.state.IndoorCashPayment ?

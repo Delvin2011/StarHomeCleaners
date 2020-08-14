@@ -81,27 +81,33 @@ class SignIn extends React.Component {
                     <Success>Successful!!!</Success>
                     : null
                 }
-                <SigInButtons>
+                {this.state.success === "success" || this.props.currentUser?
+                <p style = {{"textAlign" : "center"}}><CustomButton onClick = {this.props.closePopupSignIn} style = {{"background": "#e91e63"}}> Close </CustomButton></p>
+                    :
+                    <SigInButtons>
                   <CustomButton type='submit' style = {{"background": "#e91e63"}}> Sign in </CustomButton>
-                  <CustomButton onClick={signInWithGoogle} isGoogleSignIn style = {{"background": "#e91e63"}}>
+                  <CustomButton onClick={signInWithGoogle} style = {{"background": "#e91e63"}}>
                     Sign in with Google
                   </CustomButton>
                 </SigInButtons>
+                }
               </Form>
             </div>
           : null
           }
           <hr/>
-          <Heading>Do not have Account?</Heading>
-          <p style = {{"textAlign" : "center"}}><CustomButton onClick = {this.showPopUpSignUp.bind(this)} style = {{"background": "#e91e63"}} > Sign Up </CustomButton></p>
-              
-              {this.state.showPopUpSignUp?
-                <SignUp showPopUpSignUp = {this.state.showPopUpSignUp} closePopUpSignUp = {this.showPopUpSignUp.bind(this)}/>
-                  : null
-              }
-        
-        
-        
+          {this.state.success === "success" || this.props.currentUser?
+            null
+              :
+            <div>
+              <Heading>Do not have Account?</Heading>
+                  <p style = {{"textAlign" : "center"}}><CustomButton onClick = {this.showPopUpSignUp.bind(this)} style = {{"background": "#e91e63"}} > Sign Up </CustomButton></p>                  
+                      {this.state.showPopUpSignUp?
+                        <SignUp showPopUpSignUp = {this.state.showPopUpSignUp} closePopUpSignUp = {this.showPopUpSignUp.bind(this)}/>
+                          : null
+                      }
+            </div>
+          }
         </PopupInner>  
       </Popup> 
     );

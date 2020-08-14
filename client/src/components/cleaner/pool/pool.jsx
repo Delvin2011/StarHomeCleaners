@@ -1,10 +1,11 @@
 import React from 'react';  
-import {Popup,PopupInner,Form,LogoContainer,CloseButton,Response,Errors,Message4,Details,Right,ContentTitle,Title} from '../outdoor/outdoor-styles'; 
+import {Popup,PopupInner,Form,LogoContainer,CloseButton,Response,Errors,Message4,Details,Right,ContentTitle,Title,PayGridSplit,PayOptions,CreditCardPayment,CASpayment,PaymentOptionsContainer} from '../outdoor/outdoor-styles'; 
 import CustomButton from "../../CustomButtons/Button";
 import FormInput from '../../form-input/form-input';
 import Logo from '../../../assets/img/logo1.png';
-//import { Form } from "react-bootstrap";
-
+import StripeCheckoutButton from '../../stripe-button/stripe-button';
+import Fab from '@material-ui/core/Fab';
+import Tooltip from '@material-ui/core/Tooltip';
 class Pool extends React.Component {  
     constructor(props){
         super(props);   
@@ -22,14 +23,31 @@ class Pool extends React.Component {
             option2: false,
             HowOften: '',
             dateTime: "" + this.props.dateTime,
-            response: ''
+            response: '',
+            CardPayment: false,
+            CashPayment: false
         }
         this.handleDropdownChange = this.handleDropdownChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleSubmit1 = this.handleSubmit1.bind(this);
+
+        this.CreditCardPayment= this.CreditCardPayment.bind(this);
+        this.CashAfterServicePayment= this.CashAfterServicePayment.bind(this);
     }
     handleDropdownChange(e) {
         this.setState({ selectValue: e.target.value });
+      }
+
+      CreditCardPayment(event) {
+        this.setState({
+            CardPayment: this.state.CashPayment === true ? false : !this.state.CardPayment
+        });
+      }
+  
+      CashAfterServicePayment(event) {
+        this.setState({
+            CashPayment: this.state.CardPayment === true? false : !this.state.CashPayment
+        });
       }
 
       //Form to select date and time.
@@ -97,6 +115,7 @@ class Pool extends React.Component {
 
     const {customerName, email, phoneNumber,address,comments,response,error} = this.state;
     const {currentUser} = this.props;
+    const {service} = "Pool Cleaning Services";
         return (  
             <Popup>  
                 <PopupInner>                   
@@ -155,21 +174,34 @@ class Pool extends React.Component {
                                             </div>
                                     </Right>  
                                  </Details> 
-                                    {response === 200 ? 
-                                        <div>
-                                            <Response>Email Sent!!!!</Response>
-                                            <p style = {{"textAlign" : "center"}}><CustomButton onClick= {this.props.closePopup} style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>CLOSE</CustomButton></p> 
+                                 <Title> PAYMENT METHODS </Title>
+                                    <PaymentOptionsContainer>
+                                        <PayGridSplit><Fab><CASpayment onClick={this.CashAfterServicePayment.bind(this)} CashPayment = {this.state.CashPayment}/></Fab><PayOptions>CAS (Cash After Service)</PayOptions></PayGridSplit>
+                                        <PayGridSplit><Fab><CreditCardPayment onClick={this.CreditCardPayment.bind(this)} CardPayment = {this.state.CardPayment}/></Fab><PayOptions>Online Payment</PayOptions></PayGridSplit>
+                                    </PaymentOptionsContainer>
+                                     
+                                    {   this.state.CashPayment ?
 
-                                        </div>
-                                    : response === 500 || response === 404 ?
-                                        <div>
-                                            <Errors>Email Not Sent!!!!</Errors> 
-                                            <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit'  style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>RESEND</CustomButton></p>
-                                        </div>
-                                        : <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit'  style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>BOOK SERVICE</CustomButton></p>
+                                            response === 200  ? 
+                                            <div>
+                                                <Response>Email Sent!!!!</Response>
+                                                <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit' onClick= {this.props.closePopup} style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>CLOSE</CustomButton></p> 
 
+                                            </div>
+                                            : response === 500 || response === 404 ?
+                                                <div>
+                                                    <Errors>Email Not Sent!!!!</Errors>
+                                                    <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit' style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>RESEND</CustomButton></p> 
+
+                                                </div>
+                                                :    <p style = {{"textAlign" : "center"}}><CustomButton  type = 'submit' style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>BOOK SERVICE</CustomButton></p>                                    
+                                        : null
                                     } 
-                                </Form>                             
+                                    </Form>    
+                                    {this.state.CardPayment ?
+                                        <StripeCheckoutButton service = {service} price = {this.props.totalIndoor}/>
+                                            : null
+                                    }                             
                 </PopupInner>  
             </Popup>  
         );  

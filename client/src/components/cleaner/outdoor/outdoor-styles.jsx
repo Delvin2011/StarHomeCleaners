@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import CustomButton from '../../custom-button/custom-button';
+import { FaRegCreditCard } from "react-icons/fa";
+import { IoMdCash } from "react-icons/io";
 import { css } from 'styled-components';
 //import {Link} from 'react-router-dom';
 
@@ -275,14 +277,14 @@ export const Title = styled.h1`
 `;
 
 
-export const Test = styled.div`
+export const PayGridSplit = styled.div`
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   grid-gap: 2px;
   justify-items: center;
 `;
 
-export const MessageTest = styled.h2`
+export const PayOptions = styled.h2`
     font-size: 14px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     align-items: left;
@@ -292,3 +294,65 @@ export const MessageTest = styled.h2`
         letter-spacing: 1px;
     }
 `;
+
+
+const rd = css`
+color: red;
+`;
+
+const yw = css`
+color: yellow;
+`;
+
+
+const CashPayment = props => {
+    if (props.CashPayment) {
+      return yw;
+    }
+    else
+    return rd;
+  };
+  
+  const CardPayment = props => {
+    if (props.CardPayment) {
+      return yw;
+    }
+    else
+    return rd;
+  };
+  
+  
+  export const CreditCardPayment = styled(FaRegCreditCard)`
+    color: red;
+    width: 50px;
+    height: 50px;
+    justify-items: center;
+    cursor: pointer;
+    ${CashPayment};
+    @media screen and (max-width: 800px){
+      width: 40px;
+      height: 40px;
+  }
+  `;
+  
+  export const CASpayment = styled(IoMdCash)`
+    color: red;
+    width: 50px;
+    height: 50px;
+    justify-items: center;
+    cursor: pointer;
+    ${CardPayment};
+    @media screen and (max-width: 800px){
+      width: 40px;
+    height: 40px;
+  }
+  `;
+  
+  
+  export const PaymentOptionsContainer = styled.div`
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+    justify-items: center;
+  `;
+  

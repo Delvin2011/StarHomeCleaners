@@ -9,7 +9,7 @@ render() {
     return (  
         <div>
             {this.props.showPopup?
-                <ContactUs showPopup = {this.props.showPopup} closePopup={this.props.closePopup} /> 
+                <ContactUs showPopup = {this.props.showPopup} closePopup={this.props.closePopup} currentUser = {this.props.currentUser}/> 
                 : this.props.showPopupPhone?
                     <ContactUs showPopupPhone = {this.props.showPopupPhone} closePopupPhone={this.props.closePopupPhone} />
                     : this.props.showPopupGetQuote?
