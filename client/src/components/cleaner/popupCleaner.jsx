@@ -612,6 +612,15 @@ const genIndoorCleanMonthStatus = this.state.genIndoorCleanOnce || this.state.ge
 const maintMonthStatus = this.state.maintYear || this.state.maintQuat ? true : false;
 const maintQuatStatus = this.state.maintMonth || this.state.maintYear ? true : false;
 const maintYearStatus = this.state.maintMonth || this.state.maintQuat ? true : false;
+  const ExampleCustomInput = ({ value, onClick }) => (
+    <CustomButton style = {{"background": "#e91e63"}} onClick={onClick}>{
+      value?
+      value
+      :     
+      "Select Date & Time"
+    }   
+    </CustomButton>
+  );
 
 console.log(this.state.priceSanitiseIndoorMonth);
 return (
@@ -640,11 +649,11 @@ return (
                                           value={this.state.dateTime}
                                           onChange={this.handleChange2}
                                           minDate={new Date()}
-                                          placeholderText="Please Select Date & Time"
                                           showTimeInput
                                           timeFormat="HH:mm"
                                           timeIntervals={1}
                                           timeCaption="time"
+                                          customInput={<ExampleCustomInput />}
                                           dateFormat="MMMM d, yyyy h:mm aa"
                                           shouldCloseOnSelect={false}  
                                      />
@@ -787,7 +796,7 @@ return (
                                           value={this.state.dateTime2}
                                           onChange={this.handleChange6}
                                           minDate={new Date()}
-                                          placeholderText="Please Select Date & Time"
+                                          customInput={<ExampleCustomInput />}
                                           showTimeInput
                                           timeFormat="HH:mm"
                                           timeIntervals={1}
@@ -880,12 +889,12 @@ return (
                                           value={this.state.dateTimePool}
                                           onChange={this.handleChangePool}
                                           minDate={new Date()}
-                                          placeholderText="Please Select Date & Time"
                                           showTimeInput
                                           timeFormat="HH:mm"
                                           timeIntervals={1}
                                           timeCaption="time"
                                           dateFormat="MMMM d, yyyy h:mm aa"
+                                          customInput={<ExampleCustomInput />}
                                           shouldCloseOnSelect={false} />
                                       <select id="dropdown2" onChange={this.handleDropdownPool} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
                                           <option value="N/A">Location</option>
