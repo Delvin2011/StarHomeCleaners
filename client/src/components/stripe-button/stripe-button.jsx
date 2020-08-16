@@ -97,7 +97,7 @@ import CustomButton from "../CustomButtons/Button";
                 <input type="hidden" name="item_description" value="Pool service" onChange={this.onInputChange}/>
                 <input type="hidden" name="custom_int1" value="1" onChange={this.onInputChange}/>
     
-                <p style = {{"textAlign" : "center"}}><CustomButton  type = 'submit' style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>MAKE PAYMENT</CustomButton></p> 
+                <p style = {{"textAlign" : "center"}}><CustomButton  type = 'submit' style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">MAKE PAYMENT</CustomButton></p> 
             
             
             </form>

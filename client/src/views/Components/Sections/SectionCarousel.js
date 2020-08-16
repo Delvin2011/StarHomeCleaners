@@ -47,11 +47,11 @@ export default function SectionCarousel() {
                   <div className="slick-caption" >
                   <h3 >
                   <BsPeopleCircle className={classes.icons} /> 
-                  {" "}TB Tapfumanei
+                  {" "}Wendy
                     </h3>
                     <h4 >
                       <RiMessage3Line className={classes.icons} />
-                      {" "}Yellowstone National Park, United States
+                      {" "}Thank you for disinfecting our house.
                     </h4>
                   </div>
                 </div>
@@ -64,11 +64,11 @@ export default function SectionCarousel() {
                   <div className="slick-caption">
                   <h3 >
                   <BsPeopleCircle className={classes.icons} /> 
-                  {" "}TB Tapfumanei
+                  {" "}Isaiah Chigs
                     </h3>
                     <h4 >
                       <RiMessage3Line className={classes.icons} />
-                      {" "} Somewhere Beyond, United States
+                      {" "} Our garden is now sparkling clean.
                     </h4>
                   </div>
                 </div>
@@ -77,11 +77,11 @@ export default function SectionCarousel() {
                   <div className="slick-caption">
                   <h3 >
                   <BsPeopleCircle className={classes.icons} /> 
-                      {" "}TB Tapfumanei
+                      {" "}Reginald T
                     </h3>
                     <h4 >
                       <RiMessage3Line className={classes.icons}/>
-                      {" "}Yellowstone National Park, United States
+                      {" "}Thank you for your amazing services.
                     </h4>
                   </div>
                 </div>

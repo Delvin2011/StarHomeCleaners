@@ -104,12 +104,12 @@ class PromptSinIn extends React.Component {
                     : null
                 }
 
-                {this.state.showPopupPool ?
+                {this.state.showPopupOutdoor ?
                     <Outdoor showPopupOutdoor = {this.state.showPopupOutdoor} closePopupSignIn = {this.showPopupSignIn.bind(this)} closePopup={this.props.closePopup} dateTime = {this.props.dateTime} total = {this.props.total} time = {this.props.time} wheelbarrow = {this.props.wheelbarrow} mower = {this.props.mower} windows = {this.props.windows} box = {this.props.box}/>
                     : null
                 }
 
-                {this.state.showPopupOutdoor ?
+                {this.state.showPopupPool?
                     <Pool showPopupOutdoor = {this.state.showPopupOutdoor} closePopupSignIn = {this.showPopupSignIn.bind(this)} closePopup={this.props.closePopup} dateTime = {this.props.dateTimePool} total = {this.props.totalPool} time = {this.props.poolHrs} poolCleaning = {this.props.PoolCleanService} poolMaintanence = {this.props.PoolMaintService} serviceInterval = {this.props.serviceInterval}/>
                     : null
                 }

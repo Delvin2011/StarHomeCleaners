@@ -49,9 +49,22 @@ export const ContentTitle = styled.h1`
     @media screen and (max-width: 800px){
       letter-spacing: 1.5px;
       font-size: 14px;  
-      margin-top: 4px;
+      margin-top: 3px;
     }
 `;
+
+export const Info = styled(BsQuestionCircleFill)`
+  color: red;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  @media screen and (max-width: 800px){
+        width: 15px;
+        height: 15px;
+        margin-bottom: -3px; 
+    }
+`;
+
 
 export const Message4 = styled.h1`
     text-align: center;
@@ -74,8 +87,8 @@ export const Fab2 = styled(Fab)`
       width: 80px;
 
       @media screen and (max-width: 800px){ 
-       height: 50px;
-       width: 50px;
+       height: 40px;
+       width: 40px;
     }
 `;
 
@@ -110,7 +123,7 @@ export const Options = styled.div`
       font-size: 14px;
       justify-items: left;
       text-align: left;
-      grid-gap: 10px;
+      grid-gap: 5px;
     }
 `;
 
@@ -158,6 +171,7 @@ export const Options4 = styled.div`
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 2px;
   justify-items: center;
+
 `;
 
 export const Options3p1 = styled.div`
@@ -200,8 +214,8 @@ export const PopupInner = styled.div`
     background: white;
     
     @media screen and (max-width: 800px){
-        left: 2.5%;  
-        right: 2.5%;  
+        left: 1.5%;  
+        right: 1.5%;  
         top: 10%;  
         bottom: 5%;
  
@@ -558,8 +572,8 @@ export const Fridge = styled(Icon)`
 
 
 export const Message = styled.h2`  
-text-transform: uppercase; 
-    letter-spacing: 1.25px;
+    text-transform: uppercase; 
+    letter-spacing: 1.5px;
     font-size: 10px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     align-items: center;
@@ -569,6 +583,7 @@ text-transform: uppercase;
         font-size: 10px;
         letter-spacing: 1.25px;
         text-transform: none; 
+        margin-top: 5px;
     }
 
     @media screen and (max-width: 1600px){ 
@@ -588,6 +603,8 @@ export const Message2 = styled.h2`
     @media screen and (max-width: 800px) {
         font-size: 12px;
         letter-spacing: 1px;
+        margin-top: 5px;
+        margin-bottom: 5px;
     }
 `;
 
@@ -677,8 +694,8 @@ export const Maintanance = styled(TiArrowRepeatOutline)`
   cursor: pointer;
   ${PoolMaint};
   @media screen and (max-width: 800px){
-    width: 40px;
-  height: 40px;
+    width: 30px;
+  height: 30px;
 }
 `;
 
@@ -689,8 +706,8 @@ export const ServicePool = styled(AiTwotoneTool)`
   justify-items: center;
   cursor: pointer;
   @media screen and (max-width: 800px){
-    width: 40px;
-  height: 40px;
+    width: 30px;
+  height: 30px;
 }
 `;
 
@@ -702,8 +719,8 @@ export const Installations = styled(GiFishingNet)`
   cursor: pointer;
   ${PoolClean};
   @media screen and (max-width: 800px){
-    width: 40px;
-  height: 40px;
+    width: 30px;
+  height: 30px;
 }
 `;
 
@@ -723,21 +740,33 @@ export const LogoContainer2 = styled.img`
 `;
 
 
-export const Info = styled(BsQuestionCircleFill)`
-  color: red;
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-`;
+
 
 
 //GiWindow
 //  grid-template-columns: repeat(2, 1fr); text-align: left;     
    // 
 
-
-
-
+   export const ServiceGridSplit = styled.div`
+   display: grid;
+   grid-template-columns: repeat(1, 1fr);
+   grid-gap: 2px;
+   justify-items: center;
+ `;
+ 
+ export const ServiceName = styled.h2`
+     font-size: 10px;
+     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+     align-items: left;
+     color: #4a4a4a;
+     visibility: hidden;
+     font-weight: bold;
+     margin-top: 2px;
+     margin-bottom: 2px;
+     @media screen and (max-width: 800px){
+      visibility: visible;
+     }
+ `;
 
 
 

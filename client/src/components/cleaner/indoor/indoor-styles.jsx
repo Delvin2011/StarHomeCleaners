@@ -17,7 +17,7 @@ const IndoorCashPayment = props => {
       return yw;
     }
     else
-    return rd;
+      return rd;
   };
   
   const IndoorCardPayment = props => {
@@ -34,7 +34,7 @@ const IndoorCashPayment = props => {
     height: 50px;
     justify-items: center;
     cursor: pointer;
-    ${IndoorCashPayment};
+    ${IndoorCardPayment};
     @media screen and (max-width: 800px){
       width: 40px;
       height: 40px;
@@ -46,7 +46,7 @@ const IndoorCashPayment = props => {
     height: 50px;
     justify-items: center;
     cursor: pointer;
-    ${IndoorCardPayment};
+    ${IndoorCashPayment};
     @media screen and (max-width: 800px){
       width: 40px;
     height: 40px;

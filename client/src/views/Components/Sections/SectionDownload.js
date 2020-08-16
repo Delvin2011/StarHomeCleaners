@@ -20,17 +20,17 @@ export default function SectionDownload() {
           <GridContainer justify="center">
             <h4 style = {{color : "#3C4858"}}>Thank you for working with us!</h4>
           </GridContainer>
-          <Button color="twitter">
+          <Button color="twitter" size="sm">
             <i className={classes.socials + " fab fa-twitter"} /> Follow
           </Button>
-          <Button color="facebook">
+          <Button color="facebook" size="sm">
             <i className={classes.socials + " fab fa-facebook"} /> Follow
           </Button>
-          <Button color="rose">
+          <Button color="rose" size="sm">
             <i className={classes.socials + " fab fa-instagram"} />
             Follow
           </Button>
-          <Button color="danger">
+          <Button color="danger" size="sm">
             <i className={classes.socials + " fab fa-pinterest"} /> Follow
           </Button>
         </div>
@@ -42,13 +42,13 @@ export default function SectionDownload() {
           <GridContainer justify="center">
             <h4 style = {{color : "#3C4858"}}>Secure Payment!</h4>
           </GridContainer>
-          <Button color="gray">
+          <Button color="gray" size="sm">
             <i className={classes.socials + " fab fa-cc-mastercard"} /> MasterCard
           </Button>
-          <Button color="gray">
+          <Button color="gray" size="sm">
             <i className={classes.socials + " fab fa-cc-visa"} /> Visa
           </Button>
-          <Button color="gray">
+          <Button color="gray" size="sm">
             <i className={classes.socials + " fab fa-cc-paypal"} /> PayPal
                       </Button>
         </div>

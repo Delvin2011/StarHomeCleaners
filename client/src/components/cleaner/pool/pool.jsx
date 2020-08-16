@@ -170,7 +170,10 @@ class Pool extends React.Component {
                                         <div style={{marginBottom:"20px"}}>
                                         <ContentTitle> Total Costs
                                         </ContentTitle>
-                                            <Message4> R {this.props.total.toFixed(2)}</Message4>
+                                            <Message4> R {this.props.total?
+                                                this.props.total.toFixed(2)
+                                                : null
+                                                }</Message4>
                                             </div>
                                     </Right>  
                                  </Details> 
@@ -185,16 +188,16 @@ class Pool extends React.Component {
                                             response === 200  ? 
                                             <div>
                                                 <Response>Email Sent!!!!</Response>
-                                                <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit' onClick= {this.props.closePopup} style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>CLOSE</CustomButton></p> 
+                                                <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit' onClick= {this.props.closePopup} style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">CLOSE</CustomButton></p> 
 
                                             </div>
                                             : response === 500 || response === 404 ?
                                                 <div>
                                                     <Errors>Email Not Sent!!!!</Errors>
-                                                    <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit' style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>RESEND</CustomButton></p> 
+                                                    <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit' style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">RESEND</CustomButton></p> 
 
                                                 </div>
-                                                :    <p style = {{"textAlign" : "center"}}><CustomButton  type = 'submit' style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>BOOK SERVICE</CustomButton></p>                                    
+                                                :    <p style = {{"textAlign" : "center"}}><CustomButton  type = 'submit' style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">BOOK SERVICE</CustomButton></p>                                    
                                         : null
                                     } 
                                     </Form>    

@@ -1,5 +1,5 @@
 import React from 'react';  
-import {Popup,PopupInner,ContentTitle,CloseButton,LogoContainer2,TabsContainer,RangeSliderContainer,Options,Options2,Options3,GenCleanIcon,AfterBuildIcon,EndTenancyIcon,SanitiseIcon,Fab2,Message,Message2,Wheelbarrow, Options4,Options5,Info,Flowers,Driveway,Maintanance,Installations,ServicePool,Options3p1} from './popupCleaner-styles'; 
+import {Popup,PopupInner,ContentTitle,CloseButton,LogoContainer2,TabsContainer,RangeSliderContainer,Options,Options2,Options3,GenCleanIcon,AfterBuildIcon,EndTenancyIcon,SanitiseIcon,Fab2,Message,Message2,Wheelbarrow, Options4,Options5,Info,Flowers,Driveway,Maintanance,Installations,ServicePool,Options3p1,ServiceGridSplit,ServiceName} from './popupCleaner-styles'; 
 import Outdoor from './outdoor/outdoor';
 import Indoor from './indoor/indoor';
 import Pool from './pool/pool';
@@ -503,7 +503,7 @@ class Cleaner extends React.Component {
     genPoolClean(event) {
       this.setState({
         PoolClean: this.state.PoolMaint === true ? false : !this.state.PoolClean,
-        PoolCleanService: this.state.PoolMaint === true || this.state.PoolClean? null : "General Pool Cleaning",
+        PoolCleanService: this.state.PoolMaint === true || this.state.PoolClean? null : "Pool Cleaning",
         PoolCleanPrice: this.state.PoolMaint === true || this.state.PoolClean? 0 : 177
       });
     }
@@ -511,7 +511,7 @@ class Cleaner extends React.Component {
     periodMaint(event) {
       this.setState({
         PoolMaint: this.state.PoolClean === true ? false : !this.state.PoolMaint,
-        PoolMaintService: this.state.PoolClean === true || this.state.PoolMaint? null : "Periodic Pool maintanance",
+        PoolMaintService: this.state.PoolClean === true || this.state.PoolMaint? null : "Pool maintanance",
         PoolMaintPrice: this.state.PoolClean === true || this.state.PoolMaint? 0 : 177
       });
     }
@@ -613,7 +613,7 @@ const maintMonthStatus = this.state.maintYear || this.state.maintQuat ? true : f
 const maintQuatStatus = this.state.maintMonth || this.state.maintYear ? true : false;
 const maintYearStatus = this.state.maintMonth || this.state.maintQuat ? true : false;
   const ExampleCustomInput = ({ value, onClick }) => (
-    <CustomButton style = {{"background": "#e91e63"}} onClick={onClick}>{
+    <CustomButton style = {{"background": "#e91e63"}} onClick={onClick} size="sm">{
       value?
       value
       :     
@@ -687,10 +687,10 @@ return (
                                       <span><hr width="300"/></span>
                                     </ContentTitle>
                                     <Options4>
-                                      <Tooltip title="General Cleaning" aria-label="add"><Fab2><GenCleanIcon onClick={this.genIndoorClean.bind(this)} IndoorGenClean = {this.state.IndoorGenClean}/></Fab2></Tooltip>
-                                      <Tooltip title="After Builders Cleaning" aria-label="add"><Fab2><AfterBuildIcon onClick={this.afterBuildIndoorClean.bind(this)} IndoorAfterBuildClean = {this.state.IndoorAfterBuildClean}/></Fab2></Tooltip> 
-                                      <Tooltip title="End of Tenancy Cleaning" aria-label="add"><Fab2><EndTenancyIcon onClick={this.endTenancyIndoorClean.bind(this)} IndoorEndTenancyClean = {this.state.IndoorEndTenancyClean}/></Fab2></Tooltip>                                    
-                                      <Tooltip title="Antiviral Sanitisation" aria-label="add"><Fab2><SanitiseIcon onClick={this.sanitiseIndoorClean.bind(this)} IndoorSanitise = {this.state.IndoorSanitise}/></Fab2></Tooltip>
+                                      <ServiceGridSplit><Tooltip title="General Cleaning" aria-label="add"><Fab2><GenCleanIcon onClick={this.genIndoorClean.bind(this)} IndoorGenClean = {this.state.IndoorGenClean}/></Fab2></Tooltip><ServiceName>General Cleaning</ServiceName> </ServiceGridSplit>
+                                      <ServiceGridSplit><Tooltip title="After Builders Cleaning" aria-label="add"><Fab2><AfterBuildIcon onClick={this.afterBuildIndoorClean.bind(this)} IndoorAfterBuildClean = {this.state.IndoorAfterBuildClean}/></Fab2></Tooltip><ServiceName>After Builders</ServiceName> </ServiceGridSplit>
+                                      <ServiceGridSplit><Tooltip title="End of Tenancy Cleaning" aria-label="add"><Fab2><EndTenancyIcon onClick={this.endTenancyIndoorClean.bind(this)} IndoorEndTenancyClean = {this.state.IndoorEndTenancyClean}/></Fab2></Tooltip><ServiceName>End of Tenancy</ServiceName> </ServiceGridSplit>                                   
+                                      <ServiceGridSplit><Tooltip title="Antiviral Sanitisation" aria-label="add"><Fab2><SanitiseIcon onClick={this.sanitiseIndoorClean.bind(this)} IndoorSanitise = {this.state.IndoorSanitise}/></Fab2></Tooltip><ServiceName>Antiviral Sanitisation</ServiceName> </ServiceGridSplit>
                                     </Options4>                        
                                     <ContentTitle> Service Details & Costs
                                       <span><hr width="300"/></span>
@@ -708,7 +708,7 @@ return (
                                                             
                                       </div>
                                       <div>
-                                        <Message2>Cleaning Service</Message2>
+                                        <Message2>Service</Message2>
                                         <Message>{this.state.IndoorCleanService}</Message>
                                         <Message>{this.state.IndoorAfterBuildCleanService}</Message>
                                         <Message>{this.state.IndoorEndTenancyCleanService}</Message>
@@ -777,7 +777,7 @@ return (
                                       </div>
                                     </Options3> 
  
-                                    <p style = {{"textAlign" : "center"}}><CustomButton onClick={this.selectIndoor.bind(this)} style = {{marginBottom : "5%", "background": "#e91e63"}}>Book Service</CustomButton></p> 
+                                    <p style = {{"textAlign" : "center"}}><CustomButton onClick={this.selectIndoor.bind(this)} style = {{marginBottom : "5%", "background": "#e91e63"}} size="sm">Book Service</CustomButton></p> 
 
                                   </div>
                           )
@@ -826,16 +826,15 @@ return (
                                   <span><hr width="300"/></span>
                                 </ContentTitle>
                                 <Options4>
-                                
-                                <Tooltip title="Yard Cleaning" aria-label="add"><Fab2><Wheelbarrow onClick={this.pick7.bind(this)} picked7 = {this.state.picked7}/></Fab2></Tooltip> 
+                                <ServiceGridSplit><Tooltip title="Yard Cleaning" aria-label="add"><Fab2><Wheelbarrow onClick={this.pick7.bind(this)} picked7 = {this.state.picked7}/></Fab2></Tooltip> <ServiceName>Yard cleaning</ServiceName> </ServiceGridSplit>
 
                                     {this.state.Mower ?
-                                      <Tooltip title="Lawn Mowing" aria-label="add"><Fab2><LogoContainer2 src={LawnMowerSelect} onClick={this.Mow.bind(this)}/></Fab2></Tooltip> 
+                                      <ServiceGridSplit><Tooltip title="Lawn Mowing" aria-label="add"><Fab2><LogoContainer2 src={LawnMowerSelect} onClick={this.Mow.bind(this)}/></Fab2></Tooltip><ServiceName>Lawn Mowing</ServiceName> </ServiceGridSplit> 
                                       :
-                                      <Tooltip title="Lawn Mowing" aria-label="add"><Fab2><LogoContainer2 src={LawnMower} onClick={this.Mow.bind(this)}/></Fab2></Tooltip> 
+                                      <ServiceGridSplit><Tooltip title="Lawn Mowing" aria-label="add"><Fab2><LogoContainer2 src={LawnMower} onClick={this.Mow.bind(this)}/></Fab2></Tooltip><ServiceName>Lawn Mowing</ServiceName> </ServiceGridSplit> 
                                     }
-                                    <Tooltip  title="Flower Bedding" aria-label="add"><Fab2 ><Flowers onClick={this.pick8.bind(this)} picked8 = {this.state.picked8}/></Fab2></Tooltip> 
-                                    <Tooltip  title="Driveway Cleaning" aria-label="add"><Fab2 ><Driveway onClick={this.pick9.bind(this)} picked9 = {this.state.picked9}/></Fab2></Tooltip> 
+                                    <ServiceGridSplit><Tooltip  title="Flower Bedding" aria-label="add"><Fab2 ><Flowers onClick={this.pick8.bind(this)} picked8 = {this.state.picked8}/></Fab2></Tooltip><ServiceName>Flower Bedding</ServiceName> </ServiceGridSplit> 
+                                    <ServiceGridSplit><Tooltip  title="Driveway Cleaning" aria-label="add"><Fab2 ><Driveway onClick={this.pick9.bind(this)} picked9 = {this.state.picked9}/></Fab2></Tooltip><ServiceName>Driveway</ServiceName> </ServiceGridSplit> 
                                 </Options4>
                                 <ContentTitle> Service Details & Costs
                                   <span><hr width="300"/></span>
@@ -869,7 +868,7 @@ return (
                                       }
                                   </div>
                                 </Options3>
-                                <p style = {{"textAlign" : "center"}}><CustomButton onClick={this.selectOutdoor.bind(this)} style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>Book Service</CustomButton></p> 
+                                <p style = {{"textAlign" : "center"}}><CustomButton onClick={this.selectOutdoor.bind(this)} style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">Book Service</CustomButton></p> 
 
                             </div>
 
@@ -918,10 +917,10 @@ return (
                                 <ContentTitle> Required Services <Info onClick = {this.showPoolServicesInfo.bind(this)} showPoolServicesInfo = {this.state.showPoolServicesInfo}/>
                                   <span><hr width="300"/></span>
                                 </ContentTitle>
-                                <Options3p1>                               
-                                  <Tooltip   title="General Pool Cleaning" aria-label="add"><Fab style={{width: "80px", height: "80px"}}><Installations onClick={this.genPoolClean.bind(this)} PoolClean = {this.state.PoolClean}/></Fab></Tooltip> 
-                                  <Tooltip  title="Periodic Pool Maintanance" aria-label="add"><Fab style={{width: "80px", height: "80px"}}><Maintanance onClick={this.periodMaint.bind(this)} PoolMaint = {this.state.PoolMaint}/></Fab></Tooltip> 
-                                  <Tooltip  title="Pool Repairs - Coming Soon" aria-label="add"><Fab style={{width: "80px", height: "80px"}}><ServicePool onClick={this.perPoolRepair.bind(this)} PoolRepair = {this.state.PoolRepair}/></Fab></Tooltip> 
+                                <Options3p1>                                                              
+                                  <ServiceGridSplit><Tooltip  title="Pool Cleaning" aria-label="add"><Fab2><Installations onClick={this.genPoolClean.bind(this)} PoolClean = {this.state.PoolClean}/></Fab2></Tooltip><ServiceName>Pool Cleaning</ServiceName> </ServiceGridSplit>
+                                  <ServiceGridSplit><Tooltip  title="Pool Maintanance" aria-label="add"><Fab2><Maintanance onClick={this.periodMaint.bind(this)} PoolMaint = {this.state.PoolMaint}/></Fab2></Tooltip> <ServiceName>Pool Maintanance</ServiceName> </ServiceGridSplit>
+                                  <ServiceGridSplit><Tooltip  title="Pool Repairs - Coming Soon" aria-label="add"><Fab2><ServicePool onClick={this.perPoolRepair.bind(this)} PoolRepair = {this.state.PoolRepair}/></Fab2></Tooltip> <ServiceName> Repairs - Coming Soon</ServiceName> </ServiceGridSplit>
                                 </Options3p1>
                                 <ContentTitle> Service Details & Costs
                                   <span><hr width="300"/></span>
@@ -945,7 +944,7 @@ return (
                                     <Message>{this.state.value9}</Message>
                                   </div>
                                   <div>
-                                    <Message2>Estimated Costs</Message2>
+                                    <Message2>Costs</Message2>
                                     {this.state.PoolClean?
                                         <Message>
                                           <Checkbox toggle label = "  Once OFF" onChange={ this.handleOnceOFF }  disabled = {cleanOnceStatus} priceCleanOnce =  {this.state.priceCleanOnce}/>
@@ -967,7 +966,7 @@ return (
                                       }
                                   </div>
                                 </Options3>
-                                <p style = {{"textAlign" : "center"}}><CustomButton onClick={this.selectPool.bind(this)} style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>Book Service</CustomButton></p> 
+                                <p style = {{"textAlign" : "center"}}><CustomButton onClick={this.selectPool.bind(this)} style = {{"margin-top" : "12.5px", "background": "#e91e63"}}size="sm">Book Service</CustomButton></p> 
 
                             </div> 
                           )

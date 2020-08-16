@@ -328,7 +328,7 @@ const CashPayment = props => {
     height: 50px;
     justify-items: center;
     cursor: pointer;
-    ${CashPayment};
+    ${CardPayment};
     @media screen and (max-width: 800px){
       width: 40px;
       height: 40px;
@@ -341,7 +341,7 @@ const CashPayment = props => {
     height: 50px;
     justify-items: center;
     cursor: pointer;
-    ${CardPayment};
+    ${CashPayment};
     @media screen and (max-width: 800px){
       width: 40px;
     height: 40px;
