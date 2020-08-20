@@ -21,17 +21,17 @@ export default function SectionDownload() {
             <h4 style = {{color : "#3C4858"}}>Thank you for working with us!</h4>
           </GridContainer>
           <Button color="twitter" size="sm">
-            <i className={classes.socials + " fab fa-twitter"} /> Follow
+            <a href="https://twitter.com/starhomecleaner?ref_src=twsrc%5Etfw" style={{color:"white"}}><i className={classes.socials + " fab fa-twitter"} /> Follow</a>
           </Button>
           <Button color="facebook" size="sm">
             <i className={classes.socials + " fab fa-facebook"} /> Follow
           </Button>
           <Button color="rose" size="sm">
-            <i className={classes.socials + " fab fa-instagram"} />
-            Follow
+            <a href="http://www.instagram.com/starhomecleaner" style={{color:"white"}}><i className={classes.socials + " fab fa-instagram"} />
+            Follow</a>
           </Button>
           <Button color="danger" size="sm">
-            <i className={classes.socials + " fab fa-pinterest"} /> Follow
+            <a href="https://za.pinterest.com/starhomecleaner/" style={{color:"white"}}><i className={classes.socials + " fab fa-pinterest"} /> Follow</a>
           </Button>
         </div>
       </div>

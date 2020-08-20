@@ -53,10 +53,9 @@ export default function LoginPage(props) {
                     <div className={classes.socialLine}>
                       <Button
                         justIcon
-                        href="#pablo"
+                        href="https://twitter.com/starhomecleaner?ref_src=twsrc%5Etfw"
                         target="_blank"
                         color="transparent"
-                        onClick={e => e.preventDefault()}
                       >
                         <i className={"fab fa-twitter"} />
                       </Button>
@@ -71,19 +70,17 @@ export default function LoginPage(props) {
                       </Button>
                       <Button
                         justIcon
-                        href="#pablo"
+                        href="http://www.instagram.com/starhomecleaner"
                         target="_blank"
                         color="transparent"
-                        onClick={e => e.preventDefault()}
                       >
                         <i className={"fab fa-instagram"} />
                       </Button>
                       <Button
                         justIcon
-                        href="#pablo"
+                        href="https://za.pinterest.com/starhomecleaner/"
                         target="_blank"
                         color="transparent"
-                        onClick={e => e.preventDefault()}
                       >
                         <i className={"fab fa-pinterest"} />
                       </Button>
