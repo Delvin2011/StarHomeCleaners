@@ -24,7 +24,7 @@ export default function SectionDownload() {
             <a href="https://twitter.com/starhomecleaner?ref_src=twsrc%5Etfw" style={{color:"white"}}><i className={classes.socials + " fab fa-twitter"} /> Follow</a>
           </Button>
           <Button color="facebook" size="sm">
-            <a href="https://www.facebook.com/StarHomecleaningservices" style={{color:"white"}}></a><i className={classes.socials + " fab fa-facebook"} /> Follow
+            <a href="https://www.facebook.com/StarHomecleaningservices" style={{color:"white"}}><i className={classes.socials + " fab fa-facebook"} /> Follow</a>
           </Button>
           <Button color="rose" size="sm">
             <a href="http://www.instagram.com/starhomecleaner" style={{color:"white"}}><i className={classes.socials + " fab fa-instagram"} />
