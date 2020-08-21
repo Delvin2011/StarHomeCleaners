@@ -61,10 +61,9 @@ export default function LoginPage(props) {
                       </Button>
                       <Button
                         justIcon
-                        href="#pablo"
+                        href="https://www.facebook.com/StarHomecleaningservices"
                         target="_blank"
                         color="transparent"
-                        onClick={e => e.preventDefault()}
                       >
                         <i className={"fab fa-facebook"} />
                       </Button>
