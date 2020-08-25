@@ -1,5 +1,5 @@
 import React from 'react';  
-import {Popup,PopupInner,ContentTitle,CloseButton,LogoContainer2,TabsContainer,RangeSliderContainer,Options,Options2,Options3,GenCleanIcon,AfterBuildIcon,EndTenancyIcon,SanitiseIcon,Fab2,Message,Message2,Wheelbarrow, Options4,Options5,Info,Flowers,Driveway,Maintanance,Installations,ServicePool,Options3p1,ServiceGridSplit,ServiceName,Form,ServiceTest} from './popupCleaner-styles'; 
+import {Popup,PopupInner,ContentTitle,CloseButton,LogoContainer2,TabsContainer,RangeSliderContainer,Options,Options2,Options3,GenCleanIcon,AfterBuildIcon,EndTenancyIcon,SanitiseIcon,Fab2,Message,Message2,Wheelbarrow, Options4,Options5,Info,Flowers,Driveway,Maintanance,Installations,ServicePool,Options3p1,ServiceGridSplit,ServiceName} from './popupCleaner-styles'; 
 import Outdoor from './outdoor/outdoor';
 import Indoor from './indoor/indoor';
 import Pool from './pool/pool';
@@ -8,10 +8,9 @@ import IndoorServicesInfo from './indoor/TCs/indoorServicesInfo';
 import OutdoorServicesInfo from './outdoor/outdoorServicesInfo';
 import PoolServicesInfo from './pool/poolServicesInfo';
 import PromptSinIn from './promptSinIn';
-import { isNaN, toString } from 'lodash';
-import NumericTextboxComponent from '../TextBox';
+
 import { Checkbox } from 'semantic-ui-react';
-import FormInput from '../form-input2/form-input';
+
 import Fab from '@material-ui/core/Fab';
 import Tooltip from '@material-ui/core/Tooltip';
 
@@ -896,83 +895,32 @@ return (
                                           dateFormat="MMMM d, yyyy h:mm aa"
                                           customInput={<ExampleCustomInput />}
                                           shouldCloseOnSelect={false} />
-                                      <select id="dropdown2" onChange={this.handleDropdownPool} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"5px"}}>
+                                      <select id="dropdown2" onChange={this.handleDropdownPool} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
                                           <option value="N/A">Location</option>
                                           <option value="Boksburg">Boksburg</option>
                                           <option value="Edenvale">Edenvale</option>
                                           <option value="Kempton Park">K/Park</option>
                                           <option value="Springs">Springs</option>
                                           <option value="Germiston">Germiston</option>
+                                      </select>    
+                                      <h4 style = {{color: 'grey', fontSize : "14px", marginTop : "0px"}}>Work hours : </h4>    
+                                      <select id="areaSize" onChange={this.handlePoolAreaSize} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
+                                          <option value="0">No. of Hours</option>
+                                          <option value="1">1 Hour</option>
+                                          <option value="2">2 Hours</option>
+                                          <option value="3">3 Hours</option>
+                                          <option value="4">4 Hours</option>
+                                          <option value="5">5 Hours</option>
+                                          <option value="6">6 Hours</option>
                                       </select>
                                 </Options>
                                 <ContentTitle> Required Services <Info onClick = {this.showPoolServicesInfo.bind(this)} showPoolServicesInfo = {this.state.showPoolServicesInfo}/>
                                   <span><hr width="300"/></span>
                                 </ContentTitle>
                                 <Options3p1>                                                              
-                                  <ServiceGridSplit><ServiceTest> Pool Cleaning</ServiceTest><Tooltip  title="Pool Cleaning" aria-label="add"><Fab2><Installations onClick={this.genPoolClean.bind(this)} PoolClean = {this.state.PoolClean}/></Fab2></Tooltip> </ServiceGridSplit>
-                                  {this.state.PoolClean?
-                                  <div>
-                                  <ServiceTest> Pool Dimensions</ServiceTest>
-                                      <select id="areaSize" onChange={this.handlePoolAreaSize} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
-                                          <option value="0">Shape</option>
-                                          <option value="1">Rectangular</option>
-                                          <option value="2">Circular</option>
-                                          <option value="3">Triangle</option>
-                                          <option value="4">Irregular</option>
-                                      </select>
-                                  <Form>
-                                  
-                                  <FormInput
-                                  id="fname"
-                                        size="10"
-                                        type="number"
-                                        name="fname"
-                                        placeholder="Length (m)"
-                                        onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
-                                        min="0" max="9999999"
-                                        required
-                                    />
-                                   
-                                <FormInput
-                                  id="fname"
-                                        size="10"
-                                        type="number"
-                                        name="fname"
-                                        placeholder="Width (m)"
-                                        onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
-                                        min="0" max="9999999"
-                                        required
-                                    />
-
-                                  <FormInput
-                                  id="fname"
-                                        size="10"
-                                        type="number"
-                                        name="fname"
-                                        placeholder="Depth (m)"
-                                        onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
-                                        min="0" max="9999999"
-                                        required
-                                    />
-                                    
-                                      </Form>
-                                      </div>
-                                      :
-                                  <ServiceGridSplit><ServiceTest>Pool Maintanance</ServiceTest><Tooltip  title="Pool Maintanance" aria-label="add"><Fab2><Maintanance onClick={this.periodMaint.bind(this)} PoolMaint = {this.state.PoolMaint}/></Fab2></Tooltip></ServiceGridSplit>
-                                  }
-                                  {this.state.PoolClean?
-                                  <div>
-                                  <ServiceTest> Extra Issues</ServiceTest>
-                                        <Message>
-                                          <Checkbox toggle label = "  Algae" onChange={ this.handleOnceOFF }  disabled = {cleanOnceStatus} priceCleanOnce =  {this.state.priceCleanOnce}/>
-                                          <Checkbox toggle label = "  Cloudyness" onChange={ this.handleCleanWeek }  disabled = {cleanWeekStatus} priceCleanWeek =  {this.state.priceCleanWeek}/>
-                                          <Checkbox toggle label = "  Circulation" onChange={ this.handleCleanMonth }  disabled = {cleanMonthStatus} priceCleanMonth =  {this.state.priceCleanMonth}/>
-                                        </Message>
-                                  </div>
-                                      :
-                                  <ServiceGridSplit><ServiceTest>Repairs - Coming Soon</ServiceTest><Tooltip  title="Pool Repairs - Coming Soon" aria-label="add"><Fab2><ServicePool onClick={this.perPoolRepair.bind(this)} PoolRepair = {this.state.PoolRepair}/></Fab2></Tooltip></ServiceGridSplit>
-                                      
-                                  }
+                                  <ServiceGridSplit><Tooltip  title="Pool Cleaning" aria-label="add"><Fab2><Installations onClick={this.genPoolClean.bind(this)} PoolClean = {this.state.PoolClean}/></Fab2></Tooltip><ServiceName>Pool Cleaning</ServiceName> </ServiceGridSplit>
+                                  <ServiceGridSplit><Tooltip  title="Pool Maintanance" aria-label="add"><Fab2><Maintanance onClick={this.periodMaint.bind(this)} PoolMaint = {this.state.PoolMaint}/></Fab2></Tooltip> <ServiceName>Pool Maintanance</ServiceName> </ServiceGridSplit>
+                                  <ServiceGridSplit><Tooltip  title="Pool Repairs - Coming Soon" aria-label="add"><Fab2><ServicePool onClick={this.perPoolRepair.bind(this)} PoolRepair = {this.state.PoolRepair}/></Fab2></Tooltip> <ServiceName> Repairs - Coming Soon</ServiceName> </ServiceGridSplit>
                                 </Options3p1>
                                 <ContentTitle> Service Details & Costs
                                   <span><hr width="300"/></span>

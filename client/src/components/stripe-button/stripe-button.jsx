@@ -84,8 +84,8 @@ import CustomButton from "../CustomButtons/Button";
     return (
         <div>
             <form action="https://www.payfast.co.za/eng/process" method="POST" id="checkout"> 
-                <input type="hidden" name="merchant_id" value="11671256" onChange={this.onInputChange}/>
-                <input type="hidden" name="merchant_key" value="rjpnr2nkdmt75" onChange={this.onInputChange}/>
+                <input type="hidden" name="merchant_id" value="10788743" onChange={this.onInputChange}/>
+                <input type="hidden" name="merchant_key" value="bhxrbdcmch80c" onChange={this.onInputChange}/>
                 <input type="hidden" name="return_url" value="https://yourApplication/paymentscreen" onChange={this.onInputChange}/>
                 <input type="hidden" name="cancel_url" value="https://yourApplication/paymentscreen" onChange={this.onInputChange}/>
                 <input type="hidden" name="notify_url" value="https://yourApplication/paymentscreen" onChange={this.onInputChange}/>

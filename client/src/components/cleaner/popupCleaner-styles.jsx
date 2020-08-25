@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import CustomButton from '../custom-button/custom-button';
 import Tabs from 'react-bootstrap/Tabs';
 import Fab from '@material-ui/core/Fab';
+import FormInput from '../form-input/form-input';
+
 import {Washer} from '@styled-icons/boxicons-solid/Washer';
 import { css } from 'styled-components';
 import { GiStoneWall } from "react-icons/gi";
@@ -229,18 +231,31 @@ export const PopupInner = styled.div`
 
 export const Form = styled.form`
     margin: auto;
-    width: 80%;
-
-    .title {
-        margin: 10px 0;
-    }
-
-    @media screen and (max-width: 800px) {
-        width: 70%;
-    }
-
+    background: none;
+    background-color: white;
+    font-size: 10px;
+    padding: 1.5px 1.5px 1.5px 1px;
+    display: block;
+    margin: 1px 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 `;
 
+/*  .form-input {
+    background: none;
+    background-color: white;
+    color: $sub-color;
+    font-size: 12px;
+    padding: 7.5px 7.5px 7.5px 5px;
+    display: block;
+    width: 100%;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid $sub-color;
+    margin: 15px 0;
+
+    &:focus {
+      outline: none;
+    }*/
 export const SignInNotifier = styled.div`
     margin: auto;
     width: 80%;
@@ -767,6 +782,19 @@ export const LogoContainer2 = styled.img`
       visibility: visible;
      }
  `;
+
+
+ export const ServiceTest = styled.h2`
+ font-size: 10px;
+ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+ align-items: left;
+ color: #4a4a4a;
+ font-weight: bold;
+ margin-top: 2px;
+ margin-bottom: 2px;
+
+`;
+
 
 
 
