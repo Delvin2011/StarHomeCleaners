@@ -7,11 +7,11 @@ $main-color: black;
   color: $main-color;
 }
 
-.group {
+.groups {
   position: relative;
   margin: 5px 0;
 
-  .form-input {
+  .form-inputs {
     background: none;
     background-color: white;
     color: $sub-color;
@@ -32,7 +32,7 @@ $main-color: black;
     - (move up, change the font color and size)
     - because now our label sits inside the form-input-label
     - adding a transition of 300ms*/
-    &:focus ~ .form-input-label { 
+    &:focus ~ .form-input-labels { 
       @include shrinkLabel();
     }
   }
@@ -41,7 +41,7 @@ $main-color: black;
     letter-spacing: 0.3em;
   }
 
-  .form-input-label {
+  .form-input-labels {
     color: $sub-color;
     font-size: 16px;
     font-weight: normal;
@@ -51,7 +51,7 @@ $main-color: black;
     top: 10px;
     transition: 300ms ease all;
 
-    &.shrink {
+    &.shrinks {
       @include shrinkLabel();
     }
   }
