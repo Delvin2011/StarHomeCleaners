@@ -5,7 +5,10 @@ import FormInput from '../../form-input/form-input';
 import Logo from '../../../assets/img/logo1.png';
 import StripeCheckoutButton from '../../stripe-button/stripe-button';
 import Fab from '@material-ui/core/Fab';
+import { connect } from 'react-redux';
+import { addItem } from '../../../redux/cart/cart-actions';
 import Tooltip from '@material-ui/core/Tooltip';
+
 class Pool extends React.Component {  
     constructor(props){
         super(props);   
@@ -25,7 +28,17 @@ class Pool extends React.Component {
             dateTime: "" + this.props.dateTime,
             response: '',
             CardPayment: false,
-            CashPayment: false
+            CashPayment: false,
+            item : [
+                {
+                  id:'',
+                  bookingDate : new Date(),
+                  service : '',
+                  serviceDate : new Date(),
+                  frequency: '',
+                  payment: ''
+                }
+              ] 
         }
         this.handleDropdownChange = this.handleDropdownChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -63,6 +76,21 @@ class Pool extends React.Component {
         const form = event.target;
         const data = new FormData(form);
         const {dateTime} = this.state;
+        const min = 1;
+        const max = 1000;
+        const random = min + (Math.random() * (max - min));
+        this.setState({
+            item : 
+                {
+                  id: Math.ceil(random),
+                  bookingDate : new Date(),
+                  service : 'Pool',
+                  serviceDate : dateTime.replace("GMT+0200 (South Africa Standard Time)",""),
+                  frequency: this.props.serviceInterval,
+                  payment: 'CAS'
+                }
+               
+        });
 
        fetch('/email', {
         method: 'post',
@@ -113,9 +141,10 @@ class Pool extends React.Component {
 //https://www.telerik.com/kendo-react-ui/components/dateinputs/datetimepicker/integration-with-json/
   render() {  
 
-    const {customerName, email, phoneNumber,address,comments,response,error} = this.state;
+    const {customerName, email, phoneNumber,address,comments,response,error,item} = this.state;
     const {currentUser} = this.props;
     const {service} = "Pool Cleaning Services";
+    console.log(item);
         return (  
             <Popup>  
                 <PopupInner>                   
@@ -179,8 +208,8 @@ class Pool extends React.Component {
                                  </Details> 
                                  <Title> PAYMENT METHODS </Title>
                                     <PaymentOptionsContainer>
-                                        <PayGridSplit><Fab><CASpayment onClick={this.CashAfterServicePayment.bind(this)} CashPayment = {this.state.CashPayment}/></Fab><PayOptions>CAS (Cash After Service)</PayOptions></PayGridSplit>
-                                        <PayGridSplit><Fab><CreditCardPayment onClick={this.CreditCardPayment.bind(this)} CardPayment = {this.state.CardPayment}/></Fab><PayOptions>Online Payment</PayOptions></PayGridSplit>
+                                        <PayGridSplit><Fab><CASpayment onClick = {this.CashAfterServicePayment.bind(this)} CashPayment = {this.state.CashPayment}/></Fab><PayOptions>CAS (Cash After Service)</PayOptions></PayGridSplit>
+                                        <PayGridSplit><Fab><CreditCardPayment onClick = {this.CreditCardPayment.bind(this)} CardPayment = {this.state.CardPayment}/></Fab><PayOptions>Online Payment</PayOptions></PayGridSplit>
                                     </PaymentOptionsContainer>
                                      
                                     {   this.state.CashPayment ?
@@ -194,8 +223,7 @@ class Pool extends React.Component {
                                             : response === 500 || response === 404 ?
                                                 <div>
                                                     <Errors>Email Not Sent!!!!</Errors>
-                                                    <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit' style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">RESEND</CustomButton></p> 
-
+                                                    <p style = {{"textAlign" : "center"}}><CustomButton onClick={() => this.props.addItem(item)} style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">RESEND</CustomButton></p> 
                                                 </div>
                                                 :    <p style = {{"textAlign" : "center"}}><CustomButton  type = 'submit' style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">BOOK SERVICE</CustomButton></p>                                    
                                         : null
@@ -212,4 +240,12 @@ class Pool extends React.Component {
 }  
 
 
-export default Pool; 
+//export default Pool; 
+const mapDispatchToProps = dispatch => ({
+    addItem: item => dispatch(addItem(item))
+  });
+  
+  export default connect(
+    null,
+    mapDispatchToProps
+  )(Pool);

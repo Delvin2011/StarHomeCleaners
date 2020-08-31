@@ -5,9 +5,11 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import Tooltip from "@material-ui/core/Tooltip";
 import {connect} from 'react-redux';
+import {createStructuredSelector} from 'reselect';
 // @material-ui/icons
 import { Apps } from "@material-ui/icons";
 import Cleaner from "components/cleaner/popupCleaner";
+import Bookings from '../Bookings/bookings';
 import SignIn from "../sign-in/sign-in";
 // Icons
 import { IoLogoWhatsapp } from "react-icons/io";
@@ -20,6 +22,11 @@ import {FaBookReader} from "react-icons/fa";
 import {GoSignIn} from "react-icons/go";
 import {GoSignOut} from "react-icons/go";
 
+import { ImNewspaper } from "react-icons/im";
+
+
+import {selectCurrentUser} from '../../redux/user/user-selectors';
+import {signOutStart} from '../../redux/user/user-actions';
 
 
 import Contact from "../contact-us/contact-us";
@@ -29,16 +36,17 @@ import CustomDropdown from "components/CustomDropdown/CustomDropdown.js";
 import Button from "components/CustomButtons/Button.js";
 
 import styles from "assets/jss/material-kit-react/components/headerLinksStyle.js";
-import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
+//import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
 
 const useStyles = makeStyles(styles);
 
- function HeaderLinks({currentUser}) {
+ function HeaderLinks({currentUser,signOutStart}) {
   const classes = useStyles();
   const [Email, setEmail] = useState(false);
   const [Phone, setPhone] = useState(false);
   const [Booking, setBooking] = useState(false);
   const [SigningIn, setSigningIn] = useState(false);
+  const [GetBookings, setGetBookings] = useState(false);
   return (
     <List className={classes.list}>
       <ListItem className={classes.listItem}>
@@ -96,6 +104,21 @@ const useStyles = makeStyles(styles);
         </ListItem>
 
         <ListItem className={classes.listItem}>
+        <Button
+            //href="blogs-page"
+            color="transparent"
+            target="_blank"
+            className={classes.navLink}
+            onClick = {() => setGetBookings(!GetBookings)}
+          >
+            <FaBookReader className={classes.icons} /> Bookings & Promos
+        </Button>
+        </ListItem>
+
+
+
+
+        <ListItem className={classes.listItem}>
 
         {currentUser?
 
@@ -104,7 +127,7 @@ const useStyles = makeStyles(styles);
             color="transparent"
             target="_blank"
             className={classes.navLink}
-            onClick = {() => auth.signOut()}
+            onClick = {signOutStart}
           >
             <GoSignOut className={classes.icons} /> Sign Out
         </Button>
@@ -130,7 +153,7 @@ const useStyles = makeStyles(styles);
             target="_blank"
             className={classes.navLink}
           >
-            <FaBookReader className={classes.icons} /> About Us
+            <ImNewspaper className={classes.icons} /> About Us
           </Button>
         </ListItem>
 
@@ -149,19 +172,29 @@ const useStyles = makeStyles(styles);
           : null
         }
 
+        {GetBookings ?
+          <Bookings showPopup= {Booking} closePopup ={() => setGetBookings(!GetBookings)} currentUser = {currentUser}/>          
+          : null
+        }
+
         {SigningIn ?
-          <SignIn showPopupSignIn= {SigningIn} closePopupSignIn ={() => setSigningIn(!SigningIn)} currentUser = {currentUser}/>          
+          <SignIn showPopupSignIn= {SigningIn} closePopupSignIn ={() => setSigningIn(!SigningIn)}/>          
           : null
         }
     </List>
   );
 }
 
-const mapStateToProps = state => ({ //state - root reducer
-  currentUser: state.user.currentUser
-}); 
+const mapDispatchToProps = dispatch => ({
+  signOutStart: () => dispatch(signOutStart())
+});
+//createStructuredSelector - properties that we want point to the correct selector
+//will get our state into the subsequent selector: currentUser, hidden
+const mapStateToProps = createStructuredSelector({ //state will be the root.reducer
+  currentUser : selectCurrentUser
+}); //naming mapStateToProps can be anything
 
-export default connect(mapStateToProps)(HeaderLinks);
+export default connect(mapStateToProps,mapDispatchToProps)(HeaderLinks);
 
 
 
