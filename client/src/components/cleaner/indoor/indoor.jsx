@@ -233,7 +233,7 @@ class Indoor extends React.Component {
                                             response === 200  ? 
                                             <div>
                                                 <Response>Email Sent!!!!</Response>
-                                                <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit' onClick={() => {this.props.addItem(item);this.closePop.bind(this)}}  style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">CLOSE</CustomButton></p> 
+                                                <p style = {{"textAlign" : "center"}}><CustomButton onClick={() => {this.props.addItem(item);this.closePop.bind(this)}}  style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">CLOSE</CustomButton></p> 
 
                                             </div>
                                             : response === 500 || response === 404 ?

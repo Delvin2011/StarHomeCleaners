@@ -104,21 +104,6 @@ const useStyles = makeStyles(styles);
         </ListItem>
 
         <ListItem className={classes.listItem}>
-        <Button
-            //href="blogs-page"
-            color="transparent"
-            target="_blank"
-            className={classes.navLink}
-            onClick = {() => setGetBookings(!GetBookings)}
-          >
-            <FaBookReader className={classes.icons} /> Bookings & Promos
-        </Button>
-        </ListItem>
-
-
-
-
-        <ListItem className={classes.listItem}>
 
         {currentUser?
 
@@ -146,8 +131,21 @@ const useStyles = makeStyles(styles);
         </ListItem>
 
         <ListItem className={classes.listItem}>
+        <Button
+            //href="blogs-page"
+            color="transparent"
+            target="_blank"
+            className={classes.navLink}
+            onClick = {() => setGetBookings(!GetBookings)}
+          >
+            <FaBookReader className={classes.icons} /> Bookings & Promos
+        </Button>
+        </ListItem>
 
-          <Button
+
+        <ListItem className={classes.listItem}>
+
+        <Button
             href="about-us"
             color="transparent"
             target="_blank"
