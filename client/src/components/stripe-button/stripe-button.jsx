@@ -46,7 +46,8 @@ export default StripeCheckoutButton;*/
 
 import React, { useEffect } from 'react';
 import CustomButton from "../CustomButtons/Button";
-
+import { connect } from 'react-redux';
+import { addItem } from '../../redux/cart/cart-actions';
 
     class StripeCheckoutButton extends React.Component {  
 
@@ -97,7 +98,7 @@ import CustomButton from "../CustomButtons/Button";
                 <input type="hidden" name="item_description" value="Pool service" onChange={this.onInputChange}/>
                 <input type="hidden" name="custom_int1" value="1" onChange={this.onInputChange}/>
     
-                <p style = {{"textAlign" : "center"}}><CustomButton  type = 'submit' style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">MAKE PAYMENT</CustomButton></p> 
+                <p style = {{"textAlign" : "center"}}><CustomButton  type = 'submit' onClick={() => this.props.addItem(this.props.item)} style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">MAKE PAYMENT</CustomButton></p> 
             
             
             </form>
@@ -108,7 +109,14 @@ import CustomButton from "../CustomButtons/Button";
     }
 }
     
-     export default StripeCheckoutButton;
+const mapDispatchToProps = dispatch => ({
+    addItem: item => dispatch(addItem(item))
+  });
+  
+  export default connect(
+    null,
+    mapDispatchToProps
+  )(StripeCheckoutButton);
 
 
 

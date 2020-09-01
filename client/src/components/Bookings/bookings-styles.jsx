@@ -74,8 +74,8 @@ export const Popup = styled.div`
 
 export const PopupInner = styled.div`
     position: absolute;  
-    left: 25%;  
-    right: 25%;  
+    left: 20%;  
+    right: 20%;  
     top: 10%;  
     bottom: 5%;  
     margin: auto;  
@@ -165,16 +165,16 @@ text-align: left;
 color: #4a4a4a;
 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 letter-spacing: 1.5px;
-font-size: 12px;
+font-size: 14px;
 
     & > li {
         line-height: 2;
     }
 
 @media screen and (max-width: 800px){
-    font-siz: 10px;
+    font-siz: 12px;
     & > li {
-        line-height: 1.2;
+        line-height: 2;
         letter-spacing: 1px;
     }
 }

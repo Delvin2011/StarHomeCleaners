@@ -29,16 +29,16 @@ class Pool extends React.Component {
             response: '',
             CardPayment: false,
             CashPayment: false,
-            item : [
+            item : 
                 {
                   id:'',
                   bookingDate : new Date(),
+                  category: '',
                   service : '',
                   serviceDate : new Date(),
                   frequency: '',
                   payment: ''
                 }
-              ] 
         }
         this.handleDropdownChange = this.handleDropdownChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -46,9 +46,14 @@ class Pool extends React.Component {
 
         this.CreditCardPayment= this.CreditCardPayment.bind(this);
         this.CashAfterServicePayment= this.CashAfterServicePayment.bind(this);
+        this.closePop= this.props.closePopup;
     }
     handleDropdownChange(e) {
         this.setState({ selectValue: e.target.value });
+      }
+
+      closePop(e) {
+        console.log(e)
       }
 
       CreditCardPayment(event) {
@@ -79,15 +84,18 @@ class Pool extends React.Component {
         const min = 1;
         const max = 1000;
         const random = min + (Math.random() * (max - min));
+        const service = this.props.poolCleaning? this.props.poolCleaning : this.props.poolMaintanence? this.props.poolMaintanence : "";
+        const payment = this.state.CashPayment ? "CAS" : this.state.CardPayment ? "ONLINE" : "";
         this.setState({
             item : 
                 {
-                  id: Math.ceil(random),
+                  id: Math.ceil(random) + "PL",
                   bookingDate : new Date(),
-                  service : 'Pool',
+                  category : 'Pool',
+                  service : service,
                   serviceDate : dateTime.replace("GMT+0200 (South Africa Standard Time)",""),
                   frequency: this.props.serviceInterval,
-                  payment: 'CAS'
+                  payment: payment
                 }
                
         });
@@ -105,7 +113,7 @@ class Pool extends React.Component {
             "natureOfServices": "Pool",
             "timeAllocation": this.props.time + " hrs",
             "serviceIntervals": this.props.serviceInterval,
-            "extraServices": this.props.poolCleaning + ", " + this.props.poolMaintanence,
+            "extraServices": service,
             "date": dateTime.replace("GMT+0200 (South Africa Standard Time)",""),
             "costs": "R " + this.props.total
         })
@@ -148,7 +156,7 @@ class Pool extends React.Component {
         return (  
             <Popup>  
                 <PopupInner>                   
-                        <CloseButton className = 'remove-button' style = {{"color":"black"}} onClick = {this.props.closePopup} >&#10005;</CloseButton>  
+                        <CloseButton className = 'remove-button' style = {{"color":"black"}} onClick = {this.closePop.bind(this)} >&#10005;</CloseButton>  
                         <LogoContainer src= {Logo} />   
                         <Title> Enter Contact Details </Title>                                    
                             <Form className = 'COD-form' onSubmit = {this.handleSubmit}>                
@@ -217,20 +225,20 @@ class Pool extends React.Component {
                                             response === 200  ? 
                                             <div>
                                                 <Response>Email Sent!!!!</Response>
-                                                <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit' onClick= {this.props.closePopup} style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">CLOSE</CustomButton></p> 
+                                                <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit' onClick={() => {this.props.addItem(item);this.closePop.bind(this)}} style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">CLOSE</CustomButton></p> 
 
                                             </div>
                                             : response === 500 || response === 404 ?
                                                 <div>
                                                     <Errors>Email Not Sent!!!!</Errors>
-                                                    <p style = {{"textAlign" : "center"}}><CustomButton onClick={() => this.props.addItem(item)} style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">RESEND</CustomButton></p> 
+                                                    <p style = {{"textAlign" : "center"}}><CustomButton  type = 'submit' style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">RESEND</CustomButton></p> 
                                                 </div>
                                                 :    <p style = {{"textAlign" : "center"}}><CustomButton  type = 'submit' style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">BOOK SERVICE</CustomButton></p>                                    
                                         : null
                                     } 
                                     </Form>    
                                     {this.state.CardPayment ?
-                                        <StripeCheckoutButton service = {service} price = {this.props.totalIndoor}/>
+                                        <StripeCheckoutButton service = {service} price = {this.props.totalIndoor} item = {this.state.item}/>
                                             : null
                                     }                             
                 </PopupInner>  

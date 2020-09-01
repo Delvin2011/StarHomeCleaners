@@ -8,6 +8,8 @@ import Logo from '../../../assets/img/logo1.png';
 import Fab from '@material-ui/core/Fab';
 import Tooltip from '@material-ui/core/Tooltip';
 
+import { connect } from 'react-redux';
+import { addItem } from '../../../redux/cart/cart-actions';
 import StripeCheckoutButton from '../../stripe-button/stripe-button';
 
 
@@ -30,13 +32,26 @@ class Indoor extends React.Component {
             HowOften: '',
             dateTime: "" + this.props.dateTime,
             IndoorCardPayment: false,
-            IndoorCashPayment: false
+            IndoorCashPayment: false,
+            item : 
+            {
+              id:'',
+              bookingDate : new Date(),
+              category: '',
+              service : '',
+              serviceDate : new Date(),
+              frequency: '',
+              payment: ''
+            }
         }
         this.handleDropdownChange = this.handleDropdownChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
 
         this.CreditCardPayment= this.CreditCardPayment.bind(this);
         this.CashAfterServicePayment= this.CashAfterServicePayment.bind(this);
+
+        this.closePop= this.props.closePopup;
+
         //this.Demo.simpleCart = this.Demo.simpleCart.bind(this);
     }
 
@@ -44,6 +59,12 @@ class Indoor extends React.Component {
     handleDropdownChange(e) {
         this.setState({ selectValue: e.target.value });
       }
+
+
+      closePop(e) {
+        console.log(e)
+      }
+
 
       CreditCardPayment(event) {
         this.setState({
@@ -61,10 +82,26 @@ class Indoor extends React.Component {
       handleSubmit(event) {
         event.preventDefault();
         const form = event.target;
-        console.log(form);
         const data = new FormData(form);
         const {dateTime} = this.state;
-        //console.log(data.get('email'));
+        const min = 1;
+        const max = 1000;
+        const random = min + (Math.random() * (max - min));
+        const service = this.props.IndoorCleanService? this.props.IndoorCleanService : this.props.IndoorAfterBuildCleanService? this.props.IndoorAfterBuildCleanService : this.props.IndoorEndTenancyCleanService? this.props.IndoorEndTenancyCleanService : this.props.IndoorSanitiseService? this.props.IndoorSanitiseService : "";
+        const payment = this.state.IndoorCashPayment ? "CAS" : this.state.IndoorCardPayment ? "ONLINE" : "";
+        this.setState({
+            item : 
+                {
+                  id: Math.ceil(random) + "IN",
+                  bookingDate : new Date(),
+                  category : 'Indoor',
+                  service : service, 
+                  serviceDate : dateTime.replace("GMT+0200 (South Africa Standard Time)",""),
+                  frequency: this.props.serviceIntervalIndoor,
+                  payment: payment
+                }
+               
+        });
        fetch('/email', {
         method: 'post',
         headers: {'Content-Type': 'application/json'},
@@ -77,7 +114,7 @@ class Indoor extends React.Component {
           "address": data.get('address'),
           "natureOfServices": "Indoors",
           "homeDetails": this.props.bedRooms + " and " + this.props.bathRooms,
-          "requiredServices": this.props.IndoorCleanService + ", " + this.props.IndoorAfterBuildCleanService + ", " + this.props.IndoorEndTenancyCleanService + ", " + this.props.IndoorSanitiseService,
+          "requiredServices": service,//this.props.IndoorCleanService + ", " + this.props.IndoorAfterBuildCleanService + ", " + this.props.IndoorEndTenancyCleanService + ", " + this.props.IndoorSanitiseService,
           "serviceIntervals": this.props.serviceIntervalIndoor, // + "," + this.state.serviceIntervalIndoorSanitise,
           "extraServices": this.props.genIndoorCleanWallsService + ", " + this.props.genIndoorCleanWindowsService + ", " + this.props.genIndoorCleanLaundryService + ", " + this.props.afterBuildIndoorCleanWallsService + ", " + this.props.afterBuildIndoorCleanWindowsService + ", " + this.props.endTenancyIndoorCleanWallsService + ", " + this.props.endTenancyIndoorCleanWindowsService,
           "date": dateTime.replace("GMT+0200 (South Africa Standard Time)",""),
@@ -108,17 +145,17 @@ class Indoor extends React.Component {
         this.setState({[name]: value});
     }
 
-
 //https://www.telerik.com/kendo-react-ui/components/dateinputs/datetimepicker/integration-with-json/
   render() {  
 
-    const {customerName, email, phoneNumber,address,comments,response,error} = this.state;
+    const {customerName, email, phoneNumber,address,comments,response,error,item} = this.state;
     const {currentUser} = this.props;
     const {service} = "Indoors Cleaning Services";
+    console.log(item);
         return (  
             <Popup>  
                 <PopupInner>                   
-                        <CloseButton className = 'remove-button' style = {{"color":"black"}} onClick = {this.props.closePopup} >&#10005;</CloseButton>  
+                        <CloseButton className = 'remove-button' style = {{"color":"black"}} onClick = {this.closePop.bind(this)} >&#10005;</CloseButton>  
                         <LogoContainer src= {Logo} />
                         <Title> Enter Contact Details
                         </Title>
@@ -187,8 +224,8 @@ class Indoor extends React.Component {
 
                                     <Title> PAYMENT METHODS </Title>
                                     <PaymentOptionsContainer>
-                                        <PayGridSplit><Fab><CASpayment onClick={this.CashAfterServicePayment.bind(this)} IndoorCashPayment = {this.state.IndoorCashPayment}/></Fab><PayOptions>CAS (Cash After Service)</PayOptions></PayGridSplit>
-                                        <PayGridSplit><Fab><CreditCardPayment onClick={this.CreditCardPayment.bind(this)} IndoorCardPayment = {this.state.IndoorCardPayment}/></Fab><PayOptions>Online Payment</PayOptions></PayGridSplit>
+                                        <PayGridSplit><Fab><CASpayment onClick = {this.CashAfterServicePayment.bind(this)} IndoorCashPayment = {this.state.IndoorCashPayment}/></Fab><PayOptions>CAS (Cash After Service)</PayOptions></PayGridSplit>
+                                        <PayGridSplit><Fab><CreditCardPayment onClick = {this.CreditCardPayment.bind(this)} IndoorCardPayment = {this.state.IndoorCardPayment}/></Fab><PayOptions>Online Payment</PayOptions></PayGridSplit>
                                     </PaymentOptionsContainer>
                                      
                                     {   this.state.IndoorCashPayment ?
@@ -196,16 +233,16 @@ class Indoor extends React.Component {
                                             response === 200  ? 
                                             <div>
                                                 <Response>Email Sent!!!!</Response>
-                                                <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit' onClick= {this.props.closePopup} style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">CLOSE</CustomButton></p> 
+                                                <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit' onClick={() => {this.props.addItem(item);this.closePop.bind(this)}}  style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">CLOSE</CustomButton></p> 
 
                                             </div>
                                             : response === 500 || response === 404 ?
                                                 <div>
                                                     <Errors>Email Not Sent!!!!</Errors>
-                                                    <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit' style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">RESEND</CustomButton></p> 
+                                                    <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit'  style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">RESEND</CustomButton></p> 
 
                                                 </div>
-                                                :    <p style = {{"textAlign" : "center"}}><CustomButton  type = 'submit' style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">BOOK SERVICE</CustomButton></p>                                    
+                                                :    <p style = {{"textAlign" : "center"}}><CustomButton  type = 'submit'  style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">BOOK SERVICE</CustomButton></p>                                    
                                         : null
                                     } 
                                     </Form>    
@@ -213,7 +250,6 @@ class Indoor extends React.Component {
                                         <StripeCheckoutButton service = {service} price = {this.props.totalIndoor}/>
                                             : null
                                     }
-
                 </PopupInner>  
             </Popup>  
         );  
@@ -221,8 +257,14 @@ class Indoor extends React.Component {
 }  
 
 
-export default Indoor;
-
+const mapDispatchToProps = dispatch => ({
+    addItem: item => dispatch(addItem(item))
+  });
+  
+  export default connect(
+    null,
+    mapDispatchToProps
+  )(Indoor);
 
 
 

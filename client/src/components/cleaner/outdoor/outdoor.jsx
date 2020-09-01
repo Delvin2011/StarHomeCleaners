@@ -7,6 +7,8 @@ import FormInput from '../../form-input/form-input';
 import Logo from '../../../assets/img/logo1.png';
 import StripeCheckoutButton from '../../stripe-button/stripe-button';
 
+import { connect } from 'react-redux';
+import { addItem } from '../../../redux/cart/cart-actions';
 import Fab from '@material-ui/core/Fab';
 import Tooltip from '@material-ui/core/Tooltip';
 class Outdoor extends React.Component {  
@@ -28,17 +30,31 @@ class Outdoor extends React.Component {
             dateTime: "" + this.props.dateTime,
             response: '',
             CardPayment: false,
-            CashPayment: false
+            CashPayment: false,
+            item : 
+            {
+              id:'',
+              bookingDate : new Date(),
+              category: '',
+              service : '',
+              serviceDate : new Date(),
+              frequency: '',
+              payment: ''
+            }
         }
         this.handleDropdownChange = this.handleDropdownChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleSubmit1 = this.handleSubmit1.bind(this);
-
+        this.closePop= this.props.closePopup;
         this.CreditCardPayment= this.CreditCardPayment.bind(this);
         this.CashAfterServicePayment= this.CashAfterServicePayment.bind(this);
     }
     handleDropdownChange(e) {
         this.setState({ selectValue: e.target.value });
+      }
+
+      closePop(e) {
+        console.log(e)
       }
 
       CreditCardPayment(event) {
@@ -66,6 +82,24 @@ class Outdoor extends React.Component {
         const form = event.target;
         const data = new FormData(form);
         const {dateTime} = this.state;
+        const min = 1;
+        const max = 1000;
+        const random = min + (Math.random() * (max - min));
+        const service = this.props.wheelbarrow ? this.props.wheelbarrow : this.props.windows? ", " + this.props.windows : this.props.box ? ", " + this.props.box : this.props.mower? ", " + this.props.mower : "";
+        const payment = this.state.CashPayment ? "CAS" : this.state.CardPayment ? "ONLINE" : "";
+        this.setState({
+            item : 
+                {
+                  id: Math.ceil(random) + "OT",
+                  bookingDate : new Date(),
+                  category : 'Outdoor',
+                  service : service,
+                  serviceDate : dateTime.replace("GMT+0200 (South Africa Standard Time)",""),
+                  frequency: "Once OFF",
+                  payment: payment
+                }
+               
+        });
        fetch('/email', {
         method: 'post',
         headers: {'Content-Type': 'application/json'},
@@ -78,7 +112,7 @@ class Outdoor extends React.Component {
             "address": data.get('address'),
             "natureOfServices": "Outdoors",
             "homeDetails": this.props.time + " hrs",
-            "extraServices": this.props.wheelbarrow + ", " + this.props.windows + ", " + this.props.box + ", " + this.props.mower,
+            "extraServices": service,
             "date": dateTime.replace("GMT+0200 (South Africa Standard Time)",""),
             "costs": "R " + this.props.total
         })
@@ -114,7 +148,7 @@ class Outdoor extends React.Component {
 //https://www.telerik.com/kendo-react-ui/components/dateinputs/datetimepicker/integration-with-json/
   render() {  
 
-    const {customerName, email, phoneNumber,address,comments,response,error} = this.state;
+    const {customerName, email, phoneNumber,address,comments,response,error,item} = this.state;
     const {currentUser} = this.props;
     const {service} = "Outdoor Cleaning Services";
     return (  
@@ -183,7 +217,7 @@ class Outdoor extends React.Component {
                                             response === 200  ? 
                                             <div>
                                                 <Response>Email Sent!!!!</Response>
-                                                <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit' onClick= {this.props.closePopup} style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">CLOSE</CustomButton></p> 
+                                                <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit' onClick={() => {this.props.addItem(item);this.closePop.bind(this)}} style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">CLOSE</CustomButton></p> 
 
                                             </div>
                                             : response === 500 || response === 404 ?
@@ -207,4 +241,11 @@ class Outdoor extends React.Component {
 }  
 
 
-export default Outdoor; 
+const mapDispatchToProps = dispatch => ({
+    addItem: item => dispatch(addItem(item))
+  });
+  
+  export default connect(
+    null,
+    mapDispatchToProps
+  )(Outdoor); 

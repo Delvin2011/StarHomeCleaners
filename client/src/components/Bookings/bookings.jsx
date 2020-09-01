@@ -34,14 +34,17 @@ class Bookings extends React.Component {
 
 render() {  
 const status = "Pending";
-console.log(this.props.currentUser);
+//console.log(this.props.currentUser);
+const id = this.props.currentUser ? this.props.currentUser.id : '';
+const PromoCode = this.props.currentUser ? id.slice(0,5).toUpperCase() : '';
+const FriendCode = this.props.currentUser ? id.slice(-5).toUpperCase() : '';
 return (          
             <Popup>  
                 <PopupInner> 
                 <CloseButton className = 'remove-button' style = {{"color":"black"}} onClick = {this.props.closePopup} >&#10005;</CloseButton>
                 <TabsContainer >                  
-                <GridContainer >
-                  <GridItem  >
+                <GridContainer  >
+                  <GridItem  style = {{"padding-left":"5px","padding-right":"5px"}}>
                     <NavPills
                     alignCenter
                       color="rose"
@@ -52,7 +55,8 @@ return (
                           tabContent: (
                           <div>
                             { this.props.currentUser ? 
-
+                                
+                                this.props.cartItems.length > 0 ?
                                 <div style = {{"margin-top": "-5px"}}>
                                       <ContentTitle> Details
                                       <span><hr width="300"/></span>
@@ -60,35 +64,34 @@ return (
 
 
                                       <Details>
-                                        <DetailHeader>Booking Date</DetailHeader>
+                                        <DetailHeader>Date</DetailHeader>
                                         <DetailHeader>Category</DetailHeader>
                                         <DetailHeader>Service</DetailHeader>
                                         <DetailHeader>Frequency</DetailHeader>
                                         <DetailHeader>Status</DetailHeader>
                                         <DetailHeader>Payment</DetailHeader>
-                                        
                                       </Details>  
-                                    
-                                      {
-                                          Object.entries(this.props.cartItems).map(([key, val]) => 
-                                          <Details key={key}>
-                                            <BookingDetail>{this.props.cartItems[key].serviceDate}</BookingDetail>
-                                            <BookingDetail>{this.props.cartItems[key].service}</BookingDetail>
-                                            <BookingDetail>{this.props.cartItems[key].service}</BookingDetail>
-                                            <BookingDetail>{this.props.cartItems[key].frequency}</BookingDetail>
-                                            <BookingDetail>{status}</BookingDetail>
-                                            <BookingDetail>{this.props.cartItems[key].payment}</BookingDetail>
-                                            <Tooltip title="Cancel Booking" aria-label="add"><BookingDetail onClick = {() => this.props.clearItem(this.props.cartItems)} style = {{"cursor": "pointer","align-items": "left"}}>&#10005;</BookingDetail></Tooltip>
-                                          </Details>
-                                        )                                    
-                                      }
+
+                                         {
+                                            Object.entries(this.props.cartItems).map(([key, val]) => 
+                                            <Details key={key}>
+                                              <BookingDetail>{this.props.cartItems[key].serviceDate}</BookingDetail>
+                                              <BookingDetail>{this.props.cartItems[key].category}</BookingDetail>
+                                              <BookingDetail>{this.props.cartItems[key].service}</BookingDetail>
+                                              <BookingDetail>{this.props.cartItems[key].frequency}</BookingDetail>
+                                              <BookingDetail>{status}</BookingDetail>
+                                              <BookingDetail>{this.props.cartItems[key].payment}</BookingDetail>
+                                              <Tooltip title="Cancel Booking" aria-label="add"><BookingDetail onClick = {() => this.props.clearItem(this.props.cartItems[key])} style = {{"cursor": "pointer","align-items": "left"}}>&#10005;</BookingDetail></Tooltip>
+                                            </Details>
+                                          )                        
+                                         }
 
                                       <ContentTitle> Services Rating
                                       <span><hr width="300"/></span>
                                       </ContentTitle>                           
                                     
                                   </div>
-
+                                : <ContentTitle> No Previous Bookings<span><hr width="300"/></span> </ContentTitle>
                               :  
                               <div>  
                                 <ContentTitle> Sign IN/UP <span><hr width="300"/></span> </ContentTitle>
@@ -119,6 +122,22 @@ return (
                             { this.props.currentUser ? 
                               <div style = {{"margin-top": "-5px"}}>
                                     <ContentTitle> Details <span><hr width="300"/></span> </ContentTitle> 
+
+                                    <DetailHeader>Promo Code : {PromoCode}</DetailHeader>
+
+                                    <TCList>
+                                        <li>Use Promo Code for your next booking.</li>
+                                        <li>Get 20% on booking.</li>
+                                    </TCList>
+                                    <br/>
+
+                                    <DetailHeader>Friend Referal Code : {FriendCode}</DetailHeader>
+                                    <TCList>
+                                        <li>Refer 3 friends to book with us, using the Code.</li>
+                                        <li>Friend's successful booking attracts 20% discount on 1st booking.</li>
+                                        <li>You get 50% discount for 3 successful friends referrals.</li>
+                                    </TCList>
+
   
                               </div>
 
@@ -136,7 +155,7 @@ return (
                                 <br/>
                                 <br/>
                                 <br/>
-                                <p style = {{"textAlign" : "center"}}><CustomButton  onClick = {this.showPopupSignIn.bind(this)} style = {{"margin-top" : "12.5px", "background": "#e91e63"}} >Sign In</CustomButton></p>     
+                                <p style = {{"textAlign" : "center"}}><CustomButton  onClick = {this.showPopupSignIn.bind(this)} style = {{"margin-top" : "12.5px", "background": "#e91e63"}} >Sign In/Up</CustomButton></p>     
  
                               </div>
                             }

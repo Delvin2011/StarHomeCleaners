@@ -107,18 +107,30 @@ export const CloseButton = styled.div`
 }
 `;
 
-export const Response = styled.h3`
+export const Response = styled.h4`
     text-align: center;
     color: #00c400;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     letter-spacing: 1px;
+    font-size: 14px;
+    margin-top: -10px;
+    font-weight: bold;
+    @media screen and (max-width: 800px){
+        font-size: 12px;
+}
 `;
 
-export const Errors = styled.h3`
+export const Errors = styled.h4`
     text-align: center;
     color: red;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     letter-spacing: 1px;
+    font-size: 14px;
+    margin-top: -10px;
+    font-weight: bold;
+    @media screen and (max-width: 800px){
+        font-size: 12px;
+}
 `;
 
 export const BookingDetails = styled.div`
