@@ -3,6 +3,7 @@ import CustomButton from '../custom-button/custom-button';
 import Tabs from 'react-bootstrap/Tabs';
 import Fab from '@material-ui/core/Fab';
 import FormInput from '../form-input/form-input';
+import Select from 'react-select';
 
 import {Washer} from '@styled-icons/boxicons-solid/Washer';
 import { css } from 'styled-components';
@@ -794,7 +795,5 @@ export const LogoContainer2 = styled.img`
  margin-bottom: 2px;
 
 `;
-
-
 
 
