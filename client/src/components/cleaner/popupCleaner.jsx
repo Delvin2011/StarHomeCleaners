@@ -803,19 +803,19 @@ return (
                                         {this.state.IndoorAfterBuildClean ?
                                           <div>
                                           <ServiceTest> Extra Services</ServiceTest>
-                                            <Message style = {{"margin-top" : "0px"}}>
+                                            <div style = {{"margin-top" : "0px"}}>
                                               <Checkbox toggle label = "  Walls" onChange={ this.genIndoorCleanWalls }   priceGenIndoorCleanWalls =  {this.state.priceGenIndoorCleanWalls}/>
                                               <Checkbox toggle label = "  Windows" onChange={ this.genIndoorCleanWindows }   priceGenIndoorCleanWindows =  {this.state.priceGenIndoorCleanWindows}/>
-                                            </Message>
+                                            </div>
                                           </div>
 
                                         : this.state.IndoorEndTenancyClean ?
                                         <div>
                                           <ServiceTest> Extra Services</ServiceTest>
-                                            <Message style = {{"margin-top" : "0px"}}>
+                                            <div style = {{"margin-top" : "0px"}}>
                                               <Checkbox toggle label = "  Walls" onChange={ this.endTenancyIndoorCleanWalls }   priceEndTenancyIndoorCleanWalls =  {this.state.priceEndTenancyIndoorCleanWalls}/>
                                               <Checkbox toggle label = "  Windows" onChange={ this.endTenancyIndoorCleanWindows }   priceEndTenancyIndoorCleanWindows =  {this.state.priceEndTenancyIndoorCleanWindows}/>
-                                            </Message>
+                                            </div>
                                           </div>
                                         
                                         : this.state.IndoorSanitise ?
@@ -831,27 +831,29 @@ return (
                                         { this.state.IndoorGenClean ?
                                           <div>
                                           <ServiceTest> Extra Services</ServiceTest>
-                                            <Message style = {{"margin-top" : "0px"}}>
+                                            <div style = {{"margin-top" : "0px"}}>
                                               <Checkbox toggle label = "  Walls" onChange={ this.genIndoorCleanWalls }   priceGenIndoorCleanWalls =  {this.state.priceGenIndoorCleanWalls}/>
                                               <Checkbox toggle label = "  Windows" onChange={ this.genIndoorCleanWindows }   priceGenIndoorCleanWindows =  {this.state.priceGenIndoorCleanWindows}/>
                                               <Checkbox toggle label = "  Laundry" onChange={ this.genIndoorCleanLaundry }   priceGenIndoorCleanLaundry =  {this.state.priceGenIndoorCleanLaundry}/>
-                                            </Message>
+                                            </div>
                                           </div>
 
                                           : this.state.IndoorEndTenancyClean ?
                                         <div>
                                           <ServiceTest> Frequency</ServiceTest>
-                                            <Message style = {{"margin-top" : "0px"}}>
-                                            <Checkbox toggle label = "  Once OFF" onChange={ this.sanitiseIndoorOnceOFF }  disabled = {sanitiseOnceStatus} priceSanitiseIndoorOnceOFF =  {this.state.priceSanitiseIndoorOnceOFF}/>
-                                            <Checkbox toggle label = "  Monthly" onChange={ this.sanitiseIndoorMonth }  disabled = {sanitiseMonthStatus} priceSanitiseIndoorMonth =  {this.state.priceSanitiseIndoorMonth}/></Message>
+                                            <div style = {{"margin-top" : "0px"}}>
+                                              <Checkbox toggle label = "  Once OFF" onChange={ this.sanitiseIndoorOnceOFF }  disabled = {sanitiseOnceStatus} priceSanitiseIndoorOnceOFF =  {this.state.priceSanitiseIndoorOnceOFF}/>
+                                              <Checkbox toggle label = "  Monthly" onChange={ this.sanitiseIndoorMonth }  disabled = {sanitiseMonthStatus} priceSanitiseIndoorMonth =  {this.state.priceSanitiseIndoorMonth}/>
+                                            </div>
                                           </div>
 
                                           : this.state.IndoorSanitise ?
                                           <div>
                                             <ServiceTest> Frequency</ServiceTest>
-                                              <Message style = {{"margin-top" : "0px"}}>
+                                              <div style = {{"margin-top" : "0px"}}>
                                               <Checkbox toggle label = "  Once OFF" onChange={ this.sanitiseIndoorOnceOFF }  disabled = {sanitiseOnceStatus} priceSanitiseIndoorOnceOFF =  {this.state.priceSanitiseIndoorOnceOFF}/>
-                                              <Checkbox toggle label = "  Monthly" onChange={ this.sanitiseIndoorMonth }  disabled = {sanitiseMonthStatus} priceSanitiseIndoorMonth =  {this.state.priceSanitiseIndoorMonth}/></Message>
+                                              <Checkbox toggle label = "  Monthly" onChange={ this.sanitiseIndoorMonth }  disabled = {sanitiseMonthStatus} priceSanitiseIndoorMonth =  {this.state.priceSanitiseIndoorMonth}/>
+                                              </div>
                                             </div>
                                           : <ServiceGridSplit><ServiceTest>After Builders</ServiceTest> <Tooltip title="After Builders Cleaning" aria-label="add"><Fab2><AfterBuildIcon onClick={this.afterBuildIndoorClean.bind(this)} IndoorAfterBuildClean = {this.state.IndoorAfterBuildClean}/></Fab2></Tooltip></ServiceGridSplit>
                                         }
@@ -859,21 +861,21 @@ return (
                                         { this.state.IndoorGenClean ?
                                           <div>
                                           <ServiceTest> Frequency</ServiceTest>
-                                            <Message style = {{"margin-top" : "0px"}}>
+                                            <div style = {{"margin-top" : "0px"}}>
                                               <Checkbox toggle label = "  Once OFF" onChange={ this.genIndoorCleanOnce }  disabled = {genIndoorCleanOnceStatus} priceGenIndoorCleanOnce =  {this.state.priceGenIndoorCleanOnce}/>
                                               <Checkbox toggle label = "  Weekly" onChange={ this.genIndoorCleanWeek }  disabled = {genIndoorCleanWeekStatus} priceGenIndoorCleanWeek =  {this.state.priceGenIndoorCleanWeek}/>
                                               <Checkbox toggle label = "  Monthly" onChange={ this.genIndoorCleanMonth }  disabled = {genIndoorCleanMonthStatus} priceGenIndoorCleanMonth =  {this.state.priceGenIndoorCleanMonth}/>
-                                            </Message>
+                                            </div>
                                           </div>
 
                                           : this.state.IndoorAfterBuildClean ?
                                           <div>
                                           <ServiceTest> Frequency</ServiceTest>
-                                            <Message style = {{"margin-top" : "0px"}}>
+                                            <div style = {{"margin-top" : "0px"}}>
                                               <Checkbox toggle label = "  Once OFF" onChange={ this.genIndoorCleanOnce }  disabled = {genIndoorCleanOnceStatus} priceGenIndoorCleanOnce =  {this.state.priceGenIndoorCleanOnce}/>
                                               <Checkbox toggle label = "  Weekly" onChange={ this.genIndoorCleanWeek }  disabled = {genIndoorCleanWeekStatus} priceGenIndoorCleanWeek =  {this.state.priceGenIndoorCleanWeek}/>
                                               <Checkbox toggle label = "  Monthly" onChange={ this.genIndoorCleanMonth }  disabled = {genIndoorCleanMonthStatus} priceGenIndoorCleanMonth =  {this.state.priceGenIndoorCleanMonth}/>
-                                            </Message>
+                                            </div>
                                           </div>
 
                                           :this.state.IndoorSanitise ?
