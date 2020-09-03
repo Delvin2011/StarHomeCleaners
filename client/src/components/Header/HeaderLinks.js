@@ -21,6 +21,7 @@ import {FaBlog} from "react-icons/fa";
 import {FaBookReader} from "react-icons/fa";
 import {GoSignIn} from "react-icons/go";
 import {GoSignOut} from "react-icons/go";
+import {MdLiveHelp} from "react-icons/md";
 
 import { ImNewspaper } from "react-icons/im";
 
@@ -154,6 +155,18 @@ const useStyles = makeStyles(styles);
             <ImNewspaper className={classes.icons} /> About Us
           </Button>
         </ListItem>
+
+        <ListItem className={classes.listItem}>
+
+          <Button
+              href="FAQs"
+              color="transparent"
+              target="_blank"
+              className={classes.navLink}
+            >
+              <MdLiveHelp className={classes.icons} /> Help
+            </Button>
+          </ListItem>
 
         {Email ?
           <Contact showPopup = {Email} closePopup={() => setEmail(!Email)} currentUser = {currentUser}/>

@@ -842,7 +842,7 @@ return (
                                         <div>
                                           <ServiceTest> Frequency</ServiceTest>
                                             <div style = {{"margin-top" : "0px"}}>
-                                              <Checkbox toggle label = "  Once OFF" onChange={ this.sanitiseIndoorOnceOFF }  disabled = {sanitiseOnceStatus} priceSanitiseIndoorOnceOFF =  {this.state.priceSanitiseIndoorOnceOFF}/>
+                                              <Checkbox toggle label = "  OnceOFF" onChange={ this.sanitiseIndoorOnceOFF }  disabled = {sanitiseOnceStatus} priceSanitiseIndoorOnceOFF =  {this.state.priceSanitiseIndoorOnceOFF}/>
                                               <Checkbox toggle label = "  Monthly" onChange={ this.sanitiseIndoorMonth }  disabled = {sanitiseMonthStatus} priceSanitiseIndoorMonth =  {this.state.priceSanitiseIndoorMonth}/>
                                             </div>
                                           </div>
@@ -851,7 +851,7 @@ return (
                                           <div>
                                             <ServiceTest> Frequency</ServiceTest>
                                               <div style = {{"margin-top" : "0px"}}>
-                                              <Checkbox toggle label = "  Once OFF" onChange={ this.sanitiseIndoorOnceOFF }  disabled = {sanitiseOnceStatus} priceSanitiseIndoorOnceOFF =  {this.state.priceSanitiseIndoorOnceOFF}/>
+                                              <Checkbox toggle label = "  OnceOFF" onChange={ this.sanitiseIndoorOnceOFF }  disabled = {sanitiseOnceStatus} priceSanitiseIndoorOnceOFF =  {this.state.priceSanitiseIndoorOnceOFF}/>
                                               <Checkbox toggle label = "  Monthly" onChange={ this.sanitiseIndoorMonth }  disabled = {sanitiseMonthStatus} priceSanitiseIndoorMonth =  {this.state.priceSanitiseIndoorMonth}/>
                                               </div>
                                             </div>
@@ -862,7 +862,7 @@ return (
                                           <div>
                                           <ServiceTest> Frequency</ServiceTest>
                                             <div style = {{"margin-top" : "0px"}}>
-                                              <Checkbox toggle label = "  Once OFF" onChange={ this.genIndoorCleanOnce }  disabled = {genIndoorCleanOnceStatus} priceGenIndoorCleanOnce =  {this.state.priceGenIndoorCleanOnce}/>
+                                              <Checkbox toggle label = "  OnceOFF" onChange={ this.genIndoorCleanOnce }  disabled = {genIndoorCleanOnceStatus} priceGenIndoorCleanOnce =  {this.state.priceGenIndoorCleanOnce}/>
                                               <Checkbox toggle label = "  Weekly" onChange={ this.genIndoorCleanWeek }  disabled = {genIndoorCleanWeekStatus} priceGenIndoorCleanWeek =  {this.state.priceGenIndoorCleanWeek}/>
                                               <Checkbox toggle label = "  Monthly" onChange={ this.genIndoorCleanMonth }  disabled = {genIndoorCleanMonthStatus} priceGenIndoorCleanMonth =  {this.state.priceGenIndoorCleanMonth}/>
                                             </div>
@@ -872,7 +872,7 @@ return (
                                           <div>
                                           <ServiceTest> Frequency</ServiceTest>
                                             <div style = {{"margin-top" : "0px"}}>
-                                              <Checkbox toggle label = "  Once OFF" onChange={ this.genIndoorCleanOnce }  disabled = {genIndoorCleanOnceStatus} priceGenIndoorCleanOnce =  {this.state.priceGenIndoorCleanOnce}/>
+                                              <Checkbox toggle label = "  OnceOFF" onChange={ this.genIndoorCleanOnce }  disabled = {genIndoorCleanOnceStatus} priceGenIndoorCleanOnce =  {this.state.priceGenIndoorCleanOnce}/>
                                               <Checkbox toggle label = "  Weekly" onChange={ this.genIndoorCleanWeek }  disabled = {genIndoorCleanWeekStatus} priceGenIndoorCleanWeek =  {this.state.priceGenIndoorCleanWeek}/>
                                               <Checkbox toggle label = "  Monthly" onChange={ this.genIndoorCleanMonth }  disabled = {genIndoorCleanMonthStatus} priceGenIndoorCleanMonth =  {this.state.priceGenIndoorCleanMonth}/>
                                             </div>
@@ -1211,7 +1211,7 @@ return (
                                                 type="number"
                                                 name="fname"
                                                 placeholder="Length (m)"
-                                                onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
                                                 min="0" max="9999999"
                                                 required
                                             />
@@ -1222,7 +1222,7 @@ return (
                                                     type="number"
                                                     name="fname"
                                                     placeholder="Width (m)"
-                                                    onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                    //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
                                                     min="0" max="9999999"
                                                     required
                                                 />
@@ -1233,7 +1233,7 @@ return (
                                                   type="number"
                                                   name="fname"
                                                   placeholder="Depth (m)"
-                                                  onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                  //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
                                                   min="0" max="9999999"
                                                   required
                                               />                                 
@@ -1246,7 +1246,7 @@ return (
                                                     type="number"
                                                     name="fname"
                                                     placeholder="Diameter (m)"
-                                                    onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                    //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
                                                     min="0" max="9999999"
                                                     required
                                                 />
@@ -1257,7 +1257,7 @@ return (
                                                     type="number"
                                                     name="fname"
                                                     placeholder="Depth (m)"
-                                                    onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                    //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
                                                     min="0" max="9999999"
                                                     required
                                                 />                               
@@ -1270,7 +1270,7 @@ return (
                                                           type="number"
                                                           name="fname"
                                                           placeholder="Base (m)"
-                                                          onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                          //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
                                                           min="0" max="9999999"
                                                           required
                                                       />
@@ -1281,7 +1281,7 @@ return (
                                                           type="number"
                                                           name="fname"
                                                           placeholder="Height (m)"
-                                                          onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                          //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
                                                           min="0" max="9999999"
                                                           required
                                                       />
@@ -1291,7 +1291,7 @@ return (
                                                           type="number"
                                                           name="fname"
                                                           placeholder="Depth (m)"
-                                                          onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                          //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
                                                           min="0" max="9999999"
                                                           required
                                                       />
@@ -1305,7 +1305,7 @@ return (
                                                 type="number"
                                                 name="fname"
                                                 placeholder="Volume (L)"
-                                                onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
                                                 min="0" max="9999999"
                                                 required
                                             />
@@ -1315,10 +1315,10 @@ return (
                                   </div>
 
                                   <div>
-                                      <ServiceTest> Extra Issues</ServiceTest>
+                                      <ServiceTest> Pool Issues</ServiceTest>
                                       <div>
                                         <Checkbox toggle label = "  Algae" onChange={ this.handleOnceOFF }  disabled = {cleanOnceStatus} priceCleanOnce =  {this.state.priceCleanOnce}/>
-                                        <Checkbox toggle label = "  Cloudyness" onChange={ this.handleCleanWeek }  disabled = {cleanWeekStatus} priceCleanWeek =  {this.state.priceCleanWeek}/>
+                                        <Checkbox toggle label = "  Cloudy" onChange={ this.handleCleanWeek }  disabled = {cleanWeekStatus} priceCleanWeek =  {this.state.priceCleanWeek}/>
                                         <Checkbox toggle label = "  Circulation" onChange={ this.handleCleanMonth }  disabled = {cleanMonthStatus} priceCleanMonth =  {this.state.priceCleanMonth}/>
                                       </div>
                                   </div>
@@ -1358,7 +1358,7 @@ return (
                                                             type="number"
                                                             name="fname"
                                                             placeholder="Length (m)"
-                                                            onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                            //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
                                                             min="0" max="9999999"
                                                             required
                                                         />
@@ -1369,7 +1369,7 @@ return (
                                                             type="number"
                                                             name="fname"
                                                             placeholder="Width (m)"
-                                                            onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                            //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
                                                             min="0" max="9999999"
                                                             required
                                                         />
@@ -1380,7 +1380,7 @@ return (
                                                             type="number"
                                                             name="fname"
                                                             placeholder="Depth (m)"
-                                                            onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                            //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
                                                             min="0" max="9999999"
                                                             required
                                                         />                                 
@@ -1393,7 +1393,7 @@ return (
                                                     type="number"
                                                     name="fname"
                                                     placeholder="Diameter (m)"
-                                                    onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                    //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
                                                     min="0" max="9999999"
                                                     required
                                                 />
@@ -1404,7 +1404,7 @@ return (
                                                     type="number"
                                                     name="fname"
                                                     placeholder="Depth (m)"
-                                                    onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                    //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
                                                     min="0" max="9999999"
                                                     required
                                                 />                               
@@ -1417,7 +1417,7 @@ return (
                                                           type="number"
                                                           name="fname"
                                                           placeholder="Base (m)"
-                                                          onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                          //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
                                                           min="0" max="9999999"
                                                           required
                                                       />
@@ -1428,7 +1428,7 @@ return (
                                                           type="number"
                                                           name="fname"
                                                           placeholder="Height (m)"
-                                                          onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                          //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
                                                           min="0" max="9999999"
                                                           required
                                                       />
@@ -1438,7 +1438,7 @@ return (
                                                           type="number"
                                                           name="fname"
                                                           placeholder="Depth (m)"
-                                                          onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                          //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
                                                           min="0" max="9999999"
                                                           required
                                                       />
@@ -1452,7 +1452,7 @@ return (
                                                 type="number"
                                                 name="fname"
                                                 placeholder="Volume (L)"
-                                                onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
                                                 min="0" max="9999999"
                                                 required
                                             />
