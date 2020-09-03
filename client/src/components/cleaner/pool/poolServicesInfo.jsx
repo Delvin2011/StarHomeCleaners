@@ -26,20 +26,22 @@ class PoolServicesInfo extends React.Component {
                                 <li>Inspect and clean the pool deck.</li>
                                 <li>Clean thoroughly and vacuum the pool.</li>
                                 <li>Visually inspect clarity of pool water, color and visible contaminants.</li>
-                                <li>Remove floating leaves.</li>
-                                <li>Brush the sides and bottom of your pool.</li>
+                                <li>Testing and balancing of pool chemicals.</li>
                                 <li>Remove and clean and the pool cover.</li>
+                                <li>Netting any visible debris (e.g. leaves, twiggs, plastics etc).</li>
                             </TCList>
                             </div>
                             <div  style = {{"border-left":"thin solid silver"}}>
                             <Heading>Periodic Pool Maintanance</Heading>
                             <TCList>
-                                <li>Add chlorine or other sanitizing agents into the pool.</li>
                                 <li>Ensure the water level is high enough for the pump to function correctly.</li>
                                 <li>Test and adjust the pool water pH.</li>
                                 <li>Test chlorine levels in the pool water.</li>
                                 <li>Visually inspect tile, grout, sealant, and other exposed elements of pool.</li>
-                                <li>Remove floating leaves.</li>
+								<li>Netting any visible debris (e.g. leaves, twiggs, plastics etc).</li>
+								<li>Cleaning of skimmer bag, weir and baskets to remove all debris.</li>
+                                <li>Routine inspection of all pool equipment & recommending pool repairs.</li>
+								<li>Backwashing and rinse of the filter.</li>
                             </TCList> 
                             </div> 
                         </Details>
