@@ -43,6 +43,10 @@ import 'react-accessible-accordion/dist/fancy-example.css';
 
 const useStyles = makeStyles(styles);
 
+
+
+
+
 export default function FAQsPage(props) {
   const classes = useStyles();
   const [GetIndoorService, setGetIndoorService] = useState(false);
@@ -99,10 +103,10 @@ export default function FAQsPage(props) {
                       tabIcon: GiVacuumCleaner,                     
                       tabContent: (
                         <div>
-        <Accordion>
+        <Accordion allowZeroExpanded>
             <AccordionItem>
                 <AccordionItemHeading>
-                    <AccordionItemButton>
+                    <AccordionItemButton style = {{"font-weight": "bold","font-size": "12px","font-family": 'Segoe UI',"letter-spacing":"1.5px"}}>
                         Which different indoor cleaning services are offered?
                     </AccordionItemButton>
                 </AccordionItemHeading>
@@ -147,7 +151,7 @@ export default function FAQsPage(props) {
             </AccordionItem>
             <AccordionItem>
                 <AccordionItemHeading>
-                    <AccordionItemButton>
+                    <AccordionItemButton style = {{"font-weight": "bold","font-size": "12px","font-family": 'Segoe UI',"letter-spacing":"1.5px"}}>
                         What comes standard with all services?
                     </AccordionItemButton>
                 </AccordionItemHeading>
@@ -203,7 +207,7 @@ export default function FAQsPage(props) {
             </AccordionItem>
             <AccordionItem>
                 <AccordionItemHeading>
-                    <AccordionItemButton>
+                    <AccordionItemButton style = {{"font-weight": "bold","font-size": "12px","font-family": 'Segoe UI',"letter-spacing":"1.5px"}}>
                         Do StarHome Cleaners provide cleaning equipment?
                     </AccordionItemButton>
                 </AccordionItemHeading>
@@ -220,7 +224,7 @@ export default function FAQsPage(props) {
             </AccordionItem>
             <AccordionItem>
                 <AccordionItemHeading>
-                    <AccordionItemButton>
+                    <AccordionItemButton style = {{"font-weight": "bold","font-size": "12px","font-family": 'Segoe UI',"letter-spacing":"1.5px"}}>
                     Do StarHome Cleaners provide cleaning detergents?
                     </AccordionItemButton>
                 </AccordionItemHeading>
@@ -230,14 +234,14 @@ export default function FAQsPage(props) {
             </AccordionItem>
             <AccordionItem>
                 <AccordionItemHeading>
-                    <AccordionItemButton>
+                    <AccordionItemButton style = {{"font-weight": "bold","font-size": "12px","font-family": 'Segoe UI',"letter-spacing":"1.5px"}}>
                         What are the extra services?
                     </AccordionItemButton>
                 </AccordionItemHeading>
                 <AccordionItemPanel>
                 <Heading>Extra services</Heading>
                     <TCList>
-                        <li>The services are request on booking, at an etra fee:</li>
+                        <li>The services are request on booking, at an extra fee:</li>
                         <li>Cleaning Walls.</li>
                         <li>Cleaning Windows.</li>
                         <li>Cleaning laundry.</li>
@@ -246,8 +250,8 @@ export default function FAQsPage(props) {
             </AccordionItem>
             <AccordionItem>
                 <AccordionItemHeading>
-                    <AccordionItemButton>
-                        What discount offeres are available?
+                    <AccordionItemButton style = {{"font-weight": "bold","font-size": "12px","font-family": 'Segoe UI',"letter-spacing":"1.5px"}}>
+                        What discount offers are available?
                     </AccordionItemButton>
                 </AccordionItemHeading>
                 <AccordionItemPanel>
@@ -269,10 +273,10 @@ export default function FAQsPage(props) {
                       tabContent: (
 
                         <div>
-        <Accordion>
+        <Accordion allowZeroExpanded>
             <AccordionItem>
                 <AccordionItemHeading>
-                    <AccordionItemButton>
+                    <AccordionItemButton style = {{"font-weight": "bold","font-size": "12px","font-family": 'Segoe UI',"letter-spacing":"1.5px"}}>
                         Which different outdoor cleaning services are offered?
                     </AccordionItemButton>
                 </AccordionItemHeading>
@@ -317,7 +321,7 @@ export default function FAQsPage(props) {
             </AccordionItem>
             <AccordionItem>
                 <AccordionItemHeading>
-                    <AccordionItemButton>
+                    <AccordionItemButton style = {{"font-weight": "bold","font-size": "12px","font-family": 'Segoe UI',"letter-spacing":"1.5px"}}>
                         Do StarHome Cleaners provide cleaning equipment?
                     </AccordionItemButton>
                 </AccordionItemHeading>
@@ -334,8 +338,8 @@ export default function FAQsPage(props) {
             </AccordionItem>
             <AccordionItem>
                 <AccordionItemHeading>
-                    <AccordionItemButton>
-                        What discount offeres are available?
+                    <AccordionItemButton style = {{"font-weight": "bold","font-size": "12px","font-family": 'Segoe UI',"letter-spacing":"1.5px"}}>
+                        What discount offers are available?
                     </AccordionItemButton>
                 </AccordionItemHeading>
                 <AccordionItemPanel>
@@ -357,10 +361,10 @@ export default function FAQsPage(props) {
                       tabIcon: FaSwimmingPool,
                       tabContent: (
                         <div>
-                          <Accordion>
+                          <Accordion allowZeroExpanded>
                               <AccordionItem>
                                   <AccordionItemHeading>
-                                      <AccordionItemButton>
+                                      <AccordionItemButton style = {{"font-weight": "bold","font-size": "12px","font-family": 'Segoe UI',"letter-spacing":"1.5px"}}>
                                           Which different pool cleaning services are offered?
                                       </AccordionItemButton>
                                   </AccordionItemHeading>
@@ -394,7 +398,7 @@ export default function FAQsPage(props) {
                               </AccordionItem>
                               <AccordionItem>
                                   <AccordionItemHeading>
-                                      <AccordionItemButton>
+                                      <AccordionItemButton style = {{"font-weight": "bold","font-size": "12px","font-family": 'Segoe UI',"letter-spacing":"1.5px"}}>
                                           Do StarHome Cleaners pool chemicals?
                                       </AccordionItemButton>
                                   </AccordionItemHeading>
@@ -404,7 +408,7 @@ export default function FAQsPage(props) {
                               </AccordionItem>
                               <AccordionItem>
                                   <AccordionItemHeading>
-                                      <AccordionItemButton>
+                                      <AccordionItemButton style = {{"font-weight": "bold","font-size": "12px","font-family": 'Segoe UI',"letter-spacing":"1.5px"}}>
                                           Do StarHome Cleaners provide cleaning equipment?
                                       </AccordionItemButton>
                                   </AccordionItemHeading>
@@ -421,8 +425,8 @@ export default function FAQsPage(props) {
                               </AccordionItem>
                               <AccordionItem>
                                   <AccordionItemHeading>
-                                      <AccordionItemButton>
-                                          What discount offeres are available?
+                                      <AccordionItemButton style = {{"font-weight": "bold","font-size": "12px","font-family": 'Segoe UI',"letter-spacing":"1.5px"}}>
+                                          What discount offers are available?
                                       </AccordionItemButton>
                                   </AccordionItemHeading>
                                   <AccordionItemPanel>

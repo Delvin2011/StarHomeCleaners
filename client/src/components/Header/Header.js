@@ -76,9 +76,11 @@ export default function Header(props) {
           ) : (
             <div> 
               <Hidden>
-                  <img alt = "" src = {Logo} style = {{height:"50px", width: "50px", "margin": "auto"}}></img>
+                  <a href = "/"><img alt = "" src = {Logo} style = {{height:"50px", width: "50px", "margin": "auto"}}></img></a>
               </Hidden>
-              <Button className={classes.title} style = {{marginLeft: "auto"}}>{brand}</Button>
+
+              <Button className={classes.title} style = {{marginLeft: "auto"}} formaction="/">{brand}</Button>
+
             </div>
                      
           )}
