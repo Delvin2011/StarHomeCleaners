@@ -58,7 +58,8 @@ class Cleaner extends React.Component {
   logs4 = [];
   logs5 = [];
   logs6 = [];
-  logsAreaHours = [];
+  logsOutdoorPropType = [];
+  logsOutdoorPropKind = [];
   locationPool = [];
   poolTimes = [];
   logsPoolHours = [];
@@ -69,7 +70,7 @@ class Cleaner extends React.Component {
         this.state = {
           defaultValue: new Date(),
           dateTime: null,//new Date(),
-          dateTime2: null,
+          dateTimeOutdoor: null,
           dateTimePool: null,
           min: new Date(2020,3,13,12,30),
           max: new Date(2090, 2, 10, 12, 30),
@@ -130,7 +131,8 @@ class Cleaner extends React.Component {
           events4: this.logs4,
           events5: this.logs5,
           events6: this.logs6,
-          eventsAreaHours: this.logsAreaHours,
+          OutdoorPropType: this.logsOutdoorPropType,
+          OutdoorPropKind: this.logsOutdoorPropKind,
           eventsPoolHours: this.logsPoolHours,
           locPool: this.locationPool,
           PoolTime: this.poolTimes,
@@ -187,7 +189,13 @@ class Cleaner extends React.Component {
           handleIndoorGenPromo: 1,
           handleIndoorEndTenencyPromo: 1,
           handleIndoorAfterBuildPromo: 1,
-          handleIndoorSanitisePromo: 1
+          handleIndoorSanitisePromo: 1,
+
+          /***************** Outdoor ********************/
+          outdoorYCwholeYard: false,
+          outdoorYCfrontYard: false,
+          outdoorYCbackYard: false,
+          outdoorYCsideYard: false
 
         }
         this.handleDropdownChange = this.handleDropdownChange.bind(this);
@@ -224,8 +232,29 @@ class Cleaner extends React.Component {
         this.handleIndoorSanitisePromo = this.handleIndoorSanitisePromo.bind(this);
 
 
+        /***********Outdoor Services Handling*************/
+        this.handleOutdoorPropertType = this.handleOutdoorPropertType.bind(this);
+        this.handleOutdoorPropertKind = this.handleOutdoorPropertKind.bind(this);
 
+        this.outdoorYCwholeYard= this.outdoorYCwholeYard.bind(this);
+        this.outdoorYCfrontYard= this.outdoorYCfrontYard.bind(this);
+        this.outdoorYCbackYard= this.outdoorYCbackYard.bind(this);
+        this.outdoorYCsideYard= this.outdoorYCsideYard.bind(this);
 
+        this.outdoorLMwholeYard= this.outdoorLMwholeYard.bind(this);
+        this.outdoorLMfrontYard= this.outdoorLMfrontYard.bind(this);
+        this.outdoorLMbackYard= this.outdoorLMbackYard.bind(this);
+        this.outdoorLMsideYard= this.outdoorLMsideYard.bind(this);
+
+        this.outdoorFBwholeYard= this.outdoorFBwholeYard.bind(this);
+        this.outdoorFBfrontYard= this.outdoorFBfrontYard.bind(this);
+        this.outdoorFBbackYard= this.outdoorFBbackYard.bind(this);
+        this.outdoorFBsideYard= this.outdoorFBsideYard.bind(this);
+
+        this.outdoorDCwholeYard= this.outdoorDCwholeYard.bind(this);
+        this.outdoorDCfrontYard= this.outdoorDCfrontYard.bind(this);
+        this.outdoorDCbackYard= this.outdoorDCbackYard.bind(this);
+        this.outdoorDCsideYard= this.outdoorDCsideYard.bind(this);
 
 
         /***********Pool Services Handling*************/
@@ -237,7 +266,7 @@ class Cleaner extends React.Component {
         this.handleMaintQuat = this.handleMaintQuat.bind(this);
         this.handleMaintYear = this.handleMaintYear.bind(this);
 
-        this.handleDropdownAreaSize = this.handleDropdownAreaSize.bind(this);
+
         this.handlePoolAreaSize = this.handlePoolAreaSize.bind(this);
 
 
@@ -259,13 +288,6 @@ class Cleaner extends React.Component {
           bathRooms: e.target.value === "1"? e.target.value + " Bathroom" : e.target.value  + " Bathrooms"});
         }
 
-        handleDropdownAreaSize(e) {
-      this.logsAreaHours.shift();
-      this.logsAreaHours.unshift("Working Hours : " + e.target.value + " hrs");
-        this.setState({ selectValue: e.target.value,
-          areaHours: e.target.value
-        });
-      }
 
       handlePoolAreaSize(e) {
         this.logsPoolHours.shift();
@@ -536,6 +558,52 @@ class Cleaner extends React.Component {
       });
     }
 
+    handleDateChangeOutdoor = date => {
+      this.logs6.shift()
+      this.logs6.unshift("" + date);
+      this.setState({
+          dateTimeOutdoor: date,
+          events6: this.logs6.slice()
+      });
+    }
+
+    handleOutdoorPropertType(e) {
+      this.logsOutdoorPropType.shift();
+      this.logsOutdoorPropType.unshift("Property Type : " + e.target.value );
+        this.setState({ selectValue: e.target.value,
+          areaHours: e.target.value //to ignore
+        });
+      }
+
+
+      handleOutdoorPropertKind(e) {
+        this.logsOutdoorPropKind.shift();
+        this.logsOutdoorPropKind.unshift("Property Kind : " + e.target.value );
+          this.setState({ selectValue: e.target.value,
+            areaHours: e.target.value //to ignore
+          });
+        }
+  
+        outdoorYCwholeYard () {this.setState({outdoorYCwholeYard: !this.state.outdoorYCwholeYard})};
+        outdoorYCfrontYard () {this.setState({outdoorYCfrontYard: !this.state.outdoorYCfrontYard})};
+        outdoorYCbackYard () {this.setState({outdoorYCbackYard: !this.state.outdoorYCbackYard})};
+        outdoorYCsideYard () {this.setState({outdoorYCsideYard: !this.state.outdoorYCsideYard})};
+        
+        outdoorLMwholeYard () {this.setState({outdoorLMwholeYard: !this.state.outdoorLMwholeYard})};
+        outdoorLMfrontYard () {this.setState({outdoorLMfrontYard: !this.state.outdoorLMfrontYard})};
+        outdoorLMbackYard () {this.setState({outdoorLMbackYard: !this.state.outdoorLMbackYard})};
+        outdoorLMsideYard () {this.setState({outdoorLMsideYard: !this.state.outdoorLMsideYard})};
+
+        outdoorFBwholeYard () {this.setState({outdoorFBwholeYard: !this.state.outdoorFBwholeYard})};
+        outdoorFBfrontYard () {this.setState({outdoorFBfrontYard: !this.state.outdoorFBfrontYard})};
+        outdoorFBbackYard () {this.setState({outdoorFBbackYard: !this.state.outdoorFBbackYard})};
+        outdoorFBsideYard () {this.setState({outdoorFBsideYard: !this.state.outdoorFBsideYard})};
+
+        outdoorDCwholeYard () {this.setState({outdoorDCwholeYard: !this.state.outdoorDCwholeYard})};
+        outdoorDCfrontYard () {this.setState({outdoorDCfrontYard: !this.state.outdoorDCfrontYard})};
+        outdoorDCbackYard () {this.setState({outdoorDCbackYard: !this.state.outdoorDCbackYard})};
+        outdoorDCsideYard () {this.setState({outdoorDCsideYard: !this.state.outdoorDCsideYard})};
+            
 
     /**************Pool Services Handling********************/
     showPoolServicesInfo(event) {
@@ -646,14 +714,7 @@ class Cleaner extends React.Component {
     });
   }
 
-  handleChange6 = date => {
-    this.logs6.shift()
-    this.logs6.unshift("" + date);
-    this.setState({
-        dateTime2: date,
-        events6: this.logs6.slice()
-    });
-  }
+
 
   handleChangePool = date => {
     this.poolTimes.shift()
@@ -688,7 +749,7 @@ const totalSanitiseIndoor = this.state.IndoorSanitise ? (230 + this.state.bedPri
 const totalIndoor = totalGenIndoorClean + totalAfterBuildIndoorClean + totalEndTenancyIndoorClean + totalSanitiseIndoor;
 
 const x = "" + this.state.dateTime;
-const y = "" + this.state.dateTime2;
+const y = "" + this.state.dateTimeOutdoor;
 const poolTime = "" + this.state.dateTimePool;
 
 const cleanOnceStatus = this.state.cleanMonth || this.state.cleanWeek ? true : false;
@@ -705,6 +766,20 @@ const genIndoorCleanMonthStatus = this.state.genIndoorCleanOnce || this.state.ge
 const maintMonthStatus = this.state.maintYear || this.state.maintQuat ? true : false;
 const maintQuatStatus = this.state.maintMonth || this.state.maintYear ? true : false;
 const maintYearStatus = this.state.maintMonth || this.state.maintQuat ? true : false;
+
+
+/********************Outdoor*****************/
+const outdoorYCwholeYardStatus = this.state.outdoorYCfrontYard || this.state.outdoorYCbackYard || this.state.outdoorYCsideYard? true : false;
+const outdoorNotWholeYardStatus = this.state.outdoorYCwholeYard ? true : false;
+
+const outdoorLMwholeYardStatus = this.state.outdoorLMfrontYard || this.state.outdoorLMbackYard || this.state.outdoorLMsideYard? true : false;
+const outdoorLMnotWholeYardStatus = this.state.outdoorLMwholeYard ? true : false;
+
+const outdoorFBwholeYardStatus = this.state.outdoorFBfrontYard || this.state.outdoorFBbackYard || this.state.outdoorFBsideYard? true : false;
+const outdoorFBnotWholeYardStatus = this.state.outdoorFBwholeYard ? true : false;
+
+const outdoorDCwholeYardStatus = this.state.outdoorDCfrontYard || this.state.outdoorDCbackYard || this.state.outdoorDCsideYard? true : false;
+const outdoorDCnotWholeYardStatus = this.state.outdoorDCwholeYard ? true : false;
 
 const options = locations;
 const ExampleCustomInput = ({ value, onClick }) => (
@@ -1062,17 +1137,17 @@ return (
                                 </ContentTitle>
                                 <Options>
                                     <DatePicker
-                                          selected={this.state.dateTime2}
-                                          value={this.state.dateTime2}
-                                          onChange={this.handleChange6}
-                                          minDate={new Date()}
-                                          customInput={<ExampleCustomInput />}
-                                          showTimeInput
-                                          timeFormat="HH:mm"
-                                          timeIntervals={1}
-                                          timeCaption="time"
-                                          dateFormat="MMMM d, yyyy h:mm aa"
-                                          shouldCloseOnSelect={false} />
+                                      selected={this.state.dateTimeOutdoor}
+                                      value={this.state.dateTimeOutdoor}
+                                      onChange={this.handleDateChangeOutdoor}
+                                      minDate={new Date()}
+                                      customInput={<ExampleCustomInput />}
+                                      showTimeInput
+                                      timeFormat="HH:mm"
+                                      timeIntervals={1}
+                                      timeCaption="time"
+                                      dateFormat="MMMM d, yyyy h:mm aa"
+                                      shouldCloseOnSelect={false} />
 
                                       <div style = {{"width": "150px","height": "22px","color": 'grey'}}>
                                         <Select
@@ -1083,31 +1158,297 @@ return (
                                           placeholder="Location..."
                                           
                                         />
-                                      </div>   
-                                      <h4 style = {{color: 'grey', fontSize : "14px", marginTop : "0px"}}>Work hours : </h4>    
-                                      <select id="areaSize" onChange={this.handleDropdownAreaSize} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
-                                          <option value="0">No. of Hours</option>
-                                          <option value="1">1 Hour</option>
-                                          <option value="2">2 Hours</option>
-                                          <option value="3">3 Hours</option>
-                                          <option value="4">4 Hours</option>
-                                          <option value="5">5 Hours</option>
-                                          <option value="6">6 Hours</option>
-                                      </select>
+                                      </div> 
+
+                                      <select id="areaSize" onChange={this.handleOutdoorPropertType} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
+                                        <option value="0">Property Type</option>
+                                        <option value="Residential">Residential</option>
+                                        <option value="Commercial">Commercial</option>
+                                      </select>   
+
+                                      <select id="areaSize" onChange={this.handleOutdoorPropertKind} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
+                                        <option value="0">Property Kind</option>
+                                        <option value="House">House</option>
+                                        <option value="Apartment">Apartment</option>
+                                        <option value="Townhouse">Townhouse</option>
+                                      </select>	  
+
                                 </Options>
                                 <ContentTitle> Required Services <Info onClick = {this.showOutdoorServicesInfo.bind(this)} showOutdoorServicesInfo = {this.state.showOutdoorServicesInfo}/>
                                   <span><hr width="300"/></span>
                                 </ContentTitle>
                                 <Options4>
-                                <ServiceGridSplit><Tooltip title="Yard Cleaning" aria-label="add"><Fab2><Wheelbarrow onClick={this.pick7.bind(this)} picked7 = {this.state.picked7}/></Fab2></Tooltip> <ServiceName>Yard cleaning</ServiceName> </ServiceGridSplit>
+                              { this.state.Mower ?
+                                <div>
+                                  <ServiceTest> Work Area</ServiceTest>
+                                  <div style = {{"margin-top" : "0px"}}>
+                                    <Checkbox toggle label = "  Whole Yard" onChange={ this.outdoorLMwholeYard }  disabled = {outdoorLMwholeYardStatus} />
+                                    <Checkbox toggle label = "  Front Yard" onChange={ this.outdoorLMfrontYard }  disabled = {outdoorLMnotWholeYardStatus} />
+                                    <Checkbox toggle label = "  Back Yard" onChange={ this.outdoorLMbackYard }  disabled = {outdoorLMnotWholeYardStatus} />
+                                    <Checkbox toggle label = "  Side Yard" onChange={ this.outdoorLMsideYard }  disabled = {outdoorLMnotWholeYardStatus} />
+                                  </div>
+                                </div>
 
-                                    {this.state.Mower ?
-                                      <ServiceGridSplit><Tooltip title="Lawn Mowing" aria-label="add"><Fab2><LogoContainer2 src={LawnMowerSelect} onClick={this.Mow.bind(this)}/></Fab2></Tooltip><ServiceName>Lawn Mowing</ServiceName> </ServiceGridSplit> 
+                               : this.state.picked8?
+                               <div>
+                                  <ServiceTest> Work Area</ServiceTest>
+                                  <div style = {{"margin-top" : "0px"}}>
+                                    <Checkbox toggle label = "  Whole Yard" onChange={ this.outdoorFBwholeYard }  disabled = {outdoorFBwholeYardStatus} />
+                                    <Checkbox toggle label = "  Front Yard" onChange={ this.outdoorFBfrontYard }  disabled = {outdoorFBnotWholeYardStatus} />
+                                    <Checkbox toggle label = "  Back Yard" onChange={ this.outdoorFBbackYard }  disabled = {outdoorFBnotWholeYardStatus} />
+                                    <Checkbox toggle label = "  Side Yard" onChange={ this.outdoorFBsideYard }  disabled = {outdoorFBnotWholeYardStatus} />
+                                  </div>
+                                </div>
+
+                                : this.state.picked9?
+                                <div>
+                                  <ServiceTest> Work Area</ServiceTest>
+                                  <div style = {{"margin-top" : "0px"}}>
+                                    <Checkbox toggle label = "  Whole Yard" onChange={ this.outdoorDCwholeYard }  disabled = {outdoorDCwholeYardStatus} />
+                                    <Checkbox toggle label = "  Front Yard" onChange={ this.outdoorDCfrontYard }  disabled = {outdoorDCnotWholeYardStatus} />
+                                    <Checkbox toggle label = "  Back Yard" onChange={ this.outdoorDCbackYard }  disabled = {outdoorDCnotWholeYardStatus} />
+                                    <Checkbox toggle label = "  Side Yard" onChange={ this.outdoorDCsideYard }  disabled = {outdoorDCnotWholeYardStatus} />
+                                  </div>
+                                </div>
+
+                                : <ServiceGridSplit><ServiceTest>Yard Cleaning</ServiceTest><Tooltip title="Yard Cleaning" aria-label="add"><Fab2><Wheelbarrow onClick={this.pick7.bind(this)} picked7 = {this.state.picked7}/></Fab2></Tooltip></ServiceGridSplit>
+                              }
+
+
+                              {this.state.picked7?
+                                <div>
+                                  <ServiceTest> Work Area</ServiceTest>
+                                  <div style = {{"margin-top" : "0px"}}>
+                                    <Checkbox toggle label = "  Whole Yard" onChange={ this.outdoorYCwholeYard }  disabled = {outdoorYCwholeYardStatus} />
+                                    <Checkbox toggle label = "  Front Yard" onChange={ this.outdoorYCfrontYard }  disabled = {outdoorNotWholeYardStatus} />
+                                    <Checkbox toggle label = "  Back Yard" onChange={ this.outdoorYCbackYard }  disabled = {outdoorNotWholeYardStatus} />
+                                    <Checkbox toggle label = "  Side Yard" onChange={ this.outdoorYCsideYard }  disabled = {outdoorNotWholeYardStatus} />
+                                  </div>
+                                </div>
+
+                              :this.state.picked8?
+                              <div>
+                                <div>
+                                <ServiceTest> Area Size</ServiceTest>
+                                      <select id="areaSize" onChange={this.handlePoolAreaSize} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
+                                          <option value="0">-20 sq m</option>
+                                          <option value="1">20-75 sq m</option>
+                                          <option value="2">75-150 sq m</option>
+                                          <option value="3">150-250 sq m</option>
+                                          <option value="4">+ 250 sq m</option>
+                                      </select>
+                                </div>
+                                <ServiceTest style = {{"margin-bottom": "-8px"}}> Or </ServiceTest>
+                                <Form>
+                                    <FormInput
+                                          id="fname"
+                                          size="10"
+                                          type="number"
+                                          name="fname"
+                                          placeholder="Length (m)"
+                                          //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                          min="0" max="9999999"
+                                          required
+                                      />                                               
+                                      <FormInput
+                                              id="fname"
+                                              size="10"
+                                              type="number"
+                                              name="fname"
+                                              placeholder="Width (m)"
+                                              //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                              min="0" max="9999999"
+                                              required
+                                          />
+                                </Form>
+                              </div>
+                              : this.state.picked9?
+                              <div>
+                                <div>
+                                <ServiceTest> Area Size</ServiceTest>
+                                      <select id="areaSize" onChange={this.handlePoolAreaSize} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
+                                      <option value="0">-20 sq m</option>
+                                          <option value="1">20-75 sq m</option>
+                                          <option value="2">75-150 sq m</option>
+                                          <option value="3">150-250 sq m</option>
+                                          <option value="4">+ 250 sq m</option>
+                                      </select>
+                                </div>
+                                  <ServiceTest style = {{"margin-bottom": "-8px"}}> Or </ServiceTest>
+                                  <Form>
+                                      <FormInput
+                                            id="fname"
+                                            size="10"
+                                            type="number"
+                                            name="fname"
+                                            placeholder="Length (m)"
+                                            //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                            min="0" max="9999999"
+                                            required
+                                        />
+                                                    
+                                        <FormInput
+                                                id="fname"
+                                                size="10"
+                                                type="number"
+                                                name="fname"
+                                                placeholder="Width (m)"
+                                                //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                min="0" max="9999999"
+                                                required
+                                            />
+                                  </Form>
+                              </div>
+
+                              : this.state.Mower ?
+                                      <ServiceGridSplit><ServiceTest>Lawn Mowing</ServiceTest><Tooltip title="Lawn Mowing" aria-label="add"><Fab2><LogoContainer2 src={LawnMowerSelect} onClick={this.Mow.bind(this)}/></Fab2></Tooltip></ServiceGridSplit> 
                                       :
-                                      <ServiceGridSplit><Tooltip title="Lawn Mowing" aria-label="add"><Fab2><LogoContainer2 src={LawnMower} onClick={this.Mow.bind(this)}/></Fab2></Tooltip><ServiceName>Lawn Mowing</ServiceName> </ServiceGridSplit> 
-                                    }
-                                    <ServiceGridSplit><Tooltip  title="Flower Bedding" aria-label="add"><Fab2 ><Flowers onClick={this.pick8.bind(this)} picked8 = {this.state.picked8}/></Fab2></Tooltip><ServiceName>Flower Bedding</ServiceName> </ServiceGridSplit> 
-                                    <ServiceGridSplit><Tooltip  title="Driveway Cleaning" aria-label="add"><Fab2 ><Driveway onClick={this.pick9.bind(this)} picked9 = {this.state.picked9}/></Fab2></Tooltip><ServiceName>Driveway</ServiceName> </ServiceGridSplit> 
+                                      <ServiceGridSplit><ServiceTest>Lawn Mowing</ServiceTest><Tooltip title="Lawn Mowing" aria-label="add"><Fab2><LogoContainer2 src={LawnMower} onClick={this.Mow.bind(this)}/></Fab2></Tooltip></ServiceGridSplit> 
+                              } 
+
+
+                              {this.state.picked7?
+                              <div>
+                                <div>
+                                <ServiceTest> Area Size</ServiceTest>
+                                      <select id="areaSize" onChange={this.handlePoolAreaSize} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
+                                          <option value="0">-20 sq m</option>
+                                          <option value="1">20-75 sq m</option>
+                                          <option value="2">75-150 sq m</option>
+                                          <option value="3">150-250 sq m</option>
+                                          <option value="4">+ 250 sq m</option>
+                                      </select>
+                                </div>
+                                  <ServiceTest style = {{"margin-bottom": "-8px"}}> Or </ServiceTest>
+                                  <Form>
+                                      <FormInput
+                                            id="fname"
+                                            size="10"
+                                            type="number"
+                                            name="fname"
+                                            placeholder="Length (m)"
+                                            //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                            min="0" max="9999999"
+                                            required
+                                        />
+                                                    
+                                        <FormInput
+                                                id="fname"
+                                                size="10"
+                                                type="number"
+                                                name="fname"
+                                                placeholder="Width (m)"
+                                                //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                min="0" max="9999999"
+                                                required
+                                            />
+                                  </Form>
+                              </div>
+                              : this.state.Mower ?
+                              <div>
+                                <div>
+                                <ServiceTest> Area Size</ServiceTest>
+                                      <select id="areaSize" onChange={this.handlePoolAreaSize} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
+                                          <option value="0">-20 sq m</option>
+                                          <option value="1">20-75 sq m</option>
+                                          <option value="2">75-150 sq m</option>
+                                          <option value="3">150-250 sq m</option>
+                                          <option value="4">+ 250 sq m</option>
+                                      </select>
+                                </div>
+                                  <ServiceTest style = {{"margin-bottom": "-8px"}}> Or </ServiceTest>
+                                  <Form>
+                                      <FormInput
+                                            id="fname"
+                                            size="10"
+                                            type="number"
+                                            name="fname"
+                                            placeholder="Length (m)"
+                                            //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                            min="0" max="9999999"
+                                            required
+                                        />
+                                                    
+                                        <FormInput
+                                                id="fname"
+                                                size="10"
+                                                type="number"
+                                                name="fname"
+                                                placeholder="Width (m)"
+                                                //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                min="0" max="9999999"
+                                                required
+                                            />
+                                  </Form>
+                              </div>
+                              : this.state.picked9 ?
+                              <div>
+                                    <ServiceTest> Promo Code </ServiceTest>
+                                    <FormInput
+                                        id="fname"
+                                        size="10"
+                                        maxlength="7"
+                                        type="text"
+                                        name="fname"
+                                        placeholder="Code"
+                                        onKeyUp = {this.handleIndoorEndTenencyPromo}
+                                        min="0" max="9999999"
+                                        required
+                                    />
+                                  </div>
+                              : <ServiceGridSplit><ServiceTest>Flower Bedding</ServiceTest><Tooltip  title="Flower Bedding" aria-label="add"><Fab2 ><Flowers onClick={this.pick8.bind(this)} picked8 = {this.state.picked8}/></Fab2></Tooltip></ServiceGridSplit> 
+                             
+                              }  
+
+                              {this.state.picked7?
+                                <div>
+                                    <ServiceTest> Promo Code </ServiceTest>
+                                    <FormInput
+                                        id="fname"
+                                        size="10"
+                                        maxlength="7"
+                                        type="text"
+                                        name="fname"
+                                        placeholder="Code"
+                                        onKeyUp = {this.handleIndoorEndTenencyPromo}
+                                        min="0" max="9999999"
+                                        required
+                                    />
+                                </div>
+
+                                :this.state.Mower ?
+                                <div>
+                                    <ServiceTest> Promo Code </ServiceTest>
+                                    <FormInput
+                                        id="fname"
+                                        size="10"
+                                        maxlength="7"
+                                        type="text"
+                                        name="fname"
+                                        placeholder="Code"
+                                        onKeyUp = {this.handleIndoorEndTenencyPromo}
+                                        min="0" max="9999999"
+                                        required
+                                    />
+                                </div>
+                                :this.state.picked8 ?
+                                <div>
+                                    <ServiceTest> Promo Code </ServiceTest>
+                                    <FormInput
+                                        id="fname"
+                                        size="10"
+                                        maxlength="7"
+                                        type="text"
+                                        name="fname"
+                                        placeholder="Code"
+                                        onKeyUp = {this.handleIndoorEndTenencyPromo}
+                                        min="0" max="9999999"
+                                        required
+                                    />
+                                  </div>
+                                :<ServiceGridSplit><ServiceTest>Driveway Cleaning</ServiceTest><Tooltip  title="Driveway Cleaning" aria-label="add"><Fab2 ><Driveway onClick={this.pick9.bind(this)} picked9 = {this.state.picked9}/></Fab2></Tooltip></ServiceGridSplit>                             
+                              }                          
+
                                 </Options4>
                                 <ContentTitle> Service Details & Costs
                                   <span><hr width="300"/></span>
@@ -1118,7 +1459,9 @@ return (
 
                                     <EventLog logs={this.state.events5}/>
 
-                                    <EventLog logs={this.state.eventsAreaHours}/>
+                                    <EventLog logs={this.state.OutdoorPropType}/>
+
+                                    <EventLog logs={this.state.OutdoorPropKind}/>
 
                                     {this.state.events6.length !== 0 ?
                                       <Message>Date : {y.replace("GMT+0200 (South Africa Standard Time)","")}</Message> 
@@ -1546,9 +1889,9 @@ return (
 
             {this.state.showPopupOutdoor?
               this.props.currentUser?
-              <Outdoor showPopupOutdoor = {this.state.showPopupOutdoor} currentUser = {this.props.currentUser} closePopup={this.props.closePopup} dateTime = {this.state.dateTime2} total = {this.state.total2} time = {this.state.areaHours} wheelbarrow = {this.state.value8} mower = {this.state.value11} windows = {this.state.value9} box = {this.state.value10} />
+              <Outdoor showPopupOutdoor = {this.state.showPopupOutdoor} currentUser = {this.props.currentUser} closePopup={this.props.closePopup} dateTime = {this.state.dateTimeOutdoor} total = {this.state.total2} time = {this.state.areaHours} wheelbarrow = {this.state.value8} mower = {this.state.value11} windows = {this.state.value9} box = {this.state.value10} />
                 : !this.props.currentUser?
-                  <PromptSinIn currentUser = {this.props.currentUser} showPopupOutdoor = {this.state.showPopupOutdoor} closePopup={this.props.closePopup} dateTime = {this.state.dateTime2} total = {this.state.total2} time = {this.state.areaHours} wheelbarrow = {this.state.value8} mower = {this.state.value11} windows = {this.state.value9} box = {this.state.value10}/>
+                  <PromptSinIn currentUser = {this.props.currentUser} showPopupOutdoor = {this.state.showPopupOutdoor} closePopup={this.props.closePopup} dateTime = {this.state.dateTimeOutdoor} total = {this.state.total2} time = {this.state.areaHours} wheelbarrow = {this.state.value8} mower = {this.state.value11} windows = {this.state.value9} box = {this.state.value10}/>
                 : null
               :null
             } 
