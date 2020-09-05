@@ -1182,10 +1182,10 @@ return (
                                 <div>
                                   <ServiceTest> Work Area</ServiceTest>
                                   <div style = {{"margin-top" : "0px"}}>
-                                    <Checkbox toggle label = "  Whole Yard" onChange={ this.outdoorLMwholeYard }  disabled = {outdoorLMwholeYardStatus} />
-                                    <Checkbox toggle label = "  Front Yard" onChange={ this.outdoorLMfrontYard }  disabled = {outdoorLMnotWholeYardStatus} />
-                                    <Checkbox toggle label = "  Back Yard" onChange={ this.outdoorLMbackYard }  disabled = {outdoorLMnotWholeYardStatus} />
-                                    <Checkbox toggle label = "  Side Yard" onChange={ this.outdoorLMsideYard }  disabled = {outdoorLMnotWholeYardStatus} />
+                                    <Checkbox toggle label = "  WholeYard" onChange={ this.outdoorLMwholeYard }  disabled = {outdoorLMwholeYardStatus} />
+                                    <Checkbox toggle label = "  FrontYard" onChange={ this.outdoorLMfrontYard }  disabled = {outdoorLMnotWholeYardStatus} />
+                                    <Checkbox toggle label = "  BackYard" onChange={ this.outdoorLMbackYard }  disabled = {outdoorLMnotWholeYardStatus} />
+                                    <Checkbox toggle label = "  SideYard" onChange={ this.outdoorLMsideYard }  disabled = {outdoorLMnotWholeYardStatus} />
                                   </div>
                                 </div>
 
@@ -1193,10 +1193,10 @@ return (
                                <div>
                                   <ServiceTest> Work Area</ServiceTest>
                                   <div style = {{"margin-top" : "0px"}}>
-                                    <Checkbox toggle label = "  Whole Yard" onChange={ this.outdoorFBwholeYard }  disabled = {outdoorFBwholeYardStatus} />
-                                    <Checkbox toggle label = "  Front Yard" onChange={ this.outdoorFBfrontYard }  disabled = {outdoorFBnotWholeYardStatus} />
-                                    <Checkbox toggle label = "  Back Yard" onChange={ this.outdoorFBbackYard }  disabled = {outdoorFBnotWholeYardStatus} />
-                                    <Checkbox toggle label = "  Side Yard" onChange={ this.outdoorFBsideYard }  disabled = {outdoorFBnotWholeYardStatus} />
+                                    <Checkbox toggle label = "  WholeYard" onChange={ this.outdoorFBwholeYard }  disabled = {outdoorFBwholeYardStatus} />
+                                    <Checkbox toggle label = "  FrontYard" onChange={ this.outdoorFBfrontYard }  disabled = {outdoorFBnotWholeYardStatus} />
+                                    <Checkbox toggle label = "  BackYard" onChange={ this.outdoorFBbackYard }  disabled = {outdoorFBnotWholeYardStatus} />
+                                    <Checkbox toggle label = "  SideYard" onChange={ this.outdoorFBsideYard }  disabled = {outdoorFBnotWholeYardStatus} />
                                   </div>
                                 </div>
 
@@ -1204,10 +1204,10 @@ return (
                                 <div>
                                   <ServiceTest> Work Area</ServiceTest>
                                   <div style = {{"margin-top" : "0px"}}>
-                                    <Checkbox toggle label = "  Whole Yard" onChange={ this.outdoorDCwholeYard }  disabled = {outdoorDCwholeYardStatus} />
-                                    <Checkbox toggle label = "  Front Yard" onChange={ this.outdoorDCfrontYard }  disabled = {outdoorDCnotWholeYardStatus} />
-                                    <Checkbox toggle label = "  Back Yard" onChange={ this.outdoorDCbackYard }  disabled = {outdoorDCnotWholeYardStatus} />
-                                    <Checkbox toggle label = "  Side Yard" onChange={ this.outdoorDCsideYard }  disabled = {outdoorDCnotWholeYardStatus} />
+                                    <Checkbox toggle label = "  WholeYard" onChange={ this.outdoorDCwholeYard }  disabled = {outdoorDCwholeYardStatus} />
+                                    <Checkbox toggle label = "  FrontYard" onChange={ this.outdoorDCfrontYard }  disabled = {outdoorDCnotWholeYardStatus} />
+                                    <Checkbox toggle label = "  BackYard" onChange={ this.outdoorDCbackYard }  disabled = {outdoorDCnotWholeYardStatus} />
+                                    <Checkbox toggle label = "  SideYard" onChange={ this.outdoorDCsideYard }  disabled = {outdoorDCnotWholeYardStatus} />
                                   </div>
                                 </div>
 
@@ -1219,10 +1219,10 @@ return (
                                 <div>
                                   <ServiceTest> Work Area</ServiceTest>
                                   <div style = {{"margin-top" : "0px"}}>
-                                    <Checkbox toggle label = "  Whole Yard" onChange={ this.outdoorYCwholeYard }  disabled = {outdoorYCwholeYardStatus} />
-                                    <Checkbox toggle label = "  Front Yard" onChange={ this.outdoorYCfrontYard }  disabled = {outdoorNotWholeYardStatus} />
-                                    <Checkbox toggle label = "  Back Yard" onChange={ this.outdoorYCbackYard }  disabled = {outdoorNotWholeYardStatus} />
-                                    <Checkbox toggle label = "  Side Yard" onChange={ this.outdoorYCsideYard }  disabled = {outdoorNotWholeYardStatus} />
+                                    <Checkbox toggle label = "  WholeYard" onChange={ this.outdoorYCwholeYard }  disabled = {outdoorYCwholeYardStatus} />
+                                    <Checkbox toggle label = "  FrontYard" onChange={ this.outdoorYCfrontYard }  disabled = {outdoorNotWholeYardStatus} />
+                                    <Checkbox toggle label = "  BackYard" onChange={ this.outdoorYCbackYard }  disabled = {outdoorNotWholeYardStatus} />
+                                    <Checkbox toggle label = "  SideYard" onChange={ this.outdoorYCsideYard }  disabled = {outdoorNotWholeYardStatus} />
                                   </div>
                                 </div>
 
