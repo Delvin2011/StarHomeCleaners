@@ -375,29 +375,7 @@ const picks6 = props => {
   return r;
 };
 
-const picks7 = props => {
-  if (props.picked7) {
-    return y;
-  }
-  else
-  return r;
-};
 
-const picks8 = props => {
-  if (props.picked8) {
-    return y;
-  }
-  else
-  return r;
-};
-
-const picks9 = props => {
-  if (props.picked9) {
-    return y;
-  }
-  else
-  return r;
-};
 
 const PoolClean = props => {
   if (props.PoolClean) {
@@ -545,24 +523,40 @@ export const SanitiseIcon = styled(GiSpray)`
   height: 40px;
 }
 `;
-/*export const Stove = styled(Icon)`
-  color: red;
-  font-size: 38px;
-  justify-items: center;
-  cursor: pointer;
-  ${picks4};
-  @media screen and (max-width: 800px){
-    width: 40px;
-  height: 40px;
-}
-`;*/
 
-export const Wardrobe = styled(Icon)`
+/****************Outdoor******************** */
+
+const YCoutdoorClean = props => {
+  if (props.YCoutdoorClean) {
+    return y;
+  }
+  else
+  return r;
+};
+
+const FBoutdoorClean = props => {
+  if (props.FBoutdoorClean) {
+    return y;
+  }
+  else
+  return r;
+};
+
+const DCoutdoorClean = props => {
+  if (props.DCoutdoorClean) {
+    return y;
+  }
+  else
+  return r;
+};
+
+export const Wheelbarrow = styled(GiWheelbarrow)`
   color: red;
-  font-size: 48px;
+  width: 65px;
+  height: 65px;
   justify-items: center;
   cursor: pointer;
-  ${picks5};
+  ${YCoutdoorClean};
   @media screen and (max-width: 800px){
     width: 40px;
   height: 40px;
@@ -570,20 +564,33 @@ export const Wardrobe = styled(Icon)`
 `;
 
 
-export const Fridge = styled(Icon)`
+
+export const Flowers = styled(GiCottonFlower)`
   color: red;
-  font-size: 50px;
+  width: 65px;
+  height: 65px;
   justify-items: center;
   cursor: pointer;
-  ${picks6};
+  ${FBoutdoorClean};
   @media screen and (max-width: 800px){
     width: 40px;
   height: 40px;
 }
 `;
 
-
-
+export const Driveway = styled(FaRoad)`
+  color: red;
+  width: 65px;
+  height: 65px;
+  justify-items: center;
+  cursor: pointer;
+  ${DCoutdoorClean};
+  @media screen and (max-width: 800px){
+    width: 40px;
+  height: 40px;
+}
+`;
+/************************End Outdoor*********************************** */
 
 
 
@@ -637,70 +644,7 @@ export const Message3 = styled.h3`
 
 
 
-export const Wheelbarrow = styled(GiWheelbarrow)`
-  color: red;
-  width: 65px;
-  height: 65px;
-  justify-items: center;
-  cursor: pointer;
-  ${picks7};
-  @media screen and (max-width: 800px){
-    width: 40px;
-  height: 40px;
-}
-`;
 
-export const OutsideWindow = styled(GiWindow)`
-  color: red;
-  width: 65px;
-  height: 65px;
-  justify-items: center;
-  cursor: pointer;
-  ${picks8};
-  @media screen and (max-width: 800px){
-    width: 40px;
-  height: 40px;
-}
-`;
-
-export const Box = styled(FaBoxOpen)`
-  color: red;
-  width: 65px;
-  height: 65px;
-  justify-items: center;
-  cursor: pointer;
-  ${picks9};
-  @media screen and (max-width: 800px){
-    width: 40px;
-  height: 40px;
-}
-`;
-
-export const Flowers = styled(GiCottonFlower)`
-  color: red;
-  width: 65px;
-  height: 65px;
-  justify-items: center;
-  cursor: pointer;
-  ${picks8};
-  @media screen and (max-width: 800px){
-    width: 40px;
-  height: 40px;
-}
-`;
-
-export const Driveway = styled(FaRoad)`
-  color: red;
-  width: 65px;
-  height: 65px;
-  justify-items: center;
-  cursor: pointer;
-  ${picks9};
-  @media screen and (max-width: 800px){
-    width: 40px;
-  height: 40px;
-}
-`;
 
 export const Maintanance = styled(TiArrowRepeatOutline)`
   color: red;

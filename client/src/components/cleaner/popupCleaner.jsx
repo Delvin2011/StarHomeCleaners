@@ -63,8 +63,10 @@ class Cleaner extends React.Component {
   locationPool = [];
   poolTimes = [];
   logsPoolHours = [];
-
-
+  logsYCarea = [];
+  logsLMarea = [];
+  logsFBarea = [];
+  logsDCarea = [];
     constructor(){
         super();   
         this.state = {
@@ -119,9 +121,8 @@ class Cleaner extends React.Component {
 
           picked5: false,
           picked6: false,
-          picked7: false,
-          picked8: false,
-          picked9: false,
+          FBoutdoorClean: false,
+          DCoutdoorClean: false,
           PoolClean: false,
           PoolMaint: false,
           PoolRepair: false,
@@ -138,12 +139,12 @@ class Cleaner extends React.Component {
           PoolTime: this.poolTimes,
           value6: "",
           value7: "",
-          value8: "",
-          value9: "",
-          value10: "",
+
+
+          DCoutdoorCleanDisplay: "",
           PoolCleanService: "",
           PoolMaintService: "",
-          value11: "",
+          LMoutdoorCleanDisplay: "",
           isChecked: false,
           cleanMonth: false,
           cleanOnceOFF: false,
@@ -158,10 +159,10 @@ class Cleaner extends React.Component {
 
           price5: 0,
           price6: 0,
-          price7: 0,
-          price8: 0,
-          price9: 0,
-          price10: 0,
+
+          FBoutdoorCleanPrice: 0,
+          DCoutdoorCleanPrice: 0,
+          LMoutdoorCleanPrice: 0,
           PoolCleanPrice: 0,
           PoolMaintPrice: 0,
           priceDetergent: 0,
@@ -192,10 +193,25 @@ class Cleaner extends React.Component {
           handleIndoorSanitisePromo: 1,
 
           /***************** Outdoor ********************/
-          outdoorYCwholeYard: false,
-          outdoorYCfrontYard: false,
-          outdoorYCbackYard: false,
-          outdoorYCsideYard: false
+          outdoorYCwholeYard: false, outdoorYCfrontYard: false, outdoorYCbackYard: false, outdoorYCsideYard: false,
+          outdoorLMwholeYard: false, outdoorLMfrontYard: false, outdoorLMbackYard: false, outdoorLMsideYard: false,
+          outdoorFBwholeYard: false, outdoorFBfrontYard: false, outdoorFBbackYard: false, outdoorFBsideYard: false,
+          outdoorDCwholeYard: false, outdoorDCfrontYard: false, outdoorDCbackYard: false, outdoorDCsideYard: false,
+          YCoutdoorClean: false,
+          YCoutdoorCleanDisplay: "",
+          YCoutdoorCleanPrice: 0,
+          FBoutdoorCleanDisplay: "",
+          outdoorYC_WYard: "", outdoorYC_FYard: "", outdoorYC_BYard: "", outdoorYC_SYard: "",
+          outdoorLM_WYard: "", outdoorLM_FYard: "", outdoorLM_BYard: "", outdoorLM_SYard: "",
+          outdoorFB_WYard: "", outdoorFB_FYard: "", outdoorFB_BYard: "", outdoorFB_SYard: "",
+          outdoorDC_WYard: "", outdoorDC_FYard: "", outdoorDC_BYard: "", outdoorDC_SYard: "",
+          YCarea : this.logsYCarea,
+          LMarea : this.logsLMarea,
+          FBarea : this.logsFBarea,
+          DCarea : this.logsDCarea
+          
+          
+          
 
         }
         this.handleDropdownChange = this.handleDropdownChange.bind(this);
@@ -256,6 +272,10 @@ class Cleaner extends React.Component {
         this.outdoorDCbackYard= this.outdoorDCbackYard.bind(this);
         this.outdoorDCsideYard= this.outdoorDCsideYard.bind(this);
 
+        this.handleYCarea= this.handleYCarea.bind(this);
+        this.handleLMarea= this.handleLMarea.bind(this);
+        this.handleFBarea= this.handleFBarea.bind(this);
+        this.handleDCarea= this.handleDCarea.bind(this);
 
         /***********Pool Services Handling*************/
         this.handleOnceOFF = this.handleOnceOFF.bind(this);
@@ -584,26 +604,91 @@ class Cleaner extends React.Component {
           });
         }
   
-        outdoorYCwholeYard () {this.setState({outdoorYCwholeYard: !this.state.outdoorYCwholeYard})};
-        outdoorYCfrontYard () {this.setState({outdoorYCfrontYard: !this.state.outdoorYCfrontYard})};
-        outdoorYCbackYard () {this.setState({outdoorYCbackYard: !this.state.outdoorYCbackYard})};
-        outdoorYCsideYard () {this.setState({outdoorYCsideYard: !this.state.outdoorYCsideYard})};
+        outdoorYCwholeYard () {this.setState({outdoorYCwholeYard: !this.state.outdoorYCwholeYard,outdoorYC_WYard:"Whole "})};
+        outdoorYCfrontYard () {this.setState({outdoorYCfrontYard: !this.state.outdoorYCfrontYard,outdoorYC_FYard:"Front "})};
+        outdoorYCbackYard () {this.setState({outdoorYCbackYard: !this.state.outdoorYCbackYard,outdoorYC_BYard:"Back "})};
+        outdoorYCsideYard () {this.setState({outdoorYCsideYard: !this.state.outdoorYCsideYard,outdoorYC_SYard:"Side "})};
         
-        outdoorLMwholeYard () {this.setState({outdoorLMwholeYard: !this.state.outdoorLMwholeYard})};
-        outdoorLMfrontYard () {this.setState({outdoorLMfrontYard: !this.state.outdoorLMfrontYard})};
-        outdoorLMbackYard () {this.setState({outdoorLMbackYard: !this.state.outdoorLMbackYard})};
-        outdoorLMsideYard () {this.setState({outdoorLMsideYard: !this.state.outdoorLMsideYard})};
+        outdoorLMwholeYard () {this.setState({outdoorLMwholeYard: !this.state.outdoorLMwholeYard,outdoorLM_WYard:"Whole "})};
+        outdoorLMfrontYard () {this.setState({outdoorLMfrontYard: !this.state.outdoorLMfrontYard,outdoorLM_FYard:"Front "})};
+        outdoorLMbackYard () {this.setState({outdoorLMbackYard: !this.state.outdoorLMbackYard,outdoorLM_BYard:"Back "})};
+        outdoorLMsideYard () {this.setState({outdoorLMsideYard: !this.state.outdoorLMsideYard,outdoorLM_SYard:"Side "})};
 
-        outdoorFBwholeYard () {this.setState({outdoorFBwholeYard: !this.state.outdoorFBwholeYard})};
-        outdoorFBfrontYard () {this.setState({outdoorFBfrontYard: !this.state.outdoorFBfrontYard})};
-        outdoorFBbackYard () {this.setState({outdoorFBbackYard: !this.state.outdoorFBbackYard})};
-        outdoorFBsideYard () {this.setState({outdoorFBsideYard: !this.state.outdoorFBsideYard})};
+        outdoorFBwholeYard () {this.setState({outdoorFBwholeYard: !this.state.outdoorFBwholeYard,outdoorFB_WYard:"Whole "})};
+        outdoorFBfrontYard () {this.setState({outdoorFBfrontYard: !this.state.outdoorFBfrontYard,outdoorFB_FYard:"Front "})};
+        outdoorFBbackYard () {this.setState({outdoorFBbackYard: !this.state.outdoorFBbackYard,outdoorFB_BYard:"Back "})};
+        outdoorFBsideYard () {this.setState({outdoorFBsideYard: !this.state.outdoorFBsideYard,outdoorFB_SYard:"Side "})};
 
-        outdoorDCwholeYard () {this.setState({outdoorDCwholeYard: !this.state.outdoorDCwholeYard})};
-        outdoorDCfrontYard () {this.setState({outdoorDCfrontYard: !this.state.outdoorDCfrontYard})};
-        outdoorDCbackYard () {this.setState({outdoorDCbackYard: !this.state.outdoorDCbackYard})};
-        outdoorDCsideYard () {this.setState({outdoorDCsideYard: !this.state.outdoorDCsideYard})};
-            
+        outdoorDCwholeYard () {this.setState({outdoorDCwholeYard: !this.state.outdoorDCwholeYard,outdoorDC_WYard:"Whole "})};
+        outdoorDCfrontYard () {this.setState({outdoorDCfrontYard: !this.state.outdoorDCfrontYard,outdoorDC_FYard:"Front "})};
+        outdoorDCbackYard () {this.setState({outdoorDCbackYard: !this.state.outdoorDCbackYard,outdoorDC_BYard:"Back "})};
+        outdoorDCsideYard () {this.setState({outdoorDCsideYard: !this.state.outdoorDCsideYard,outdoorDC_SYard:"Side "})};
+
+        YCoutdoorClean(event) {
+          this.setState({
+            YCoutdoorClean: !this.state.YCoutdoorClean,
+            YCoutdoorCleanDisplay: this.state.YCoutdoorClean? null : "Yard Cleaning",
+            YCoutdoorCleanPrice: this.state.YCoutdoorClean? 0 : 127
+          });
+        }
+
+
+        FBoutdoorClean(event) {
+          this.setState({
+            FBoutdoorClean: !this.state.FBoutdoorClean,
+            FBoutdoorCleanDisplay: this.state.FBoutdoorClean? null : "Flower Bedding",
+            FboutdoorCleanPrice: this.state.FBoutdoorClean? 0 : 130
+          });
+        }
+    
+        DCoutdoorClean(event) {
+          this.setState({
+            DCoutdoorClean: !this.state.DCoutdoorClean,
+            DCoutdoorCleanDisplay: this.state.DCoutdoorClean? null : "Driveway Cleaning",
+            DCoutdoorCleanPrice: this.state.DCoutdoorClean? 0 : 177
+          });
+        }
+
+        LMoutdoorClean(event) {
+          this.setState({
+            LMoutdoorClean: !this.state.LMoutdoorClean,
+            LMoutdoorCleanDisplay: this.state.LMoutdoorClean? null : "Lawn Mowing",
+            LMoutdoorCleanPrice: this.state.LMoutdoorClean? 0 : 137
+          });
+        }
+      
+        
+        handleYCarea(e) {
+          this.logsYCarea.shift();
+          this.logsYCarea.unshift("Area : " + e.target.value );
+            this.setState({ selectValue: e.target.value,
+              areaHours: e.target.value //to ignore
+            });
+          }
+
+          handleLMarea(e) {
+            this.logsLMarea.shift();
+            this.logsLMarea.unshift("Area: " + e.target.value );
+              this.setState({ selectValue: e.target.value,
+                areaHours: e.target.value //to ignore
+              });
+            }
+
+            handleFBarea(e) {
+              this.logsFBarea.shift();
+              this.logsFBarea.unshift("Area : " + e.target.value );
+                this.setState({ selectValue: e.target.value,
+                  areaHours: e.target.value //to ignore
+                });
+              }
+
+              handleDCarea(e) {
+                this.logsDCarea.shift();
+                this.logsDCarea.unshift("Area: " + e.target.value );
+                  this.setState({ selectValue: e.target.value,
+                    areaHours: e.target.value //to ignore
+                  });
+                }
 
     /**************Pool Services Handling********************/
     showPoolServicesInfo(event) {
@@ -629,29 +714,9 @@ class Cleaner extends React.Component {
       });
     }
 
-    pick7(event) {
-      this.setState({
-        picked7: !this.state.picked7,
-        value8: this.state.picked7? null : "Yard Cleaning",
-        price7: this.state.picked7? 0 : 127
-      });
-    }
 
-    pick8(event) {
-      this.setState({
-        picked8: !this.state.picked8,
-        value9: this.state.picked8? null : "Flower Bedding",
-        price8: this.state.picked8? 0 : 130
-      });
-    }
 
-    pick9(event) {
-      this.setState({
-        picked9: !this.state.picked9,
-        value10: this.state.picked9? null : "Driveway Cleaning",
-        price9: this.state.picked9? 0 : 177
-      });
-    }
+
 
     genPoolClean(event) {
       this.setState({
@@ -675,13 +740,7 @@ class Cleaner extends React.Component {
       });
     }
 
-    Mow(event) {
-      this.setState({
-        Mower: !this.state.Mower,
-        value11: this.state.Mower? null : "Lawn Mowing",
-        price10: this.state.Mower? 0 : 137
-      });
-    }
+
     handleChange = event => { //destructure off of the event
         const {name, value} = event.target;
         this.setState({[name]: value});
@@ -692,7 +751,7 @@ class Cleaner extends React.Component {
       this.setState({
         showPopupOutdoor: !this.state.showPopupOutdoor,
         value: event.target.innerText,
-        total2: this.state.areaHours < 2.1 ? (this.state.price7 + this.state.price8 + this.state.price9 + this.state.price10)  + 50 : 50 +(((this.state.areaHours - 2) * 40) + (this.state.price7 + this.state.price8 + this.state.price9 + this.state.price10))
+        total2: this.state.areaHours < 2.1 ? (this.state.YCoutdoorCleanPrice + this.state.FBoutdoorCleanPrice + this.state.DCoutdoorCleanPrice + this.state.LMoutdoorCleanPrice)  + 50 : 50 +(((this.state.areaHours - 2) * 40) + (this.state.YCoutdoorCleanPrice + this.state.FBoutdoorCleanPrice + this.state.DCoutdoorCleanPrice + this.state.LMoutdoorCleanPrice))
       });
     }
 
@@ -736,7 +795,7 @@ class Cleaner extends React.Component {
 
 render() {  
 const total = 150 + this.state.bedPrice + this.state.bathPrice + this.state.price + this.state.price2 + this.state.price3 + this.state.price4 + this.state.price5 + this.state.price6 + this.state.priceDetergent;
-const total2 = this.state.areaHours < 2.1 ? (this.state.price7 + this.state.price8 + this.state.price9 + this.state.price10)  + 50 : 50 +(((this.state.areaHours - 2) * 40) + (this.state.price7 + this.state.price8 + this.state.price9 + this.state.price10));
+const total2 = this.state.areaHours < 2.1 ? (this.state.YCoutdoorCleanPrice + this.state.FBoutdoorCleanPrice + this.state.DCoutdoorCleanPrice + this.state.LMoutdoorCleanPrice)  + 50 : 50 +(((this.state.areaHours - 2) * 40) + (this.state.YCoutdoorCleanPrice + this.state.FBoutdoorCleanPrice + this.state.DCoutdoorCleanPrice + this.state.LMoutdoorCleanPrice));
 
 const totalClean = this.state.PoolClean ? (250 + (this.state.poolHrs - 1)*18)*(this.state.priceCleanOnce + this.state.priceCleanWeek + this.state.priceCleanMonth) : 0;//             this.state.poolHrs * (this.state.PoolCleanPrice + this.state.PoolMaintPrice);
 const totalMaint = this.state.PoolMaint ? (500 + (this.state.poolHrs - 1)*18)*(this.state.priceMaintMonth + this.state.priceMaintQuat + this.state.priceMaintYear) : 0;//             this.state.poolHrs * (this.state.PoolCleanPrice + this.state.PoolMaintPrice);
@@ -768,9 +827,11 @@ const maintQuatStatus = this.state.maintMonth || this.state.maintYear ? true : f
 const maintYearStatus = this.state.maintMonth || this.state.maintQuat ? true : false;
 
 
+
 /********************Outdoor*****************/
 const outdoorYCwholeYardStatus = this.state.outdoorYCfrontYard || this.state.outdoorYCbackYard || this.state.outdoorYCsideYard? true : false;
 const outdoorNotWholeStatus = this.state.outdoorYCwholeYard ? true : false;
+
 
 const outdoorLMwholeYardStatus = this.state.outdoorLMfrontYard || this.state.outdoorLMbackYard || this.state.outdoorLMsideYard? true : false;
 const outdoorLMnotWholeStatus = this.state.outdoorLMwholeYard ? true : false;
@@ -781,6 +842,21 @@ const outdoorFBnotWholeStatus = this.state.outdoorFBwholeYard ? true : false;
 const outdoorDCwholeYardStatus = this.state.outdoorDCfrontYard || this.state.outdoorDCbackYard || this.state.outdoorDCsideYard? true : false;
 const outdoorDCnotWholeStatus = this.state.outdoorDCwholeYard ? true : false;
 
+const outDoorServiceRequired = this.state.YCoutdoorCleanDisplay? this.state.YCoutdoorCleanDisplay : this.state.LMoutdoorCleanDisplay? this.state.LMoutdoorCleanDisplay : this.state.FBoutdoorCleanDisplay? this.state.FBoutdoorCleanDisplay : this.state.DCoutdoorCleanDisplay? this.state.DCoutdoorCleanDisplay : '';
+
+const YCw_yard = this.state.outdoorYCwholeYard ? this.state.outdoorYC_WYard : ""; const YCf_yard = this.state.outdoorYCfrontYard? this.state.outdoorYC_FYard : ""; const YCb_yard = this.state.outdoorYCbackYard? this.state.outdoorYC_BYard : ""; const YCs_yard = this.state.outdoorYCsideYard? this.state.outdoorYC_SYard: "";
+const YC_yard_Status = YCw_yard + YCf_yard + YCb_yard +  YCs_yard;
+
+const LMw_yard = this.state.outdoorLMwholeYard ? this.state.outdoorLM_WYard : ""; const LMf_yard = this.state.outdoorLMfrontYard? this.state.outdoorLM_FYard : ""; const LMb_yard = this.state.outdoorLMbackYard? this.state.outdoorLM_BYard : ""; const LMs_yard = this.state.outdoorLMsideYard? this.state.outdoorLM_SYard: "";
+const LM_yard_Status = LMw_yard + LMf_yard + LMb_yard +  LMs_yard;
+
+const FBw_yard = this.state.outdoorFBwholeYard ? this.state.outdoorFB_WYard : ""; const FBf_yard = this.state.outdoorFBfrontYard? this.state.outdoorFB_FYard : ""; const FBb_yard = this.state.outdoorFBbackYard? this.state.outdoorFB_BYard : ""; const FBs_yard = this.state.outdoorFBsideYard? this.state.outdoorFB_SYard: "";
+const FB_yard_Status =  FBw_yard + FBf_yard + FBb_yard +  FBs_yard;
+
+const DCw_yard = this.state.outdoorDCwholeYard ? this.state.outdoorDC_WYard : ""; const DCf_yard = this.state.outdoorDCfrontYard? this.state.outdoorDC_FYard : ""; const DCb_yard = this.state.outdoorDCbackYard? this.state.outdoorDC_BYard : ""; const DCs_yard = this.state.outdoorDCsideYard? this.state.outdoorDC_SYard: "";
+const DC_yard_Status = DCw_yard + DCf_yard + DCb_yard +  DCs_yard;
+
+/******************End Outdoor***************/
 const options = locations;
 const ExampleCustomInput = ({ value, onClick }) => (
     <CustomButton style = {{"background": "#e91e63"}} onClick={onClick} size="sm">{
@@ -1178,7 +1254,7 @@ return (
                                   <span><hr width="300"/></span>
                                 </ContentTitle>
                                 <Options4>
-                              { this.state.Mower ?
+                              { this.state.LMoutdoorClean ?
                                 <div>
                                   <ServiceTest> Work Yard</ServiceTest>
                                   <div style = {{"margin-top" : "0px"}}>
@@ -1189,7 +1265,7 @@ return (
                                   </div>
                                 </div>
 
-                               : this.state.picked8?
+                               : this.state.FBoutdoorClean?
                                <div>
                                   <ServiceTest> Work Yard</ServiceTest>
                                   <div style = {{"margin-top" : "0px"}}>
@@ -1200,7 +1276,7 @@ return (
                                   </div>
                                 </div>
 
-                                : this.state.picked9?
+                                : this.state.DCoutdoorClean?
                                 <div>
                                   <ServiceTest> Work Yard</ServiceTest>
                                   <div style = {{"margin-top" : "0px"}}>
@@ -1211,11 +1287,11 @@ return (
                                   </div>
                                 </div>
 
-                                : <ServiceGridSplit><ServiceTest>Yard Cleaning</ServiceTest><Tooltip title="Yard Cleaning" aria-label="add"><Fab2><Wheelbarrow onClick={this.pick7.bind(this)} picked7 = {this.state.picked7}/></Fab2></Tooltip></ServiceGridSplit>
+                                : <ServiceGridSplit><ServiceTest>Yard Cleaning</ServiceTest><Tooltip title="Yard Cleaning" aria-label="add"><Fab2><Wheelbarrow onClick={this.YCoutdoorClean.bind(this)} YCoutdoorClean = {this.state.YCoutdoorClean}/></Fab2></Tooltip></ServiceGridSplit>
                               }
 
 
-                              {this.state.picked7?
+                              {this.state.YCoutdoorClean?
                                 <div>
                                   <ServiceTest> Work Yard</ServiceTest>
                                   <div style = {{"margin-top" : "0px"}}>
@@ -1226,16 +1302,16 @@ return (
                                   </div>
                                 </div>
 
-                              :this.state.picked8?
+                              :this.state.FBoutdoorClean?
                               <div>
                                 <div>
                                 <ServiceTest> Area Size</ServiceTest>
-                                      <select id="areaSize" onChange={this.handlePoolAreaSize} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
-                                          <option value="0">-20 sq m</option>
-                                          <option value="1">20-75 sq m</option>
-                                          <option value="2">75-150 sq m</option>
-                                          <option value="3">150-250 sq m</option>
-                                          <option value="4">+ 250 sq m</option>
+                                      <select id="areaSize" onChange={this.handleFBarea} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
+                                      <option value="0-20 sqm">0-20 sq m</option>
+                                          <option value="20-75 sqm">20-75 sq m</option>
+                                          <option value="75-150 sqm">75-150 sq m</option>
+                                          <option value="150-250 sqm">150-250 sq m</option>
+                                          <option value="+ 250 sqm">+ 250 sq m</option>
                                       </select>
                                 </div>
                                 <ServiceTest style = {{"margin-bottom": "-8px"}}> Or </ServiceTest>
@@ -1262,16 +1338,16 @@ return (
                                           />
                                 </Form>
                               </div>
-                              : this.state.picked9?
+                              : this.state.DCoutdoorClean?
                               <div>
                                 <div>
                                 <ServiceTest> Area Size</ServiceTest>
-                                      <select id="areaSize" onChange={this.handlePoolAreaSize} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
-                                      <option value="0">-20 sq m</option>
-                                          <option value="1">20-75 sq m</option>
-                                          <option value="2">75-150 sq m</option>
-                                          <option value="3">150-250 sq m</option>
-                                          <option value="4">+ 250 sq m</option>
+                                      <select id="areaSize" onChange={this.handleDCarea} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
+                                      <option value="0-20 sqm">0-20 sq m</option>
+                                          <option value="20-75 sqm">20-75 sq m</option>
+                                          <option value="75-150 sqm">75-150 sq m</option>
+                                          <option value="150-250 sqm">150-250 sq m</option>
+                                          <option value="+ 250 sqm">+ 250 sq m</option>
                                       </select>
                                 </div>
                                   <ServiceTest style = {{"margin-bottom": "-8px"}}> Or </ServiceTest>
@@ -1300,23 +1376,23 @@ return (
                                   </Form>
                               </div>
 
-                              : this.state.Mower ?
-                                      <ServiceGridSplit><ServiceTest>Lawn Mowing</ServiceTest><Tooltip title="Lawn Mowing" aria-label="add"><Fab2><LogoContainer2 src={LawnMowerSelect} onClick={this.Mow.bind(this)}/></Fab2></Tooltip></ServiceGridSplit> 
+                              : this.state.LMoutdoorClean ?
+                                      <ServiceGridSplit><ServiceTest>Lawn Mowing</ServiceTest><Tooltip title="Lawn Mowing" aria-label="add"><Fab2><LogoContainer2 src={LawnMowerSelect} onClick={this.LMoutdoorClean.bind(this)}/></Fab2></Tooltip></ServiceGridSplit> 
                                       :
-                                      <ServiceGridSplit><ServiceTest>Lawn Mowing</ServiceTest><Tooltip title="Lawn Mowing" aria-label="add"><Fab2><LogoContainer2 src={LawnMower} onClick={this.Mow.bind(this)}/></Fab2></Tooltip></ServiceGridSplit> 
+                                      <ServiceGridSplit><ServiceTest>Lawn Mowing</ServiceTest><Tooltip title="Lawn Mowing" aria-label="add"><Fab2><LogoContainer2 src={LawnMower} onClick={this.LMoutdoorClean.bind(this)}/></Fab2></Tooltip></ServiceGridSplit> 
                               } 
 
 
-                              {this.state.picked7?
+                              {this.state.YCoutdoorClean?
                               <div>
                                 <div>
                                 <ServiceTest> Area Size</ServiceTest>
-                                      <select id="areaSize" onChange={this.handlePoolAreaSize} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
-                                          <option value="0">-20 sq m</option>
-                                          <option value="1">20-75 sq m</option>
-                                          <option value="2">75-150 sq m</option>
-                                          <option value="3">150-250 sq m</option>
-                                          <option value="4">+ 250 sq m</option>
+                                      <select id="areaSize" onChange={this.handleYCarea} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
+                                      <option value="0-20 sqm">0-20 sq m</option>
+                                          <option value="20-75 sqm">20-75 sq m</option>
+                                          <option value="75-150 sqm">75-150 sq m</option>
+                                          <option value="150-250 sqm">150-250 sq m</option>
+                                          <option value="+ 250 sqm">+ 250 sq m</option>
                                       </select>
                                 </div>
                                   <ServiceTest style = {{"margin-bottom": "-8px"}}> Or </ServiceTest>
@@ -1344,16 +1420,16 @@ return (
                                             />
                                   </Form>
                               </div>
-                              : this.state.Mower ?
+                              : this.state.LMoutdoorClean ?
                               <div>
                                 <div>
                                 <ServiceTest> Area Size</ServiceTest>
-                                      <select id="areaSize" onChange={this.handlePoolAreaSize} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
-                                          <option value="0">-20 sq m</option>
-                                          <option value="1">20-75 sq m</option>
-                                          <option value="2">75-150 sq m</option>
-                                          <option value="3">150-250 sq m</option>
-                                          <option value="4">+ 250 sq m</option>
+                                      <select id="areaSize" onChange={this.handleLMarea} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
+                                          <option value="0-20 sqm">0-20 sq m</option>
+                                          <option value="20-75 sqm">20-75 sq m</option>
+                                          <option value="75-150 sqm">75-150 sq m</option>
+                                          <option value="150-250 sqm">150-250 sq m</option>
+                                          <option value="+ 250 sqm">+ 250 sq m</option>
                                       </select>
                                 </div>
                                   <ServiceTest style = {{"margin-bottom": "-8px"}}> Or </ServiceTest>
@@ -1381,7 +1457,7 @@ return (
                                             />
                                   </Form>
                               </div>
-                              : this.state.picked9 ?
+                              : this.state.DCoutdoorClean ?
                               <div>
                                     <ServiceTest> Promo Code </ServiceTest>
                                     <FormInput
@@ -1396,11 +1472,11 @@ return (
                                         required
                                     />
                                   </div>
-                              : <ServiceGridSplit><ServiceTest>Flower Bedding</ServiceTest><Tooltip  title="Flower Bedding" aria-label="add"><Fab2 ><Flowers onClick={this.pick8.bind(this)} picked8 = {this.state.picked8}/></Fab2></Tooltip></ServiceGridSplit> 
+                              : <ServiceGridSplit><ServiceTest>Flower Bedding</ServiceTest><Tooltip  title="Flower Bedding" aria-label="add"><Fab2 ><Flowers onClick={this.FBoutdoorClean.bind(this)} FBoutdoorClean = {this.state.FBoutdoorClean}/></Fab2></Tooltip></ServiceGridSplit> 
                              
                               }  
 
-                              {this.state.picked7?
+                              {this.state.YCoutdoorClean?
                                 <div>
                                     <ServiceTest> Promo Code </ServiceTest>
                                     <FormInput
@@ -1416,7 +1492,7 @@ return (
                                     />
                                 </div>
 
-                                :this.state.Mower ?
+                                :this.state.LMoutdoorClean ?
                                 <div>
                                     <ServiceTest> Promo Code </ServiceTest>
                                     <FormInput
@@ -1431,7 +1507,7 @@ return (
                                         required
                                     />
                                 </div>
-                                :this.state.picked8 ?
+                                :this.state.FBoutdoorClean ?
                                 <div>
                                     <ServiceTest> Promo Code </ServiceTest>
                                     <FormInput
@@ -1446,7 +1522,7 @@ return (
                                         required
                                     />
                                   </div>
-                                :<ServiceGridSplit><ServiceTest>Driveway Cleaning</ServiceTest><Tooltip  title="Driveway Cleaning" aria-label="add"><Fab2 ><Driveway onClick={this.pick9.bind(this)} picked9 = {this.state.picked9}/></Fab2></Tooltip></ServiceGridSplit>                             
+                                :<ServiceGridSplit><ServiceTest>Driveway Cleaning</ServiceTest><Tooltip  title="Driveway Cleaning" aria-label="add"><Fab2 ><Driveway onClick={this.DCoutdoorClean.bind(this)} DCoutdoorClean = {this.state.DCoutdoorClean}/></Fab2></Tooltip></ServiceGridSplit>                             
                               }                          
 
                                 </Options4>
@@ -1470,14 +1546,24 @@ return (
                                   </div>
                                   <div>
                                     <Message2>Services</Message2>
-                                    <Message>{this.state.value8}</Message>
-                                    <Message>{this.state.value11}</Message>
-                                    <Message>{this.state.value9}</Message>
-                                    <Message>{this.state.value10}</Message>
+                                    <Message>{outDoorServiceRequired}</Message>   
+                                    {YC_yard_Status != "" && (this.state.outdoorYC_WYard || this.state.outdoorYC_FYard || this.state.outdoorYC_BYard || this.state.outdoorYC_SYard)? <Message>Yard : {YC_yard_Status} </Message> : ""}
+                                    {LM_yard_Status != "" && (this.state.outdoorLM_WYard || this.state.outdoorLM_FYard || this.state.outdoorLM_BYard || this.state.outdoorLM_SYard)?  <Message>Yard : {LM_yard_Status} </Message> : ""}
+                                    {FB_yard_Status != "" && (this.state.outdoorFB_WYard || this.state.outdoorFB_FYard || this.state.outdoorFB_BYard || this.state.outdoorFB_SYard)? <Message>Yard : {FB_yard_Status} </Message>  : ""}
+                                    {DC_yard_Status != "" && (this.state.outdoorDC_WYard || this.state.outdoorDC_FYard || this.state.outdoorDC_BYard || this.state.outdoorDC_SYard)?  <Message>Yard : {DC_yard_Status} </Message>  : ""} 
+                                    
+                                    {this.state.YCoutdoorClean? <EventLog logs={this.state.YCarea}/> : ""}
+
+                                    {this.state.LMoutdoorClean ? <EventLog logs={this.state.LMarea}/> : ""}
+
+                                    {this.state.FBoutdoorClean ? <EventLog logs={this.state.FBarea}/> : ""}
+
+                                    {this.state.DCoutdoorClean ? <EventLog logs={this.state.DCarea}/> : ""}
+                                  
                                   </div>
                                   <div>
                                     <Message2>Costs</Message2>
-                                    {this.state.picked7 || this.state.picked8 || this.state.picked9 || this.state.Mower?
+                                    {this.state.YCoutdoorClean || this.state.FBoutdoorClean || this.state.DCoutdoorClean || this.state.LMoutdoorClean?
                                         <Message>Total : R {total2} </Message>
                                       
                                       : null
@@ -1848,7 +1934,7 @@ return (
                                     <Message2>Services</Message2>
                                     <Message>{this.state.PoolCleanService}</Message>
                                     <Message>{this.state.PoolMaintService}</Message>
-                                    <Message>{this.state.value9}</Message>
+                                    <Message>{this.state.FBoutdoorCleanDisplay}</Message>
                                   </div>
                                   <div>
                                     <Message2>Costs</Message2>
@@ -1889,9 +1975,9 @@ return (
 
             {this.state.showPopupOutdoor?
               this.props.currentUser?
-              <Outdoor showPopupOutdoor = {this.state.showPopupOutdoor} currentUser = {this.props.currentUser} closePopup={this.props.closePopup} dateTime = {this.state.dateTimeOutdoor} total = {this.state.total2} time = {this.state.areaHours} wheelbarrow = {this.state.value8} mower = {this.state.value11} windows = {this.state.value9} box = {this.state.value10} />
+              <Outdoor showPopupOutdoor = {this.state.showPopupOutdoor} currentUser = {this.props.currentUser} closePopup={this.props.closePopup} dateTime = {this.state.dateTimeOutdoor} total = {this.state.total2} time = {this.state.areaHours} wheelbarrow = {this.state.YCoutdoorCleanDisplay} mower = {this.state.LMoutdoorCleanDisplay} windows = {this.state.FBoutdoorCleanDisplay} box = {this.state.DCoutdoorCleanDisplay} />
                 : !this.props.currentUser?
-                  <PromptSinIn currentUser = {this.props.currentUser} showPopupOutdoor = {this.state.showPopupOutdoor} closePopup={this.props.closePopup} dateTime = {this.state.dateTimeOutdoor} total = {this.state.total2} time = {this.state.areaHours} wheelbarrow = {this.state.value8} mower = {this.state.value11} windows = {this.state.value9} box = {this.state.value10}/>
+                  <PromptSinIn currentUser = {this.props.currentUser} showPopupOutdoor = {this.state.showPopupOutdoor} closePopup={this.props.closePopup} dateTime = {this.state.dateTimeOutdoor} total = {this.state.total2} time = {this.state.areaHours} wheelbarrow = {this.state.YCoutdoorCleanDisplay} mower = {this.state.LMoutdoorCleanDisplay} windows = {this.state.FBoutdoorCleanDisplay} box = {this.state.DCoutdoorCleanDisplay}/>
                 : null
               :null
             } 
