@@ -770,16 +770,16 @@ const maintYearStatus = this.state.maintMonth || this.state.maintQuat ? true : f
 
 /********************Outdoor*****************/
 const outdoorYCwholeYardStatus = this.state.outdoorYCfrontYard || this.state.outdoorYCbackYard || this.state.outdoorYCsideYard? true : false;
-const outdoorNotWholeYardStatus = this.state.outdoorYCwholeYard ? true : false;
+const outdoorNotWholeStatus = this.state.outdoorYCwholeYard ? true : false;
 
 const outdoorLMwholeYardStatus = this.state.outdoorLMfrontYard || this.state.outdoorLMbackYard || this.state.outdoorLMsideYard? true : false;
-const outdoorLMnotWholeYardStatus = this.state.outdoorLMwholeYard ? true : false;
+const outdoorLMnotWholeStatus = this.state.outdoorLMwholeYard ? true : false;
 
 const outdoorFBwholeYardStatus = this.state.outdoorFBfrontYard || this.state.outdoorFBbackYard || this.state.outdoorFBsideYard? true : false;
-const outdoorFBnotWholeYardStatus = this.state.outdoorFBwholeYard ? true : false;
+const outdoorFBnotWholeStatus = this.state.outdoorFBwholeYard ? true : false;
 
 const outdoorDCwholeYardStatus = this.state.outdoorDCfrontYard || this.state.outdoorDCbackYard || this.state.outdoorDCsideYard? true : false;
-const outdoorDCnotWholeYardStatus = this.state.outdoorDCwholeYard ? true : false;
+const outdoorDCnotWholeStatus = this.state.outdoorDCwholeYard ? true : false;
 
 const options = locations;
 const ExampleCustomInput = ({ value, onClick }) => (
@@ -1180,34 +1180,34 @@ return (
                                 <Options4>
                               { this.state.Mower ?
                                 <div>
-                                  <ServiceTest> Work Area</ServiceTest>
+                                  <ServiceTest> Work Yard</ServiceTest>
                                   <div style = {{"margin-top" : "0px"}}>
-                                    <Checkbox toggle label = "  WholeYard" onChange={ this.outdoorLMwholeYard }  disabled = {outdoorLMwholeYardStatus} />
-                                    <Checkbox toggle label = "  FrontYard" onChange={ this.outdoorLMfrontYard }  disabled = {outdoorLMnotWholeYardStatus} />
-                                    <Checkbox toggle label = "  BackYard" onChange={ this.outdoorLMbackYard }  disabled = {outdoorLMnotWholeYardStatus} />
-                                    <Checkbox toggle label = "  SideYard" onChange={ this.outdoorLMsideYard }  disabled = {outdoorLMnotWholeYardStatus} />
+                                    <Checkbox toggle label = "  Whole" onChange={ this.outdoorLMwholeYard }  disabled = {outdoorLMwholeYardStatus} />
+                                    <Checkbox toggle label = "  Front" onChange={ this.outdoorLMfrontYard }  disabled = {outdoorLMnotWholeStatus} />
+                                    <Checkbox toggle label = "  Back" onChange={ this.outdoorLMbackYard }  disabled = {outdoorLMnotWholeStatus} />
+                                    <Checkbox toggle label = "  Side" onChange={ this.outdoorLMsideYard }  disabled = {outdoorLMnotWholeStatus} />
                                   </div>
                                 </div>
 
                                : this.state.picked8?
                                <div>
-                                  <ServiceTest> Work Area</ServiceTest>
+                                  <ServiceTest> Work Yard</ServiceTest>
                                   <div style = {{"margin-top" : "0px"}}>
-                                    <Checkbox toggle label = "  WholeYard" onChange={ this.outdoorFBwholeYard }  disabled = {outdoorFBwholeYardStatus} />
-                                    <Checkbox toggle label = "  FrontYard" onChange={ this.outdoorFBfrontYard }  disabled = {outdoorFBnotWholeYardStatus} />
-                                    <Checkbox toggle label = "  BackYard" onChange={ this.outdoorFBbackYard }  disabled = {outdoorFBnotWholeYardStatus} />
-                                    <Checkbox toggle label = "  SideYard" onChange={ this.outdoorFBsideYard }  disabled = {outdoorFBnotWholeYardStatus} />
+                                    <Checkbox toggle label = "  Whole" onChange={ this.outdoorFBwholeYard }  disabled = {outdoorFBwholeYardStatus} />
+                                    <Checkbox toggle label = "  Front" onChange={ this.outdoorFBfrontYard }  disabled = {outdoorFBnotWholeStatus} />
+                                    <Checkbox toggle label = "  Back" onChange={ this.outdoorFBbackYard }  disabled = {outdoorFBnotWholeStatus} />
+                                    <Checkbox toggle label = "  Side" onChange={ this.outdoorFBsideYard }  disabled = {outdoorFBnotWholeStatus} />
                                   </div>
                                 </div>
 
                                 : this.state.picked9?
                                 <div>
-                                  <ServiceTest> Work Area</ServiceTest>
+                                  <ServiceTest> Work Yard</ServiceTest>
                                   <div style = {{"margin-top" : "0px"}}>
-                                    <Checkbox toggle label = "  WholeYard" onChange={ this.outdoorDCwholeYard }  disabled = {outdoorDCwholeYardStatus} />
-                                    <Checkbox toggle label = "  FrontYard" onChange={ this.outdoorDCfrontYard }  disabled = {outdoorDCnotWholeYardStatus} />
-                                    <Checkbox toggle label = "  BackYard" onChange={ this.outdoorDCbackYard }  disabled = {outdoorDCnotWholeYardStatus} />
-                                    <Checkbox toggle label = "  SideYard" onChange={ this.outdoorDCsideYard }  disabled = {outdoorDCnotWholeYardStatus} />
+                                    <Checkbox toggle label = "  Whole" onChange={ this.outdoorDCwholeYard }  disabled = {outdoorDCwholeYardStatus} />
+                                    <Checkbox toggle label = "  Front" onChange={ this.outdoorDCfrontYard }  disabled = {outdoorDCnotWholeStatus} />
+                                    <Checkbox toggle label = "  Back" onChange={ this.outdoorDCbackYard }  disabled = {outdoorDCnotWholeStatus} />
+                                    <Checkbox toggle label = "  Side" onChange={ this.outdoorDCsideYard }  disabled = {outdoorDCnotWholeStatus} />
                                   </div>
                                 </div>
 
@@ -1217,12 +1217,12 @@ return (
 
                               {this.state.picked7?
                                 <div>
-                                  <ServiceTest> Work Area</ServiceTest>
+                                  <ServiceTest> Work Yard</ServiceTest>
                                   <div style = {{"margin-top" : "0px"}}>
-                                    <Checkbox toggle label = "  WholeYard" onChange={ this.outdoorYCwholeYard }  disabled = {outdoorYCwholeYardStatus} />
-                                    <Checkbox toggle label = "  FrontYard" onChange={ this.outdoorYCfrontYard }  disabled = {outdoorNotWholeYardStatus} />
-                                    <Checkbox toggle label = "  BackYard" onChange={ this.outdoorYCbackYard }  disabled = {outdoorNotWholeYardStatus} />
-                                    <Checkbox toggle label = "  SideYard" onChange={ this.outdoorYCsideYard }  disabled = {outdoorNotWholeYardStatus} />
+                                    <Checkbox toggle label = "  Whole" onChange={ this.outdoorYCwholeYard }  disabled = {outdoorYCwholeYardStatus} />
+                                    <Checkbox toggle label = "  Front" onChange={ this.outdoorYCfrontYard }  disabled = {outdoorNotWholeStatus} />
+                                    <Checkbox toggle label = "  Back" onChange={ this.outdoorYCbackYard }  disabled = {outdoorNotWholeStatus} />
+                                    <Checkbox toggle label = "  Side" onChange={ this.outdoorYCsideYard }  disabled = {outdoorNotWholeStatus} />
                                   </div>
                                 </div>
 
