@@ -175,7 +175,6 @@ class Cleaner extends React.Component {
           priceMaintYear: 0,
           bedPrice: 0,
           bathPrice: 0,
-          total2: 0,
           totalPool: 0,
           serviceInterval: "",
           hrs: 0,
@@ -191,6 +190,7 @@ class Cleaner extends React.Component {
           handleIndoorEndTenencyPromo: 1,
           handleIndoorAfterBuildPromo: 1,
           handleIndoorSanitisePromo: 1,
+          total2: 0,
 
           /***************** Outdoor ********************/
           outdoorYCwholeYard: false, outdoorYCfrontYard: false, outdoorYCbackYard: false, outdoorYCsideYard: false,
@@ -205,10 +205,15 @@ class Cleaner extends React.Component {
           outdoorLM_WYard: "", outdoorLM_FYard: "", outdoorLM_BYard: "", outdoorLM_SYard: "",
           outdoorFB_WYard: "", outdoorFB_FYard: "", outdoorFB_BYard: "", outdoorFB_SYard: "",
           outdoorDC_WYard: "", outdoorDC_FYard: "", outdoorDC_BYard: "", outdoorDC_SYard: "",
-          YCarea : this.logsYCarea,
-          LMarea : this.logsLMarea,
-          FBarea : this.logsFBarea,
-          DCarea : this.logsDCarea
+          YCarea : this.logsYCarea, LMarea : this.logsLMarea, FBarea : this.logsFBarea, DCarea : this.logsDCarea,
+          outdoorYConce : false, outdoorYConcePrice : 0, outdoorYCweek: false, outdoorYCweekPrice : 0, outdoorYCmonth: false, outdoorYCmonthPrice : 0,
+          outdoorLMonce : false, outdoorLMoncePrice : 0, outdoorLMweek: false, outdoorLMweekPrice : 0, outdoorLMmonth: false, outdoorLMmonthPrice : 0,
+          outdoorFBonce : false, outdoorFBoncePrice : 0, outdoorFBweek: false, outdoorFBweekPrice : 0, outdoorFBmonth: false, outdoorFBmonthPrice : 0,
+          outdoorDConce : false, outdoorDConcePrice : 0, outdoorDCweek: false, outdoorDCweekPrice : 0, outdoorDCmonth: false, outdoorDCmonthPrice : 0,
+          YCareaPrice: 0, LMareaPrice : 0,FBareaPrice : 0, DCareaPrice : 0,
+          handleOutdoorPromo : 1
+          
+          
           
           
           
@@ -277,6 +282,12 @@ class Cleaner extends React.Component {
         this.handleFBarea= this.handleFBarea.bind(this);
         this.handleDCarea= this.handleDCarea.bind(this);
 
+        this.outdoorYConce= this.outdoorYConce.bind(this); this.outdoorYCweek= this.outdoorYCweek.bind(this); this.outdoorYCmonth= this.outdoorYCmonth.bind(this);
+        this.outdoorLMonce= this.outdoorLMonce.bind(this); this.outdoorLMweek= this.outdoorLMweek.bind(this); this.outdoorLMmonth= this.outdoorLMmonth.bind(this);
+        this.outdoorFBonce= this.outdoorFBonce.bind(this); this.outdoorFBweek= this.outdoorFBweek.bind(this); this.outdoorFBmonth= this.outdoorFBmonth.bind(this);
+        this.outdoorDConce= this.outdoorDConce.bind(this); this.outdoorDCweek= this.outdoorDCweek.bind(this); this.outdoorDCmonth= this.outdoorDCmonth.bind(this);
+  
+        this.handleOutdoorPromo= this.handleOutdoorPromo.bind(this);
         /***********Pool Services Handling*************/
         this.handleOnceOFF = this.handleOnceOFF.bind(this);
         this.handleCleanWeek = this.handleCleanWeek.bind(this);
@@ -589,7 +600,7 @@ class Cleaner extends React.Component {
 
     handleOutdoorPropertType(e) {
       this.logsOutdoorPropType.shift();
-      this.logsOutdoorPropType.unshift("Property Type : " + e.target.value );
+      this.logsOutdoorPropType.unshift("Type : " + e.target.value );
         this.setState({ selectValue: e.target.value,
           areaHours: e.target.value //to ignore
         });
@@ -598,7 +609,7 @@ class Cleaner extends React.Component {
 
       handleOutdoorPropertKind(e) {
         this.logsOutdoorPropKind.shift();
-        this.logsOutdoorPropKind.unshift("Property Kind : " + e.target.value );
+        this.logsOutdoorPropKind.unshift("Kind : " + e.target.value );
           this.setState({ selectValue: e.target.value,
             areaHours: e.target.value //to ignore
           });
@@ -626,6 +637,9 @@ class Cleaner extends React.Component {
 
         YCoutdoorClean(event) {
           this.setState({
+            outdoorYCwholeYard : false, outdoorYCfrontYard: false, outdoorYCbackYard : false, outdoorYCsideYard : false,
+            outdoorYConce : false, outdoorYCweek: false, outdoorYCmonth : false,
+            YCareaPrice : 0, YCarea : this.logsYCarea,
             YCoutdoorClean: !this.state.YCoutdoorClean,
             YCoutdoorCleanDisplay: this.state.YCoutdoorClean? null : "Yard Cleaning",
             YCoutdoorCleanPrice: this.state.YCoutdoorClean? 0 : 127
@@ -635,6 +649,9 @@ class Cleaner extends React.Component {
 
         FBoutdoorClean(event) {
           this.setState({
+            outdoorFBwholeYard : false, outdoorFBfrontYard: false, outdoorFBbackYard : false, outdoorFBsideYard : false,
+            outdoorFBonce : false, outdoorFBweek: false, outdoorFBmonth : false,
+            FBareaPrice : 0, FBarea : this.logsFBarea,
             FBoutdoorClean: !this.state.FBoutdoorClean,
             FBoutdoorCleanDisplay: this.state.FBoutdoorClean? null : "Flower Bedding",
             FboutdoorCleanPrice: this.state.FBoutdoorClean? 0 : 130
@@ -643,6 +660,9 @@ class Cleaner extends React.Component {
     
         DCoutdoorClean(event) {
           this.setState({
+            outdoorDCwholeYard : false, outdoorDCfrontYard: false, outdoorDCbackYard : false, outdoorDCsideYard : false,
+            outdoorDConce : false, outdoorDCweek: false, outdoorDCmonth : false,
+            DCareaPrice : 0, DCarea : this.logsDCarea,
             DCoutdoorClean: !this.state.DCoutdoorClean,
             DCoutdoorCleanDisplay: this.state.DCoutdoorClean? null : "Driveway Cleaning",
             DCoutdoorCleanPrice: this.state.DCoutdoorClean? 0 : 177
@@ -651,44 +671,53 @@ class Cleaner extends React.Component {
 
         LMoutdoorClean(event) {
           this.setState({
+            outdoorLMwholeYard : false, outdoorLMfrontYard: false, outdoorLMbackYard : false, outdoorLMsideYard : false,
+            outdoorLMonce : false, outdoorLMweek: false, outdoorLMmonth : false,
+            LMareaPrice : 0, LMarea : this.logsLMarea,
             LMoutdoorClean: !this.state.LMoutdoorClean,
             LMoutdoorCleanDisplay: this.state.LMoutdoorClean? null : "Lawn Mowing",
             LMoutdoorCleanPrice: this.state.LMoutdoorClean? 0 : 137
           });
         }
       
+        handleYCarea(e) { const area  = e.target.value; this.logsYCarea.shift(); this.logsYCarea.unshift("Area : " + e.target.value ); this.setState({ YCareaPrice: area == "0-20 sqm"? 100 : area == "20-75 sqm" ? 150 : area == "75-150 sqm"? 200 : area == "150-250 sqm" ? 250 : 0}); }
+        handleLMarea(e) { const area  = e.target.value; this.logsLMarea.shift(); this.logsLMarea.unshift("Area : " + e.target.value ); this.setState({ LMareaPrice: area == "0-20 sqm"? 105 : area == "20-75 sqm" ? 155 : area == "75-150 sqm"? 205 : area == "150-250 sqm" ? 255 : 0 }); }
+        handleFBarea(e) { const area  = e.target.value; this.logsFBarea.shift(); this.logsFBarea.unshift("Area : " + e.target.value ); this.setState({ FBareaPrice: area == "0-20 sqm"? 90 : area == "20-75 sqm" ? 140 : area == "75-150 sqm"? 190 : area == "150-250 sqm" ? 240 : 0}); }
+        handleDCarea(e) { const area  = e.target.value; this.logsDCarea.shift(); this.logsDCarea.unshift("Area : " + e.target.value ); this.setState({ DCareaPrice: area == "0-20 sqm"? 80 : area == "20-75 sqm" ? 130 : area == "75-150 sqm"? 180 : area == "150-250 sqm" ? 230 : 0}); } 
+
+        outdoorYConce () { this.setState({outdoorYConce: !this.state.outdoorYConce, outdoorYConcePrice : this.state.outdoorYConce? 0 : 1}); }
+        outdoorYCweek () { this.setState({outdoorYCweek: !this.state.outdoorYCweek, outdoorYCweekPrice : this.state.outdoorYCweek? 0 : 0.9}); }
+        outdoorYCmonth () { this.setState({outdoorYCmonth: !this.state.outdoorYCmonth, outdoorYCmonthPrice : this.state.outdoorYCmonth? 0 : 0.95}); }
         
-        handleYCarea(e) {
-          this.logsYCarea.shift();
-          this.logsYCarea.unshift("Area : " + e.target.value );
-            this.setState({ selectValue: e.target.value,
-              areaHours: e.target.value //to ignore
-            });
-          }
+        outdoorLMonce() { this.setState({outdoorLMonce: !this.state.outdoorLMonce, outdoorLMoncePrice : this.state.outdoorLMonce? 0 : 1}); }
+        outdoorLMweek () { this.setState({outdoorLMweek: !this.state.outdoorLMweek, outdoorLMweekPrice : this.state.outdoorLMweek? 0 : 0.9}); }
+        outdoorLMmonth () { this.setState({outdoorLMmonth: !this.state.outdoorLMmonth, outdoorLMmonthPrice : this.state.outdoorLMmonth? 0 : 0.95}); }
 
-          handleLMarea(e) {
-            this.logsLMarea.shift();
-            this.logsLMarea.unshift("Area: " + e.target.value );
-              this.setState({ selectValue: e.target.value,
-                areaHours: e.target.value //to ignore
-              });
-            }
+        outdoorFBonce () { this.setState({outdoorFBonce: !this.state.outdoorFBonce, outdoorFBoncePrice : this.state.outdoorFBonce? 0 : 1}); }
+        outdoorFBweek () { this.setState({outdoorFBweek: !this.state.outdoorFBweek, outdoorFBweekPrice : this.state.outdoorFBweek? 0 : 0.9}); }
+        outdoorFBmonth () { this.setState({outdoorFBmonth: !this.state.outdoorFBmonth, outdoorFBmonthPrice : this.state.outdoorFBmonth? 0 : 0.95}); }
 
-            handleFBarea(e) {
-              this.logsFBarea.shift();
-              this.logsFBarea.unshift("Area : " + e.target.value );
-                this.setState({ selectValue: e.target.value,
-                  areaHours: e.target.value //to ignore
-                });
-              }
-
-              handleDCarea(e) {
-                this.logsDCarea.shift();
-                this.logsDCarea.unshift("Area: " + e.target.value );
-                  this.setState({ selectValue: e.target.value,
-                    areaHours: e.target.value //to ignore
-                  });
-                }
+        outdoorDConce () { this.setState({outdoorDConce: !this.state.outdoorDConce, outdoorDConcePrice : this.state.outdoorDConce? 0 : 1}); }
+        outdoorDCweek () { this.setState({outdoorDCweek: !this.state.outdoorDCweek, outdoorDCweekPrice : this.state.outdoorDCweek? 0 : 0.9}); }
+        outdoorDCmonth () { this.setState({outdoorDCmonth: !this.state.outdoorDCmonth, outdoorDCmonthPrice : this.state.outdoorDCmonth? 0 : 0.95}); }
+        
+        selectOutdoor(event) {
+          this.setState({
+            showPopupOutdoor: !this.state.showPopupOutdoor,
+            value: event.target.innerText,
+            total2: this.state.areaHours < 2.1 ? (this.state.YCoutdoorCleanPrice + this.state.FBoutdoorCleanPrice + this.state.DCoutdoorCleanPrice + this.state.LMoutdoorCleanPrice)  + 50 : 50 +(((this.state.areaHours - 2) * 40) + (this.state.YCoutdoorCleanPrice + this.state.FBoutdoorCleanPrice + this.state.DCoutdoorCleanPrice + this.state.LMoutdoorCleanPrice))
+          });
+        }
+        
+        handleOutdoorPromo(event) {
+          event.preventDefault();
+          const code = event.target.value.toLowerCase();
+          const genPromo = code.length == 7 && (code.substring(5,7) == "pt" || code.substring(5,7) == "fr")? 0.8 : 1;
+          this.setState({
+            handleOutdoorPromo: genPromo
+          });
+        }
+      
 
     /**************Pool Services Handling********************/
     showPoolServicesInfo(event) {
@@ -747,13 +776,7 @@ class Cleaner extends React.Component {
     }
 
 
-    selectOutdoor(event) {
-      this.setState({
-        showPopupOutdoor: !this.state.showPopupOutdoor,
-        value: event.target.innerText,
-        total2: this.state.areaHours < 2.1 ? (this.state.YCoutdoorCleanPrice + this.state.FBoutdoorCleanPrice + this.state.DCoutdoorCleanPrice + this.state.LMoutdoorCleanPrice)  + 50 : 50 +(((this.state.areaHours - 2) * 40) + (this.state.YCoutdoorCleanPrice + this.state.FBoutdoorCleanPrice + this.state.DCoutdoorCleanPrice + this.state.LMoutdoorCleanPrice))
-      });
-    }
+
 
     selectPool(event) {
       this.setState({
@@ -795,7 +818,6 @@ class Cleaner extends React.Component {
 
 render() {  
 const total = 150 + this.state.bedPrice + this.state.bathPrice + this.state.price + this.state.price2 + this.state.price3 + this.state.price4 + this.state.price5 + this.state.price6 + this.state.priceDetergent;
-const total2 = this.state.areaHours < 2.1 ? (this.state.YCoutdoorCleanPrice + this.state.FBoutdoorCleanPrice + this.state.DCoutdoorCleanPrice + this.state.LMoutdoorCleanPrice)  + 50 : 50 +(((this.state.areaHours - 2) * 40) + (this.state.YCoutdoorCleanPrice + this.state.FBoutdoorCleanPrice + this.state.DCoutdoorCleanPrice + this.state.LMoutdoorCleanPrice));
 
 const totalClean = this.state.PoolClean ? (250 + (this.state.poolHrs - 1)*18)*(this.state.priceCleanOnce + this.state.priceCleanWeek + this.state.priceCleanMonth) : 0;//             this.state.poolHrs * (this.state.PoolCleanPrice + this.state.PoolMaintPrice);
 const totalMaint = this.state.PoolMaint ? (500 + (this.state.poolHrs - 1)*18)*(this.state.priceMaintMonth + this.state.priceMaintQuat + this.state.priceMaintYear) : 0;//             this.state.poolHrs * (this.state.PoolCleanPrice + this.state.PoolMaintPrice);
@@ -855,6 +877,21 @@ const FB_yard_Status =  FBw_yard + FBf_yard + FBb_yard +  FBs_yard;
 
 const DCw_yard = this.state.outdoorDCwholeYard ? this.state.outdoorDC_WYard : ""; const DCf_yard = this.state.outdoorDCfrontYard? this.state.outdoorDC_FYard : ""; const DCb_yard = this.state.outdoorDCbackYard? this.state.outdoorDC_BYard : ""; const DCs_yard = this.state.outdoorDCsideYard? this.state.outdoorDC_SYard: "";
 const DC_yard_Status = DCw_yard + DCf_yard + DCb_yard +  DCs_yard;
+
+const outdoorYConceStatus = this.state.outdoorYCweek || this.state.outdoorYCmonth ? true : false; const outdoorYCweekStatus = this.state.outdoorYConce || this.state.outdoorYCmonth ? true : false; const outdoorYCmonthStatus = this.state.outdoorYCweek || this.state.outdoorYConce ? true : false;
+const outdoorLMonceStatus = this.state.outdoorLMweek || this.state.outdoorLMmonth ? true : false; const outdoorLMweekStatus = this.state.outdoorLMonce || this.state.outdoorLMmonth ? true : false; const outdoorLMmonthStatus = this.state.outdoorLMweek || this.state.outdoorLMonce ? true : false;
+const outdoorFBonceStatus = this.state.outdoorFBweek || this.state.outdoorFBmonth ? true : false; const outdoorFBweekStatus = this.state.outdoorFBonce || this.state.outdoorFBmonth ? true : false; const outdoorFBmonthStatus = this.state.outdoorFBweek || this.state.outdoorFBonce ? true : false;
+const outdoorDConceStatus = this.state.outdoorDCweek || this.state.outdoorDCmonth ? true : false; const outdoorDCweekStatus = this.state.outdoorDConce || this.state.outdoorDCmonth ? true : false; const outdoorDCmonthStatus = this.state.outdoorDCweek || this.state.outdoorDConce ? true : false;
+
+const total2 = this.state.areaHours < 2.1 ? (this.state.YCoutdoorCleanPrice + this.state.FBoutdoorCleanPrice + this.state.DCoutdoorCleanPrice + this.state.LMoutdoorCleanPrice)  + 50 : 50 +(((this.state.areaHours - 2) * 40) + (this.state.YCoutdoorCleanPrice + this.state.FBoutdoorCleanPrice + this.state.DCoutdoorCleanPrice + this.state.LMoutdoorCleanPrice));
+const totalYC = (150 + this.state.YCareaPrice * (this.state.outdoorYConcePrice + this.state.outdoorYCweekPrice + this.state.outdoorYCmonthPrice)) * this.state.handleOutdoorPromo;
+const totalLM = (150 + this.state.LMareaPrice * (this.state.outdoorLMoncePrice + this.state.outdoorLMweekPrice + this.state.outdoorLMmonthPrice)) * this.state.handleOutdoorPromo;
+const totalFB = (150 + this.state.FBareaPrice * (this.state.outdoorFBoncePrice + this.state.outdoorFBweekPrice + this.state.outdoorFBmonthPrice)) * this.state.handleOutdoorPromo;
+const totalDC = (150 + this.state.DCareaPrice * (this.state.outdoorDConcePrice + this.state.outdoorDCweekPrice + this.state.outdoorDCmonthPrice)) * this.state.handleOutdoorPromo;
+const totalOutdoor = this.state.YCoutdoorClean? totalYC : 0 + this.state.LMoutdoorClean ? totalLM : 0 + this.state.FBoutdoorClean ? totalFB : 0 + this.state.DCoutdoorClean ? totalDC : 0;
+
+
+
 
 /******************End Outdoor***************/
 const options = locations;
@@ -1050,16 +1087,16 @@ return (
                                           <div>
                                           <ServiceTest> Promo Code </ServiceTest>
                                           <FormInput
-                                                            id="fname"
-                                                            size="10"
-                                                            maxlength="7"
-                                                            type="text"
-                                                            name="fname"
-                                                            placeholder="Code"
-                                                            onKeyUp={this.handleIndoorGenPromo}
-                                                            min="0" max="9999999"
-                                                            required
-                                                        />
+                                            id="fname"
+                                            size="10"
+                                            maxlength="7"
+                                            type="text"
+                                            name="fname"
+                                            placeholder="Code"
+                                            onKeyUp={this.handleIndoorGenPromo}
+                                            min="0" max="9999999"
+                                            required
+                                        />
                                           </div>
 
 
@@ -1307,11 +1344,11 @@ return (
                                 <div>
                                 <ServiceTest> Area Size</ServiceTest>
                                       <select id="areaSize" onChange={this.handleFBarea} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
-                                      <option value="0-20 sqm">0-20 sq m</option>
+                                      <option value="0">Select Size</option>
+                                          <option value="0-20 sqm">0-20 sq m</option>
                                           <option value="20-75 sqm">20-75 sq m</option>
                                           <option value="75-150 sqm">75-150 sq m</option>
-                                          <option value="150-250 sqm">150-250 sq m</option>
-                                          <option value="+ 250 sqm">+ 250 sq m</option>
+                                          <option value="150-250 sqm">150-250 sq m</option>  
                                       </select>
                                 </div>
                                 <ServiceTest style = {{"margin-bottom": "-8px"}}> Or </ServiceTest>
@@ -1343,11 +1380,11 @@ return (
                                 <div>
                                 <ServiceTest> Area Size</ServiceTest>
                                       <select id="areaSize" onChange={this.handleDCarea} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
-                                      <option value="0-20 sqm">0-20 sq m</option>
+                                      <option value="0">Select Size</option>
+                                          <option value="0-20 sqm">0-20 sq m</option>
                                           <option value="20-75 sqm">20-75 sq m</option>
                                           <option value="75-150 sqm">75-150 sq m</option>
-                                          <option value="150-250 sqm">150-250 sq m</option>
-                                          <option value="+ 250 sqm">+ 250 sq m</option>
+                                          <option value="150-250 sqm">150-250 sq m</option>  
                                       </select>
                                 </div>
                                   <ServiceTest style = {{"margin-bottom": "-8px"}}> Or </ServiceTest>
@@ -1388,11 +1425,11 @@ return (
                                 <div>
                                 <ServiceTest> Area Size</ServiceTest>
                                       <select id="areaSize" onChange={this.handleYCarea} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
-                                      <option value="0-20 sqm">0-20 sq m</option>
+                                          <option value="0">Select Size</option>
+                                          <option value="0-20 sqm">0-20 sq m</option>
                                           <option value="20-75 sqm">20-75 sq m</option>
                                           <option value="75-150 sqm">75-150 sq m</option>
-                                          <option value="150-250 sqm">150-250 sq m</option>
-                                          <option value="+ 250 sqm">+ 250 sq m</option>
+                                          <option value="150-250 sqm">150-250 sq m</option>        
                                       </select>
                                 </div>
                                   <ServiceTest style = {{"margin-bottom": "-8px"}}> Or </ServiceTest>
@@ -1425,11 +1462,11 @@ return (
                                 <div>
                                 <ServiceTest> Area Size</ServiceTest>
                                       <select id="areaSize" onChange={this.handleLMarea} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
+                                      <option value="0">Select Size</option>
                                           <option value="0-20 sqm">0-20 sq m</option>
                                           <option value="20-75 sqm">20-75 sq m</option>
                                           <option value="75-150 sqm">75-150 sq m</option>
-                                          <option value="150-250 sqm">150-250 sq m</option>
-                                          <option value="+ 250 sqm">+ 250 sq m</option>
+                                          <option value="150-250 sqm">150-250 sq m</option>  
                                       </select>
                                 </div>
                                   <ServiceTest style = {{"margin-bottom": "-8px"}}> Or </ServiceTest>
@@ -1459,18 +1496,12 @@ return (
                               </div>
                               : this.state.DCoutdoorClean ?
                               <div>
-                                    <ServiceTest> Promo Code </ServiceTest>
-                                    <FormInput
-                                        id="fname"
-                                        size="10"
-                                        maxlength="7"
-                                        type="text"
-                                        name="fname"
-                                        placeholder="Code"
-                                        onKeyUp = {this.handleIndoorEndTenencyPromo}
-                                        min="0" max="9999999"
-                                        required
-                                    />
+                                  <ServiceTest> Frequency</ServiceTest>
+                                    <div style = {{"margin-top" : "0px"}}>
+                                      <Checkbox toggle label = "  OnceOFF" onChange={ this.outdoorDConce }  disabled = {outdoorDConceStatus} />
+                                      <Checkbox toggle label = "  Weekly" onChange={ this.outdoorDCweek }  disabled = {outdoorDCweekStatus} />
+                                      <Checkbox toggle label = "  Monthly" onChange={ this.outdoorDCmonth }  disabled = {outdoorDCmonthStatus} />
+                                    </div>
                                   </div>
                               : <ServiceGridSplit><ServiceTest>Flower Bedding</ServiceTest><Tooltip  title="Flower Bedding" aria-label="add"><Fab2 ><Flowers onClick={this.FBoutdoorClean.bind(this)} FBoutdoorClean = {this.state.FBoutdoorClean}/></Fab2></Tooltip></ServiceGridSplit> 
                              
@@ -1478,49 +1509,31 @@ return (
 
                               {this.state.YCoutdoorClean?
                                 <div>
-                                    <ServiceTest> Promo Code </ServiceTest>
-                                    <FormInput
-                                        id="fname"
-                                        size="10"
-                                        maxlength="7"
-                                        type="text"
-                                        name="fname"
-                                        placeholder="Code"
-                                        onKeyUp = {this.handleIndoorEndTenencyPromo}
-                                        min="0" max="9999999"
-                                        required
-                                    />
-                                </div>
+                                  <ServiceTest> Frequency</ServiceTest>
+                                    <div style = {{"margin-top" : "0px"}}>
+                                      <Checkbox toggle label = "  OnceOFF" onChange={ this.outdoorYConce }  disabled = {outdoorYConceStatus} />
+                                      <Checkbox toggle label = "  Weekly" onChange={ this.outdoorYCweek }  disabled = {outdoorYCweekStatus} />
+                                      <Checkbox toggle label = "  Monthly" onChange={ this.outdoorYCmonth }  disabled = {outdoorYCmonthStatus}/>
+                                    </div>
+                                  </div>
 
                                 :this.state.LMoutdoorClean ?
                                 <div>
-                                    <ServiceTest> Promo Code </ServiceTest>
-                                    <FormInput
-                                        id="fname"
-                                        size="10"
-                                        maxlength="7"
-                                        type="text"
-                                        name="fname"
-                                        placeholder="Code"
-                                        onKeyUp = {this.handleIndoorEndTenencyPromo}
-                                        min="0" max="9999999"
-                                        required
-                                    />
-                                </div>
+                                  <ServiceTest> Frequency</ServiceTest>
+                                    <div style = {{"margin-top" : "0px"}}>
+                                      <Checkbox toggle label = "  OnceOFF" onChange={ this.outdoorLMonce }  disabled = {outdoorLMonceStatus}/>
+                                      <Checkbox toggle label = "  Weekly" onChange={ this.outdoorLMweek }  disabled = {outdoorLMweekStatus}/>
+                                      <Checkbox toggle label = "  Monthly" onChange={ this.outdoorLMmonth }  disabled = {outdoorLMmonthStatus}/>
+                                    </div>
+                                  </div>
                                 :this.state.FBoutdoorClean ?
                                 <div>
-                                    <ServiceTest> Promo Code </ServiceTest>
-                                    <FormInput
-                                        id="fname"
-                                        size="10"
-                                        maxlength="7"
-                                        type="text"
-                                        name="fname"
-                                        placeholder="Code"
-                                        onKeyUp = {this.handleIndoorEndTenencyPromo}
-                                        min="0" max="9999999"
-                                        required
-                                    />
+                                  <ServiceTest> Frequency</ServiceTest>
+                                    <div style = {{"margin-top" : "0px"}}>
+                                      <Checkbox toggle label = "  OnceOFF" onChange={ this.outdoorFBonce }  disabled = {outdoorFBonceStatus} />
+                                      <Checkbox toggle label = "  Weekly" onChange={ this.outdoorFBweek }  disabled = {outdoorFBweekStatus} />
+                                      <Checkbox toggle label = "  Monthly" onChange={ this.outdoorFBmonth }  disabled = {outdoorFBmonthStatus} />
+                                    </div>
                                   </div>
                                 :<ServiceGridSplit><ServiceTest>Driveway Cleaning</ServiceTest><Tooltip  title="Driveway Cleaning" aria-label="add"><Fab2 ><Driveway onClick={this.DCoutdoorClean.bind(this)} DCoutdoorClean = {this.state.DCoutdoorClean}/></Fab2></Tooltip></ServiceGridSplit>                             
                               }                          
@@ -1563,9 +1576,25 @@ return (
                                   </div>
                                   <div>
                                     <Message2>Costs</Message2>
+
+
+
                                     {this.state.YCoutdoorClean || this.state.FBoutdoorClean || this.state.DCoutdoorClean || this.state.LMoutdoorClean?
-                                        <Message>Total : R {total2} </Message>
-                                      
+                                      <div>
+                                      <ServiceTest> Promo Code </ServiceTest>
+                                        <FormInput
+                                            id="fname"
+                                            size="10"
+                                            maxlength="7"
+                                            type="text"
+                                            name="fname"
+                                            placeholder="Code"
+                                            onKeyUp = {this.handleOutdoorPromo}
+                                            min="0" max="9999999"
+                                            required
+                                        />
+                                          <Message>Total : R {totalOutdoor} </Message>
+                                      </div>
                                       : null
                                       }
                                   </div>
