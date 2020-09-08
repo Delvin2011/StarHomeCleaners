@@ -173,19 +173,7 @@ class Cleaner extends React.Component {
           IndoorEndTenancyCleanPrice: 0,
           IndoorSanitisePrice: 0,
           priceDetergent: 0,
-          
-          
-          
-          priceGenIndoorCleanWalls: 0,
-          priceGenIndoorCleanWindows: 0,
-          priceGenIndoorCleanLaundry: 0,
-          priceAfterBuildIndoorCleanWalls: 0,
-          priceAfterBuildIndoorCleanWindows: 0,
-
-          priceGenIndoorDetergents: 0,
-          priceAfterBuilderDetergents: 0,
-          priceEndTenancyDetergents: 0,
-          
+           
           priceGenIndoorCleanOnce: 0, priceGenIndoorCleanWeek: 0, priceGenIndoorCleanMonth: 0,
           priceABcleanOnce: 0, priceABcleanWeek: 0, priceABcleanMonth: 0,
           priceETcleanOnce: 0, priceETcleanMonth: 0,
@@ -197,10 +185,11 @@ class Cleaner extends React.Component {
           sanitiseIndoorOnceOFF: false, sanitiseIndoorMonth: false,
 
           genIndoorDetergents: false, afterBuilderDetergents: false, endTenancyDetergents: false,
-          
-          
+          priceGenIndoorDetergents: 0, priceAfterBuilderDetergents: 0, priceEndTenancyDetergents: 0,
 
-
+          priceGenIndoorCleanWalls: 0, priceGenIndoorCleanWindows: 0, priceGenIndoorCleanLaundry: 0,
+          priceAfterBuildIndoorCleanWalls: 0, priceAfterBuildIndoorCleanWindows: 0,
+          
           /***************** Outdoor ********************/
           outdoorYCwholeYard: false, outdoorYCfrontYard: false, outdoorYCbackYard: false, outdoorYCsideYard: false,
           outdoorLMwholeYard: false, outdoorLMfrontYard: false, outdoorLMbackYard: false, outdoorLMsideYard: false,
@@ -220,7 +209,7 @@ class Cleaner extends React.Component {
           outdoorFBonce : false, outdoorFBoncePrice : 0, outdoorFBweek: false, outdoorFBweekPrice : 0, outdoorFBmonth: false, outdoorFBmonthPrice : 0,
           outdoorDConce : false, outdoorDConcePrice : 0, outdoorDCweek: false, outdoorDCweekPrice : 0, outdoorDCmonth: false, outdoorDCmonthPrice : 0,
           YCareaPrice: 0, LMareaPrice : 0,FBareaPrice : 0, DCareaPrice : 0,
-          handleOutdoorPromo : 1
+          handleYCoutdoorPromo : 1, handleLMoutdoorPromo : 1, handleFBoutdoorPromo : 1, handleDCoutdoorPromo : 1
           
           
           
@@ -296,7 +285,7 @@ class Cleaner extends React.Component {
         this.outdoorFBonce= this.outdoorFBonce.bind(this); this.outdoorFBweek= this.outdoorFBweek.bind(this); this.outdoorFBmonth= this.outdoorFBmonth.bind(this);
         this.outdoorDConce= this.outdoorDConce.bind(this); this.outdoorDCweek= this.outdoorDCweek.bind(this); this.outdoorDCmonth= this.outdoorDCmonth.bind(this);
   
-        this.handleOutdoorPromo= this.handleOutdoorPromo.bind(this);
+        this.handleYCoutdoorPromo= this.handleYCoutdoorPromo.bind(this); this.handleLMoutdoorPromo= this.handleLMoutdoorPromo.bind(this); this.handleFBoutdoorPromo= this.handleFBoutdoorPromo.bind(this); this.handleDCoutdoorPromo= this.handleDCoutdoorPromo.bind(this);
         /***********Pool Services Handling*************/
         this.handleOnceOFF = this.handleOnceOFF.bind(this);
         this.handleCleanWeek = this.handleCleanWeek.bind(this);
@@ -396,6 +385,7 @@ class Cleaner extends React.Component {
       this.setState({
         genIndoorCleanWalls : false, genIndoorCleanWindows : false, genIndoorCleanLaundry : false, genIndoorDetergents : false,
         genIndoorCleanOnce : false, genIndoorCleanWeek : false, genIndoorCleanMonth : false,
+        priceGenIndoorCleanWalls : 0, priceGenIndoorCleanWindows : 0, priceGenIndoorCleanLaundry : 0, priceGenIndoorDetergents : 0,
         IndoorGenClean: this.state.IndoorAfterBuildClean === true || this.state.IndoorEndTenancyClean === true || this.state.IndoorSanitise === true ? false : !this.state.IndoorGenClean,
         IndoorCleanService: this.state.IndoorAfterBuildClean === true || this.state.IndoorEndTenancyClean === true || this.state.IndoorSanitise === true || this.state.IndoorGenClean? null : "General",
         IndoorCleanPrice: this.state.IndoorGenClean? 0 : 30
@@ -405,7 +395,8 @@ class Cleaner extends React.Component {
     afterBuildIndoorClean(event) {
       this.setState({
         afterBuildIndoorCleanWalls : false, afterBuildIndoorCleanWindows : false, afterBuilderDetergents : false,
-        afterBuildCleanOnce : false, afterBuildCleanWeek : false, afterBuildCleanWeek : false,
+        afterBuildCleanOnce : false, afterBuildCleanWeek : false, afterBuildCleanMonth : false,
+        priceAfterBuildIndoorCleanWalls : 0, priceAfterBuildIndoorCleanWindows : 0, priceAfterBuilderDetergents : 0,
         IndoorAfterBuildClean: this.state.IndoorGenClean === true || this.state.IndoorEndTenancyClean === true || this.state.IndoorSanitise === true ? false : !this.state.IndoorAfterBuildClean,
         IndoorAfterBuildCleanService: this.state.IndoorGenClean === true || this.state.IndoorEndTenancyClean === true || this.state.IndoorSanitise === true || this.state.IndoorAfterBuildClean? null : "After Builders",
         IndoorAfterBuildCleanPrice: this.state.IndoorAfterBuildClean? 0 : 30
@@ -416,6 +407,7 @@ class Cleaner extends React.Component {
       this.setState({
         endTenancyIndoorCleanWalls : false, endTenancyIndoorCleanWindows : false, endTenancyDetergents : false,
         endTenancyCleanOnce : false, endTenancyCleanMonth : false,
+        priceEndTenancyIndoorCleanWalls : 0, priceEndTenancyIndoorCleanWindows : 0, priceEndTenancyDetergents : 0,
         IndoorEndTenancyClean: this.state.IndoorAfterBuildClean === true || this.state.IndoorGenClean === true || this.state.IndoorSanitise === true ? false : !this.state.IndoorEndTenancyClean,
         IndoorEndTenancyCleanService: this.state.IndoorAfterBuildClean === true || this.state.IndoorGenClean === true || this.state.IndoorSanitise === true || this.state.IndoorEndTenancyClean? null : "End of Tenancy",
         IndoorEndTenancyCleanPrice: this.state.IndoorEndTenancyClean? 0 : 30
@@ -425,6 +417,7 @@ class Cleaner extends React.Component {
     sanitiseIndoorClean(event) {
       this.setState({
         sanitiseIndoorOnceOFF : false, sanitiseIndoorMonth : false,
+        priceSanitiseIndoorOnceOFF : 0, priceSanitiseIndoorMonth : 0,
         IndoorSanitise: this.state.IndoorAfterBuildClean === true || this.state.IndoorEndTenancyClean === true || this.state.IndoorGenClean === true ? false : !this.state.IndoorSanitise,
         IndoorSanitiseService: this.state.IndoorAfterBuildClean === true || this.state.IndoorEndTenancyClean === true || this.state.IndoorGenClean === true || this.state.IndoorSanitise? null : "Antiviral Sanitisation",
         IndoorSanitisePrice: this.state.IndoorSanitise? 0 : 30
@@ -513,13 +506,13 @@ class Cleaner extends React.Component {
 
     selectIndoor(event) {
       this.setState({
-        showPopupIndoor: !this.state.showPopupIndoor,
-        value: event.target.innerText,
-        totalIndoor: this.state.genIndoorCleanOnce || this.state.genIndoorCleanWeek || this.state.genIndoorCleanMonth? (150 + this.state.bedPrice + this.state.bathPrice + this.state.priceGenIndoorCleanWalls + this.state.priceGenIndoorCleanWindows + this.state.priceGenIndoorCleanLaundry + this.state.priceGenIndoorDetergents) * (this.state.priceGenIndoorCleanOnce + this.state.priceGenIndoorCleanWeek + this.state.priceGenIndoorCleanMonth) * this.state.handleIndoorGenPromo : 0 +
-        this.state.IndoorAfterBuildClean ?  (180 + this.state.bedPrice + this.state.bathPrice + this.state.priceAfterBuildIndoorCleanWalls + this.state.priceAfterBuildIndoorCleanWindows + this.state.priceAfterBuilderDetergents) *  this.state.handleIndoorAfterBuildPromo: 0 +
-        this.state.IndoorEndTenancyClean ? (180 + this.state.bedPrice + this.state.bathPrice + this.state.priceEndTenancyIndoorCleanWalls + this.state.priceEndTenancyIndoorCleanWindows + this.state.priceEndTenancyDetergents) * this.state.handleIndoorEndTenencyPromo : 0 +
-        this.state.IndoorSanitise ? (230 + this.state.bedPrice + this.state.bathPrice) * (this.state.priceSanitiseIndoorOnceOFF + this.state.priceSanitiseIndoorMonth) * this.state.handleIndoorSanitisePromo : 0,
-        serviceIntervalIndoor: this.state.priceSanitiseIndoorOnceOFF || this.state.priceGenIndoorCleanOnce> 0 ? "Once OFF" : this.state.priceGenIndoorCleanWeek > 0 ? "Weekly" : this.state.priceSanitiseIndoorMonth || this.state.priceGenIndoorCleanMonth > 0 ? "Monthly" : "Once OFF",
+        showPopupIndoor: !this.state.showPopupIndoor//,
+        //value: event.target.innerText //,
+        //totalIndoor: this.state.genIndoorCleanOnce || this.state.genIndoorCleanWeek || this.state.genIndoorCleanMonth? (150 + this.state.bedPrice + this.state.bathPrice + this.state.priceGenIndoorCleanWalls + this.state.priceGenIndoorCleanWindows + this.state.priceGenIndoorCleanLaundry + this.state.priceGenIndoorDetergents) * (this.state.priceGenIndoorCleanOnce + this.state.priceGenIndoorCleanWeek + this.state.priceGenIndoorCleanMonth) * this.state.handleIndoorGenPromo : 0 +
+        //this.state.IndoorAfterBuildClean ?  (180 + this.state.bedPrice + this.state.bathPrice + this.state.priceAfterBuildIndoorCleanWalls + this.state.priceAfterBuildIndoorCleanWindows + this.state.priceAfterBuilderDetergents) *  this.state.handleIndoorAfterBuildPromo: 0 +
+        //this.state.IndoorEndTenancyClean ? (180 + this.state.bedPrice + this.state.bathPrice + this.state.priceEndTenancyIndoorCleanWalls + this.state.priceEndTenancyIndoorCleanWindows + this.state.priceEndTenancyDetergents) * this.state.handleIndoorEndTenencyPromo : 0 +
+        //this.state.IndoorSanitise ? (230 + this.state.bedPrice + this.state.bathPrice) * (this.state.priceSanitiseIndoorOnceOFF + this.state.priceSanitiseIndoorMonth) * this.state.handleIndoorSanitisePromo : 0,
+        //serviceIntervalIndoor: this.state.priceSanitiseIndoorOnceOFF || this.state.priceGenIndoorCleanOnce> 0 ? "Once OFF" : this.state.priceGenIndoorCleanWeek > 0 ? "Weekly" : this.state.priceSanitiseIndoorMonth || this.state.priceGenIndoorCleanMonth > 0 ? "Monthly" : "Once OFF",
         //serviceIntervalGenIndoorClean : this.state.priceGenIndoorCleanOnce > 0 ? "Once OFF" : this.state.priceGenIndoorCleanWeek > 0 ? "Weekly" : this.state.priceGenIndoorCleanMonth > 0 ? "Monthly" : null
       
        });
@@ -648,6 +641,7 @@ class Cleaner extends React.Component {
           this.setState({
             outdoorYCwholeYard : false, outdoorYCfrontYard: false, outdoorYCbackYard : false, outdoorYCsideYard : false,
             outdoorYConce : false, outdoorYCweek: false, outdoorYCmonth : false,
+            outdoorYConcePrice : 0, outdoorYCweekPrice : 0, outdoorYCmonthPrice : 0,
             YCareaPrice : 0, YCarea : this.logsYCarea,
             YCoutdoorClean: !this.state.YCoutdoorClean,
             YCoutdoorCleanDisplay: this.state.YCoutdoorClean? null : "Yard Cleaning",
@@ -660,6 +654,7 @@ class Cleaner extends React.Component {
           this.setState({
             outdoorFBwholeYard : false, outdoorFBfrontYard: false, outdoorFBbackYard : false, outdoorFBsideYard : false,
             outdoorFBonce : false, outdoorFBweek: false, outdoorFBmonth : false,
+            outdoorFBoncePrice : 0, outdoorFBweekPrice : 0, outdoorFBmonthPrice : 0,
             FBareaPrice : 0, FBarea : this.logsFBarea,
             FBoutdoorClean: !this.state.FBoutdoorClean,
             FBoutdoorCleanDisplay: this.state.FBoutdoorClean? null : "Flower Bedding",
@@ -682,6 +677,7 @@ class Cleaner extends React.Component {
           this.setState({
             outdoorLMwholeYard : false, outdoorLMfrontYard: false, outdoorLMbackYard : false, outdoorLMsideYard : false,
             outdoorLMonce : false, outdoorLMweek: false, outdoorLMmonth : false,
+            outdoorLMoncePrice : 0, outdoorLMweekPrice : 0, outdoorLMmonthPrice : 0,
             LMareaPrice : 0, LMarea : this.logsLMarea,
             LMoutdoorClean: !this.state.LMoutdoorClean,
             LMoutdoorCleanDisplay: this.state.LMoutdoorClean? null : "Lawn Mowing",
@@ -718,15 +714,43 @@ class Cleaner extends React.Component {
           });
         }
         
-        handleOutdoorPromo(event) {
+
+      
+        handleYCoutdoorPromo(event) {
           event.preventDefault();
           const code = event.target.value.toLowerCase();
           const genPromo = code.length == 7 && (code.substring(5,7) == "pt" || code.substring(5,7) == "fr")? 0.8 : 1;
           this.setState({
-            handleOutdoorPromo: genPromo
+            handleYCoutdoorPromo: genPromo
           });
         }
       
+        handleLMoutdoorPromo(event) {
+          event.preventDefault();
+          const code = event.target.value.toLowerCase();
+          const genPromo = code.length == 7 && (code.substring(5,7) == "pt" || code.substring(5,7) == "fr")? 0.8 : 1;
+          this.setState({
+            handleLMoutdoorPromo: genPromo
+          });
+        }
+      
+        handleFBoutdoorPromo(event) {
+          event.preventDefault();
+          const code = event.target.value.toLowerCase();
+          const genPromo = code.length == 7 && (code.substring(5,7) == "pt" || code.substring(5,7) == "fr")? 0.8 : 1;
+          this.setState({
+            handleFBoutdoorPromo: genPromo
+          });
+        }
+     
+        handleDCoutdoorPromo(event) {
+          event.preventDefault();
+          const code = event.target.value.toLowerCase();
+          const genPromo = code.length == 7 && (code.substring(5,7) == "pt" || code.substring(5,7) == "fr")? 0.8 : 1;
+          this.setState({
+            handleDCoutdoorPromo: genPromo
+          });
+        }
 
     /**************Pool Services Handling********************/
     showPoolServicesInfo(event) {
@@ -840,10 +864,10 @@ const sanitiseOnceStatus = this.state.sanitiseIndoorMonth ? true : false; const 
 const endTenancyOnceStatus = this.state.endTenancyCleanMonth ? true : false; const endTenancyMonthStatus = this.state.endTenancyCleanOnce ? true : false;
 
 const totalGenIndoorClean = this.state.genIndoorCleanOnce || this.state.genIndoorCleanWeek || this.state.genIndoorCleanMonth? (150 + this.state.bedPrice + this.state.bathPrice + this.state.priceGenIndoorCleanWalls + this.state.priceGenIndoorCleanWindows + this.state.priceGenIndoorCleanLaundry + this.state.priceGenIndoorDetergents) * (this.state.priceGenIndoorCleanOnce + this.state.priceGenIndoorCleanWeek + this.state.priceGenIndoorCleanMonth) * this.state.handleIndoorGenPromo : 0;
-const totalAfterBuildIndoorClean = this.state.IndoorAfterBuildClean ?  (180 + this.state.bedPrice + this.state.bathPrice + this.state.priceAfterBuildIndoorCleanWalls + this.state.priceAfterBuildIndoorCleanWindows + this.state.priceAfterBuilderDetergents) * this.state.handleIndoorAfterBuildPromo : 0;
-const totalEndTenancyIndoorClean =  this.state.IndoorEndTenancyClean ? (180 + this.state.bedPrice + this.state.bathPrice + this.state.priceEndTenancyIndoorCleanWalls + this.state.priceEndTenancyIndoorCleanWindows + this.state.priceEndTenancyDetergents) * this.state.handleIndoorEndTenencyPromo  : 0;
-const totalSanitiseIndoor = this.state.IndoorSanitise ? (230 + this.state.bedPrice + this.state.bathPrice) * (this.state.priceSanitiseIndoorOnceOFF + this.state.priceSanitiseIndoorMonth) * this.state.handleIndoorSanitisePromo : 0;
-const totalIndoor = totalGenIndoorClean + totalAfterBuildIndoorClean + totalEndTenancyIndoorClean + totalSanitiseIndoor;
+const totalAfterBuildIndoorClean = this.state.afterBuildCleanOnce || this.state.afterBuildCleanWeek || this.state.afterBuildCleanMonth?  (180 + this.state.bedPrice + this.state.bathPrice + this.state.priceAfterBuildIndoorCleanWalls + this.state.priceAfterBuildIndoorCleanWindows + this.state.priceAfterBuilderDetergents) * (this.state.priceABcleanOnce + this.state.priceABcleanWeek + this.state.priceABcleanMonth) * this.state.handleIndoorAfterBuildPromo : 0;
+const totalEndTenancyIndoorClean =  this.state.endTenancyCleanOnce || this.state.endTenancyCleanMonth ? (180 + this.state.bedPrice + this.state.bathPrice + this.state.priceEndTenancyIndoorCleanWalls + this.state.priceEndTenancyIndoorCleanWindows + this.state.priceEndTenancyDetergents) * (this.state.priceETcleanOnce + this.state.priceETcleanMonth) * this.state.handleIndoorEndTenencyPromo  : 0;
+const totalSanitiseIndoor = this.state.sanitiseIndoorOnceOFF || this.state.sanitiseIndoorMonth? (230 + this.state.bedPrice + this.state.bathPrice) * (this.state.priceSanitiseIndoorOnceOFF + this.state.priceSanitiseIndoorMonth) * (this.state.priceSanitiseIndoorOnceOFF + this.state.priceSanitiseIndoorMonth) * this.state.handleIndoorSanitisePromo : 0;
+const totalIndoor = this.state.IndoorGenClean ? totalGenIndoorClean :  this.state.IndoorAfterBuildClean ? totalAfterBuildIndoorClean : this.state.IndoorEndTenancyClean ? totalEndTenancyIndoorClean : this.state.IndoorSanitise ? totalSanitiseIndoor : 0;
 
 /********************Outdoor*****************/
 const outdoorYCwholeYardStatus = this.state.outdoorYCfrontYard || this.state.outdoorYCbackYard || this.state.outdoorYCsideYard? true : false;
@@ -879,10 +903,10 @@ const outdoorFBonceStatus = this.state.outdoorFBweek || this.state.outdoorFBmont
 const outdoorDConceStatus = this.state.outdoorDCweek || this.state.outdoorDCmonth ? true : false; const outdoorDCweekStatus = this.state.outdoorDConce || this.state.outdoorDCmonth ? true : false; const outdoorDCmonthStatus = this.state.outdoorDCweek || this.state.outdoorDConce ? true : false;
 
 const total2 = this.state.areaHours < 2.1 ? (this.state.YCoutdoorCleanPrice + this.state.FBoutdoorCleanPrice + this.state.DCoutdoorCleanPrice + this.state.LMoutdoorCleanPrice)  + 50 : 50 +(((this.state.areaHours - 2) * 40) + (this.state.YCoutdoorCleanPrice + this.state.FBoutdoorCleanPrice + this.state.DCoutdoorCleanPrice + this.state.LMoutdoorCleanPrice));
-const totalYC = (150 + this.state.YCareaPrice * (this.state.outdoorYConcePrice + this.state.outdoorYCweekPrice + this.state.outdoorYCmonthPrice)) * this.state.handleOutdoorPromo;
-const totalLM = (150 + this.state.LMareaPrice * (this.state.outdoorLMoncePrice + this.state.outdoorLMweekPrice + this.state.outdoorLMmonthPrice)) * this.state.handleOutdoorPromo;
-const totalFB = (150 + this.state.FBareaPrice * (this.state.outdoorFBoncePrice + this.state.outdoorFBweekPrice + this.state.outdoorFBmonthPrice)) * this.state.handleOutdoorPromo;
-const totalDC = (150 + this.state.DCareaPrice * (this.state.outdoorDConcePrice + this.state.outdoorDCweekPrice + this.state.outdoorDCmonthPrice)) * this.state.handleOutdoorPromo;
+const totalYC = this.state.outdoorYConce || this.state.outdoorYCweek || this.state.outdoorYCmonth ? (150 + this.state.YCareaPrice * (this.state.outdoorYConcePrice + this.state.outdoorYCweekPrice + this.state.outdoorYCmonthPrice)) * this.state.handleYCoutdoorPromo : 0;
+const totalLM = this.state.outdoorLMonce || this.state.outdoorLMweek || this.state.outdoorLMmonth ? (150 + this.state.LMareaPrice * (this.state.outdoorLMoncePrice + this.state.outdoorLMweekPrice + this.state.outdoorLMmonthPrice)) * this.state.handleLMoutdoorPromo : 0;
+const totalFB = this.state.outdoorFBonce || this.state.outdoorFBweek || this.state.outdoorFBmonth ? (150 + this.state.FBareaPrice * (this.state.outdoorFBoncePrice + this.state.outdoorFBweekPrice + this.state.outdoorFBmonthPrice)) * this.state.handleFBoutdoorPromo : 0;
+const totalDC = this.state.outdoorDConce || this.state.outdoorDCweek || this.state.outdoorDCmonth ? (150 + this.state.DCareaPrice * (this.state.outdoorDConcePrice + this.state.outdoorDCweekPrice + this.state.outdoorDCmonthPrice)) * this.state.handleDCoutdoorPromo : 0;
 const totalOutdoor = this.state.YCoutdoorClean? totalYC : 0 + this.state.LMoutdoorClean ? totalLM : 0 + this.state.FBoutdoorClean ? totalFB : 0 + this.state.DCoutdoorClean ? totalDC : 0;
 
 /******************End Outdoor***************/
@@ -984,8 +1008,8 @@ return (
                                           <div>
                                           <ServiceTest> Extra Services</ServiceTest>
                                             <div style = {{"margin-top" : "0px"}}>
-                                              <Checkbox toggle label = "  Walls" onChange={ this.genIndoorCleanWalls }   priceGenIndoorCleanWalls =  {this.state.priceGenIndoorCleanWalls}/>
-                                              <Checkbox toggle label = "  Windows" onChange={ this.genIndoorCleanWindows }   priceGenIndoorCleanWindows =  {this.state.priceGenIndoorCleanWindows}/>
+                                              <Checkbox toggle label = "  Walls" onChange={ this.afterBuildIndoorCleanWalls } />
+                                              <Checkbox toggle label = "  Windows" onChange={ this.afterBuildIndoorCleanWindows } />
                                             </div>
                                           </div>
 
@@ -993,8 +1017,8 @@ return (
                                         <div>
                                           <ServiceTest> Extra Services</ServiceTest>
                                             <div style = {{"margin-top" : "0px"}}>
-                                              <Checkbox toggle label = "  Walls" onChange={ this.endTenancyIndoorCleanWalls }   priceEndTenancyIndoorCleanWalls =  {this.state.priceEndTenancyIndoorCleanWalls}/>
-                                              <Checkbox toggle label = "  Windows" onChange={ this.endTenancyIndoorCleanWindows }   priceEndTenancyIndoorCleanWindows =  {this.state.priceEndTenancyIndoorCleanWindows}/>
+                                              <Checkbox toggle label = "  Walls" onChange={ this.endTenancyIndoorCleanWalls } />
+                                              <Checkbox toggle label = "  Windows" onChange={ this.endTenancyIndoorCleanWindows } />
                                             </div>
                                           </div>
                                         
@@ -1064,10 +1088,11 @@ return (
                                           <FormInput
                                               id="fname"
                                               size="10"
-                                              type="number"
+                                              maxlength="7"
+                                              type="text"
                                               name="fname"
                                               placeholder="Code"
-                                              onKeyDown = {this.handleIndoorSanitisePromo}
+                                              onKeyUp = {this.handleIndoorSanitisePromo}
                                               min="0" max="9999999"
                                               required
                                           />
@@ -1095,33 +1120,33 @@ return (
                                           : this.state.IndoorAfterBuildClean ?
                                             <div>
                                             <ServiceTest> Promo Code </ServiceTest>
-                                          <FormInput
-                                                            id="fname"
-                                                            size="10"
-                                                            maxlength="7"
-                                                            type="text"
-                                                            name="fname"
-                                                            placeholder="Code"
-                                                            onKeyDown = {this.handleIndoorAfterBuildPromo}
-                                                            min="0" max="9999999"
-                                                            required
-                                                        />
+                                            <FormInput
+                                                  id="fname"
+                                                  size="10"
+                                                  maxlength="7"
+                                                  type="text"
+                                                  name="fname"
+                                                  placeholder="Code"
+                                                  onKeyUp = {this.handleIndoorAfterBuildPromo}
+                                                  min="0" max="9999999"
+                                                  required
+                                              />
                                             </div>
 
                                           :  this.state.IndoorEndTenancyClean ?
                                           <div>
                                           <ServiceTest> Promo Code </ServiceTest>
                                           <FormInput
-                                                            id="fname"
-                                                            size="10"
-                                                            maxlength="7"
-                                                            type="text"
-                                                            name="fname"
-                                                            placeholder="Code"
-                                                            onKeyUp = {this.handleIndoorEndTenencyPromo}
-                                                            min="0" max="9999999"
-                                                            required
-                                                        />
+                                              id="fname"
+                                              size="10"
+                                              maxlength="7"
+                                              type="text"
+                                              name="fname"
+                                              placeholder="Code"
+                                              onKeyUp = {this.handleIndoorEndTenencyPromo}
+                                              min="0" max="9999999"
+                                              required
+                                          />
                                             </div>
 
                                           : <ServiceGridSplit><ServiceTest>Antiviral Sanitisation</ServiceTest><Tooltip title="Antiviral Sanitisation" aria-label="add"><Fab2><SanitiseIcon onClick={this.sanitiseIndoorClean.bind(this)} IndoorSanitise = {this.state.IndoorSanitise}/></Fab2></Tooltip> </ServiceGridSplit>                                   
@@ -1484,20 +1509,21 @@ return (
                               <div>
                                   <ServiceTest> Frequency</ServiceTest>
                                     <div style = {{"margin-top" : "0px"}}>
-                                      <Checkbox toggle label = "  Once" onChange={ this.outdoorDConce }  disabled = {outdoorDConceStatus} />
-                                      <Checkbox toggle label = "  Weekly" onChange={ this.outdoorDCweek }  disabled = {outdoorDCweekStatus} />
-                                      <Checkbox toggle label = "  Monthly" onChange={ this.outdoorDCmonth }  disabled = {outdoorDCmonthStatus} />
-                                      <FormInput
+                                    <FormInput
                                             id="fname"
                                             size="10"
                                             maxlength="7"
                                             type="text"
                                             name="fname"
                                             placeholder=" Promo Code"
-                                            onKeyUp = {this.handleOutdoorPromo}
+                                            onKeyUp = {this.handleDCoutdoorPromo}
                                             min="0" max="9999999"
                                             required
                                         />
+                                      <Checkbox toggle label = "  Once" onChange={ this.outdoorDConce }  disabled = {outdoorDConceStatus} />
+                                      <Checkbox toggle label = "  Weekly" onChange={ this.outdoorDCweek }  disabled = {outdoorDCweekStatus} />
+                                      <Checkbox toggle label = "  Monthly" onChange={ this.outdoorDCmonth }  disabled = {outdoorDCmonthStatus} />
+
                                     </div>
                                   </div>
                               : <ServiceGridSplit><ServiceTest>Flower Bedding</ServiceTest><Tooltip  title="Flower Bedding" aria-label="add"><Fab2 ><Flowers onClick={this.FBoutdoorClean.bind(this)} FBoutdoorClean = {this.state.FBoutdoorClean}/></Fab2></Tooltip></ServiceGridSplit> 
@@ -1508,61 +1534,63 @@ return (
                                 <div>
                                   <ServiceTest> Frequency</ServiceTest>
                                     <div style = {{"margin-top" : "0px"}}>
-                                      <Checkbox toggle label = "  Once" onChange={ this.outdoorYConce }  disabled = {outdoorYConceStatus} />
-                                      <Checkbox toggle label = "  Weekly" onChange={ this.outdoorYCweek }  disabled = {outdoorYCweekStatus} />
-                                      <Checkbox toggle label = "  Monthly" onChange={ this.outdoorYCmonth }  disabled = {outdoorYCmonthStatus}/>
-                                      <FormInput
+                                    <FormInput
                                             id="fname"
                                             size="10"
                                             maxlength="7"
                                             type="text"
                                             name="fname"
                                             placeholder=" Promo Code"
-                                            onKeyUp = {this.handleOutdoorPromo}
+                                            onKeyUp = {this.handleYCoutdoorPromo}
                                             min="0" max="9999999"
                                             required
                                         />
+                                      <Checkbox toggle label = "  Once" onChange={ this.outdoorYConce }  disabled = {outdoorYConceStatus} />
+                                      <Checkbox toggle label = "  Weekly" onChange={ this.outdoorYCweek }  disabled = {outdoorYCweekStatus} />
+                                      <Checkbox toggle label = "  Monthly" onChange={ this.outdoorYCmonth }  disabled = {outdoorYCmonthStatus}/>
                                     </div>
                                   </div>
 
                                 :this.state.LMoutdoorClean ?
                                 <div>
                                   <ServiceTest> Frequency</ServiceTest>
-                                    <div style = {{"margin-top" : "0px"}}>
-                                      <Checkbox toggle label = "  Once" onChange={ this.outdoorLMonce }  disabled = {outdoorLMonceStatus}/>
-                                      <Checkbox toggle label = "  Weekly" onChange={ this.outdoorLMweek }  disabled = {outdoorLMweekStatus}/>
-                                      <Checkbox toggle label = "  Monthly" onChange={ this.outdoorLMmonth }  disabled = {outdoorLMmonthStatus}/>
-                                      <FormInput
+                                  <FormInput
                                             id="fname"
                                             size="10"
                                             maxlength="7"
                                             type="text"
                                             name="fname"
                                             placeholder=" Promo Code"
-                                            onKeyUp = {this.handleOutdoorPromo}
+                                            onKeyUp = {this.handleLMoutdoorPromo}
                                             min="0" max="9999999"
                                             required
                                         />
+                                    <div style = {{"margin-top" : "0px"}}>
+                                      <Checkbox toggle label = "  Once" onChange={ this.outdoorLMonce }  disabled = {outdoorLMonceStatus}/>
+                                      <Checkbox toggle label = "  Weekly" onChange={ this.outdoorLMweek }  disabled = {outdoorLMweekStatus}/>
+                                      <Checkbox toggle label = "  Monthly" onChange={ this.outdoorLMmonth }  disabled = {outdoorLMmonthStatus}/>
+
                                     </div>
                                   </div>
                                 :this.state.FBoutdoorClean ?
                                 <div>
                                   <ServiceTest> Frequency</ServiceTest>
-                                    <div style = {{"margin-top" : "0px"}}>
-                                      <Checkbox toggle label = "  Once" onChange={ this.outdoorFBonce }  disabled = {outdoorFBonceStatus} />
-                                      <Checkbox toggle label = "  Weekly" onChange={ this.outdoorFBweek }  disabled = {outdoorFBweekStatus} />
-                                      <Checkbox toggle label = "  Monthly" onChange={ this.outdoorFBmonth }  disabled = {outdoorFBmonthStatus} />
-                                      <FormInput
+                                  <FormInput
                                             id="fname"
                                             size="10"
                                             maxlength="7"
                                             type="text"
                                             name="fname"
                                             placeholder=" Promo Code"
-                                            onKeyUp = {this.handleOutdoorPromo}
+                                            onKeyUp = {this.handleFBoutdoorPromo}
                                             min="0" max="9999999"
                                             required
                                         />
+                                    <div style = {{"margin-top" : "0px"}}>
+                                      <Checkbox toggle label = "  Once" onChange={ this.outdoorFBonce }  disabled = {outdoorFBonceStatus} />
+                                      <Checkbox toggle label = "  Weekly" onChange={ this.outdoorFBweek }  disabled = {outdoorFBweekStatus} />
+                                      <Checkbox toggle label = "  Monthly" onChange={ this.outdoorFBmonth }  disabled = {outdoorFBmonthStatus} />
+
                                     </div>
                                   </div>
                                 :<ServiceGridSplit><ServiceTest>Driveway Cleaning</ServiceTest><Tooltip  title="Driveway Cleaning" aria-label="add"><Fab2 ><Driveway onClick={this.DCoutdoorClean.bind(this)} DCoutdoorClean = {this.state.DCoutdoorClean}/></Fab2></Tooltip></ServiceGridSplit>                             
@@ -1601,13 +1629,63 @@ return (
                                   <div>
                                     <Message2>Costs</Message2>
 
-                                    {this.state.YCoutdoorClean || this.state.FBoutdoorClean || this.state.DCoutdoorClean || this.state.LMoutdoorClean?
-                                      <div>
-                                         <Message>Total : R {totalOutdoor} </Message>
+                                    {this.state.YCoutdoorClean?
+                                          <div>
+                                            {this.state.handleYCoutdoorPromo == 1? 
+                                              <Message>Total : R {totalOutdoor.toFixed(2)}</Message>
+                                              : 
+                                              <div>
+
+                                              <Message>Total : R {totalOutdoor.toFixed(2)}</Message>
+                                              <Message>Applied Promo : -20%</Message>
+                                              </div>
+
+
+                                            }
+                                          </div>
+                                         
+
+                                            : this.state.FBoutdoorClean?
+                                          <div>
+                                            {this.state.handleFBoutdoorPromo == 1? 
+                                              <Message>Total : R {totalOutdoor.toFixed(2)}</Message>
+                                              : 
+                                              <div>
+
+                                              <Message>Total : R {totalOutdoor.toFixed(2)}</Message>
+                                              <Message>Applied Promo : -20%</Message>
+                                              </div>
+                                            }
+                                          </div>
+
+                                          : this.state.DCoutdoorClean?
+                                          <div>
+                                            {this.state.handleDCoutdoorPromo == 1? 
+                                              <Message>Total : R {totalOutdoor.toFixed(2)}</Message>
+                                              : 
+                                              <div>
+
+                                              <Message>Total : R {totalOutdoor.toFixed(2)}</Message>
+                                              <Message>Applied Promo : -20%</Message>
+                                              </div>
+                                            }
+                                          </div>
+
+                                          : this.state.LMoutdoorClean?
+                                          <div>
+                                            {this.state.handleLMoutdoorPromo == 1? 
+                                              <Message>Total : R {totalOutdoor.toFixed(2)}</Message>
+                                              : 
+                                              <div>
+
+                                              <Message>Total : R {totalOutdoor.toFixed(2)}</Message>
+                                              <Message>Applied Promo : -20%</Message>
+                                              </div>
+                                            }
+                                          </div>
+                                        : null
+                                        }
                                       </div>
-                                      : null
-                                      }
-                                  </div>
                                 </Options3>
                                 <p style = {{"textAlign" : "center"}}><CustomButton onClick={this.selectOutdoor.bind(this)} style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">Book Service</CustomButton></p> 
 
