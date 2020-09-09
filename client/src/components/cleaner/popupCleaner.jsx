@@ -150,10 +150,7 @@ class Cleaner extends React.Component {
           genCleanloc: "",
           outdoorLoc: "",
           poolLoc: "",
-          handleIndoorGenPromo: 1,
-          handleIndoorEndTenencyPromo: 1,
-          handleIndoorAfterBuildPromo: 1,
-          handleIndoorSanitisePromo: 1,
+
           total2: 0,
 
           /******************Indoor***********************/
@@ -190,6 +187,8 @@ class Cleaner extends React.Component {
           priceGenIndoorCleanWalls: 0, priceGenIndoorCleanWindows: 0, priceGenIndoorCleanLaundry: 0,
           priceAfterBuildIndoorCleanWalls: 0, priceAfterBuildIndoorCleanWindows: 0,
           
+          handleIndoorGenPromo: 1, handleIndoorEndTenencyPromo: 1, handleIndoorAfterBuildPromo: 1, handleIndoorSanitisePromo: 1,
+
           /***************** Outdoor ********************/
           outdoorYCwholeYard: false, outdoorYCfrontYard: false, outdoorYCbackYard: false, outdoorYCsideYard: false,
           outdoorLMwholeYard: false, outdoorLMfrontYard: false, outdoorLMbackYard: false, outdoorLMsideYard: false,
@@ -385,6 +384,7 @@ class Cleaner extends React.Component {
       this.setState({
         genIndoorCleanWalls : false, genIndoorCleanWindows : false, genIndoorCleanLaundry : false, genIndoorDetergents : false,
         genIndoorCleanOnce : false, genIndoorCleanWeek : false, genIndoorCleanMonth : false,
+        handleIndoorGenPromo: 1,
         priceGenIndoorCleanWalls : 0, priceGenIndoorCleanWindows : 0, priceGenIndoorCleanLaundry : 0, priceGenIndoorDetergents : 0,
         IndoorGenClean: this.state.IndoorAfterBuildClean === true || this.state.IndoorEndTenancyClean === true || this.state.IndoorSanitise === true ? false : !this.state.IndoorGenClean,
         IndoorCleanService: this.state.IndoorAfterBuildClean === true || this.state.IndoorEndTenancyClean === true || this.state.IndoorSanitise === true || this.state.IndoorGenClean? null : "General",
@@ -396,6 +396,7 @@ class Cleaner extends React.Component {
       this.setState({
         afterBuildIndoorCleanWalls : false, afterBuildIndoorCleanWindows : false, afterBuilderDetergents : false,
         afterBuildCleanOnce : false, afterBuildCleanWeek : false, afterBuildCleanMonth : false,
+        handleIndoorAfterBuildPromo: 1,
         priceAfterBuildIndoorCleanWalls : 0, priceAfterBuildIndoorCleanWindows : 0, priceAfterBuilderDetergents : 0,
         IndoorAfterBuildClean: this.state.IndoorGenClean === true || this.state.IndoorEndTenancyClean === true || this.state.IndoorSanitise === true ? false : !this.state.IndoorAfterBuildClean,
         IndoorAfterBuildCleanService: this.state.IndoorGenClean === true || this.state.IndoorEndTenancyClean === true || this.state.IndoorSanitise === true || this.state.IndoorAfterBuildClean? null : "After Builders",
@@ -407,6 +408,7 @@ class Cleaner extends React.Component {
       this.setState({
         endTenancyIndoorCleanWalls : false, endTenancyIndoorCleanWindows : false, endTenancyDetergents : false,
         endTenancyCleanOnce : false, endTenancyCleanMonth : false,
+        handleIndoorEndTenencyPromo: 1,
         priceEndTenancyIndoorCleanWalls : 0, priceEndTenancyIndoorCleanWindows : 0, priceEndTenancyDetergents : 0,
         IndoorEndTenancyClean: this.state.IndoorAfterBuildClean === true || this.state.IndoorGenClean === true || this.state.IndoorSanitise === true ? false : !this.state.IndoorEndTenancyClean,
         IndoorEndTenancyCleanService: this.state.IndoorAfterBuildClean === true || this.state.IndoorGenClean === true || this.state.IndoorSanitise === true || this.state.IndoorEndTenancyClean? null : "End of Tenancy",
@@ -418,6 +420,7 @@ class Cleaner extends React.Component {
       this.setState({
         sanitiseIndoorOnceOFF : false, sanitiseIndoorMonth : false,
         priceSanitiseIndoorOnceOFF : 0, priceSanitiseIndoorMonth : 0,
+        handleIndoorSanitisePromo: 1,
         IndoorSanitise: this.state.IndoorAfterBuildClean === true || this.state.IndoorEndTenancyClean === true || this.state.IndoorGenClean === true ? false : !this.state.IndoorSanitise,
         IndoorSanitiseService: this.state.IndoorAfterBuildClean === true || this.state.IndoorEndTenancyClean === true || this.state.IndoorGenClean === true || this.state.IndoorSanitise? null : "Antiviral Sanitisation",
         IndoorSanitisePrice: this.state.IndoorSanitise? 0 : 30
@@ -642,6 +645,7 @@ class Cleaner extends React.Component {
             outdoorYCwholeYard : false, outdoorYCfrontYard: false, outdoorYCbackYard : false, outdoorYCsideYard : false,
             outdoorYConce : false, outdoorYCweek: false, outdoorYCmonth : false,
             outdoorYConcePrice : 0, outdoorYCweekPrice : 0, outdoorYCmonthPrice : 0,
+            handleYCoutdoorPromo : 1,
             YCareaPrice : 0, YCarea : this.logsYCarea,
             YCoutdoorClean: !this.state.YCoutdoorClean,
             YCoutdoorCleanDisplay: this.state.YCoutdoorClean? null : "Yard Cleaning",
@@ -655,6 +659,7 @@ class Cleaner extends React.Component {
             outdoorFBwholeYard : false, outdoorFBfrontYard: false, outdoorFBbackYard : false, outdoorFBsideYard : false,
             outdoorFBonce : false, outdoorFBweek: false, outdoorFBmonth : false,
             outdoorFBoncePrice : 0, outdoorFBweekPrice : 0, outdoorFBmonthPrice : 0,
+            handleFBoutdoorPromo : 1,
             FBareaPrice : 0, FBarea : this.logsFBarea,
             FBoutdoorClean: !this.state.FBoutdoorClean,
             FBoutdoorCleanDisplay: this.state.FBoutdoorClean? null : "Flower Bedding",
@@ -666,6 +671,7 @@ class Cleaner extends React.Component {
           this.setState({
             outdoorDCwholeYard : false, outdoorDCfrontYard: false, outdoorDCbackYard : false, outdoorDCsideYard : false,
             outdoorDConce : false, outdoorDCweek: false, outdoorDCmonth : false,
+            handleDCoutdoorPromo : 1,
             DCareaPrice : 0, DCarea : this.logsDCarea,
             DCoutdoorClean: !this.state.DCoutdoorClean,
             DCoutdoorCleanDisplay: this.state.DCoutdoorClean? null : "Driveway Cleaning",
@@ -678,6 +684,7 @@ class Cleaner extends React.Component {
             outdoorLMwholeYard : false, outdoorLMfrontYard: false, outdoorLMbackYard : false, outdoorLMsideYard : false,
             outdoorLMonce : false, outdoorLMweek: false, outdoorLMmonth : false,
             outdoorLMoncePrice : 0, outdoorLMweekPrice : 0, outdoorLMmonthPrice : 0,
+            handleLMoutdoorPromo : 1,
             LMareaPrice : 0, LMarea : this.logsLMarea,
             LMoutdoorClean: !this.state.LMoutdoorClean,
             LMoutdoorCleanDisplay: this.state.LMoutdoorClean? null : "Lawn Mowing",
@@ -1006,27 +1013,51 @@ return (
                                     <Options4>
                                         {this.state.IndoorAfterBuildClean ?
                                           <div>
-                                          <ServiceTest> Extra Services</ServiceTest>
-                                            <div style = {{"margin-top" : "0px"}}>
-                                              <Checkbox toggle label = "  Walls" onChange={ this.afterBuildIndoorCleanWalls } />
-                                              <Checkbox toggle label = "  Windows" onChange={ this.afterBuildIndoorCleanWindows } />
+                                            <ServiceTest> Promo Code </ServiceTest>
+                                            <FormInput
+                                                  id="fname"
+                                                  size="10"
+                                                  maxlength="7"
+                                                  type="text"
+                                                  name="fname"
+                                                  placeholder="Code"
+                                                  onKeyUp = {this.handleIndoorAfterBuildPromo}
+                                                  min="0" max="9999999"
+                                                  required
+                                              />
                                             </div>
-                                          </div>
 
                                         : this.state.IndoorEndTenancyClean ?
-                                        <div>
-                                          <ServiceTest> Extra Services</ServiceTest>
-                                            <div style = {{"margin-top" : "0px"}}>
-                                              <Checkbox toggle label = "  Walls" onChange={ this.endTenancyIndoorCleanWalls } />
-                                              <Checkbox toggle label = "  Windows" onChange={ this.endTenancyIndoorCleanWindows } />
+
+                                          <div>
+                                          <ServiceTest> Promo Code </ServiceTest>
+                                          <FormInput
+                                              id="fname"
+                                              size="10"
+                                              maxlength="7"
+                                              type="text"
+                                              name="fname"
+                                              placeholder="Code"
+                                              onKeyUp = {this.handleIndoorEndTenencyPromo}
+                                              min="0" max="9999999"
+                                              required
+                                          />
                                             </div>
-                                          </div>
                                         
                                         : this.state.IndoorSanitise ?
                                           <div>
-                                            <ServiceTest> Extra Services</ServiceTest>
-                                            <Message style = {{"margin-top" : "0px"}}>
-                                            </Message>
+                                          <ServiceTest> Promo Code </ServiceTest>
+                                          <FormInput
+                                              id="fname"
+                                              size="10"
+                                              maxlength="7"
+                                              type="text"
+                                              name="fname"
+                                              placeholder="Code"
+                                              onKeyUp = {this.handleIndoorSanitisePromo}
+                                              min="0" max="9999999"
+                                              required
+                                          />
                                           </div>
 
                                         : <ServiceGridSplit><ServiceTest>General Cleaning</ServiceTest><Tooltip title="General Cleaning" aria-label="add"><Fab2><GenCleanIcon onClick={this.genIndoorClean.bind(this)} IndoorGenClean = {this.state.IndoorGenClean}/></Fab2></Tooltip></ServiceGridSplit>
@@ -1034,12 +1065,18 @@ return (
                                         
                                         { this.state.IndoorGenClean ?
                                           <div>
-                                          <ServiceTest> Extra Services</ServiceTest>
-                                            <div style = {{"margin-top" : "0px"}}>
-                                              <Checkbox toggle label = "  Walls" onChange={ this.genIndoorCleanWalls } />
-                                              <Checkbox toggle label = "  Windows" onChange={ this.genIndoorCleanWindows } />
-                                              <Checkbox toggle label = "  Laundry" onChange={ this.genIndoorCleanLaundry } />
-                                            </div>
+                                          <ServiceTest> Promo Code </ServiceTest>
+                                          <FormInput
+                                            id="fname"
+                                            size="10"
+                                            maxlength="7"
+                                            type="text"
+                                            name="fname"
+                                            placeholder="Code"
+                                            onKeyUp={this.handleIndoorGenPromo}
+                                            min="0" max="9999999"
+                                            required
+                                          />
                                           </div>
 
                                           : this.state.IndoorEndTenancyClean ?
@@ -1084,70 +1121,42 @@ return (
 
                                           :this.state.IndoorSanitise ?
                                           <div>
-                                          <ServiceTest> Promo Code </ServiceTest>
-                                          <FormInput
-                                              id="fname"
-                                              size="10"
-                                              maxlength="7"
-                                              type="text"
-                                              name="fname"
-                                              placeholder="Code"
-                                              onKeyUp = {this.handleIndoorSanitisePromo}
-                                              min="0" max="9999999"
-                                              required
-                                          />
+                                            <ServiceTest> Extra Services</ServiceTest>
+                                            <Message style = {{"margin-top" : "0px"}}>
+                                            </Message>
                                           </div>
                                           : <ServiceGridSplit><ServiceTest>End of Tenancy</ServiceTest><Tooltip title="End of Tenancy Cleaning" aria-label="add"><Fab2><EndTenancyIcon onClick={this.endTenancyIndoorClean.bind(this)} IndoorEndTenancyClean = {this.state.IndoorEndTenancyClean}/></Fab2></Tooltip> </ServiceGridSplit>                                   
                                         }
 
                                         { this.state.IndoorGenClean ?
                                           <div>
-                                          <ServiceTest> Promo Code </ServiceTest>
-                                          <FormInput
-                                            id="fname"
-                                            size="10"
-                                            maxlength="7"
-                                            type="text"
-                                            name="fname"
-                                            placeholder="Code"
-                                            onKeyUp={this.handleIndoorGenPromo}
-                                            min="0" max="9999999"
-                                            required
-                                        />
+                                          <ServiceTest> Extra Services</ServiceTest>
+                                            <div style = {{"margin-top" : "0px"}}>
+                                              <Checkbox toggle label = "  Walls" onChange={ this.genIndoorCleanWalls } />
+                                              <Checkbox toggle label = "  Windows" onChange={ this.genIndoorCleanWindows } />
+                                              <Checkbox toggle label = "  Laundry" onChange={ this.genIndoorCleanLaundry } />
+                                            </div>
                                           </div>
 
 
+
                                           : this.state.IndoorAfterBuildClean ?
-                                            <div>
-                                            <ServiceTest> Promo Code </ServiceTest>
-                                            <FormInput
-                                                  id="fname"
-                                                  size="10"
-                                                  maxlength="7"
-                                                  type="text"
-                                                  name="fname"
-                                                  placeholder="Code"
-                                                  onKeyUp = {this.handleIndoorAfterBuildPromo}
-                                                  min="0" max="9999999"
-                                                  required
-                                              />
+                                          <div>
+                                          <ServiceTest> Extra Services</ServiceTest>
+                                            <div style = {{"margin-top" : "0px"}}>
+                                              <Checkbox toggle label = "  Walls" onChange={ this.afterBuildIndoorCleanWalls } />
+                                              <Checkbox toggle label = "  Windows" onChange={ this.afterBuildIndoorCleanWindows } />
                                             </div>
+                                          </div>
 
                                           :  this.state.IndoorEndTenancyClean ?
                                           <div>
-                                          <ServiceTest> Promo Code </ServiceTest>
-                                          <FormInput
-                                              id="fname"
-                                              size="10"
-                                              maxlength="7"
-                                              type="text"
-                                              name="fname"
-                                              placeholder="Code"
-                                              onKeyUp = {this.handleIndoorEndTenencyPromo}
-                                              min="0" max="9999999"
-                                              required
-                                          />
+                                          <ServiceTest> Extra Services</ServiceTest>
+                                            <div style = {{"margin-top" : "0px"}}>
+                                              <Checkbox toggle label = "  Walls" onChange={ this.endTenancyIndoorCleanWalls } />
+                                              <Checkbox toggle label = "  Windows" onChange={ this.endTenancyIndoorCleanWindows } />
                                             </div>
+                                          </div>
 
                                           : <ServiceGridSplit><ServiceTest>Antiviral Sanitisation</ServiceTest><Tooltip title="Antiviral Sanitisation" aria-label="add"><Fab2><SanitiseIcon onClick={this.sanitiseIndoorClean.bind(this)} IndoorSanitise = {this.state.IndoorSanitise}/></Fab2></Tooltip> </ServiceGridSplit>                                   
                                         } 
@@ -1304,36 +1313,72 @@ return (
                                 <Options4>
                               { this.state.LMoutdoorClean ?
                                 <div>
-                                  <ServiceTest> Work Yard</ServiceTest>
-                                  <div style = {{"margin-top" : "0px"}}>
-                                    <Checkbox toggle label = "  Whole" onChange={ this.outdoorLMwholeYard }  disabled = {outdoorLMwholeYardStatus} />
-                                    <Checkbox toggle label = "  Front" onChange={ this.outdoorLMfrontYard }  disabled = {outdoorLMnotWholeStatus} />
-                                    <Checkbox toggle label = "  Back" onChange={ this.outdoorLMbackYard }  disabled = {outdoorLMnotWholeStatus} />
-                                    <Checkbox toggle label = "  Side" onChange={ this.outdoorLMsideYard }  disabled = {outdoorLMnotWholeStatus} />
+                                  <ServiceTest> Frequency</ServiceTest>
+                                  <FormInput
+                                            id="fname"
+                                            size="10"
+                                            maxlength="7"
+                                            type="text"
+                                            name="fname"
+                                            placeholder=" Promo Code"
+                                            onKeyUp = {this.handleLMoutdoorPromo}
+                                            min="0" max="9999999"
+                                            required
+                                        />
+                                    <div style = {{"margin-top" : "0px"}}>
+                                      <Checkbox toggle label = "  Once" onChange={ this.outdoorLMonce }  disabled = {outdoorLMonceStatus}/>
+                                      <Checkbox toggle label = "  Weekly" onChange={ this.outdoorLMweek }  disabled = {outdoorLMweekStatus}/>
+                                      <Checkbox toggle label = "  Monthly" onChange={ this.outdoorLMmonth }  disabled = {outdoorLMmonthStatus}/>
+
+                                    </div>
                                   </div>
-                                </div>
 
                                : this.state.FBoutdoorClean?
-                               <div>
-                                  <ServiceTest> Work Yard</ServiceTest>
-                                  <div style = {{"margin-top" : "0px"}}>
-                                    <Checkbox toggle label = "  Whole" onChange={ this.outdoorFBwholeYard }  disabled = {outdoorFBwholeYardStatus} />
-                                    <Checkbox toggle label = "  Front" onChange={ this.outdoorFBfrontYard }  disabled = {outdoorFBnotWholeStatus} />
-                                    <Checkbox toggle label = "  Back" onChange={ this.outdoorFBbackYard }  disabled = {outdoorFBnotWholeStatus} />
-                                    <Checkbox toggle label = "  Side" onChange={ this.outdoorFBsideYard }  disabled = {outdoorFBnotWholeStatus} />
+
+
+                                <div>
+                                  <ServiceTest> Frequency</ServiceTest>
+                                  <FormInput
+                                            id="fname"
+                                            size="10"
+                                            maxlength="7"
+                                            type="text"
+                                            name="fname"
+                                            placeholder=" Promo Code"
+                                            onKeyUp = {this.handleFBoutdoorPromo}
+                                            min="0" max="9999999"
+                                            required
+                                        />
+                                    <div style = {{"margin-top" : "0px"}}>
+                                      <Checkbox toggle label = "  Once" onChange={ this.outdoorFBonce }  disabled = {outdoorFBonceStatus} />
+                                      <Checkbox toggle label = "  Weekly" onChange={ this.outdoorFBweek }  disabled = {outdoorFBweekStatus} />
+                                      <Checkbox toggle label = "  Monthly" onChange={ this.outdoorFBmonth }  disabled = {outdoorFBmonthStatus} />
+
+                                    </div>
                                   </div>
-                                </div>
 
                                 : this.state.DCoutdoorClean?
+
                                 <div>
-                                  <ServiceTest> Work Yard</ServiceTest>
-                                  <div style = {{"margin-top" : "0px"}}>
-                                    <Checkbox toggle label = "  Whole" onChange={ this.outdoorDCwholeYard }  disabled = {outdoorDCwholeYardStatus} />
-                                    <Checkbox toggle label = "  Front" onChange={ this.outdoorDCfrontYard }  disabled = {outdoorDCnotWholeStatus} />
-                                    <Checkbox toggle label = "  Back" onChange={ this.outdoorDCbackYard }  disabled = {outdoorDCnotWholeStatus} />
-                                    <Checkbox toggle label = "  Side" onChange={ this.outdoorDCsideYard }  disabled = {outdoorDCnotWholeStatus} />
+                                  <ServiceTest> Frequency</ServiceTest>
+                                    <div style = {{"margin-top" : "0px"}}>
+                                    <FormInput
+                                            id="fname"
+                                            size="10"
+                                            maxlength="7"
+                                            type="text"
+                                            name="fname"
+                                            placeholder=" Promo Code"
+                                            onKeyUp = {this.handleDCoutdoorPromo}
+                                            min="0" max="9999999"
+                                            required
+                                        />
+                                      <Checkbox toggle label = "  Once" onChange={ this.outdoorDConce }  disabled = {outdoorDConceStatus} />
+                                      <Checkbox toggle label = "  Weekly" onChange={ this.outdoorDCweek }  disabled = {outdoorDCweekStatus} />
+                                      <Checkbox toggle label = "  Monthly" onChange={ this.outdoorDCmonth }  disabled = {outdoorDCmonthStatus} />
+
+                                    </div>
                                   </div>
-                                </div>
 
                                 : <ServiceGridSplit><ServiceTest>Yard Cleaning</ServiceTest><Tooltip title="Yard Cleaning" aria-label="add"><Fab2><Wheelbarrow onClick={this.YCoutdoorClean.bind(this)} YCoutdoorClean = {this.state.YCoutdoorClean}/></Fab2></Tooltip></ServiceGridSplit>
                               }
@@ -1341,14 +1386,24 @@ return (
 
                               {this.state.YCoutdoorClean?
                                 <div>
-                                  <ServiceTest> Work Yard</ServiceTest>
-                                  <div style = {{"margin-top" : "0px"}}>
-                                    <Checkbox toggle label = "  Whole" onChange={ this.outdoorYCwholeYard }  disabled = {outdoorYCwholeYardStatus} />
-                                    <Checkbox toggle label = "  Front" onChange={ this.outdoorYCfrontYard }  disabled = {outdoorNotWholeStatus} />
-                                    <Checkbox toggle label = "  Back" onChange={ this.outdoorYCbackYard }  disabled = {outdoorNotWholeStatus} />
-                                    <Checkbox toggle label = "  Side" onChange={ this.outdoorYCsideYard }  disabled = {outdoorNotWholeStatus} />
+                                  <ServiceTest> Frequency</ServiceTest>
+                                    <div style = {{"margin-top" : "0px"}}>
+                                    <FormInput
+                                            id="fname"
+                                            size="10"
+                                            maxlength="7"
+                                            type="text"
+                                            name="fname"
+                                            placeholder=" Promo Code"
+                                            onKeyUp = {this.handleYCoutdoorPromo}
+                                            min="0" max="9999999"
+                                            required
+                                        />
+                                      <Checkbox toggle label = "  Once" onChange={ this.outdoorYConce }  disabled = {outdoorYConceStatus} />
+                                      <Checkbox toggle label = "  Weekly" onChange={ this.outdoorYCweek }  disabled = {outdoorYCweekStatus} />
+                                      <Checkbox toggle label = "  Monthly" onChange={ this.outdoorYCmonth }  disabled = {outdoorYCmonthStatus}/>
+                                    </div>
                                   </div>
-                                </div>
 
                               :this.state.FBoutdoorClean?
                               <div>
@@ -1507,92 +1562,49 @@ return (
                               </div>
                               : this.state.DCoutdoorClean ?
                               <div>
-                                  <ServiceTest> Frequency</ServiceTest>
-                                    <div style = {{"margin-top" : "0px"}}>
-                                    <FormInput
-                                            id="fname"
-                                            size="10"
-                                            maxlength="7"
-                                            type="text"
-                                            name="fname"
-                                            placeholder=" Promo Code"
-                                            onKeyUp = {this.handleDCoutdoorPromo}
-                                            min="0" max="9999999"
-                                            required
-                                        />
-                                      <Checkbox toggle label = "  Once" onChange={ this.outdoorDConce }  disabled = {outdoorDConceStatus} />
-                                      <Checkbox toggle label = "  Weekly" onChange={ this.outdoorDCweek }  disabled = {outdoorDCweekStatus} />
-                                      <Checkbox toggle label = "  Monthly" onChange={ this.outdoorDCmonth }  disabled = {outdoorDCmonthStatus} />
-
-                                    </div>
+                                  <ServiceTest> Work Yard</ServiceTest>
+                                  <div style = {{"margin-top" : "0px"}}>
+                                    <Checkbox toggle label = "  Whole" onChange={ this.outdoorDCwholeYard }  disabled = {outdoorDCwholeYardStatus} />
+                                    <Checkbox toggle label = "  Front" onChange={ this.outdoorDCfrontYard }  disabled = {outdoorDCnotWholeStatus} />
+                                    <Checkbox toggle label = "  Back" onChange={ this.outdoorDCbackYard }  disabled = {outdoorDCnotWholeStatus} />
+                                    <Checkbox toggle label = "  Side" onChange={ this.outdoorDCsideYard }  disabled = {outdoorDCnotWholeStatus} />
                                   </div>
+                                </div>
                               : <ServiceGridSplit><ServiceTest>Flower Bedding</ServiceTest><Tooltip  title="Flower Bedding" aria-label="add"><Fab2 ><Flowers onClick={this.FBoutdoorClean.bind(this)} FBoutdoorClean = {this.state.FBoutdoorClean}/></Fab2></Tooltip></ServiceGridSplit> 
                              
                               }  
 
                               {this.state.YCoutdoorClean?
                                 <div>
-                                  <ServiceTest> Frequency</ServiceTest>
-                                    <div style = {{"margin-top" : "0px"}}>
-                                    <FormInput
-                                            id="fname"
-                                            size="10"
-                                            maxlength="7"
-                                            type="text"
-                                            name="fname"
-                                            placeholder=" Promo Code"
-                                            onKeyUp = {this.handleYCoutdoorPromo}
-                                            min="0" max="9999999"
-                                            required
-                                        />
-                                      <Checkbox toggle label = "  Once" onChange={ this.outdoorYConce }  disabled = {outdoorYConceStatus} />
-                                      <Checkbox toggle label = "  Weekly" onChange={ this.outdoorYCweek }  disabled = {outdoorYCweekStatus} />
-                                      <Checkbox toggle label = "  Monthly" onChange={ this.outdoorYCmonth }  disabled = {outdoorYCmonthStatus}/>
-                                    </div>
+                                  <ServiceTest> Work Yard</ServiceTest>
+                                  <div style = {{"margin-top" : "0px"}}>
+                                    <Checkbox toggle label = "  Whole" onChange={ this.outdoorYCwholeYard }  disabled = {outdoorYCwholeYardStatus} />
+                                    <Checkbox toggle label = "  Front" onChange={ this.outdoorYCfrontYard }  disabled = {outdoorNotWholeStatus} />
+                                    <Checkbox toggle label = "  Back" onChange={ this.outdoorYCbackYard }  disabled = {outdoorNotWholeStatus} />
+                                    <Checkbox toggle label = "  Side" onChange={ this.outdoorYCsideYard }  disabled = {outdoorNotWholeStatus} />
                                   </div>
+                                </div>
 
                                 :this.state.LMoutdoorClean ?
                                 <div>
-                                  <ServiceTest> Frequency</ServiceTest>
-                                  <FormInput
-                                            id="fname"
-                                            size="10"
-                                            maxlength="7"
-                                            type="text"
-                                            name="fname"
-                                            placeholder=" Promo Code"
-                                            onKeyUp = {this.handleLMoutdoorPromo}
-                                            min="0" max="9999999"
-                                            required
-                                        />
-                                    <div style = {{"margin-top" : "0px"}}>
-                                      <Checkbox toggle label = "  Once" onChange={ this.outdoorLMonce }  disabled = {outdoorLMonceStatus}/>
-                                      <Checkbox toggle label = "  Weekly" onChange={ this.outdoorLMweek }  disabled = {outdoorLMweekStatus}/>
-                                      <Checkbox toggle label = "  Monthly" onChange={ this.outdoorLMmonth }  disabled = {outdoorLMmonthStatus}/>
-
-                                    </div>
+                                  <ServiceTest> Work Yard</ServiceTest>
+                                  <div style = {{"margin-top" : "0px"}}>
+                                    <Checkbox toggle label = "  Whole" onChange={ this.outdoorLMwholeYard }  disabled = {outdoorLMwholeYardStatus} />
+                                    <Checkbox toggle label = "  Front" onChange={ this.outdoorLMfrontYard }  disabled = {outdoorLMnotWholeStatus} />
+                                    <Checkbox toggle label = "  Back" onChange={ this.outdoorLMbackYard }  disabled = {outdoorLMnotWholeStatus} />
+                                    <Checkbox toggle label = "  Side" onChange={ this.outdoorLMsideYard }  disabled = {outdoorLMnotWholeStatus} />
                                   </div>
+                                </div>
                                 :this.state.FBoutdoorClean ?
                                 <div>
-                                  <ServiceTest> Frequency</ServiceTest>
-                                  <FormInput
-                                            id="fname"
-                                            size="10"
-                                            maxlength="7"
-                                            type="text"
-                                            name="fname"
-                                            placeholder=" Promo Code"
-                                            onKeyUp = {this.handleFBoutdoorPromo}
-                                            min="0" max="9999999"
-                                            required
-                                        />
-                                    <div style = {{"margin-top" : "0px"}}>
-                                      <Checkbox toggle label = "  Once" onChange={ this.outdoorFBonce }  disabled = {outdoorFBonceStatus} />
-                                      <Checkbox toggle label = "  Weekly" onChange={ this.outdoorFBweek }  disabled = {outdoorFBweekStatus} />
-                                      <Checkbox toggle label = "  Monthly" onChange={ this.outdoorFBmonth }  disabled = {outdoorFBmonthStatus} />
-
-                                    </div>
+                                  <ServiceTest> Work Yard</ServiceTest>
+                                  <div style = {{"margin-top" : "0px"}}>
+                                    <Checkbox toggle label = "  Whole" onChange={ this.outdoorFBwholeYard }  disabled = {outdoorFBwholeYardStatus} />
+                                    <Checkbox toggle label = "  Front" onChange={ this.outdoorFBfrontYard }  disabled = {outdoorFBnotWholeStatus} />
+                                    <Checkbox toggle label = "  Back" onChange={ this.outdoorFBbackYard }  disabled = {outdoorFBnotWholeStatus} />
+                                    <Checkbox toggle label = "  Side" onChange={ this.outdoorFBsideYard }  disabled = {outdoorFBnotWholeStatus} />
                                   </div>
+                                </div>
                                 :<ServiceGridSplit><ServiceTest>Driveway Cleaning</ServiceTest><Tooltip  title="Driveway Cleaning" aria-label="add"><Fab2 ><Driveway onClick={this.DCoutdoorClean.bind(this)} DCoutdoorClean = {this.state.DCoutdoorClean}/></Fab2></Tooltip></ServiceGridSplit>                             
                               }                          
 
