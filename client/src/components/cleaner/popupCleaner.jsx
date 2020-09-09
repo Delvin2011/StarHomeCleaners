@@ -181,14 +181,14 @@ class Cleaner extends React.Component {
           endTenancyCleanOnce: false, endTenancyCleanMonth: false,
           sanitiseIndoorOnceOFF: false, sanitiseIndoorMonth: false,
 
-          genIndoorDetergents: false, afterBuilderDetergents: false, endTenancyDetergents: false,
+          genIndoorDetergents: false, afterBuilderDetergents: false, endTenancyDetergents: false, IndoorDetergents : false,
           priceGenIndoorDetergents: 0, priceAfterBuilderDetergents: 0, priceEndTenancyDetergents: 0,
 
           priceGenIndoorCleanWalls: 0, priceGenIndoorCleanWindows: 0, priceGenIndoorCleanLaundry: 0,
           priceAfterBuildIndoorCleanWalls: 0, priceAfterBuildIndoorCleanWindows: 0,
           
           handleIndoorGenPromo: 1, handleIndoorEndTenencyPromo: 1, handleIndoorAfterBuildPromo: 1, handleIndoorSanitisePromo: 1,
-
+          IndoorBookedService : "",
           /***************** Outdoor ********************/
           outdoorYCwholeYard: false, outdoorYCfrontYard: false, outdoorYCbackYard: false, outdoorYCsideYard: false,
           outdoorLMwholeYard: false, outdoorLMfrontYard: false, outdoorLMbackYard: false, outdoorLMsideYard: false,
@@ -208,8 +208,8 @@ class Cleaner extends React.Component {
           outdoorFBonce : false, outdoorFBoncePrice : 0, outdoorFBweek: false, outdoorFBweekPrice : 0, outdoorFBmonth: false, outdoorFBmonthPrice : 0,
           outdoorDConce : false, outdoorDConcePrice : 0, outdoorDCweek: false, outdoorDCweekPrice : 0, outdoorDCmonth: false, outdoorDCmonthPrice : 0,
           YCareaPrice: 0, LMareaPrice : 0,FBareaPrice : 0, DCareaPrice : 0,
-          handleYCoutdoorPromo : 1, handleLMoutdoorPromo : 1, handleFBoutdoorPromo : 1, handleDCoutdoorPromo : 1
-          
+          handleYCoutdoorPromo : 1, handleLMoutdoorPromo : 1, handleFBoutdoorPromo : 1, handleDCoutdoorPromo : 1,
+          OutdoorBookedService : "", serviceIntervalOutdoor : "", OutdoorYardSize : "", OutdoorPropertType : "", OutdoorPropertKind : ""
           
           
           
@@ -505,22 +505,15 @@ class Cleaner extends React.Component {
     }
 
 
-
-
     selectIndoor(event) {
       this.setState({
-        showPopupIndoor: !this.state.showPopupIndoor//,
-        //value: event.target.innerText //,
-        //totalIndoor: this.state.genIndoorCleanOnce || this.state.genIndoorCleanWeek || this.state.genIndoorCleanMonth? (150 + this.state.bedPrice + this.state.bathPrice + this.state.priceGenIndoorCleanWalls + this.state.priceGenIndoorCleanWindows + this.state.priceGenIndoorCleanLaundry + this.state.priceGenIndoorDetergents) * (this.state.priceGenIndoorCleanOnce + this.state.priceGenIndoorCleanWeek + this.state.priceGenIndoorCleanMonth) * this.state.handleIndoorGenPromo : 0 +
-        //this.state.IndoorAfterBuildClean ?  (180 + this.state.bedPrice + this.state.bathPrice + this.state.priceAfterBuildIndoorCleanWalls + this.state.priceAfterBuildIndoorCleanWindows + this.state.priceAfterBuilderDetergents) *  this.state.handleIndoorAfterBuildPromo: 0 +
-        //this.state.IndoorEndTenancyClean ? (180 + this.state.bedPrice + this.state.bathPrice + this.state.priceEndTenancyIndoorCleanWalls + this.state.priceEndTenancyIndoorCleanWindows + this.state.priceEndTenancyDetergents) * this.state.handleIndoorEndTenencyPromo : 0 +
-        //this.state.IndoorSanitise ? (230 + this.state.bedPrice + this.state.bathPrice) * (this.state.priceSanitiseIndoorOnceOFF + this.state.priceSanitiseIndoorMonth) * this.state.handleIndoorSanitisePromo : 0,
-        //serviceIntervalIndoor: this.state.priceSanitiseIndoorOnceOFF || this.state.priceGenIndoorCleanOnce> 0 ? "Once OFF" : this.state.priceGenIndoorCleanWeek > 0 ? "Weekly" : this.state.priceSanitiseIndoorMonth || this.state.priceGenIndoorCleanMonth > 0 ? "Monthly" : "Once OFF",
-        //serviceIntervalGenIndoorClean : this.state.priceGenIndoorCleanOnce > 0 ? "Once OFF" : this.state.priceGenIndoorCleanWeek > 0 ? "Weekly" : this.state.priceGenIndoorCleanMonth > 0 ? "Monthly" : null
-      
-       });
-    }
+        showPopupIndoor: !this.state.showPopupIndoor,
+        serviceIntervalIndoor: this.state.genIndoorCleanOnce || this.state.afterBuildCleanOnce || this.state.endTenancyCleanOnce || this.state.sanitiseIndoorOnceOFF ? "Once OFF" : this.state.genIndoorCleanWeek || this.state.afterBuildCleanWeek ? "Weekly" : this.state.endTenancyCleanMonth || this.state.sanitiseIndoorMonth || this.state.genIndoorCleanMonth || this.state.afterBuildCleanMonth ? "Monthly" : "Once OFF",
+        IndoorDetergents : this.state.genIndoorDetergents || this.state.afterBuilderDetergents || this.state.endTenancyDetergents ? true: false,
+        IndoorBookedService : this.state.IndoorGenClean ? "General Cleaning" :  this.state.IndoorAfterBuildClean ? "After Builders" : this.state.IndoorEndTenancyClean ? "End of Tenancy" : this.state.IndoorSanitise ? "Antiviral Sanitisation" : ""
 
+      });
+    }
 
     showTcsIn(event) {
       this.setState({
@@ -606,7 +599,7 @@ class Cleaner extends React.Component {
     handleOutdoorPropertType(e) {
       this.logsOutdoorPropType.shift();
       this.logsOutdoorPropType.unshift("Type : " + e.target.value );
-        this.setState({ selectValue: e.target.value,
+        this.setState({ OutdoorPropertType: e.target.value,
           areaHours: e.target.value //to ignore
         });
       }
@@ -615,7 +608,7 @@ class Cleaner extends React.Component {
       handleOutdoorPropertKind(e) {
         this.logsOutdoorPropKind.shift();
         this.logsOutdoorPropKind.unshift("Kind : " + e.target.value );
-          this.setState({ selectValue: e.target.value,
+          this.setState({ OutdoorPropertKind: e.target.value,
             areaHours: e.target.value //to ignore
           });
         }
@@ -716,8 +709,9 @@ class Cleaner extends React.Component {
         selectOutdoor(event) {
           this.setState({
             showPopupOutdoor: !this.state.showPopupOutdoor,
-            value: event.target.innerText,
-            total2: this.state.areaHours < 2.1 ? (this.state.YCoutdoorCleanPrice + this.state.FBoutdoorCleanPrice + this.state.DCoutdoorCleanPrice + this.state.LMoutdoorCleanPrice)  + 50 : 50 +(((this.state.areaHours - 2) * 40) + (this.state.YCoutdoorCleanPrice + this.state.FBoutdoorCleanPrice + this.state.DCoutdoorCleanPrice + this.state.LMoutdoorCleanPrice))
+            serviceIntervalOutdoor: this.state.outdoorYConce || this.state.outdoorLMonce || this.state.outdoorFBonce || this.state.outdoorDConce ? "OnceOFF" : this.state.outdoorYCweek || this.state.outdoorLMweek || this.state.outdoorFBweek || this.state.outdoorDCweek? "Weekly" : this.state.outdoorYCmonth || this.state.outdoorLMmonth || this.state.outdoorFBmonth || this.state.outdoorDCmonth? "Monthly" : "OnceOFF",
+            OutdoorBookedService : this.state.YCoutdoorClean? "Yard Cleaning" : this.state.FBoutdoorClean ? "Flower Bedding" : this.state.DCoutdoorClean? "Driveway Cleaning" : this.state.LMoutdoorClean? "Lawn Mowing" : "",
+            OutdoorYardSize : this.state.YCoutdoorClean? this.state.YCarea : this.state.FBoutdoorClean ? this.state.FBarea : this.state.DCoutdoorClean? this.state.DCarea : this.state.LMoutdoorClean? this.state.LMarea : ""          
           });
         }
         
@@ -854,7 +848,8 @@ const x = "" + this.state.dateTime;
 const y = "" + this.state.dateTimeOutdoor;
 const poolTime = "" + this.state.dateTimePool;
 
-
+console.log(this.state.bathRooms);
+console.log(this.state.bedRooms);
 
 const maintMonthStatus = this.state.maintYear || this.state.maintQuat ? true : false;
 const maintQuatStatus = this.state.maintMonth || this.state.maintYear ? true : false;
@@ -875,7 +870,6 @@ const totalAfterBuildIndoorClean = this.state.afterBuildCleanOnce || this.state.
 const totalEndTenancyIndoorClean =  this.state.endTenancyCleanOnce || this.state.endTenancyCleanMonth ? (180 + this.state.bedPrice + this.state.bathPrice + this.state.priceEndTenancyIndoorCleanWalls + this.state.priceEndTenancyIndoorCleanWindows + this.state.priceEndTenancyDetergents) * (this.state.priceETcleanOnce + this.state.priceETcleanMonth) * this.state.handleIndoorEndTenencyPromo  : 0;
 const totalSanitiseIndoor = this.state.sanitiseIndoorOnceOFF || this.state.sanitiseIndoorMonth? (230 + this.state.bedPrice + this.state.bathPrice) * (this.state.priceSanitiseIndoorOnceOFF + this.state.priceSanitiseIndoorMonth) * (this.state.priceSanitiseIndoorOnceOFF + this.state.priceSanitiseIndoorMonth) * this.state.handleIndoorSanitisePromo : 0;
 const totalIndoor = this.state.IndoorGenClean ? totalGenIndoorClean :  this.state.IndoorAfterBuildClean ? totalAfterBuildIndoorClean : this.state.IndoorEndTenancyClean ? totalEndTenancyIndoorClean : this.state.IndoorSanitise ? totalSanitiseIndoor : 0;
-
 /********************Outdoor*****************/
 const outdoorYCwholeYardStatus = this.state.outdoorYCfrontYard || this.state.outdoorYCbackYard || this.state.outdoorYCsideYard? true : false;
 const outdoorNotWholeStatus = this.state.outdoorYCwholeYard ? true : false;
@@ -2104,20 +2098,20 @@ return (
 
             {this.state.showPopupOutdoor?
               this.props.currentUser?
-              <Outdoor showPopupOutdoor = {this.state.showPopupOutdoor} currentUser = {this.props.currentUser} closePopup={this.props.closePopup} dateTime = {this.state.dateTimeOutdoor} total = {this.state.total2} time = {this.state.areaHours} wheelbarrow = {this.state.YCoutdoorCleanDisplay} mower = {this.state.LMoutdoorCleanDisplay} windows = {this.state.FBoutdoorCleanDisplay} box = {this.state.DCoutdoorCleanDisplay} />
+              <Outdoor showPopupOutdoor = {this.state.showPopupOutdoor} currentUser = {this.props.currentUser} closePopup={this.props.closePopup} dateTime = {this.state.dateTimeOutdoor} total = {totalOutdoor} OutdoorBookedService = {this.state.OutdoorBookedService} serviceIntervalOutdoor = {this.state.serviceIntervalOutdoor} OutdoorYardSize = {this.state.OutdoorYardSize} OutdoorPropertType = {this.state.OutdoorPropertType} OutdoorPropertKind = {this.state.OutdoorPropertKind} wheelbarrow = {this.state.YCoutdoorCleanDisplay} mower = {this.state.LMoutdoorCleanDisplay} windows = {this.state.FBoutdoorCleanDisplay} box = {this.state.DCoutdoorCleanDisplay} />
                 : !this.props.currentUser?
-                  <PromptSinIn currentUser = {this.props.currentUser} showPopupOutdoor = {this.state.showPopupOutdoor} closePopup={this.props.closePopup} dateTime = {this.state.dateTimeOutdoor} total = {this.state.total2} time = {this.state.areaHours} wheelbarrow = {this.state.YCoutdoorCleanDisplay} mower = {this.state.LMoutdoorCleanDisplay} windows = {this.state.FBoutdoorCleanDisplay} box = {this.state.DCoutdoorCleanDisplay}/>
+                  <PromptSinIn currentUser = {this.props.currentUser} showPopupOutdoor = {this.state.showPopupOutdoor} closePopup={this.props.closePopup} dateTime = {this.state.dateTimeOutdoor} total = {totalOutdoor}  wheelbarrow = {this.state.YCoutdoorCleanDisplay} mower = {this.state.LMoutdoorCleanDisplay} windows = {this.state.FBoutdoorCleanDisplay} box = {this.state.DCoutdoorCleanDisplay}/>
                 : null
               :null
             } 
 
             {this.state.showPopupIndoor ?
                this.props.currentUser?
-                <Indoor showPopupIndoor = {this.state.showPopupIndoor} currentUser = {this.props.currentUser} closePopup={this.props.closePopup} dateTime = {this.state.dateTime} totalIndoor = {this.state.totalIndoor} genIndoorCleanWallsService = {this.state.genIndoorCleanWallsService} genIndoorCleanWindowsService = {this.state.genIndoorCleanWindowsService} genIndoorCleanLaundryService = {this.state.genIndoorCleanLaundryService} afterBuildIndoorCleanWallsService = {this.state.afterBuildIndoorCleanWallsService} serviceIntervalIndoor = {this.state.serviceIntervalIndoor} 
-                afterBuildIndoorCleanWindowsService = {this.state.afterBuildIndoorCleanWindowsService} endTenancyIndoorCleanWallsService = {this.state.endTenancyIndoorCleanWallsService} endTenancyIndoorCleanWindowsService = {this.state.endTenancyIndoorCleanWindowsService} bedRooms = {this.state.bedRooms} bathRooms = {this.state.bathRooms} IndoorCleanService = {this.state.IndoorCleanService} IndoorAfterBuildCleanService = {this.state.IndoorAfterBuildCleanService} IndoorEndTenancyCleanService = {this.state.IndoorEndTenancyCleanService} IndoorSanitiseService = {this.state.IndoorSanitiseService}/>
+                <Indoor showPopupIndoor = {this.state.showPopupIndoor} currentUser = {this.props.currentUser} closePopup={this.props.closePopup} dateTime = {this.state.dateTime} totalIndoor = {totalIndoor.toFixed(2)} genIndoorCleanWallsService = {this.state.genIndoorCleanWallsService} genIndoorCleanWindowsService = {this.state.genIndoorCleanWindowsService} genIndoorCleanLaundryService = {this.state.genIndoorCleanLaundryService} afterBuildIndoorCleanWallsService = {this.state.afterBuildIndoorCleanWallsService} serviceIntervalIndoor = {this.state.serviceIntervalIndoor}  IndoorDetergents = {this.state.IndoorDetergents}
+                afterBuildIndoorCleanWindowsService = {this.state.afterBuildIndoorCleanWindowsService} endTenancyIndoorCleanWallsService = {this.state.endTenancyIndoorCleanWallsService} endTenancyIndoorCleanWindowsService = {this.state.endTenancyIndoorCleanWindowsService} bedRooms = {this.state.bedRooms} bathRooms = {this.state.bathRooms} IndoorBookedService = {this.state.IndoorBookedService}/>
                 : !this.props.currentUser?
-                  <PromptSinIn currentUser = {this.props.currentUser} showPopupIndoor = {this.state.showPopupIndoor} closePopup={this.props.closePopup} dateTime = {this.state.dateTime} totalIndoor = {this.state.totalIndoor} genIndoorCleanWallsService = {this.state.genIndoorCleanWallsService} genIndoorCleanWindowsService = {this.state.genIndoorCleanWindowsService} genIndoorCleanLaundryService = {this.state.genIndoorCleanLaundryService} afterBuildIndoorCleanWallsService = {this.state.afterBuildIndoorCleanWallsService} serviceIntervalIndoor = {this.state.serviceIntervalIndoor} 
-                afterBuildIndoorCleanWindowsService = {this.state.afterBuildIndoorCleanWindowsService} endTenancyIndoorCleanWallsService = {this.state.endTenancyIndoorCleanWallsService} endTenancyIndoorCleanWindowsService = {this.state.endTenancyIndoorCleanWindowsService} bedRooms = {this.state.bedRooms} bathRooms = {this.state.bathRooms} IndoorCleanService = {this.state.IndoorCleanService} IndoorAfterBuildCleanService = {this.state.IndoorAfterBuildCleanService} IndoorEndTenancyCleanService = {this.state.IndoorEndTenancyCleanService} IndoorSanitiseService = {this.state.IndoorSanitiseService}/>
+                  <PromptSinIn currentUser = {this.props.currentUser} showPopupIndoor = {this.state.showPopupIndoor} closePopup={this.props.closePopup} dateTime = {this.state.dateTime} totalIndoor = {this.state.totalIndoor} genIndoorCleanWallsService = {this.state.genIndoorCleanWallsService} genIndoorCleanWindowsService = {this.state.genIndoorCleanWindowsService} genIndoorCleanLaundryService = {this.state.genIndoorCleanLaundryService} afterBuildIndoorCleanWallsService = {this.state.afterBuildIndoorCleanWallsService} serviceIntervalIndoor = {this.state.serviceIntervalIndoor} IndoorDetergents = {this.state.IndoorDetergents}
+                afterBuildIndoorCleanWindowsService = {this.state.afterBuildIndoorCleanWindowsService} endTenancyIndoorCleanWallsService = {this.state.endTenancyIndoorCleanWallsService} endTenancyIndoorCleanWindowsService = {this.state.endTenancyIndoorCleanWindowsService} bedRooms = {this.state.bedRooms} bathRooms = {this.state.bathRooms} IndoorBookedService = {this.state.IndoorBookedService}/>
                 : null
 
               :null

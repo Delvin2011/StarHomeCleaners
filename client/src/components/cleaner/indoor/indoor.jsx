@@ -87,7 +87,7 @@ class Indoor extends React.Component {
         const min = 1;
         const max = 1000;
         const random = min + (Math.random() * (max - min));
-        const service = this.props.IndoorCleanService? this.props.IndoorCleanService : this.props.IndoorAfterBuildCleanService? this.props.IndoorAfterBuildCleanService : this.props.IndoorEndTenancyCleanService? this.props.IndoorEndTenancyCleanService : this.props.IndoorSanitiseService? this.props.IndoorSanitiseService : "";
+        const service = this.props.IndoorDetergents ? this.props.IndoorBookedService + " with Detergents" : this.props.IndoorBookedService;
         const payment = this.state.IndoorCashPayment ? "CAS" : this.state.IndoorCardPayment ? "ONLINE" : "";
         this.setState({
             item : 
@@ -151,7 +151,8 @@ class Indoor extends React.Component {
     const {customerName, email, phoneNumber,address,comments,response,error,item} = this.state;
     const {currentUser} = this.props;
     const {service} = "Indoors Cleaning Services";
-    console.log(item);
+    //console.log(this.props.bedRooms);
+    //console.log(this.props.bathRooms);
         return (  
             <Popup>  
                 <PopupInner>                   
@@ -189,11 +190,15 @@ class Indoor extends React.Component {
                                             <Message4>{this.props.bathRooms}</Message4>
                                         </div>
                                         <div style={{marginBottom:"20px"}}>
-                                        <ContentTitle> Required Services </ContentTitle>                                   
-                                            <Message4>{this.props.IndoorCleanService}</Message4>
-                                            <Message4>{this.props.IndoorAfterBuildCleanService}</Message4>
-                                            <Message4>{this.props.IndoorEndTenancyCleanService}</Message4>
-                                            <Message4>{this.props.IndoorSanitiseService}</Message4>
+                                        <ContentTitle> Required Services </ContentTitle>    
+                                        {
+                                            this.props.IndoorDetergents ?
+                                            <Message4>{this.props.IndoorBookedService + " with Detergents" }</Message4>
+
+                                            : <Message4>{this.props.IndoorBookedService  }</Message4>
+
+                                        }                               
+                                            
                                         </div>
                                         <div style={{marginBottom:"20px"}}>
                                         <ContentTitle> Extra Services </ContentTitle> 
@@ -233,16 +238,16 @@ class Indoor extends React.Component {
                                             response === 200  ? 
                                             <div>
                                                 <Response>Email Sent!!!!</Response>
-                                                <p style = {{"textAlign" : "center"}}><CustomButton onClick={() => {this.props.addItem(item);this.closePop.bind(this)}}  style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">CLOSE</CustomButton></p> 
+                                                <p style = {{"textAlign" : "center"}}><CustomButton onClick={() => {this.props.addItem(item);this.closePop.bind(this)}}  style = {{"margin-top" : "10px", "background": "#e91e63"}} size="sm">CLOSE</CustomButton></p> 
 
                                             </div>
                                             : response === 500 || response === 404 ?
                                                 <div>
                                                     <Errors>Email Not Sent!!!!</Errors>
-                                                    <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit'  style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">RESEND</CustomButton></p> 
+                                                    <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit'  style = {{"margin-top" : "10px", "background": "#e91e63"}} size="sm">RESEND</CustomButton></p> 
 
                                                 </div>
-                                                :    <p style = {{"textAlign" : "center"}}><CustomButton  type = 'submit'  style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">BOOK SERVICE</CustomButton></p>                                    
+                                                :    <p style = {{"textAlign" : "center"}}><CustomButton  type = 'submit'  style = {{"margin-top" : "10px", "background": "#e91e63"}} size="sm">BOOK SERVICE</CustomButton></p>                                    
                                         : null
                                     } 
                                     </Form>    

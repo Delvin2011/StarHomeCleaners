@@ -184,15 +184,21 @@ class Outdoor extends React.Component {
                                         <div style={{marginBottom:"20px"}}>
                                         <ContentTitle> Required Services
                                         </ContentTitle>
-                                            <Message4>{this.props.wheelbarrow}</Message4>
-                                            <Message4>{this.props.windows}</Message4>
-                                            <Message4>{this.props.box}</Message4>
-                                            <Message4>{this.props.mower}</Message4>
+                                            <Message4>{this.props.OutdoorBookedService}</Message4>
                                         </div>
                                         <div style={{marginBottom:"20px"}}>
-                                        <ContentTitle> Time allocation
-                                        </ContentTitle>
-                                            <Message4>{this.props.time} hrs</Message4>
+                                        <ContentTitle> Property Details </ContentTitle>
+                                            <Message4>{this.props.OutdoorPropertType}</Message4>
+                                            <Message4>{this.props.OutdoorPropertKind}</Message4>
+                                        </div>
+                                        <div style={{marginBottom:"20px"}}>
+                                        <ContentTitle> Yard Details </ContentTitle>
+                                            <Message4>{this.props.OutdoorYardSize}</Message4>
+                                            <Message4>{this.props.OutdoorPropertKind}</Message4>
+                                        </div>
+                                        <div style={{marginBottom:"20px"}}>
+                                        <ContentTitle> Services Intervals</ContentTitle> 
+                                            <Message4>{this.props.serviceIntervalOutdoor}</Message4>
                                         </div>
                                         <div style={{marginBottom:"20px"}}>
                                         <ContentTitle> Date
@@ -217,16 +223,16 @@ class Outdoor extends React.Component {
                                             response === 200  ? 
                                             <div>
                                                 <Response>Email Sent!!!!</Response>
-                                                <p style = {{"textAlign" : "center"}}><CustomButton  onClick={() => {this.props.addItem(item);this.closePop.bind(this)}} style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">CLOSE</CustomButton></p> 
+                                                <p style = {{"textAlign" : "center"}}><CustomButton  onClick={() => {this.props.addItem(item);this.closePop.bind(this)}} style = {{"margin-top" : "10px", "background": "#e91e63"}} size="sm">CLOSE</CustomButton></p> 
 
                                             </div>
                                             : response === 500 || response === 404 ?
                                                 <div>
                                                     <Errors>Email Not Sent!!!!</Errors>
-                                                    <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit' style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">RESEND</CustomButton></p> 
+                                                    <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit' style = {{"margin-top" : "10px", "background": "#e91e63"}} size="sm">RESEND</CustomButton></p> 
 
                                                 </div>
-                                                :    <p style = {{"textAlign" : "center"}}><CustomButton  type = 'submit' style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">BOOK SERVICE</CustomButton></p>                                    
+                                                :    <p style = {{"textAlign" : "center"}}><CustomButton  type = 'submit' style = {{"margin-top" : "10px", "background": "#e91e63"}} size="sm">BOOK SERVICE</CustomButton></p>                                    
                                         : null
                                     } 
                                     </Form>    
