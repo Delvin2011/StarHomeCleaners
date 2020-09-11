@@ -209,12 +209,9 @@ class Cleaner extends React.Component {
           outdoorDConce : false, outdoorDConcePrice : 0, outdoorDCweek: false, outdoorDCweekPrice : 0, outdoorDCmonth: false, outdoorDCmonthPrice : 0,
           YCareaPrice: 0, LMareaPrice : 0,FBareaPrice : 0, DCareaPrice : 0,
           handleYCoutdoorPromo : 1, handleLMoutdoorPromo : 1, handleFBoutdoorPromo : 1, handleDCoutdoorPromo : 1,
-          OutdoorBookedService : "", serviceIntervalOutdoor : "", OutdoorYardSize : "", OutdoorPropertType : "", OutdoorPropertKind : ""
+          OutdoorBookedService : "", serviceIntervalOutdoor : "", OutdoorYardSize : "", OutdoorPropertType : "", OutdoorPropertKind : "",
+          handleYCareaL : 0, handleYCareaW : 0, handleLMareaL : 0, handleLMareaW : 0, handleFBareaL : 0, handleFBareaW : 0, handleDCareaL : 0, handleDCareaW : 0,
           
-          
-          
-          
-
         }
         this.handleDropdownChange = this.handleDropdownChange.bind(this);
         this.handleDropdownChange2 = this.handleDropdownChange2.bind(this);
@@ -285,6 +282,10 @@ class Cleaner extends React.Component {
         this.outdoorDConce= this.outdoorDConce.bind(this); this.outdoorDCweek= this.outdoorDCweek.bind(this); this.outdoorDCmonth= this.outdoorDCmonth.bind(this);
   
         this.handleYCoutdoorPromo= this.handleYCoutdoorPromo.bind(this); this.handleLMoutdoorPromo= this.handleLMoutdoorPromo.bind(this); this.handleFBoutdoorPromo= this.handleFBoutdoorPromo.bind(this); this.handleDCoutdoorPromo= this.handleDCoutdoorPromo.bind(this);
+        this.handleYCareaL  = this.handleYCareaL.bind(this); this.handleYCareaW = this.handleYCareaW.bind(this);
+        this.handleLMareaL  = this.handleLMareaL.bind(this); this.handleLMareaW = this.handleLMareaW.bind(this);
+        this.handleFBareaL  = this.handleFBareaL.bind(this); this.handleFBareaW = this.handleFBareaW.bind(this);
+        this.handleDCareaL  = this.handleDCareaL.bind(this); this.handleDCareaW = this.handleDCareaW.bind(this);
         /***********Pool Services Handling*************/
         this.handleOnceOFF = this.handleOnceOFF.bind(this);
         this.handleCleanWeek = this.handleCleanWeek.bind(this);
@@ -540,8 +541,7 @@ class Cleaner extends React.Component {
       event.preventDefault();
       console.log(event.target.value);
       const code = event.target.value.toLowerCase();
-      const genPromo = code.length == 7 && (code.substring(5,7) == "pt" || code.substring(5,7) == "fr")? 0.8 : 1;
-      console.log(genPromo);
+      const genPromo = code.length === 7 && (code.substring(5,7) === "pt" || code.substring(5,7) === "fr")? 0.8 : 1;
       this.setState({
         handleIndoorGenPromo: genPromo
       });
@@ -551,8 +551,7 @@ class Cleaner extends React.Component {
       event.preventDefault();
       console.log(event.target.value);
       const code = event.target.value.toLowerCase();
-      const genPromo = code.length == 7 && (code.substring(5,7) == "pt" || code.substring(5,7) == "fr")? 0.8 : 1;
-      console.log(genPromo);
+      const genPromo = code.length === 7 && (code.substring(5,7) === "pt" || code.substring(5,7) === "fr")? 0.8 : 1;
       this.setState({
         handleIndoorAfterBuildPromo: genPromo
       });
@@ -562,8 +561,7 @@ class Cleaner extends React.Component {
       event.preventDefault();
       console.log(event.target.value);
       const code = event.target.value.toLowerCase();
-      const genPromo = code.length == 7 && (code.substring(5,7) == "pt" || code.substring(5,7) == "fr")? 0.8 : 1;
-      console.log(genPromo);
+      const genPromo = code.length === 7 && (code.substring(5,7) === "pt" || code.substring(5,7) === "fr")? 0.8 : 1;
       this.setState({
         handleIndoorEndTenencyPromo: genPromo
       });
@@ -573,8 +571,7 @@ class Cleaner extends React.Component {
       event.preventDefault();
       console.log(event.target.value);
       const code = event.target.value.toLowerCase();
-      const genPromo = code.length == 7 && (code.substring(5,7) == "pt" || code.substring(5,7) == "fr")? 0.8 : 1;
-      console.log(genPromo);
+      const genPromo = code.length === 7 && (code.substring(5,7) === "pt" || code.substring(5,7) === "fr")? 0.8 : 1;
       this.setState({
         handleIndoorSanitisePromo: genPromo
       });
@@ -639,6 +636,7 @@ class Cleaner extends React.Component {
             outdoorYConce : false, outdoorYCweek: false, outdoorYCmonth : false,
             outdoorYConcePrice : 0, outdoorYCweekPrice : 0, outdoorYCmonthPrice : 0,
             handleYCoutdoorPromo : 1,
+            handleYCareaL : 0, handleYCareaW : 0,
             YCareaPrice : 0, YCarea : this.logsYCarea,
             YCoutdoorClean: !this.state.YCoutdoorClean,
             YCoutdoorCleanDisplay: this.state.YCoutdoorClean? null : "Yard Cleaning",
@@ -653,6 +651,7 @@ class Cleaner extends React.Component {
             outdoorFBonce : false, outdoorFBweek: false, outdoorFBmonth : false,
             outdoorFBoncePrice : 0, outdoorFBweekPrice : 0, outdoorFBmonthPrice : 0,
             handleFBoutdoorPromo : 1,
+            handleFBareaL : 0, handleFBareaW : 0,
             FBareaPrice : 0, FBarea : this.logsFBarea,
             FBoutdoorClean: !this.state.FBoutdoorClean,
             FBoutdoorCleanDisplay: this.state.FBoutdoorClean? null : "Flower Bedding",
@@ -665,6 +664,7 @@ class Cleaner extends React.Component {
             outdoorDCwholeYard : false, outdoorDCfrontYard: false, outdoorDCbackYard : false, outdoorDCsideYard : false,
             outdoorDConce : false, outdoorDCweek: false, outdoorDCmonth : false,
             handleDCoutdoorPromo : 1,
+            handleDCareaL : 0, handleDCareaW : 0,
             DCareaPrice : 0, DCarea : this.logsDCarea,
             DCoutdoorClean: !this.state.DCoutdoorClean,
             DCoutdoorCleanDisplay: this.state.DCoutdoorClean? null : "Driveway Cleaning",
@@ -678,17 +678,18 @@ class Cleaner extends React.Component {
             outdoorLMonce : false, outdoorLMweek: false, outdoorLMmonth : false,
             outdoorLMoncePrice : 0, outdoorLMweekPrice : 0, outdoorLMmonthPrice : 0,
             handleLMoutdoorPromo : 1,
+            handleLMareaL : 0, handleLMareaW : 0,
             LMareaPrice : 0, LMarea : this.logsLMarea,
             LMoutdoorClean: !this.state.LMoutdoorClean,
             LMoutdoorCleanDisplay: this.state.LMoutdoorClean? null : "Lawn Mowing",
             LMoutdoorCleanPrice: this.state.LMoutdoorClean? 0 : 137
           });
         }
-      
-        handleYCarea(e) { const area  = e.target.value; this.logsYCarea.shift(); this.logsYCarea.unshift("Area : " + e.target.value ); this.setState({ YCareaPrice: area == "0-20 sq m"? 100 : area == "20-75 sq m" ? 150 : area == "75-150 sq m"? 200 : area == "150-250 sq m" ? 250 : 0}); }
-        handleLMarea(e) { const area  = e.target.value; this.logsLMarea.shift(); this.logsLMarea.unshift("Area : " + e.target.value ); this.setState({ LMareaPrice: area == "0-20 sq m"? 105 : area == "20-75 sq m" ? 155 : area == "75-150 sq m"? 205 : area == "150-250 sq m" ? 255 : 0 }); }
-        handleFBarea(e) { const area  = e.target.value; this.logsFBarea.shift(); this.logsFBarea.unshift("Area : " + e.target.value ); this.setState({ FBareaPrice: area == "0-20 sq m"? 90 : area == "20-75 sq m" ? 140 : area == "75-150 sq m"? 190 : area == "150-250 sq m" ? 240 : 0}); }
-        handleDCarea(e) { const area  = e.target.value; this.logsDCarea.shift(); this.logsDCarea.unshift("Area : " + e.target.value ); this.setState({ DCareaPrice: area == "0-20 sq m"? 80 : area == "20-75 sq m" ? 130 : area == "75-150 sq m"? 180 : area == "150-250 sq m" ? 230 : 0}); } 
+
+        handleYCarea(e) { const area  = e.target.value; this.logsYCarea.shift(); this.logsYCarea.unshift("Area : " + e.target.value ); this.setState({ YCareaPrice: area === "0-20 sq m"? 100 : area === "20-75 sq m" ? 150 : area === "75-150 sq m"? 200 : area === "150-250 sq m" ? 250 : 0}); }
+        handleLMarea(e) { const area  = e.target.value; this.logsLMarea.shift(); this.logsLMarea.unshift("Area : " + e.target.value ); this.setState({ LMareaPrice: area === "0-20 sq m"? 105 : area === "20-75 sq m" ? 155 : area === "75-150 sq m"? 205 : area === "150-250 sq m" ? 255 : 0 }); }
+        handleFBarea(e) { const area  = e.target.value; this.logsFBarea.shift(); this.logsFBarea.unshift("Area : " + e.target.value ); this.setState({ FBareaPrice: area === "0-20 sq m"? 90 : area === "20-75 sq m" ? 140 : area === "75-150 sq m"? 190 : area === "150-250 sq m" ? 240 : 0}); }
+        handleDCarea(e) { const area  = e.target.value; this.logsDCarea.shift(); this.logsDCarea.unshift("Area : " + e.target.value ); this.setState({ DCareaPrice: area === "0-20 sq m"? 80 : area === "20-75 sq m" ? 130 : area === "75-150 sq m"? 180 : area === "150-250 sq m" ? 230 : 0}); } 
 
         outdoorYConce () { this.setState({outdoorYConce: !this.state.outdoorYConce, outdoorYConcePrice : this.state.outdoorYConce? 0 : 1}); }
         outdoorYCweek () { this.setState({outdoorYCweek: !this.state.outdoorYCweek, outdoorYCweekPrice : this.state.outdoorYCweek? 0 : 0.9}); }
@@ -720,7 +721,8 @@ class Cleaner extends React.Component {
         handleYCoutdoorPromo(event) {
           event.preventDefault();
           const code = event.target.value.toLowerCase();
-          const genPromo = code.length == 7 && (code.substring(5,7) == "pt" || code.substring(5,7) == "fr")? 0.8 : 1;
+          console.log(code);
+          const genPromo = code.length === 7 && (code.substring(5,7) === "pt" || code.substring(5,7) === "fr")? 0.8 : 1;
           this.setState({
             handleYCoutdoorPromo: genPromo
           });
@@ -729,7 +731,7 @@ class Cleaner extends React.Component {
         handleLMoutdoorPromo(event) {
           event.preventDefault();
           const code = event.target.value.toLowerCase();
-          const genPromo = code.length == 7 && (code.substring(5,7) == "pt" || code.substring(5,7) == "fr")? 0.8 : 1;
+          const genPromo = code.length === 7 && (code.substring(5,7) === "pt" || code.substring(5,7) === "fr")? 0.8 : 1;
           this.setState({
             handleLMoutdoorPromo: genPromo
           });
@@ -738,7 +740,7 @@ class Cleaner extends React.Component {
         handleFBoutdoorPromo(event) {
           event.preventDefault();
           const code = event.target.value.toLowerCase();
-          const genPromo = code.length == 7 && (code.substring(5,7) == "pt" || code.substring(5,7) == "fr")? 0.8 : 1;
+          const genPromo = code.length === 7 && (code.substring(5,7) === "pt" || code.substring(5,7) === "fr")? 0.8 : 1;
           this.setState({
             handleFBoutdoorPromo: genPromo
           });
@@ -747,11 +749,17 @@ class Cleaner extends React.Component {
         handleDCoutdoorPromo(event) {
           event.preventDefault();
           const code = event.target.value.toLowerCase();
-          const genPromo = code.length == 7 && (code.substring(5,7) == "pt" || code.substring(5,7) == "fr")? 0.8 : 1;
+          const genPromo = code.length === 7 && (code.substring(5,7) === "pt" || code.substring(5,7) === "fr")? 0.8 : 1;
           this.setState({
             handleDCoutdoorPromo: genPromo
           });
         }
+
+        handleYCareaL(event) { event.preventDefault(); this.setState({ handleYCareaL: event.target.value});} handleYCareaW(event) { event.preventDefault(); this.setState({ handleYCareaW: event.target.value});}
+        handleLMareaL(event) { event.preventDefault(); this.setState({ handleLMareaL: event.target.value});} handleLMareaW(event) { event.preventDefault(); this.setState({ handleLMareaW: event.target.value});}
+        handleFBareaL(event) { event.preventDefault(); this.setState({ handleFBareaL: event.target.value});} handleFBareaW(event) { event.preventDefault(); this.setState({ handleFBareaW: event.target.value});}
+        handleDCareaL(event) { event.preventDefault(); this.setState({ handleDCareaL: event.target.value});} handleDCareaW(event) { event.preventDefault(); this.setState({ handleDCareaW: event.target.value});}
+      
 
     /**************Pool Services Handling********************/
     showPoolServicesInfo(event) {
@@ -848,9 +856,6 @@ const x = "" + this.state.dateTime;
 const y = "" + this.state.dateTimeOutdoor;
 const poolTime = "" + this.state.dateTimePool;
 
-console.log(this.state.bathRooms);
-console.log(this.state.bedRooms);
-
 const maintMonthStatus = this.state.maintYear || this.state.maintQuat ? true : false;
 const maintQuatStatus = this.state.maintMonth || this.state.maintYear ? true : false;
 const maintYearStatus = this.state.maintMonth || this.state.maintQuat ? true : false;
@@ -898,17 +903,31 @@ const FB_yard_Status =  FBw_yard + FBf_yard + FBb_yard +  FBs_yard;
 const DCw_yard = this.state.outdoorDCwholeYard ? this.state.outdoorDC_WYard : ""; const DCf_yard = this.state.outdoorDCfrontYard? this.state.outdoorDC_FYard : ""; const DCb_yard = this.state.outdoorDCbackYard? this.state.outdoorDC_BYard : ""; const DCs_yard = this.state.outdoorDCsideYard? this.state.outdoorDC_SYard: "";
 const DC_yard_Status = DCw_yard + DCf_yard + DCb_yard +  DCs_yard;
 
+const workYard = YC_yard_Status !== "" && (this.state.outdoorYC_WYard || this.state.outdoorYC_FYard || this.state.outdoorYC_BYard || this.state.outdoorYC_SYard) ? YC_yard_Status :
+                 LM_yard_Status !== "" && (this.state.outdoorLM_WYard || this.state.outdoorLM_FYard || this.state.outdoorLM_BYard || this.state.outdoorLM_SYard) ? LM_yard_Status :
+                 FB_yard_Status !== "" && (this.state.outdoorFB_WYard || this.state.outdoorFB_FYard || this.state.outdoorFB_BYard || this.state.outdoorFB_SYard) ? FB_yard_Status :
+                 DC_yard_Status !== "" && (this.state.outdoorDC_WYard || this.state.outdoorDC_FYard || this.state.outdoorDC_BYard || this.state.outdoorDC_SYard) ? DC_yard_Status : "";
+
 const outdoorYConceStatus = this.state.outdoorYCweek || this.state.outdoorYCmonth ? true : false; const outdoorYCweekStatus = this.state.outdoorYConce || this.state.outdoorYCmonth ? true : false; const outdoorYCmonthStatus = this.state.outdoorYCweek || this.state.outdoorYConce ? true : false;
 const outdoorLMonceStatus = this.state.outdoorLMweek || this.state.outdoorLMmonth ? true : false; const outdoorLMweekStatus = this.state.outdoorLMonce || this.state.outdoorLMmonth ? true : false; const outdoorLMmonthStatus = this.state.outdoorLMweek || this.state.outdoorLMonce ? true : false;
 const outdoorFBonceStatus = this.state.outdoorFBweek || this.state.outdoorFBmonth ? true : false; const outdoorFBweekStatus = this.state.outdoorFBonce || this.state.outdoorFBmonth ? true : false; const outdoorFBmonthStatus = this.state.outdoorFBweek || this.state.outdoorFBonce ? true : false;
 const outdoorDConceStatus = this.state.outdoorDCweek || this.state.outdoorDCmonth ? true : false; const outdoorDCweekStatus = this.state.outdoorDConce || this.state.outdoorDCmonth ? true : false; const outdoorDCmonthStatus = this.state.outdoorDCweek || this.state.outdoorDConce ? true : false;
 
-const total2 = this.state.areaHours < 2.1 ? (this.state.YCoutdoorCleanPrice + this.state.FBoutdoorCleanPrice + this.state.DCoutdoorCleanPrice + this.state.LMoutdoorCleanPrice)  + 50 : 50 +(((this.state.areaHours - 2) * 40) + (this.state.YCoutdoorCleanPrice + this.state.FBoutdoorCleanPrice + this.state.DCoutdoorCleanPrice + this.state.LMoutdoorCleanPrice));
-const totalYC = this.state.outdoorYConce || this.state.outdoorYCweek || this.state.outdoorYCmonth ? (150 + this.state.YCareaPrice * (this.state.outdoorYConcePrice + this.state.outdoorYCweekPrice + this.state.outdoorYCmonthPrice)) * this.state.handleYCoutdoorPromo : 0;
-const totalLM = this.state.outdoorLMonce || this.state.outdoorLMweek || this.state.outdoorLMmonth ? (150 + this.state.LMareaPrice * (this.state.outdoorLMoncePrice + this.state.outdoorLMweekPrice + this.state.outdoorLMmonthPrice)) * this.state.handleLMoutdoorPromo : 0;
-const totalFB = this.state.outdoorFBonce || this.state.outdoorFBweek || this.state.outdoorFBmonth ? (150 + this.state.FBareaPrice * (this.state.outdoorFBoncePrice + this.state.outdoorFBweekPrice + this.state.outdoorFBmonthPrice)) * this.state.handleFBoutdoorPromo : 0;
-const totalDC = this.state.outdoorDConce || this.state.outdoorDCweek || this.state.outdoorDCmonth ? (150 + this.state.DCareaPrice * (this.state.outdoorDConcePrice + this.state.outdoorDCweekPrice + this.state.outdoorDCmonthPrice)) * this.state.handleDCoutdoorPromo : 0;
+const OutdoorAreaLW = this.state.YCoutdoorClean? this.state.handleYCareaL * this.state.handleYCareaW : this.state.LMoutdoorClean? this.state.handleLMareaL * this.state.handleLMareaW : this.state.FBoutdoorClean? this.state.handleFBareaL * this.state.handleFBareaW : this.state.DCoutdoorClean? this.state.handleDCareaL * this.state.handleDCareaW : 0;
+
+const PriceAreaLW = (OutdoorAreaLW > 0 && OutdoorAreaLW <= 20)? 100 : (OutdoorAreaLW > 20 && OutdoorAreaLW <= 75)? 150 : (OutdoorAreaLW > 75 && OutdoorAreaLW <= 150)? 200 : (OutdoorAreaLW > 150 && OutdoorAreaLW <= 250)? 250 : 0;
+const testYC = this.state.YCarea[0] === undefined || this.state.YCarea[0] === "Area : 0" ? PriceAreaLW : this.state.YCareaPrice;
+const testLM = this.state.LMarea[0] === undefined || this.state.LMarea[0] === "Area : 0" ? PriceAreaLW : this.state.LMareaPrice;
+const testFB = this.state.FBarea[0] === undefined || this.state.FBarea[0] === "Area : 0" ? PriceAreaLW : this.state.FBareaPrice;
+const testDC = this.state.DCarea[0] === undefined || this.state.DCarea[0] === "Area : 0" ? PriceAreaLW : this.state.DCareaPrice;
+
+const totalYC = this.state.outdoorYConce || this.state.outdoorYCweek || this.state.outdoorYCmonth ? (150 + testYC * (this.state.outdoorYConcePrice + this.state.outdoorYCweekPrice + this.state.outdoorYCmonthPrice)) * this.state.handleYCoutdoorPromo : 0;
+const totalLM = this.state.outdoorLMonce || this.state.outdoorLMweek || this.state.outdoorLMmonth ? (150 + testLM * (this.state.outdoorLMoncePrice + this.state.outdoorLMweekPrice + this.state.outdoorLMmonthPrice)) * this.state.handleLMoutdoorPromo : 0;
+const totalFB = this.state.outdoorFBonce || this.state.outdoorFBweek || this.state.outdoorFBmonth ? (150 + testFB * (this.state.outdoorFBoncePrice + this.state.outdoorFBweekPrice + this.state.outdoorFBmonthPrice)) * this.state.handleFBoutdoorPromo : 0;
+const totalDC = this.state.outdoorDConce || this.state.outdoorDCweek || this.state.outdoorDCmonth ? (150 + testDC * (this.state.outdoorDConcePrice + this.state.outdoorDCweekPrice + this.state.outdoorDCmonthPrice)) * this.state.handleDCoutdoorPromo : 0;
 const totalOutdoor = this.state.YCoutdoorClean? totalYC : 0 + this.state.LMoutdoorClean ? totalLM : 0 + this.state.FBoutdoorClean ? totalFB : 0 + this.state.DCoutdoorClean ? totalDC : 0;
+
+
 
 /******************End Outdoor***************/
 const options = locations;
@@ -1190,7 +1209,7 @@ return (
                                       <Message2>Costs</Message2>
                                           {this.state.IndoorCleanService?
                                           <div>
-                                            {this.state.handleIndoorGenPromo == 1? 
+                                            {this.state.handleIndoorGenPromo === 1? 
                                               <Message>Total : R {totalIndoor.toFixed(2)}</Message>
                                               : 
                                               <div>
@@ -1206,7 +1225,7 @@ return (
 
                                             : this.state.IndoorAfterBuildCleanService?
                                             <div>
-                                            {this.state.handleIndoorAfterBuildPromo == 1? 
+                                            {this.state.handleIndoorAfterBuildPromo === 1? 
                                               <Message>Total : R {totalIndoor.toFixed(2)}</Message>
                                               : 
                                               <div>
@@ -1219,7 +1238,7 @@ return (
 
                                           : this.state.IndoorEndTenancyCleanService?
                                           <div>
-                                            {this.state.handleIndoorEndTenencyPromo == 1? 
+                                            {this.state.handleIndoorEndTenencyPromo === 1? 
                                               <Message>Total : R {totalIndoor.toFixed(2)}</Message>
                                               : 
                                               <div>
@@ -1232,7 +1251,7 @@ return (
 
                                           : this.state.IndoorSanitiseService?
                                           <div>
-                                            {this.state.handleIndoorSanitisePromo == 1? 
+                                            {this.state.handleIndoorSanitisePromo === 1? 
                                               <Message>Total : R {totalIndoor.toFixed(2)}</Message>
                                               : 
                                               <div>
@@ -1419,7 +1438,7 @@ return (
                                           type="number"
                                           name="fname"
                                           placeholder="Length (m)"
-                                          //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                          onChange ={this.handleFBareaL.bind(this)}
                                           min="0" max="9999999"
                                           required
                                       />                                               
@@ -1429,7 +1448,7 @@ return (
                                               type="number"
                                               name="fname"
                                               placeholder="Width (m)"
-                                              //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                              onChange ={this.handleFBareaW.bind(this)}
                                               min="0" max="9999999"
                                               required
                                           />
@@ -1455,7 +1474,7 @@ return (
                                             type="number"
                                             name="fname"
                                             placeholder="Length (m)"
-                                            //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                            onChange ={this.handleDCareaL.bind(this)}
                                             min="0" max="9999999"
                                             required
                                         />
@@ -1466,7 +1485,7 @@ return (
                                                 type="number"
                                                 name="fname"
                                                 placeholder="Width (m)"
-                                                //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                onChange ={this.handleDCareaW.bind(this)}
                                                 min="0" max="9999999"
                                                 required
                                             />
@@ -1500,7 +1519,7 @@ return (
                                             type="number"
                                             name="fname"
                                             placeholder="Length (m)"
-                                            //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                            onChange ={this.handleYCareaL.bind(this)}
                                             min="0" max="9999999"
                                             required
                                         />
@@ -1511,7 +1530,7 @@ return (
                                                 type="number"
                                                 name="fname"
                                                 placeholder="Width (m)"
-                                                //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                onChange={this.handleYCareaW.bind(this)}
                                                 min="0" max="9999999"
                                                 required
                                             />
@@ -1537,7 +1556,7 @@ return (
                                             type="number"
                                             name="fname"
                                             placeholder="Length (m)"
-                                            //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                            onChange ={this.handleLMareaL.bind(this)}
                                             min="0" max="9999999"
                                             required
                                         />
@@ -1548,7 +1567,7 @@ return (
                                                 type="number"
                                                 name="fname"
                                                 placeholder="Width (m)"
-                                                //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                onChange ={this.handleLMareaW.bind(this)}
                                                 min="0" max="9999999"
                                                 required
                                             />
@@ -1621,15 +1640,39 @@ return (
                                   <div>
                                     <Message2>Services</Message2>
                                     <Message>{outDoorServiceRequired}</Message>   
-                                    {YC_yard_Status != "" && (this.state.outdoorYC_WYard || this.state.outdoorYC_FYard || this.state.outdoorYC_BYard || this.state.outdoorYC_SYard)? <Message>Yard : {YC_yard_Status} </Message> : ""}
-                                    {LM_yard_Status != "" && (this.state.outdoorLM_WYard || this.state.outdoorLM_FYard || this.state.outdoorLM_BYard || this.state.outdoorLM_SYard)?  <Message>Yard : {LM_yard_Status} </Message> : ""}
-                                    {FB_yard_Status != "" && (this.state.outdoorFB_WYard || this.state.outdoorFB_FYard || this.state.outdoorFB_BYard || this.state.outdoorFB_SYard)? <Message>Yard : {FB_yard_Status} </Message>  : ""}
-                                    {DC_yard_Status != "" && (this.state.outdoorDC_WYard || this.state.outdoorDC_FYard || this.state.outdoorDC_BYard || this.state.outdoorDC_SYard)?  <Message>Yard : {DC_yard_Status} </Message>  : ""} 
+                                    {YC_yard_Status !== "" && (this.state.outdoorYC_WYard || this.state.outdoorYC_FYard || this.state.outdoorYC_BYard || this.state.outdoorYC_SYard)? <Message>Yard : {YC_yard_Status} </Message> : ""}
+                                    {LM_yard_Status !== "" && (this.state.outdoorLM_WYard || this.state.outdoorLM_FYard || this.state.outdoorLM_BYard || this.state.outdoorLM_SYard)?  <Message>Yard : {LM_yard_Status} </Message> : ""}
+                                    {FB_yard_Status !== "" && (this.state.outdoorFB_WYard || this.state.outdoorFB_FYard || this.state.outdoorFB_BYard || this.state.outdoorFB_SYard)? <Message>Yard : {FB_yard_Status} </Message>  : ""}
+                                    {DC_yard_Status !== "" && (this.state.outdoorDC_WYard || this.state.outdoorDC_FYard || this.state.outdoorDC_BYard || this.state.outdoorDC_SYard)?  <Message>Yard : {DC_yard_Status} </Message>  : ""} 
                                     
-                                    {this.state.YCoutdoorClean? <EventLog logs={this.state.YCarea}/> : ""}
-                                    {this.state.LMoutdoorClean ? <EventLog logs={this.state.LMarea}/> : ""}
-                                    {this.state.FBoutdoorClean ? <EventLog logs={this.state.FBarea}/> : ""}
-                                    {this.state.DCoutdoorClean ? <EventLog logs={this.state.DCarea}/> : ""}
+                                    {this.state.YCoutdoorClean? 
+                                         (this.state.YCarea[0] === undefined || this.state.YCarea[0] === "Area : 0") && OutdoorAreaLW !== 0?
+                                         <Message>Area : {OutdoorAreaLW} sq m</Message>
+                                         : <EventLog logs={this.state.YCarea}/>
+                                      : ""                                    
+                                    }
+
+                                    {this.state.LMoutdoorClean? 
+                                         (this.state.LMarea[0] === undefined || this.state.LMarea[0] === "Area : 0") && OutdoorAreaLW !== 0?
+                                         <Message>Area : {OutdoorAreaLW} sq m</Message>
+                                         : <EventLog logs={this.state.LMarea}/>
+                                      : ""                                    
+                                    }
+
+                                    {this.state.FBoutdoorClean? 
+                                         (this.state.FBarea[0] === undefined || this.state.FBarea[0] === "Area : 0") && OutdoorAreaLW !== 0?
+                                         <Message>Area : {OutdoorAreaLW} sq m</Message>
+                                         : <EventLog logs={this.state.FBarea}/>
+                                      : ""                                    
+                                    }
+
+                                    {this.state.DCoutdoorClean? 
+                                         (this.state.DCarea[0] === undefined || this.state.DCarea[0] === "Area : 0") && OutdoorAreaLW !== 0?
+                                         <Message>Area : {OutdoorAreaLW} sq m</Message>
+                                         : <EventLog logs={this.state.DCarea}/>
+                                      : ""                                    
+                                    }
+
                                   
                                   </div>
                                   <div>
@@ -1637,7 +1680,7 @@ return (
 
                                     {this.state.YCoutdoorClean?
                                           <div>
-                                            {this.state.handleYCoutdoorPromo == 1? 
+                                            {this.state.handleYCoutdoorPromo === 1? 
                                               <Message>Total : R {totalOutdoor.toFixed(2)}</Message>
                                               : 
                                               <div>
@@ -1653,7 +1696,7 @@ return (
 
                                             : this.state.FBoutdoorClean?
                                           <div>
-                                            {this.state.handleFBoutdoorPromo == 1? 
+                                            {this.state.handleFBoutdoorPromo === 1? 
                                               <Message>Total : R {totalOutdoor.toFixed(2)}</Message>
                                               : 
                                               <div>
@@ -1666,7 +1709,7 @@ return (
 
                                           : this.state.DCoutdoorClean?
                                           <div>
-                                            {this.state.handleDCoutdoorPromo == 1? 
+                                            {this.state.handleDCoutdoorPromo === 1? 
                                               <Message>Total : R {totalOutdoor.toFixed(2)}</Message>
                                               : 
                                               <div>
@@ -1679,7 +1722,7 @@ return (
 
                                           : this.state.LMoutdoorClean?
                                           <div>
-                                            {this.state.handleLMoutdoorPromo == 1? 
+                                            {this.state.handleLMoutdoorPromo === 1? 
                                               <Message>Total : R {totalOutdoor.toFixed(2)}</Message>
                                               : 
                                               <div>
@@ -1755,7 +1798,7 @@ return (
                                           <option value="4">Irregular</option>
                                       </select>
 
-                                      { this.state.poolHrs == 0 ||  this.state.poolHrs == 1 ?
+                                      { this.state.poolHrs === 0 ||  this.state.poolHrs === 1 ?
                                         <Form>
                                           <FormInput
                                                 id="fname"
@@ -1790,7 +1833,7 @@ return (
                                                   required
                                               />                                 
                                             </Form>                                      
-                                      : this.state.poolHrs == 2 ?
+                                      : this.state.poolHrs === 2 ?
                                         <Form>                                 
                                               <FormInput
                                                     id="fname"
@@ -1814,7 +1857,7 @@ return (
                                                     required
                                                 />                               
                                      </Form>                                     
-                                      : this.state.poolHrs == 3?
+                                      : this.state.poolHrs === 3?
                                         <Form>                                 
                                                     <FormInput
                                                           id="fname"
@@ -1849,7 +1892,7 @@ return (
                                                       />
                                 
                                           </Form>
-                                      : this.state.poolHrs == 4 ?
+                                      : this.state.poolHrs === 4 ?
                                         <Form>
                                             <FormInput
                                                 id="fname"
@@ -1902,7 +1945,7 @@ return (
                                           <option value="4">Irregular</option>
                                       </select>
 
-                                      { this.state.poolHrs == 0 ||  this.state.poolHrs == 1 ?
+                                      { this.state.poolHrs === 0 ||  this.state.poolHrs === 1 ?
                                         <Form>
                                                       <FormInput
                                                             id="fname"
@@ -1937,7 +1980,7 @@ return (
                                                             required
                                                         />                                 
                                             </Form>                                      
-                                      : this.state.poolHrs == 2 ?
+                                      : this.state.poolHrs === 2 ?
                                         <Form>                                 
                                               <FormInput
                                                     id="fname"
@@ -1961,7 +2004,7 @@ return (
                                                     required
                                                 />                               
                                      </Form>                                     
-                                      : this.state.poolHrs == 3?
+                                      : this.state.poolHrs === 3?
                                         <Form>                                 
                                                     <FormInput
                                                           id="fname"
@@ -1996,7 +2039,7 @@ return (
                                                       />
                                 
                                           </Form>
-                                      : this.state.poolHrs == 4 ?
+                                      : this.state.poolHrs === 4 ?
                                         <Form>
                                             <FormInput
                                                 id="fname"
@@ -2098,9 +2141,9 @@ return (
 
             {this.state.showPopupOutdoor?
               this.props.currentUser?
-              <Outdoor showPopupOutdoor = {this.state.showPopupOutdoor} currentUser = {this.props.currentUser} closePopup={this.props.closePopup} dateTime = {this.state.dateTimeOutdoor} total = {totalOutdoor} OutdoorBookedService = {this.state.OutdoorBookedService} serviceIntervalOutdoor = {this.state.serviceIntervalOutdoor} OutdoorYardSize = {this.state.OutdoorYardSize} OutdoorPropertType = {this.state.OutdoorPropertType} OutdoorPropertKind = {this.state.OutdoorPropertKind} wheelbarrow = {this.state.YCoutdoorCleanDisplay} mower = {this.state.LMoutdoorCleanDisplay} windows = {this.state.FBoutdoorCleanDisplay} box = {this.state.DCoutdoorCleanDisplay} />
+              <Outdoor showPopupOutdoor = {this.state.showPopupOutdoor} currentUser = {this.props.currentUser} closePopup={this.props.closePopup} dateTimeOutdoor = {this.state.dateTimeOutdoor} totalOutdoor = {totalOutdoor} OutdoorBookedService = {this.state.OutdoorBookedService} serviceIntervalOutdoor = {this.state.serviceIntervalOutdoor} OutdoorYardSize = {this.state.OutdoorYardSize} OutdoorPropertType = {this.state.OutdoorPropertType} OutdoorPropertKind = {this.state.OutdoorPropertKind} OutdoorWorkYard = {workYard} wheelbarrow = {this.state.YCoutdoorCleanDisplay} mower = {this.state.LMoutdoorCleanDisplay} windows = {this.state.FBoutdoorCleanDisplay} box = {this.state.DCoutdoorCleanDisplay} />
                 : !this.props.currentUser?
-                  <PromptSinIn currentUser = {this.props.currentUser} showPopupOutdoor = {this.state.showPopupOutdoor} closePopup={this.props.closePopup} dateTime = {this.state.dateTimeOutdoor} total = {totalOutdoor}  wheelbarrow = {this.state.YCoutdoorCleanDisplay} mower = {this.state.LMoutdoorCleanDisplay} windows = {this.state.FBoutdoorCleanDisplay} box = {this.state.DCoutdoorCleanDisplay}/>
+                  <PromptSinIn currentUser = {this.props.currentUser} showPopupOutdoor = {this.state.showPopupOutdoor} closePopup={this.props.closePopup} dateTimeOutdoor = {this.state.dateTimeOutdoor} totalOutdoor = {totalOutdoor}  OutdoorBookedService = {this.state.OutdoorBookedService} serviceIntervalOutdoor = {this.state.serviceIntervalOutdoor} OutdoorYardSize = {this.state.OutdoorYardSize} OutdoorPropertType = {this.state.OutdoorPropertType} OutdoorPropertKind = {this.state.OutdoorPropertKind} OutdoorWorkYard = {workYard} wheelbarrow = {this.state.YCoutdoorCleanDisplay} mower = {this.state.LMoutdoorCleanDisplay} windows = {this.state.FBoutdoorCleanDisplay} box = {this.state.DCoutdoorCleanDisplay} />
                 : null
               :null
             } 
@@ -2110,7 +2153,7 @@ return (
                 <Indoor showPopupIndoor = {this.state.showPopupIndoor} currentUser = {this.props.currentUser} closePopup={this.props.closePopup} dateTime = {this.state.dateTime} totalIndoor = {totalIndoor.toFixed(2)} genIndoorCleanWallsService = {this.state.genIndoorCleanWallsService} genIndoorCleanWindowsService = {this.state.genIndoorCleanWindowsService} genIndoorCleanLaundryService = {this.state.genIndoorCleanLaundryService} afterBuildIndoorCleanWallsService = {this.state.afterBuildIndoorCleanWallsService} serviceIntervalIndoor = {this.state.serviceIntervalIndoor}  IndoorDetergents = {this.state.IndoorDetergents}
                 afterBuildIndoorCleanWindowsService = {this.state.afterBuildIndoorCleanWindowsService} endTenancyIndoorCleanWallsService = {this.state.endTenancyIndoorCleanWallsService} endTenancyIndoorCleanWindowsService = {this.state.endTenancyIndoorCleanWindowsService} bedRooms = {this.state.bedRooms} bathRooms = {this.state.bathRooms} IndoorBookedService = {this.state.IndoorBookedService}/>
                 : !this.props.currentUser?
-                  <PromptSinIn currentUser = {this.props.currentUser} showPopupIndoor = {this.state.showPopupIndoor} closePopup={this.props.closePopup} dateTime = {this.state.dateTime} totalIndoor = {this.state.totalIndoor} genIndoorCleanWallsService = {this.state.genIndoorCleanWallsService} genIndoorCleanWindowsService = {this.state.genIndoorCleanWindowsService} genIndoorCleanLaundryService = {this.state.genIndoorCleanLaundryService} afterBuildIndoorCleanWallsService = {this.state.afterBuildIndoorCleanWallsService} serviceIntervalIndoor = {this.state.serviceIntervalIndoor} IndoorDetergents = {this.state.IndoorDetergents}
+                  <PromptSinIn currentUser = {this.props.currentUser} showPopupIndoor = {this.state.showPopupIndoor}  closePopup={this.props.closePopup} dateTime = {this.state.dateTime} totalIndoor = {totalIndoor.toFixed(2)} genIndoorCleanWallsService = {this.state.genIndoorCleanWallsService} genIndoorCleanWindowsService = {this.state.genIndoorCleanWindowsService} genIndoorCleanLaundryService = {this.state.genIndoorCleanLaundryService} afterBuildIndoorCleanWallsService = {this.state.afterBuildIndoorCleanWallsService} serviceIntervalIndoor = {this.state.serviceIntervalIndoor}  IndoorDetergents = {this.state.IndoorDetergents}
                 afterBuildIndoorCleanWindowsService = {this.state.afterBuildIndoorCleanWindowsService} endTenancyIndoorCleanWallsService = {this.state.endTenancyIndoorCleanWallsService} endTenancyIndoorCleanWindowsService = {this.state.endTenancyIndoorCleanWindowsService} bedRooms = {this.state.bedRooms} bathRooms = {this.state.bathRooms} IndoorBookedService = {this.state.IndoorBookedService}/>
                 : null
 

@@ -27,7 +27,7 @@ class Outdoor extends React.Component {
             option: false,
             option2: false,
             HowOften: '',
-            dateTime: "" + this.props.dateTime,
+            dateTime: "" + this.props.dateTimeOutdoor,
             response: '',
             CardPayment: false,
             CashPayment: false,
@@ -194,7 +194,7 @@ class Outdoor extends React.Component {
                                         <div style={{marginBottom:"20px"}}>
                                         <ContentTitle> Yard Details </ContentTitle>
                                             <Message4>{this.props.OutdoorYardSize}</Message4>
-                                            <Message4>{this.props.OutdoorPropertKind}</Message4>
+                                            <Message4>Work Yard : {this.props.OutdoorWorkYard}</Message4>
                                         </div>
                                         <div style={{marginBottom:"20px"}}>
                                         <ContentTitle> Services Intervals</ContentTitle> 
@@ -208,7 +208,7 @@ class Outdoor extends React.Component {
                                         <div style={{marginBottom:"20px"}}>
                                         <ContentTitle> Total Costs
                                         </ContentTitle>
-                                            <Message4> R {this.props.total}</Message4>
+                                            <Message4> R {this.props.totalOutdoor}</Message4>
                                         </div>
                                     </Right>  
                                  </Details> 
