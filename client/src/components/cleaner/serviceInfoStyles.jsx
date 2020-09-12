@@ -21,6 +21,21 @@ export const LogoContainer = styled.img`
     }
 `;
 
+export const PoolShapeContainer = styled.img`
+      height: 75%;
+      width: 75%;
+      display: block;
+      margin-top: 5px;
+        margin-left: auto;
+        margin-right: auto;
+
+      @media screen and (max-width: 800px){
+       padding: 0;  
+       height: 61%;
+       width: 61%; 
+    }
+`;
+
 export const Popup = styled.div`
     position: fixed;  
     width: 100%;  

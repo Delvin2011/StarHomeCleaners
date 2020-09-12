@@ -68,6 +68,19 @@ export const Info = styled(BsQuestionCircleFill)`
     }
 `;
 
+export const Info2 = styled(BsQuestionCircleFill)`
+  color: red;
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+  @media screen and (max-width: 800px){
+        width: 12px;
+        height: 12px;
+        margin-bottom: -3px; 
+    }
+`;
+
+
 
 export const Message4 = styled.h1`
     text-align: center;

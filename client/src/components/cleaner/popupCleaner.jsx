@@ -1,5 +1,5 @@
 import React from 'react';  
-import {Popup,PopupInner,ContentTitle,CloseButton,LogoContainer2,TabsContainer,RangeSliderContainer,Options,Options2,Options3,GenCleanIcon,AfterBuildIcon,EndTenancyIcon,SanitiseIcon,Fab2,Message,Message2,Wheelbarrow, Options4,Options5,Info,Flowers,Driveway,Maintanance,Installations,ServicePool,Options3p1,ServiceGridSplit,ServiceName,Form,ServiceTest} from './popupCleaner-styles'; 
+import {Popup,PopupInner,ContentTitle,CloseButton,LogoContainer2,TabsContainer,RangeSliderContainer,Options,Options2,Options3,GenCleanIcon,AfterBuildIcon,EndTenancyIcon,SanitiseIcon,Fab2,Message,Message2,Wheelbarrow, Options4,Options5,Info,Flowers,Driveway,Maintanance,Installations,ServicePool,Options3p1,ServiceGridSplit,ServiceName,Form,ServiceTest,Info2} from './popupCleaner-styles'; 
 import Outdoor from './outdoor/outdoor';
 import Indoor from './indoor/indoor';
 import Pool from './pool/pool';
@@ -7,6 +7,7 @@ import IndoorTCs from './indoor/TCs/indoorTCs';
 import IndoorServicesInfo from './indoor/TCs/indoorServicesInfo';
 import OutdoorServicesInfo from './outdoor/outdoorServicesInfo';
 import PoolServicesInfo from './pool/poolServicesInfo';
+import PoolShapes from './pool/poolShapes';
 import PromptSinIn from './promptSinIn';
 import { isNaN, toString } from 'lodash';
 import NumericTextboxComponent from '../TextBox';
@@ -765,6 +766,12 @@ class Cleaner extends React.Component {
     showPoolServicesInfo(event) {
       this.setState({
         showPoolServicesInfo: !this.state.showPoolServicesInfo
+      });
+    }
+
+    showPoolShapes(event) {
+      this.setState({
+        showPoolShapes: !this.state.showPoolShapes
       });
     }
 
@@ -1788,8 +1795,27 @@ return (
                               :this.state.PoolClean ?
                               <Options4>
                                 <ServiceGridSplit><ServiceTest> Pool Cleaning</ServiceTest><Tooltip  title="Pool Cleaning" aria-label="add"><Fab2><Installations onClick={this.genPoolClean.bind(this)} PoolClean = {this.state.PoolClean}/></Fab2></Tooltip> </ServiceGridSplit>
+                                <div>
+                                    <ServiceTest> Promo Code </ServiceTest>
+                                    <FormInput
+                                        id="fname"
+                                        size="10"
+                                        maxlength="7"
+                                        type="text"
+                                        name="fname"
+                                        placeholder="Code"
+                                        onKeyUp = {this.handleIndoorEndTenencyPromo}
+                                        min="0" max="9999999"
+                                        required
+                                    />
+                                     <ServiceTest> Frequency </ServiceTest>
+                                      <Checkbox toggle label = "  OnceOFF" onChange={ this.handleOnceOFF }  disabled = {cleanOnceStatus} priceCleanOnce =  {this.state.priceCleanOnce}/>
+                                      <Checkbox toggle label = "  Weekly" onChange={ this.handleCleanWeek }  disabled = {cleanWeekStatus} priceCleanWeek =  {this.state.priceCleanWeek}/>
+                                      <Checkbox toggle label = "  Monthly" onChange={ this.handleCleanMonth }  disabled = {cleanMonthStatus} priceCleanMonth =  {this.state.priceCleanMonth}/>
+                                </div>
+                                  
                                   <div>
-                                      <ServiceTest> Pool Dimensions</ServiceTest>
+                                      <ServiceTest> Pool Dimensions <Info2 onClick = {this.showPoolShapes.bind(this)} showPoolShapes = {this.state.showPoolShapes}/></ServiceTest>
                                       <select id="areaSize" onChange={this.handlePoolAreaSize} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
                                           <option value="0">Shape</option>
                                           <option value="1">Rectangular</option>
@@ -1798,42 +1824,52 @@ return (
                                           <option value="4">Irregular</option>
                                       </select>
 
-                                      { this.state.poolHrs === 0 ||  this.state.poolHrs === 1 ?
-                                        <Form>
-                                          <FormInput
-                                                id="fname"
-                                                size="10"
-                                                type="number"
-                                                name="fname"
-                                                placeholder="Length (m)"
-                                                //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
-                                                min="0" max="9999999"
-                                                required
-                                            />
+                                      { this.state.poolHrs === "0" ||  this.state.poolHrs === "1" ?
+                                      <Form>
+                                                      <FormInput
+                                                            id="fname"
+                                                            size="10"
+                                                            type="number"
+                                                            name="fname"
+                                                            placeholder="Length (m)"
+                                                            //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                            min="0" max="9999999"
+                                                            required
+                                                        />
                                                         
-                                            <FormInput
-                                                    id="fname"
-                                                    size="10"
-                                                    type="number"
-                                                    name="fname"
-                                                    placeholder="Width (m)"
-                                                    //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
-                                                    min="0" max="9999999"
-                                                    required
-                                                />
+                                                    <FormInput
+                                                            id="fname"
+                                                            size="10"
+                                                            type="number"
+                                                            name="fname"
+                                                            placeholder="Width (m)"
+                                                            //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                            min="0" max="9999999"
+                                                            required
+                                                        />
 
-                                            <FormInput
-                                                  id="fname"
-                                                  size="10"
-                                                  type="number"
-                                                  name="fname"
-                                                  placeholder="Depth (m)"
-                                                  //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
-                                                  min="0" max="9999999"
-                                                  required
-                                              />                                 
+                                                      <FormInput
+                                                            id="fname"
+                                                            size="10"
+                                                            type="number"
+                                                            name="fname"
+                                                            placeholder="Deep (m)"
+                                                            //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                            min="0" max="9999999"
+                                                            required
+                                                        />   
+                                                        <FormInput
+                                                            id="fname"
+                                                            size="10"
+                                                            type="number"
+                                                            name="fname"
+                                                            placeholder="Shallow (m)"
+                                                            //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                            min="0" max="9999999"
+                                                            required
+                                                        />                                
                                             </Form>                                      
-                                      : this.state.poolHrs === 2 ?
+                                      : this.state.poolHrs === "2" ?
                                         <Form>                                 
                                               <FormInput
                                                     id="fname"
@@ -1846,18 +1882,28 @@ return (
                                                     required
                                                 />
                                                 
-                                            <FormInput
+                                                <FormInput
+                                                            id="fname"
+                                                            size="10"
+                                                            type="number"
+                                                            name="fname"
+                                                            placeholder="Deep (m)"
+                                                            //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                            min="0" max="9999999"
+                                                            required
+                                                        />   
+                                                <FormInput
                                                     id="fname"
                                                     size="10"
                                                     type="number"
                                                     name="fname"
-                                                    placeholder="Depth (m)"
+                                                    placeholder="Shallow (m)"
                                                     //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
                                                     min="0" max="9999999"
                                                     required
                                                 />                               
                                      </Form>                                     
-                                      : this.state.poolHrs === 3?
+                                      : this.state.poolHrs === "3"?
                                         <Form>                                 
                                                     <FormInput
                                                           id="fname"
@@ -1885,25 +1931,80 @@ return (
                                                           size="10"
                                                           type="number"
                                                           name="fname"
-                                                          placeholder="Depth (m)"
+                                                          placeholder="Deep (m)"
+                                                          //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                          min="0" max="9999999"
+                                                          required
+                                                      />
+
+                                                    <FormInput
+                                                          id="fname"
+                                                          size="10"
+                                                          type="number"
+                                                          name="fname"
+                                                          placeholder="Shallow (m)"
                                                           //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
                                                           min="0" max="9999999"
                                                           required
                                                       />
                                 
                                           </Form>
-                                      : this.state.poolHrs === 4 ?
+                                      : this.state.poolHrs === "4" ?
                                         <Form>
                                             <FormInput
                                                 id="fname"
                                                 size="10"
                                                 type="number"
                                                 name="fname"
-                                                placeholder="Volume (L)"
+                                                placeholder="Length (m)"
                                                 //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
                                                 min="0" max="9999999"
                                                 required
                                             />
+
+                                              <FormInput
+                                                id="fname"
+                                                size="10"
+                                                type="number"
+                                                name="fname"
+                                                placeholder="Large Diameter (m)"
+                                                //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                min="0" max="9999999"
+                                                required
+                                            /> 
+
+                                              <FormInput
+                                                id="fname"
+                                                size="10"
+                                                type="number"
+                                                name="fname"
+                                                placeholder="Small Diameter (m)"
+                                                //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                min="0" max="9999999"
+                                                required
+                                            />
+
+                                            <FormInput
+                                                id="fname"
+                                                size="10"
+                                                type="number"
+                                                name="fname"
+                                                placeholder="Deep (m)"
+                                                //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                min="0" max="9999999"
+                                                required
+                                            /> 
+
+                                          <FormInput
+                                                id="fname"
+                                                size="10"
+                                                type="number"
+                                                name="fname"
+                                                placeholder="Shallow (m)"
+                                                //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                min="0" max="9999999"
+                                                required
+                                            /> 
                                         </Form>
                                       : null
                                       }
@@ -1911,32 +2012,42 @@ return (
 
                                   <div>
                                       <ServiceTest> Pool Issues</ServiceTest>
+                                      <Checkbox toggle label = "  Cloudy" onChange={ this.handleCleanWeek }  disabled = {cleanWeekStatus} priceCleanWeek =  {this.state.priceCleanWeek}/>
+                                      <ServiceTest> Algae</ServiceTest>
                                       <div>
-                                        <Checkbox toggle label = "  Algae" onChange={ this.handleOnceOFF }  disabled = {cleanOnceStatus} priceCleanOnce =  {this.state.priceCleanOnce}/>
-                                        <Checkbox toggle label = "  Cloudy" onChange={ this.handleCleanWeek }  disabled = {cleanWeekStatus} priceCleanWeek =  {this.state.priceCleanWeek}/>
-                                        <Checkbox toggle label = "  Circulation" onChange={ this.handleCleanMonth }  disabled = {cleanMonthStatus} priceCleanMonth =  {this.state.priceCleanMonth}/>
+                                        <Checkbox toggle label = "  Green" onChange={ this.handleOnceOFF }  disabled = {cleanOnceStatus} priceCleanOnce =  {this.state.priceCleanOnce}/>
+                                        <Checkbox toggle label = "  Mustard" onChange={ this.handleCleanMonth }  disabled = {cleanMonthStatus} priceCleanMonth =  {this.state.priceCleanMonth}/>
+                                        <Checkbox toggle label = "  Black" onChange={ this.handleCleanMonth }  disabled = {cleanMonthStatus} priceCleanMonth =  {this.state.priceCleanMonth}/>
+                                      
                                       </div>
                                   </div>
 
-                                  <div>
-                                    <ServiceTest> Promo Code </ServiceTest>
-                                    <FormInput
-                                        id="fname"
-                                        size="10"
-                                        maxlength="7"
-                                        type="text"
-                                        name="fname"
-                                        placeholder="Code"
-                                        onKeyUp = {this.handleIndoorEndTenencyPromo}
-                                        min="0" max="9999999"
-                                        required
-                                    />
-                                  </div>
+
                                   </Options4>
                               : this.state. PoolMaint?
                               <Options4>
                               <div>
-                                      <ServiceTest> Pool Dimensions</ServiceTest>
+                                  <ServiceTest> Promo Code </ServiceTest>
+                                  <FormInput
+                                      id="fname"
+                                      size="10"
+                                      maxlength="7"
+                                      type="text"
+                                      name="fname"
+                                      placeholder="Code"
+                                      onKeyUp = {this.handleIndoorEndTenencyPromo}
+                                      min="0" max="9999999"
+                                      required
+                                  />
+                                     <ServiceTest> Frequency </ServiceTest>
+                                    <Checkbox toggle label = "  Monthly" onChange={ this.handleMaintMonth } disabled = {maintMonthStatus} priceMaintMonth =  {this.state.priceMaintMonth}/>
+                                    <Checkbox toggle label = "  Quaterly" onChange={ this.handleMaintQuat } disabled = {maintQuatStatus} priceMaintQuat =  {this.state.priceMaintQuat}/>
+                                    <Checkbox toggle label = "  Yearly" onChange={ this.handleMaintYear } disabled = {maintYearStatus} priceMaintYear =  {this.state.priceMaintYear}/>
+                              </div>
+                              <ServiceGridSplit><ServiceTest>Pool Maintanance</ServiceTest><Tooltip  title="Pool Maintanance" aria-label="add"><Fab2><Maintanance onClick={this.periodMaint.bind(this)} PoolMaint = {this.state.PoolMaint}/></Fab2></Tooltip></ServiceGridSplit>
+
+                              <div>
+                                      <ServiceTest> Pool Dimensions <Info2 onClick = {this.showPoolShapes.bind(this)} showPoolShapes = {this.state.showPoolShapes}/></ServiceTest>
                                       <select id="areaSize" onChange={this.handlePoolAreaSize} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
                                           <option value="0">Shape</option>
                                           <option value="1">Rectangular</option>
@@ -1945,7 +2056,7 @@ return (
                                           <option value="4">Irregular</option>
                                       </select>
 
-                                      { this.state.poolHrs === 0 ||  this.state.poolHrs === 1 ?
+                                      { this.state.poolHrs === "0" ||  this.state.poolHrs === "1" ?
                                         <Form>
                                                       <FormInput
                                                             id="fname"
@@ -1974,13 +2085,23 @@ return (
                                                             size="10"
                                                             type="number"
                                                             name="fname"
-                                                            placeholder="Depth (m)"
+                                                            placeholder="Deep (m)"
                                                             //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
                                                             min="0" max="9999999"
                                                             required
-                                                        />                                 
+                                                        />   
+                                                        <FormInput
+                                                            id="fname"
+                                                            size="10"
+                                                            type="number"
+                                                            name="fname"
+                                                            placeholder="Shallow (m)"
+                                                            //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                            min="0" max="9999999"
+                                                            required
+                                                        />                                
                                             </Form>                                      
-                                      : this.state.poolHrs === 2 ?
+                                      : this.state.poolHrs === "2" ?
                                         <Form>                                 
                                               <FormInput
                                                     id="fname"
@@ -1993,18 +2114,28 @@ return (
                                                     required
                                                 />
                                                 
-                                            <FormInput
+                                                <FormInput
+                                                            id="fname"
+                                                            size="10"
+                                                            type="number"
+                                                            name="fname"
+                                                            placeholder="Deep (m)"
+                                                            //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                            min="0" max="9999999"
+                                                            required
+                                                        />   
+                                                <FormInput
                                                     id="fname"
                                                     size="10"
                                                     type="number"
                                                     name="fname"
-                                                    placeholder="Depth (m)"
+                                                    placeholder="Shallow (m)"
                                                     //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
                                                     min="0" max="9999999"
                                                     required
                                                 />                               
                                      </Form>                                     
-                                      : this.state.poolHrs === 3?
+                                      : this.state.poolHrs === "3"?
                                         <Form>                                 
                                                     <FormInput
                                                           id="fname"
@@ -2032,52 +2163,95 @@ return (
                                                           size="10"
                                                           type="number"
                                                           name="fname"
-                                                          placeholder="Depth (m)"
+                                                          placeholder="Deep (m)"
+                                                          //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                          min="0" max="9999999"
+                                                          required
+                                                      />
+
+                                                    <FormInput
+                                                          id="fname"
+                                                          size="10"
+                                                          type="number"
+                                                          name="fname"
+                                                          placeholder="Shallow (m)"
                                                           //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
                                                           min="0" max="9999999"
                                                           required
                                                       />
                                 
                                           </Form>
-                                      : this.state.poolHrs === 4 ?
+                                      : this.state.poolHrs === "4" ?
                                         <Form>
                                             <FormInput
                                                 id="fname"
                                                 size="10"
                                                 type="number"
                                                 name="fname"
-                                                placeholder="Volume (L)"
+                                                placeholder="Length (m)"
                                                 //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
                                                 min="0" max="9999999"
                                                 required
                                             />
+
+                                              <FormInput
+                                                id="fname"
+                                                size="10"
+                                                type="number"
+                                                name="fname"
+                                                placeholder="Large Diameter (m)"
+                                                //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                min="0" max="9999999"
+                                                required
+                                            /> 
+
+                                              <FormInput
+                                                id="fname"
+                                                size="10"
+                                                type="number"
+                                                name="fname"
+                                                placeholder="Small Diameter (m)"
+                                                //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                min="0" max="9999999"
+                                                required
+                                            />
+
+                                            <FormInput
+                                                id="fname"
+                                                size="10"
+                                                type="number"
+                                                name="fname"
+                                                placeholder="Deep (m)"
+                                                //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                min="0" max="9999999"
+                                                required
+                                            /> 
+
+                                          <FormInput
+                                                id="fname"
+                                                size="10"
+                                                type="number"
+                                                name="fname"
+                                                placeholder="Shallow (m)"
+                                                //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                min="0" max="9999999"
+                                                required
+                                            /> 
                                         </Form>
                                       : null
                                       }
                                   </div>
-                              <ServiceGridSplit><ServiceTest>Pool Maintanance</ServiceTest><Tooltip  title="Pool Maintanance" aria-label="add"><Fab2><Maintanance onClick={this.periodMaint.bind(this)} PoolMaint = {this.state.PoolMaint}/></Fab2></Tooltip></ServiceGridSplit>
                               <div>
-                                    <ServiceTest> Extra Issues</ServiceTest>
+                                    <ServiceTest> Pool Issues</ServiceTest>
+                                    <Checkbox toggle label = "  Cloudy" onChange={ this.handleCleanWeek }  disabled = {cleanWeekStatus} priceCleanWeek =  {this.state.priceCleanWeek}/>
+                                    <ServiceTest> Algae</ServiceTest>
                                     <div>
-                                      <Checkbox toggle label = "  Algae" onChange={ this.handleOnceOFF }  disabled = {cleanOnceStatus} priceCleanOnce =  {this.state.priceCleanOnce}/>
-                                      <Checkbox toggle label = "  Cloudyness" onChange={ this.handleCleanWeek }  disabled = {cleanWeekStatus} priceCleanWeek =  {this.state.priceCleanWeek}/>
-                                      <Checkbox toggle label = "  Circulation" onChange={ this.handleCleanMonth }  disabled = {cleanMonthStatus} priceCleanMonth =  {this.state.priceCleanMonth}/>
+                                      <Checkbox toggle label = "  Green" onChange={ this.handleOnceOFF }  disabled = {cleanOnceStatus} priceCleanOnce =  {this.state.priceCleanOnce}/>
+                                      <Checkbox toggle label = "  Mustard" onChange={ this.handleCleanWeek }  disabled = {cleanWeekStatus} priceCleanWeek =  {this.state.priceCleanWeek}/>
+                                      <Checkbox toggle label = "  Black" onChange={ this.handleCleanMonth }  disabled = {cleanMonthStatus} priceCleanMonth =  {this.state.priceCleanMonth}/>
                                     </div>
                               </div>
-                              <div>
-                                <ServiceTest> Promo Code </ServiceTest>
-                                <FormInput
-                                                  id="fname"
-                                                  size="10"
-                                                  maxlength="7"
-                                                  type="text"
-                                                  name="fname"
-                                                  placeholder="Code"
-                                                  onKeyUp = {this.handleIndoorEndTenencyPromo}
-                                                  min="0" max="9999999"
-                                                  required
-                                              />
-                              </div>
+
                               </Options4>
                               : null
                               }
@@ -2106,17 +2280,12 @@ return (
                                     <Message2>Costs</Message2>
                                     {this.state.PoolClean?
                                         <Message>
-                                          <Checkbox toggle label = "  OnceOFF" onChange={ this.handleOnceOFF }  disabled = {cleanOnceStatus} priceCleanOnce =  {this.state.priceCleanOnce}/>
-                                          <Checkbox toggle label = "  Weekly" onChange={ this.handleCleanWeek }  disabled = {cleanWeekStatus} priceCleanWeek =  {this.state.priceCleanWeek}/>
-                                          <Checkbox toggle label = "  Monthly" onChange={ this.handleCleanMonth }  disabled = {cleanMonthStatus} priceCleanMonth =  {this.state.priceCleanMonth}/>
                                         Total : R {totalPool.toFixed(2)} 
                                         </Message>
                                       
                                       :  this.state.PoolMaint ?
                                       <Message>       
-                                          <Checkbox toggle label = "  Monthly" onChange={ this.handleMaintMonth } disabled = {maintMonthStatus} priceMaintMonth =  {this.state.priceMaintMonth}/>
-                                          <Checkbox toggle label = "  Quaterly" onChange={ this.handleMaintQuat } disabled = {maintQuatStatus} priceMaintQuat =  {this.state.priceMaintQuat}/>
-                                          <Checkbox toggle label = "  Yearly" onChange={ this.handleMaintYear } disabled = {maintYearStatus} priceMaintYear =  {this.state.priceMaintYear}/>
+
                                         Total : R {totalPool.toFixed(2)} 
                                         </Message>
 
@@ -2185,6 +2354,11 @@ return (
             
             {this.state.showPoolServicesInfo ?
               <PoolServicesInfo showPoolServicesInfo = {this.state.showPoolServicesInfo} closePoolServiceInfo={this.showPoolServicesInfo.bind(this)}/>
+              : null
+            }
+
+            {this.state.showPoolShapes ?
+              <PoolShapes showPoolShapes = {this.state.showPoolShapes} closePoolShapes={this.showPoolShapes.bind(this)}/>
               : null
             }
 
