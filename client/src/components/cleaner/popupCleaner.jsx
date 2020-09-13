@@ -143,7 +143,7 @@ class Cleaner extends React.Component {
           totalPool: 0,
           serviceInterval: "",
           hrs: 0,
-          poolHrs: 0,
+          poolHrs: 0, //to be removed
           bedRooms : 0,
           bathRooms: 0,
           showTcIn: false,
@@ -211,8 +211,25 @@ class Cleaner extends React.Component {
           YCareaPrice: 0, LMareaPrice : 0,FBareaPrice : 0, DCareaPrice : 0,
           handleYCoutdoorPromo : 1, handleLMoutdoorPromo : 1, handleFBoutdoorPromo : 1, handleDCoutdoorPromo : 1,
           OutdoorBookedService : "", serviceIntervalOutdoor : "", OutdoorYardSize : "", OutdoorPropertType : "", OutdoorPropertKind : "",
-          handleYCareaL : 0, handleYCareaW : 0, handleLMareaL : 0, handleLMareaW : 0, handleFBareaL : 0, handleFBareaW : 0, handleDCareaL : 0, handleDCareaW : 0,
           
+          /*********************Pool****************************/
+          poolShapePCSelect : 0, poolShapePMSelect : 0,
+          handlePoolGenCleaningPromo: 1, handlePoolMaintanancePromo: 1,
+          handlePoolRectanglePCvolumeL : 0, handlePoolRectanglePCvolumeW : 0, handlePoolRectanglePCvolumeD : 0, handlePoolRectanglePCvolumeS: 0, 
+          handlePoolCircularPCvolumeR : 0, handlePoolCircularPCvolumeD : 0, handlePoolCircularPCvolumeS: 0,
+          handlePoolTrianglePCvolumeB : 0, handlePoolTrianglePCvolumeH : 0, handlePoolTrianglePCvolumeD: 0,handlePoolTrianglePCvolumeS: 0,
+          handlePoolIrregularPCvolumeL : 0, handlePoolIrregularPCvolumeA : 0, handlePoolIrregularPCvolumeB: 0, handlePoolIrregularPCvolumeD: 0, handlePoolIrregularPCvolumeS: 0,
+
+          handlePoolRectanglePMvolumeL : 0, handlePoolRectanglePMvolumeW : 0, handlePoolRectanglePMvolumeD : 0, handlePoolRectanglePMvolumeS: 0, 
+          handlePoolCircularPMvolumeR : 0, handlePoolCircularPMvolumeD : 0, handlePoolCircularPMvolumeS: 0,
+          handlePoolTrianglePMvolumeB : 0, handlePoolTrianglePMvolumeH : 0, handlePoolTrianglePMvolumeD: 0,handlePoolTrianglePMvolumeS: 0,
+          handlePoolIrregularPMvolumeL : 0, handlePoolIrregularPMvolumeA : 0, handlePoolIrregularPMvolumeB: 0, handlePoolIrregularPMvolumeD: 0, handlePoolIrregularPMvolumeS: 0,
+        
+          poolPMonce : false, poolPMoncePrice : 0, poolPMweek: false, poolPMweekPrice : 0, poolPMmonth: false, poolPMmonthPrice : 0,
+          poolPConce : false, poolPConcePrice : 0, poolPCweek: false, poolPCweekPrice : 0, poolPCmonth: false, poolPCmonthPrice : 0,
+          
+          poolPMgreenAlgae : false, poolPMgreenAlgaePrice : 0, poolPMmustardAlgae: false, poolPMmustardAlgaePrice : 0, poolPMblackAlgae: false, poolPMblackAlgaePrice : 0,
+          poolPCgreenAlgae : false, poolPCgreenAlgaePrice : 0, poolPCmustardAlgae: false, poolPCmustardAlgaePrice : 0, poolPCblackAlgae: false, poolPCblackAlgaePrice : 0,
         }
         this.handleDropdownChange = this.handleDropdownChange.bind(this);
         this.handleDropdownChange2 = this.handleDropdownChange2.bind(this);
@@ -296,9 +313,26 @@ class Cleaner extends React.Component {
         this.handleMaintQuat = this.handleMaintQuat.bind(this);
         this.handleMaintYear = this.handleMaintYear.bind(this);
 
+        this.handlePoolShapePCSelect = this.handlePoolShapePCSelect.bind(this); this.handlePoolShapePMSelect = this.handlePoolShapePMSelect.bind(this);
 
-        this.handlePoolAreaSize = this.handlePoolAreaSize.bind(this);
+        this.handlePoolGenCleaningPromo = this.handlePoolGenCleaningPromo.bind(this); this.handlePoolMaintanancePromo = this.handlePoolMaintanancePromo.bind(this);
+        
+        this.handlePoolRectanglePCvolumeL  = this.handlePoolRectanglePCvolumeL.bind(this); this.handlePoolRectanglePCvolumeW = this.handlePoolRectanglePCvolumeW.bind(this); this.handlePoolRectanglePCvolumeD  = this.handlePoolRectanglePCvolumeD.bind(this); this.handlePoolRectanglePCvolumeS = this.handlePoolRectanglePCvolumeS.bind(this); 
+        this.handlePoolCircularPCvolumeR  = this.handlePoolCircularPCvolumeR.bind(this); this.handlePoolCircularPCvolumeD = this.handlePoolCircularPCvolumeD.bind(this); this.handlePoolCircularPCvolumeS  = this.handlePoolCircularPCvolumeS.bind(this);
+        this.handlePoolTrianglePCvolumeB  = this.handlePoolTrianglePCvolumeB.bind(this); this.handlePoolTrianglePCvolumeH = this.handlePoolTrianglePCvolumeH.bind(this); this.handlePoolTrianglePCvolumeD  = this.handlePoolTrianglePCvolumeD.bind(this); this.handlePoolTrianglePCvolumeS = this.handlePoolTrianglePCvolumeS.bind(this); 
+        this.handlePoolIrregularPCvolumeL  = this.handlePoolIrregularPCvolumeL.bind(this); this.handlePoolIrregularPCvolumeA = this.handlePoolIrregularPCvolumeA.bind(this); this.handlePoolIrregularPCvolumeB  = this.handlePoolIrregularPCvolumeB.bind(this); this.handlePoolIrregularPCvolumeD = this.handlePoolIrregularPCvolumeD.bind(this);  this.handlePoolIrregularPCvolumeS = this.handlePoolIrregularPCvolumeS.bind(this);
 
+        this.handlePoolRectanglePMvolumeL  = this.handlePoolRectanglePMvolumeL.bind(this); this.handlePoolRectanglePMvolumeW = this.handlePoolRectanglePMvolumeW.bind(this); this.handlePoolRectanglePMvolumeD  = this.handlePoolRectanglePMvolumeD.bind(this); this.handlePoolRectanglePMvolumeS = this.handlePoolRectanglePMvolumeS.bind(this); 
+        this.handlePoolCircularPMvolumeR  = this.handlePoolCircularPMvolumeR.bind(this); this.handlePoolCircularPMvolumeD = this.handlePoolCircularPMvolumeD.bind(this); this.handlePoolCircularPMvolumeS  = this.handlePoolCircularPMvolumeS.bind(this);
+        this.handlePoolTrianglePMvolumeB  = this.handlePoolTrianglePMvolumeB.bind(this); this.handlePoolTrianglePMvolumeH = this.handlePoolTrianglePMvolumeH.bind(this); this.handlePoolTrianglePMvolumeD  = this.handlePoolTrianglePMvolumeD.bind(this); this.handlePoolTrianglePMvolumeS = this.handlePoolTrianglePMvolumeS.bind(this); 
+        this.handlePoolIrregularPMvolumeL  = this.handlePoolIrregularPMvolumeL.bind(this); this.handlePoolIrregularPMvolumeA = this.handlePoolIrregularPMvolumeA.bind(this); this.handlePoolIrregularPMvolumeB  = this.handlePoolIrregularPMvolumeB.bind(this); this.handlePoolIrregularPMvolumeD = this.handlePoolIrregularPMvolumeD.bind(this);  this.handlePoolIrregularPMvolumeS = this.handlePoolIrregularPMvolumeS.bind(this);
+
+        this.poolPMonce= this.poolPMonce.bind(this); this.poolPMweek= this.poolPMweek.bind(this); this.poolPMmonth= this.poolPMmonth.bind(this);
+        this.poolPConce= this.poolPConce.bind(this); this.poolPCweek= this.poolPCweek.bind(this); this.poolPCmonth= this.poolPCmonth.bind(this);
+        
+        this.poolPCgreenAlgae = this.poolPCgreenAlgae.bind(this); this.poolPCmustardAlgae= this.poolPCmustardAlgae.bind(this); this.poolPCblackAlgae= this.poolPCblackAlgae.bind(this);
+        this.poolPMgreenAlgae= this.poolPMgreenAlgae.bind(this); this.poolPMmustardAlgae= this.poolPMmustardAlgae.bind(this); this.poolPMblackAlgae= this.poolPMblackAlgae.bind(this);
+        
 
     }
 
@@ -318,14 +352,6 @@ class Cleaner extends React.Component {
           bathRooms: e.target.value === "1"? e.target.value + " Bathroom" : e.target.value  + " Bathrooms"});
         }
 
-
-      handlePoolAreaSize(e) {
-        this.logsPoolHours.shift();
-        this.logsPoolHours.unshift("Working Hours : " + e.target.value + " hrs");
-          this.setState({ selectValue: e.target.value,
-            poolHrs: e.target.value
-          });
-        }
 
 
 
@@ -763,62 +789,6 @@ class Cleaner extends React.Component {
       
 
     /**************Pool Services Handling********************/
-    showPoolServicesInfo(event) {
-      this.setState({
-        showPoolServicesInfo: !this.state.showPoolServicesInfo
-      });
-    }
-
-    showPoolShapes(event) {
-      this.setState({
-        showPoolShapes: !this.state.showPoolShapes
-      });
-    }
-
-
-
-    pick5(event) {
-      this.setState({
-        picked5: !this.state.picked5,
-        value6: this.state.picked5? null : "Inside Cabinets",
-        price5: this.state.picked5? 0 : 25
-      });
-    }
-    pick6(event) {
-      this.setState({
-        picked6: !this.state.picked6,
-        value7: this.state.picked6? null : "Inside Fridge",
-        price6: this.state.picked6? 0 : 27
-      });
-    }
-
-    genPoolClean(event) {
-      this.setState({
-        PoolClean: this.state.PoolMaint === true ? false : !this.state.PoolClean,
-        PoolCleanService: this.state.PoolMaint === true || this.state.PoolClean? null : "Pool Cleaning",
-        PoolCleanPrice: this.state.PoolMaint === true || this.state.PoolClean? 0 : 177
-      });
-    }
-
-    periodMaint(event) {
-      this.setState({
-        PoolMaint: this.state.PoolClean === true ? false : !this.state.PoolMaint,
-        PoolMaintService: this.state.PoolClean === true || this.state.PoolMaint? null : "Pool maintanance",
-        PoolMaintPrice: this.state.PoolClean === true || this.state.PoolMaint? 0 : 177
-      });
-    }
-
-    perPoolRepair(event) {
-      this.setState({
-        PoolRepair: !this.state.PoolRepair
-      });
-    }
-
-    handleChange = event => { //destructure off of the event
-        const {name, value} = event.target;
-        this.setState({[name]: value});
-    }
-
     selectPool(event) {
       this.setState({
         showPopupPool: !this.state.showPopupPool,
@@ -827,6 +797,119 @@ class Cleaner extends React.Component {
         serviceInterval : this.state.priceCleanOnce > 0 ? "One OFF" : this.state.priceCleanWeek > 0 ? "Weekly" : this.state.priceCleanMonth || this.state.priceMaintMonth > 0 ? "Monthly" : this.state.priceMaintQuat > 0 ? "Quartely" : this.state.priceMaintYear > 0 ? "Yearly" : "One OFF"
       });
     }
+    genPoolClean(event) {
+      this.setState({
+        PoolClean: this.state.PoolMaint === true ? false : !this.state.PoolClean,
+        handlePoolGenCleaningPromo: 1,
+        poolPConce : false, poolPCweek: false, poolPCmonth: false,
+        PoolCleanService: this.state.PoolMaint === true || this.state.PoolClean? null : "Pool Cleaning",
+        PoolCleanPrice: this.state.PoolMaint === true || this.state.PoolClean? 0 : 177
+      });
+    }
+
+    periodMaint(event) {
+      this.setState({
+        PoolMaint: this.state.PoolClean === true ? false : !this.state.PoolMaint,
+        handlePoolMaintanancePromo: 1,
+        poolPMonce : false, poolPMweek: false, poolPMmonth: false,
+        PoolMaintService: this.state.PoolClean === true || this.state.PoolMaint? null : "Pool maintanance",
+        PoolMaintPrice: this.state.PoolClean === true || this.state.PoolMaint? 0 : 177
+      });
+    }
+
+    handlePoolGenCleaningPromo(event) {
+      event.preventDefault();
+      console.log(event.target.value);
+      const code = event.target.value.toLowerCase();
+      const genPromo = code.length === 7 && (code.substring(5,7) === "pt" || code.substring(5,7) === "fr")? 0.8 : 1;
+      this.setState({
+        handlePoolGenCleaningPromo: genPromo
+      });
+    }
+
+    handlePoolMaintanancePromo(event) {
+      event.preventDefault();
+      console.log(event.target.value);
+      const code = event.target.value.toLowerCase();
+      const genPromo = code.length === 7 && (code.substring(5,7) === "pt" || code.substring(5,7) === "fr")? 0.8 : 1;
+      this.setState({
+        handlePoolMaintanancePromo: genPromo
+      });
+    }
+
+    handlePoolShapePCSelect(e) {
+      this.logsPoolHours.shift();
+      this.logsPoolHours.unshift("Working Hours : " + e.target.value + " hrs");
+        this.setState({ selectValue: e.target.value,
+          poolHrs: e.target.value,
+          poolShapePCSelect: e.target.value
+        });
+      }
+
+    handlePoolShapePMSelect(e) {
+      this.logsPoolHours.shift();
+      this.logsPoolHours.unshift("Working Hours : " + e.target.value + " hrs");
+        this.setState({ selectValue: e.target.value,
+          poolHrs: e.target.value,
+          poolShapePMSelect: e.target.value
+        });
+      }
+
+handlePoolRectanglePCvolumeL(event) { event.preventDefault(); this.setState({ handlePoolRectanglePCvolumeL: event.target.value});} handlePoolRectanglePCvolumeW(event) { event.preventDefault(); this.setState({ handlePoolRectanglePCvolumeW: event.target.value});}
+handlePoolRectanglePCvolumeD(event) { event.preventDefault(); this.setState({ handlePoolRectanglePCvolumeD: event.target.value});} handlePoolRectanglePCvolumeS(event) { event.preventDefault(); this.setState({ handlePoolRectanglePCvolumeS: event.target.value});}
+
+handlePoolCircularPCvolumeR(event) { event.preventDefault(); this.setState({ handlePoolCircularPCvolumeR: event.target.value});} handlePoolCircularPCvolumeD(event) { event.preventDefault(); this.setState({ handlePoolCircularPCvolumeD: event.target.value});}
+handlePoolCircularPCvolumeS(event) { event.preventDefault(); this.setState({ handlePoolCircularPCvolumeS: event.target.value});}
+
+handlePoolTrianglePCvolumeB(event) { event.preventDefault(); this.setState({ handlePoolTrianglePCvolumeB: event.target.value});} handlePoolTrianglePCvolumeH(event) { event.preventDefault(); this.setState({ handlePoolTrianglePCvolumeH: event.target.value});}
+handlePoolTrianglePCvolumeD(event) { event.preventDefault(); this.setState({ handlePoolTrianglePCvolumeD: event.target.value});} handlePoolTrianglePCvolumeS(event) { event.preventDefault(); this.setState({ handlePoolTrianglePCvolumeS: event.target.value});}
+
+handlePoolIrregularPCvolumeL(event) { event.preventDefault(); this.setState({ handlePoolIrregularPCvolumeL: event.target.value});} handlePoolIrregularPCvolumeA(event) { event.preventDefault(); this.setState({ handlePoolIrregularPCvolumeA: event.target.value});}
+handlePoolIrregularPCvolumeB(event) { event.preventDefault(); this.setState({ handlePoolIrregularPCvolumeB: event.target.value});} handlePoolIrregularPCvolumeD(event) { event.preventDefault(); this.setState({ handlePoolIrregularPCvolumeD: event.target.value});}
+handlePoolIrregularPCvolumeS(event) { event.preventDefault(); this.setState({ handlePoolIrregularPCvolumeS: event.target.value});}
+
+
+
+handlePoolRectanglePMvolumeL(event) { event.preventDefault(); this.setState({ handlePoolRectanglePMvolumeL: event.target.value});} handlePoolRectanglePMvolumeW(event) { event.preventDefault(); this.setState({ handlePoolRectanglePMvolumeW: event.target.value});}
+handlePoolRectanglePMvolumeD(event) { event.preventDefault(); this.setState({ handlePoolRectanglePMvolumeD: event.target.value});} handlePoolRectanglePMvolumeS(event) { event.preventDefault(); this.setState({ handlePoolRectanglePMvolumeS: event.target.value});}
+
+handlePoolCircularPMvolumeR(event) { event.preventDefault(); this.setState({ handlePoolCircularPMvolumeR: event.target.value});} handlePoolCircularPMvolumeD(event) { event.preventDefault(); this.setState({ handlePoolCircularPMvolumeD: event.target.value});}
+handlePoolCircularPMvolumeS(event) { event.preventDefault(); this.setState({ handlePoolCircularPMvolumeS: event.target.value});}
+
+handlePoolTrianglePMvolumeB(event) { event.preventDefault(); this.setState({ handlePoolTrianglePMvolumeB: event.target.value});} handlePoolTrianglePMvolumeH(event) { event.preventDefault(); this.setState({ handlePoolTrianglePMvolumeH: event.target.value});}
+handlePoolTrianglePMvolumeD(event) { event.preventDefault(); this.setState({ handlePoolTrianglePMvolumeD: event.target.value});} handlePoolTrianglePMvolumeS(event) { event.preventDefault(); this.setState({ handlePoolTrianglePMvolumeS: event.target.value});}
+
+handlePoolIrregularPMvolumeL(event) { event.preventDefault(); this.setState({ handlePoolIrregularPMvolumeL: event.target.value});} handlePoolIrregularPMvolumeA(event) { event.preventDefault(); this.setState({ handlePoolIrregularPMvolumeA: event.target.value});}
+handlePoolIrregularPMvolumeB(event) { event.preventDefault(); this.setState({ handlePoolIrregularPMvolumeB: event.target.value});} handlePoolIrregularPMvolumeD(event) { event.preventDefault(); this.setState({ handlePoolIrregularPMvolumeD: event.target.value});}
+handlePoolIrregularPMvolumeS(event) { event.preventDefault(); this.setState({ handlePoolIrregularPMvolumeS: event.target.value});}
+
+
+poolPMonce() { this.setState({poolPMonce: !this.state.poolPMonce, poolPMoncePrice : this.state.poolPMonce? 0 : 1}); }
+poolPMweek () { this.setState({poolPMweek: !this.state.poolPMweek, poolPMweekPrice : this.state.poolPMweek? 0 : 0.9}); }
+poolPMmonth () { this.setState({poolPMmonth: !this.state.poolPMmonth, poolPMmonthPrice : this.state.poolPMmonth? 0 : 0.95}); }
+
+poolPConce () { this.setState({poolPConce: !this.state.poolPConce, poolPConcePrice : this.state.poolPConce? 0 : 1}); }
+poolPCweek () { this.setState({poolPCweek: !this.state.poolPCweek, poolPCweekPrice : this.state.poolPCweek? 0 : 0.9}); }
+poolPCmonth () { this.setState({poolPCmonth: !this.state.poolPCmonth, poolPCmonthPrice : this.state.poolPCmonth? 0 : 0.95}); }
+
+poolPCgreenAlgae () { this.setState({poolPCgreenAlgae: !this.state.poolPCgreenAlgae, poolPCgreenAlgaePrice : this.state.poolPCgreenAlgae? 0 : 1}); }
+poolPCmustardAlgae () { this.setState({poolPCmustardAlgae: !this.state.poolPCmustardAlgae, poolPCmustardAlgaePrice : this.state.poolPCmustardAlgae? 0 : 0.9}); }
+poolPCblackAlgae () { this.setState({poolPCblackAlgae: !this.state.poolPCblackAlgae, poolPCblackAlgaePrice : this.state.poolPCblackAlgae? 0 : 0.95}); }
+
+poolPMgreenAlgae() { this.setState({poolPMgreenAlgae: !this.state.poolPMgreenAlgae, poolPMgreenAlgaePrice : this.state.poolPMgreenAlgae? 0 : 1}); }
+poolPMmustardAlgae () { this.setState({poolPMmustardAlgae: !this.state.poolPMmustardAlgae, poolPMmustardAlgaePrice : this.state.poolPMmustardAlgae? 0 : 0.9}); }
+poolPMblackAlgae () { this.setState({poolPMblackAlgae: !this.state.poolPMblackAlgae, poolPMblackAlgaePrice : this.state.poolPMblackAlgae? 0 : 0.95}); }
+
+showPoolServicesInfo(event) { this.setState({ showPoolServicesInfo: !this.state.showPoolServicesInfo });}
+    showPoolShapes(event) { this.setState({ showPoolShapes: !this.state.showPoolShapes });}
+    perPoolRepair(event) { this.setState({ PoolRepair: !this.state.PoolRepair});}
+
+    handleChange = event => { //destructure off of the event
+        const {name, value} = event.target;
+        this.setState({[name]: value});
+    }
+
+
 
   handleChange2 = date => {
     this.logs4.shift()
@@ -850,6 +933,21 @@ class Cleaner extends React.Component {
   onLocationChange = option => {
     this.setState({ value: option }); 
 };
+
+    /*pick5(event) {
+      this.setState({
+        picked5: !this.state.picked5,
+        value6: this.state.picked5? null : "Inside Cabinets",
+        price5: this.state.picked5? 0 : 25
+      });
+    }
+    pick6(event) {
+      this.setState({
+        picked6: !this.state.picked6,
+        value7: this.state.picked6? null : "Inside Fridge",
+        price6: this.state.picked6? 0 : 27
+      });
+    }*/
 
 
 render() {  
@@ -934,9 +1032,31 @@ const totalFB = this.state.outdoorFBonce || this.state.outdoorFBweek || this.sta
 const totalDC = this.state.outdoorDConce || this.state.outdoorDCweek || this.state.outdoorDCmonth ? (150 + testDC * (this.state.outdoorDConcePrice + this.state.outdoorDCweekPrice + this.state.outdoorDCmonthPrice)) * this.state.handleDCoutdoorPromo : 0;
 const totalOutdoor = this.state.YCoutdoorClean? totalYC : 0 + this.state.LMoutdoorClean ? totalLM : 0 + this.state.FBoutdoorClean ? totalFB : 0 + this.state.DCoutdoorClean ? totalDC : 0;
 
+/******************Pool***************/
+
+const poolPCvolume = this.state.poolShapePCSelect === "0" || this.state.poolShapePCSelect === "1" ? this.state.handlePoolRectanglePCvolumeL * this.state.handlePoolRectanglePCvolumeW * ((this.state.handlePoolRectanglePCvolumeD * 1) + (this.state.handlePoolRectanglePCvolumeS * 1))/2 :
+                     this.state.poolShapePCSelect === "2" ? 3.1416 * Math.pow(this.state.handlePoolCircularPCvolumeR,2) * ((this.state.handlePoolCircularPCvolumeD * 1) + (this.state.handlePoolCircularPCvolumeS * 1))/2 :
+                     this.state.poolShapePCSelect === "3" ? (this.state.handlePoolTrianglePCvolumeB/2) * this.state.handlePoolTrianglePCvolumeH * ((this.state.handlePoolTrianglePCvolumeD * 1) + (this.state.handlePoolTrianglePCvolumeS * 1))/2 :
+                     this.state.poolShapePCSelect === "4" ? 0.45 * ((this.state.handlePoolIrregularPCvolumeA * 1) + (this.state.handlePoolIrregularPCvolumeB * 1)) * this.state.handlePoolIrregularPCvolumeL * ((this.state.handlePoolIrregularPCvolumeD * 1) + (this.state.handlePoolIrregularPCvolumeS * 1))/2 : 0;
+
+const poolPMvolume = this.state.poolShapePMSelect === "0" || this.state.poolShapePMSelect === "1" ? this.state.handlePoolRectanglePMvolumeL * this.state.handlePoolRectanglePMvolumeW * ((this.state.handlePoolRectanglePMvolumeD * 1) + (this.state.handlePoolRectanglePMvolumeS * 1))/2 :
+                     this.state.poolShapePMSelect === "2" ? 3.1416 * Math.pow(this.state.handlePoolCircularPMvolumeR,2) * ((this.state.handlePoolCircularPMvolumeD * 1) + (this.state.handlePoolCircularPMvolumeS * 1))/2 :
+                     this.state.poolShapePMSelect === "3" ? (this.state.handlePoolTrianglePMvolumeB/2) * this.state.handlePoolTrianglePMvolumeH * ((this.state.handlePoolTrianglePMvolumeD * 1) + (this.state.handlePoolTrianglePMvolumeS * 1))/2 :
+                     this.state.poolShapePMSelect === "4" ? 0.45 * ((this.state.handlePoolIrregularPMvolumeA * 1) + (this.state.handlePoolIrregularPMvolumeB * 1)) * this.state.handlePoolIrregularPMvolumeL * ((this.state.handlePoolIrregularPMvolumeD * 1) + (this.state.handlePoolIrregularPMvolumeS * 1))/2 : 0;
+
+const poolPConceStatus = this.state.poolPCweek || this.state.poolPCmonth ? true : false; const poolPCweekStatus = this.state.poolPConce || this.state.poolPCmonth ? true : false; const poolPCmonthStatus = this.state.poolPCweek || this.state.poolPConce ? true : false;
+const poolPMonceStatus = this.state.poolPMweek || this.state.poolPMmonth ? true : false; const poolPMweekStatus = this.state.poolPMonce || this.state.poolPMmonth ? true : false; const poolPMmonthStatus = this.state.poolPMweek || this.state.poolPMonce ? true : false;
+
+const poolPCgreenAlgaeStatus = this.state.poolPCmustardAlgae || this.state.poolPCblackAlgae ? true : false; const poolPCmustardAlgaeStatus = this.state.poolPCgreenAlgae || this.state.poolPCblackAlgae ? true : false; const poolPCblackAlgaeStatus = this.state.poolPCmustardAlgae || this.state.poolPCgreenAlgae ? true : false;
+const poolPMgreenAlgaeStatus = this.state.poolPMmustardAlgae || this.state.poolPMblackAlgae ? true : false; const poolPMmustardAlgaeStatus = this.state.poolPMgreenAlgae || this.state.poolPMblackAlgae ? true : false; const poolPMblackAlgaeStatus = this.state.poolPMmustardAlgae || this.state.poolPMgreenAlgae ? true : false;
+
+const poolPCfreq = this.state.poolPConce ? "OnceOFF" : this.state.poolPCweek ? "Weekly" : this.state.poolPCmonth ? "Monthly" : "";
+const poolPMfreq = this.state.poolPMonce ? "OnceOFF" : this.state.poolPMweek ? "Weekly" : this.state.poolPMmonth ? "Monthly" : "";
 
 
-/******************End Outdoor***************/
+const poolPCalgae = this.state.poolPCgreenAlgae ? "Green" : this.state.poolPCmustardAlgae ? "Mustard" : this.state.poolPCblackAlgae ? "Black" : "";
+const poolPMalgae = this.state.poolPMgreenAlgae ? "Green" : this.state.poolPMmustardAlgae ? "Mustard" : this.state.poolPMblackAlgae ? "Black" : "";
+
 const options = locations;
 const ExampleCustomInput = ({ value, onClick }) => (
     <CustomButton style = {{"background": "#e91e63"}} onClick={onClick} size="sm">{
@@ -1804,19 +1924,19 @@ return (
                                         type="text"
                                         name="fname"
                                         placeholder="Code"
-                                        onKeyUp = {this.handleIndoorEndTenencyPromo}
+                                        onKeyUp = {this.handlePoolGenCleaningPromo}
                                         min="0" max="9999999"
                                         required
                                     />
-                                     <ServiceTest> Frequency </ServiceTest>
-                                      <Checkbox toggle label = "  OnceOFF" onChange={ this.handleOnceOFF }  disabled = {cleanOnceStatus} priceCleanOnce =  {this.state.priceCleanOnce}/>
-                                      <Checkbox toggle label = "  Weekly" onChange={ this.handleCleanWeek }  disabled = {cleanWeekStatus} priceCleanWeek =  {this.state.priceCleanWeek}/>
-                                      <Checkbox toggle label = "  Monthly" onChange={ this.handleCleanMonth }  disabled = {cleanMonthStatus} priceCleanMonth =  {this.state.priceCleanMonth}/>
+                                      <ServiceTest> Frequency </ServiceTest>
+                                      <Checkbox toggle label = "  OnceOFF" onChange={ this.poolPConce }  disabled = {poolPConceStatus} />
+                                      <Checkbox toggle label = "  Weekly" onChange={ this.poolPCweek }  disabled = {poolPCweekStatus} />
+                                      <Checkbox toggle label = "  Monthly" onChange={ this.poolPCmonth }  disabled = {poolPCmonthStatus} />
                                 </div>
                                   
                                   <div>
                                       <ServiceTest> Pool Dimensions <Info2 onClick = {this.showPoolShapes.bind(this)} showPoolShapes = {this.state.showPoolShapes}/></ServiceTest>
-                                      <select id="areaSize" onChange={this.handlePoolAreaSize} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
+                                      <select id="areaSize" onChange={this.handlePoolShapePCSelect} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
                                           <option value="0">Shape</option>
                                           <option value="1">Rectangular</option>
                                           <option value="2">Circular</option>
@@ -1824,140 +1944,140 @@ return (
                                           <option value="4">Irregular</option>
                                       </select>
 
-                                      { this.state.poolHrs === "0" ||  this.state.poolHrs === "1" ?
+                                      { this.state.poolShapePCSelect === "0" ||  this.state.poolShapePCSelect === "1" ?
                                       <Form>
-                                                      <FormInput
-                                                            id="fname"
-                                                            size="10"
-                                                            type="number"
-                                                            name="fname"
-                                                            placeholder="Length (m)"
-                                                            //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
-                                                            min="0" max="9999999"
-                                                            required
-                                                        />
-                                                        
-                                                    <FormInput
-                                                            id="fname"
-                                                            size="10"
-                                                            type="number"
-                                                            name="fname"
-                                                            placeholder="Width (m)"
-                                                            //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
-                                                            min="0" max="9999999"
-                                                            required
-                                                        />
+                                          <FormInput
+                                            id="fname"
+                                            size="10"
+                                            type="number"
+                                            name="fname"
+                                            placeholder="Length (m)"
+                                            onChange = {this.handlePoolRectanglePCvolumeL.bind(this)}
+                                            min="0" max="9999999"
+                                            required
+                                          />
 
-                                                      <FormInput
-                                                            id="fname"
-                                                            size="10"
-                                                            type="number"
-                                                            name="fname"
-                                                            placeholder="Deep (m)"
-                                                            //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
-                                                            min="0" max="9999999"
-                                                            required
-                                                        />   
-                                                        <FormInput
-                                                            id="fname"
-                                                            size="10"
-                                                            type="number"
-                                                            name="fname"
-                                                            placeholder="Shallow (m)"
-                                                            //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
-                                                            min="0" max="9999999"
-                                                            required
-                                                        />                                
-                                            </Form>                                      
-                                      : this.state.poolHrs === "2" ?
-                                        <Form>                                 
-                                              <FormInput
-                                                    id="fname"
-                                                    size="10"
-                                                    type="number"
-                                                    name="fname"
-                                                    placeholder="Diameter (m)"
-                                                    //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
-                                                    min="0" max="9999999"
-                                                    required
-                                                />
-                                                
-                                                <FormInput
-                                                            id="fname"
-                                                            size="10"
-                                                            type="number"
-                                                            name="fname"
-                                                            placeholder="Deep (m)"
-                                                            //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
-                                                            min="0" max="9999999"
-                                                            required
-                                                        />   
-                                                <FormInput
-                                                    id="fname"
-                                                    size="10"
-                                                    type="number"
-                                                    name="fname"
-                                                    placeholder="Shallow (m)"
-                                                    //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
-                                                    min="0" max="9999999"
-                                                    required
-                                                />                               
-                                     </Form>                                     
-                                      : this.state.poolHrs === "3"?
-                                        <Form>                                 
-                                                    <FormInput
-                                                          id="fname"
-                                                          size="10"
-                                                          type="number"
-                                                          name="fname"
-                                                          placeholder="Base (m)"
-                                                          //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
-                                                          min="0" max="9999999"
-                                                          required
-                                                      />
-                                                      
-                                                  <FormInput
-                                                          id="fname"
-                                                          size="10"
-                                                          type="number"
-                                                          name="fname"
-                                                          placeholder="Height (m)"
-                                                          //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
-                                                          min="0" max="9999999"
-                                                          required
-                                                      />
-                                                  <FormInput
-                                                          id="fname"
-                                                          size="10"
-                                                          type="number"
-                                                          name="fname"
-                                                          placeholder="Deep (m)"
-                                                          //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
-                                                          min="0" max="9999999"
-                                                          required
-                                                      />
+                                          <FormInput
+                                            id="fname"
+                                            size="10"
+                                            type="number"
+                                            name="fname"
+                                            placeholder="Width (m)"
+                                            onChange = {this.handlePoolRectanglePCvolumeW.bind(this)}
+                                            min="0" max="9999999"
+                                            required
+                                          />
 
-                                                    <FormInput
-                                                          id="fname"
-                                                          size="10"
-                                                          type="number"
-                                                          name="fname"
-                                                          placeholder="Shallow (m)"
-                                                          //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
-                                                          min="0" max="9999999"
-                                                          required
-                                                      />
+                                          <FormInput
+                                            id="fname"
+                                            size="10"
+                                            type="number"
+                                            name="fname"
+                                            placeholder="Deep (m)"
+                                            onChange = {this.handlePoolRectanglePCvolumeD.bind(this)}
+                                            min="0" max="9999999"
+                                            required
+                                          />   
+                                          <FormInput
+                                            id="fname"
+                                            size="10"
+                                            type="number"
+                                            name="fname"
+                                            placeholder="Shallow (m)"
+                                            onChange = {this.handlePoolRectanglePCvolumeS.bind(this)}
+                                            min="0" max="9999999"
+                                            required
+                                          />                                
+                                      </Form>                                      
+                                      : this.state.poolShapePCSelect === "2" ?
+                                      <Form>                                 
+                                          <FormInput
+                                                id="fname"
+                                                size="10"
+                                                type="number"
+                                                name="fname"
+                                                placeholder="Radius (m)"
+                                                onChange = {this.handlePoolCircularPCvolumeR.bind(this)}
+                                                min="0" max="9999999"
+                                                required
+                                            />
+                                            
+                                            <FormInput
+                                                id="fname"
+                                                size="10"
+                                                type="number"
+                                                name="fname"
+                                                placeholder="Deep (m)"
+                                                onChange = {this.handlePoolCircularPCvolumeD.bind(this)}
+                                                min="0" max="9999999"
+                                                required
+                                            />   
+                                            <FormInput
+                                                id="fname"
+                                                size="10"
+                                                type="number"
+                                                name="fname"
+                                                placeholder="Shallow (m)"
+                                                onChange = {this.handlePoolCircularPCvolumeS.bind(this)}
+                                                min="0" max="9999999"
+                                                required
+                                            />                               
+                                    </Form>                                     
+                                      : this.state.poolShapePCSelect === "3"?
+                                      <Form>                                 
+                                          <FormInput
+                                                id="fname"
+                                                size="10"
+                                                type="number"
+                                                name="fname"
+                                                placeholder="Base (m)"
+                                                onChange = {this.handlePoolTrianglePCvolumeB.bind(this)}
+                                                min="0" max="9999999"
+                                                required
+                                            />
+                                            
+                                        <FormInput
+                                                id="fname"
+                                                size="10"
+                                                type="number"
+                                                name="fname"
+                                                placeholder="Height (m)"
+                                                onChange = {this.handlePoolTrianglePCvolumeH.bind(this)}
+                                                min="0" max="9999999"
+                                                required
+                                            />
+                                        <FormInput
+                                                id="fname"
+                                                size="10"
+                                                type="number"
+                                                name="fname"
+                                                placeholder="Deep (m)"
+                                                onChange = {this.handlePoolTrianglePCvolumeD.bind(this)}
+                                                min="0" max="9999999"
+                                                required
+                                            />
+
+                                          <FormInput
+                                                id="fname"
+                                                size="10"
+                                                type="number"
+                                                name="fname"
+                                                placeholder="Shallow (m)"
+                                                onChange = {this.handlePoolTrianglePCvolumeS.bind(this)}
+                                                min="0" max="9999999"
+                                                required
+                                            />
                                 
-                                          </Form>
-                                      : this.state.poolHrs === "4" ?
-                                        <Form>
+                                      </Form>
+                                      : this.state.poolShapePCSelect === "4" ?
+                                      <Form>
                                             <FormInput
                                                 id="fname"
                                                 size="10"
                                                 type="number"
                                                 name="fname"
                                                 placeholder="Length (m)"
-                                                //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                onChange = {this.handlePoolIrregularPCvolumeL.bind(this)}
                                                 min="0" max="9999999"
                                                 required
                                             />
@@ -1968,7 +2088,7 @@ return (
                                                 type="number"
                                                 name="fname"
                                                 placeholder="Large Diameter (m)"
-                                                //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                onChange = {this.handlePoolIrregularPCvolumeA.bind(this)}
                                                 min="0" max="9999999"
                                                 required
                                             /> 
@@ -1979,7 +2099,7 @@ return (
                                                 type="number"
                                                 name="fname"
                                                 placeholder="Small Diameter (m)"
-                                                //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                onChange = {this.handlePoolIrregularPCvolumeB.bind(this)}
                                                 min="0" max="9999999"
                                                 required
                                             />
@@ -1990,7 +2110,7 @@ return (
                                                 type="number"
                                                 name="fname"
                                                 placeholder="Deep (m)"
-                                                //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                onChange = {this.handlePoolIrregularPCvolumeD.bind(this)}
                                                 min="0" max="9999999"
                                                 required
                                             /> 
@@ -2001,7 +2121,7 @@ return (
                                                 type="number"
                                                 name="fname"
                                                 placeholder="Shallow (m)"
-                                                //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                onChange = {this.handlePoolIrregularPCvolumeS.bind(this)}  
                                                 min="0" max="9999999"
                                                 required
                                             /> 
@@ -2015,9 +2135,9 @@ return (
                                       <Checkbox toggle label = "  Cloudy" onChange={ this.handleCleanWeek }  disabled = {cleanWeekStatus} priceCleanWeek =  {this.state.priceCleanWeek}/>
                                       <ServiceTest> Algae</ServiceTest>
                                       <div>
-                                        <Checkbox toggle label = "  Green" onChange={ this.handleOnceOFF }  disabled = {cleanOnceStatus} priceCleanOnce =  {this.state.priceCleanOnce}/>
-                                        <Checkbox toggle label = "  Mustard" onChange={ this.handleCleanMonth }  disabled = {cleanMonthStatus} priceCleanMonth =  {this.state.priceCleanMonth}/>
-                                        <Checkbox toggle label = "  Black" onChange={ this.handleCleanMonth }  disabled = {cleanMonthStatus} priceCleanMonth =  {this.state.priceCleanMonth}/>
+                                        <Checkbox toggle label = "  Green" onChange={ this.poolPCgreenAlgae }  disabled = {poolPCgreenAlgaeStatus} />
+                                        <Checkbox toggle label = "  Mustard" onChange={ this.poolPCmustardAlgae }  disabled = {poolPCmustardAlgaeStatus}/>
+                                        <Checkbox toggle label = "  Black" onChange={ this.poolPCblackAlgae }  disabled = {poolPCblackAlgaeStatus} />
                                       
                                       </div>
                                   </div>
@@ -2035,20 +2155,20 @@ return (
                                       type="text"
                                       name="fname"
                                       placeholder="Code"
-                                      onKeyUp = {this.handleIndoorEndTenencyPromo}
+                                      onKeyUp = {this.handlePoolMaintanancePromo}
                                       min="0" max="9999999"
                                       required
                                   />
                                      <ServiceTest> Frequency </ServiceTest>
-                                    <Checkbox toggle label = "  Monthly" onChange={ this.handleMaintMonth } disabled = {maintMonthStatus} priceMaintMonth =  {this.state.priceMaintMonth}/>
-                                    <Checkbox toggle label = "  Quaterly" onChange={ this.handleMaintQuat } disabled = {maintQuatStatus} priceMaintQuat =  {this.state.priceMaintQuat}/>
-                                    <Checkbox toggle label = "  Yearly" onChange={ this.handleMaintYear } disabled = {maintYearStatus} priceMaintYear =  {this.state.priceMaintYear}/>
+                                    <Checkbox toggle label = "  Monthly" onChange={ this.poolPMonce } disabled = {poolPMonceStatus} />
+                                    <Checkbox toggle label = "  Quaterly" onChange={ this.poolPMweek } disabled = {poolPMweekStatus} />
+                                    <Checkbox toggle label = "  Yearly" onChange={ this.poolPMmonth } disabled = {poolPMmonthStatus} />
                               </div>
                               <ServiceGridSplit><ServiceTest>Pool Maintanance</ServiceTest><Tooltip  title="Pool Maintanance" aria-label="add"><Fab2><Maintanance onClick={this.periodMaint.bind(this)} PoolMaint = {this.state.PoolMaint}/></Fab2></Tooltip></ServiceGridSplit>
 
                               <div>
                                       <ServiceTest> Pool Dimensions <Info2 onClick = {this.showPoolShapes.bind(this)} showPoolShapes = {this.state.showPoolShapes}/></ServiceTest>
-                                      <select id="areaSize" onChange={this.handlePoolAreaSize} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
+                                      <select id="areaSize" onChange={this.handlePoolShapePMSelect} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
                                           <option value="0">Shape</option>
                                           <option value="1">Rectangular</option>
                                           <option value="2">Circular</option>
@@ -2056,140 +2176,140 @@ return (
                                           <option value="4">Irregular</option>
                                       </select>
 
-                                      { this.state.poolHrs === "0" ||  this.state.poolHrs === "1" ?
-                                        <Form>
-                                                      <FormInput
-                                                            id="fname"
-                                                            size="10"
-                                                            type="number"
-                                                            name="fname"
-                                                            placeholder="Length (m)"
-                                                            //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
-                                                            min="0" max="9999999"
-                                                            required
-                                                        />
-                                                        
-                                                    <FormInput
-                                                            id="fname"
-                                                            size="10"
-                                                            type="number"
-                                                            name="fname"
-                                                            placeholder="Width (m)"
-                                                            //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
-                                                            min="0" max="9999999"
-                                                            required
-                                                        />
+                                      { this.state.poolShapePMSelect === "0" ||  this.state.poolShapePMSelect === "1" ?
+                                      <Form>
+                                          <FormInput
+                                            id="fname"
+                                            size="10"
+                                            type="number"
+                                            name="fname"
+                                            placeholder="Length (m)"
+                                            onChange = {this.handlePoolRectanglePMvolumeL.bind(this)}
+                                            min="0" max="9999999"
+                                            required
+                                          />
 
-                                                      <FormInput
-                                                            id="fname"
-                                                            size="10"
-                                                            type="number"
-                                                            name="fname"
-                                                            placeholder="Deep (m)"
-                                                            //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
-                                                            min="0" max="9999999"
-                                                            required
-                                                        />   
-                                                        <FormInput
-                                                            id="fname"
-                                                            size="10"
-                                                            type="number"
-                                                            name="fname"
-                                                            placeholder="Shallow (m)"
-                                                            //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
-                                                            min="0" max="9999999"
-                                                            required
-                                                        />                                
-                                            </Form>                                      
-                                      : this.state.poolHrs === "2" ?
-                                        <Form>                                 
-                                              <FormInput
-                                                    id="fname"
-                                                    size="10"
-                                                    type="number"
-                                                    name="fname"
-                                                    placeholder="Diameter (m)"
-                                                    //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
-                                                    min="0" max="9999999"
-                                                    required
-                                                />
-                                                
-                                                <FormInput
-                                                            id="fname"
-                                                            size="10"
-                                                            type="number"
-                                                            name="fname"
-                                                            placeholder="Deep (m)"
-                                                            //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
-                                                            min="0" max="9999999"
-                                                            required
-                                                        />   
-                                                <FormInput
-                                                    id="fname"
-                                                    size="10"
-                                                    type="number"
-                                                    name="fname"
-                                                    placeholder="Shallow (m)"
-                                                    //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
-                                                    min="0" max="9999999"
-                                                    required
-                                                />                               
-                                     </Form>                                     
-                                      : this.state.poolHrs === "3"?
-                                        <Form>                                 
-                                                    <FormInput
-                                                          id="fname"
-                                                          size="10"
-                                                          type="number"
-                                                          name="fname"
-                                                          placeholder="Base (m)"
-                                                          //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
-                                                          min="0" max="9999999"
-                                                          required
-                                                      />
-                                                      
-                                                  <FormInput
-                                                          id="fname"
-                                                          size="10"
-                                                          type="number"
-                                                          name="fname"
-                                                          placeholder="Height (m)"
-                                                          //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
-                                                          min="0" max="9999999"
-                                                          required
-                                                      />
-                                                  <FormInput
-                                                          id="fname"
-                                                          size="10"
-                                                          type="number"
-                                                          name="fname"
-                                                          placeholder="Deep (m)"
-                                                          //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
-                                                          min="0" max="9999999"
-                                                          required
-                                                      />
+                                          <FormInput
+                                            id="fname"
+                                            size="10"
+                                            type="number"
+                                            name="fname"
+                                            placeholder="Width (m)"
+                                            onChange = {this.handlePoolRectanglePMvolumeW.bind(this)}
+                                            min="0" max="9999999"
+                                            required
+                                          />
 
-                                                    <FormInput
-                                                          id="fname"
-                                                          size="10"
-                                                          type="number"
-                                                          name="fname"
-                                                          placeholder="Shallow (m)"
-                                                          //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
-                                                          min="0" max="9999999"
-                                                          required
-                                                      />
+                                          <FormInput
+                                            id="fname"
+                                            size="10"
+                                            type="number"
+                                            name="fname"
+                                            placeholder="Deep (m)"
+                                            onChange = {this.handlePoolRectanglePMvolumeD.bind(this)}
+                                            min="0" max="9999999"
+                                            required
+                                          />   
+                                          <FormInput
+                                            id="fname"
+                                            size="10"
+                                            type="number"
+                                            name="fname"
+                                            placeholder="Shallow (m)"
+                                            onChange = {this.handlePoolRectanglePMvolumeS.bind(this)}
+                                            min="0" max="9999999"
+                                            required
+                                          />                                
+                                      </Form>                                      
+                                      : this.state.poolShapePMSelect === "2" ?
+                                      <Form>                                 
+                                          <FormInput
+                                                id="fname"
+                                                size="10"
+                                                type="number"
+                                                name="fname"
+                                                placeholder="Diameter (m)"
+                                                onChange = {this.handlePoolCircularPMvolumeR.bind(this)}
+                                                min="0" max="9999999"
+                                                required
+                                            />
+                                            
+                                            <FormInput
+                                                id="fname"
+                                                size="10"
+                                                type="number"
+                                                name="fname"
+                                                placeholder="Deep (m)"
+                                                onChange = {this.handlePoolCircularPMvolumeD.bind(this)}
+                                                min="0" max="9999999"
+                                                required
+                                            />   
+                                            <FormInput
+                                                id="fname"
+                                                size="10"
+                                                type="number"
+                                                name="fname"
+                                                placeholder="Shallow (m)"
+                                                onChange = {this.handlePoolCircularPMvolumeS.bind(this)}
+                                                min="0" max="9999999"
+                                                required
+                                            />                               
+                                    </Form>                                     
+                                      : this.state.poolShapePMSelect === "3"?
+                                      <Form>                                 
+                                          <FormInput
+                                                id="fname"
+                                                size="10"
+                                                type="number"
+                                                name="fname"
+                                                placeholder="Base (m)"
+                                                onChange = {this.handlePoolTrianglePMvolumeB.bind(this)}
+                                                min="0" max="9999999"
+                                                required
+                                            />
+                                            
+                                        <FormInput
+                                                id="fname"
+                                                size="10"
+                                                type="number"
+                                                name="fname"
+                                                placeholder="Height (m)"
+                                                onChange = {this.handlePoolTrianglePMvolumeH.bind(this)}
+                                                min="0" max="9999999"
+                                                required
+                                            />
+                                        <FormInput
+                                                id="fname"
+                                                size="10"
+                                                type="number"
+                                                name="fname"
+                                                placeholder="Deep (m)"
+                                                onChange = {this.handlePoolTrianglePMvolumeD.bind(this)}
+                                                min="0" max="9999999"
+                                                required
+                                            />
+
+                                          <FormInput
+                                                id="fname"
+                                                size="10"
+                                                type="number"
+                                                name="fname"
+                                                placeholder="Shallow (m)"
+                                                onChange = {this.handlePoolTrianglePMvolumeS.bind(this)}
+                                                min="0" max="9999999"
+                                                required
+                                            />
                                 
-                                          </Form>
-                                      : this.state.poolHrs === "4" ?
-                                        <Form>
+                                      </Form>
+                                      : this.state.poolShapePMSelect === "4" ?
+                                      <Form>
                                             <FormInput
                                                 id="fname"
                                                 size="10"
                                                 type="number"
                                                 name="fname"
                                                 placeholder="Length (m)"
-                                                //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                onChange = {this.handlePoolIrregularPMvolumeL.bind(this)}
                                                 min="0" max="9999999"
                                                 required
                                             />
@@ -2200,7 +2320,7 @@ return (
                                                 type="number"
                                                 name="fname"
                                                 placeholder="Large Diameter (m)"
-                                                //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                onChange = {this.handlePoolIrregularPMvolumeA.bind(this)}
                                                 min="0" max="9999999"
                                                 required
                                             /> 
@@ -2211,7 +2331,7 @@ return (
                                                 type="number"
                                                 name="fname"
                                                 placeholder="Small Diameter (m)"
-                                                //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                onChange = {this.handlePoolIrregularPMvolumeB.bind(this)}
                                                 min="0" max="9999999"
                                                 required
                                             />
@@ -2222,7 +2342,7 @@ return (
                                                 type="number"
                                                 name="fname"
                                                 placeholder="Deep (m)"
-                                                //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                onChange = {this.handlePoolIrregularPMvolumeD.bind(this)}
                                                 min="0" max="9999999"
                                                 required
                                             /> 
@@ -2233,7 +2353,7 @@ return (
                                                 type="number"
                                                 name="fname"
                                                 placeholder="Shallow (m)"
-                                                //onKeyDown={e => /[\+\-\.\,]$/.test(e.key) && e.preventDefault()}
+                                                onChange = {this.handlePoolIrregularPMvolumeS.bind(this)}  
                                                 min="0" max="9999999"
                                                 required
                                             /> 
@@ -2246,9 +2366,9 @@ return (
                                     <Checkbox toggle label = "  Cloudy" onChange={ this.handleCleanWeek }  disabled = {cleanWeekStatus} priceCleanWeek =  {this.state.priceCleanWeek}/>
                                     <ServiceTest> Algae</ServiceTest>
                                     <div>
-                                      <Checkbox toggle label = "  Green" onChange={ this.handleOnceOFF }  disabled = {cleanOnceStatus} priceCleanOnce =  {this.state.priceCleanOnce}/>
-                                      <Checkbox toggle label = "  Mustard" onChange={ this.handleCleanWeek }  disabled = {cleanWeekStatus} priceCleanWeek =  {this.state.priceCleanWeek}/>
-                                      <Checkbox toggle label = "  Black" onChange={ this.handleCleanMonth }  disabled = {cleanMonthStatus} priceCleanMonth =  {this.state.priceCleanMonth}/>
+                                      <Checkbox toggle label = "  Green" onChange={ this.poolPMgreenAlgae }  disabled = {poolPMgreenAlgaeStatus} />
+                                      <Checkbox toggle label = "  Mustard" onChange={ this.poolPMmustardAlgae }  disabled = {poolPMmustardAlgaeStatus} />
+                                      <Checkbox toggle label = "  Black" onChange={ this.poolPMblackAlgae }  disabled = {poolPMblackAlgaeStatus} />
                                     </div>
                               </div>
 
@@ -2260,21 +2380,37 @@ return (
                                 </ContentTitle>
                                 <Options3>
                                   <div style = {{"margin-left" : "2px"}}>
-                                    <Message2>Pool Details</Message2>
+                                    <Message2>Booking Details</Message2>
 
                                     <EventLog logs={this.state.locPool}/>
 
-                                    <EventLog logs={this.state.eventsPoolHours}/>
+                                    {poolPCfreq !== ""?
+                                    <Message>Frequency : {poolPCfreq} </Message>
+                                    : poolPMfreq !== ""?
+                                    <Message>Frequency : {poolPMfreq} </Message>
+                                    : null
+                                    }
                                     {this.state.PoolTime.length !== 0 ?
                                       <Message>Date : {poolTime.replace("GMT+0200 (South Africa Standard Time)","")}</Message> 
                                     : null
                                     }                                           
                                   </div>
                                   <div>      
-                                    <Message2>Services</Message2>
-                                    <Message>{this.state.PoolCleanService}</Message>
-                                    <Message>{this.state.PoolMaintService}</Message>
-                                    <Message>{this.state.FBoutdoorCleanDisplay}</Message>
+                                    <Message2>Pool Details</Message2>
+                                    {this.state.PoolClean && poolPCvolume > 0?
+                                      <Message>Volume : {1000 * poolPCvolume.toFixed(0)} litres</Message>
+                                      : this.state.PoolMaint && poolPMvolume > 0? 
+                                      <Message>Volume : {1000 * poolPMvolume.toFixed(2)} </Message>
+                                      : null
+                                    }
+
+                                    {poolPCalgae !== ""?
+                                    <Message>Algae : {poolPCalgae} </Message>
+                                    : poolPMalgae !== ""?
+                                    <Message>Algae : {poolPMalgae} </Message>
+                                    : null
+                                    }
+
                                   </div>
                                   <div>
                                     <Message2>Costs</Message2>
