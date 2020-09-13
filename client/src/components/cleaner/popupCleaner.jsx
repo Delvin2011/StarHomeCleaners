@@ -230,6 +230,8 @@ class Cleaner extends React.Component {
           
           poolPMgreenAlgae : false, poolPMgreenAlgaePrice : 0, poolPMmustardAlgae: false, poolPMmustardAlgaePrice : 0, poolPMblackAlgae: false, poolPMblackAlgaePrice : 0,
           poolPCgreenAlgae : false, poolPCgreenAlgaePrice : 0, poolPCmustardAlgae: false, poolPCmustardAlgaePrice : 0, poolPCblackAlgae: false, poolPCblackAlgaePrice : 0,
+          poolPCcloudy : false, poolPCcloudyPrice : 0,
+          poolPMcloudy : false, poolPMcloudyPrice : 0
         }
         this.handleDropdownChange = this.handleDropdownChange.bind(this);
         this.handleDropdownChange2 = this.handleDropdownChange2.bind(this);
@@ -332,7 +334,7 @@ class Cleaner extends React.Component {
         
         this.poolPCgreenAlgae = this.poolPCgreenAlgae.bind(this); this.poolPCmustardAlgae= this.poolPCmustardAlgae.bind(this); this.poolPCblackAlgae= this.poolPCblackAlgae.bind(this);
         this.poolPMgreenAlgae= this.poolPMgreenAlgae.bind(this); this.poolPMmustardAlgae= this.poolPMmustardAlgae.bind(this); this.poolPMblackAlgae= this.poolPMblackAlgae.bind(this);
-        
+        this.poolPCcloudy = this.poolPCcloudy.bind(this); this.poolPMcloudy = this.poolPMcloudy.bind(this);
 
     }
 
@@ -900,6 +902,10 @@ poolPMgreenAlgae() { this.setState({poolPMgreenAlgae: !this.state.poolPMgreenAlg
 poolPMmustardAlgae () { this.setState({poolPMmustardAlgae: !this.state.poolPMmustardAlgae, poolPMmustardAlgaePrice : this.state.poolPMmustardAlgae? 0 : 0.9}); }
 poolPMblackAlgae () { this.setState({poolPMblackAlgae: !this.state.poolPMblackAlgae, poolPMblackAlgaePrice : this.state.poolPMblackAlgae? 0 : 0.95}); }
 
+poolPCcloudy () { this.setState({poolPCcloudy: !this.state.poolPCcloudy, poolPcloudyPrice : this.state.poolPCcloudy? 0 : 0.9}); }
+poolPMcloudy () { this.setState({poolPMcloudy: !this.state.poolPMcloudy, poolPMcloudyPrice : this.state.poolPMcloudy? 0 : 0.95}); }
+
+
 showPoolServicesInfo(event) { this.setState({ showPoolServicesInfo: !this.state.showPoolServicesInfo });}
     showPoolShapes(event) { this.setState({ showPoolShapes: !this.state.showPoolShapes });}
     perPoolRepair(event) { this.setState({ PoolRepair: !this.state.PoolRepair});}
@@ -953,9 +959,9 @@ showPoolServicesInfo(event) { this.setState({ showPoolServicesInfo: !this.state.
 render() {  
 const total = 150 + this.state.bedPrice + this.state.bathPrice + this.state.price + this.state.price2 + this.state.price3 + this.state.price4 + this.state.price5 + this.state.price6 + this.state.priceDetergent;
 
-const totalClean = this.state.PoolClean ? (250 + (this.state.poolHrs - 1)*18)*(this.state.priceCleanOnce + this.state.priceCleanWeek + this.state.priceCleanMonth) : 0;//             this.state.poolHrs * (this.state.PoolCleanPrice + this.state.PoolMaintPrice);
-const totalMaint = this.state.PoolMaint ? (500 + (this.state.poolHrs - 1)*18)*(this.state.priceMaintMonth + this.state.priceMaintQuat + this.state.priceMaintYear) : 0;//             this.state.poolHrs * (this.state.PoolCleanPrice + this.state.PoolMaintPrice);
-const totalPool = totalClean + totalMaint;
+//const totalClean = this.state.PoolClean ? (250 + (this.state.poolHrs - 1)*18)*(this.state.priceCleanOnce + this.state.priceCleanWeek + this.state.priceCleanMonth) : 0;//             this.state.poolHrs * (this.state.PoolCleanPrice + this.state.PoolMaintPrice);
+//const totalMaint = this.state.PoolMaint ? (500 + (this.state.poolHrs - 1)*18)*(this.state.priceMaintMonth + this.state.priceMaintQuat + this.state.priceMaintYear) : 0;//             this.state.poolHrs * (this.state.PoolCleanPrice + this.state.PoolMaintPrice);
+//const totalPool = totalClean + totalMaint;
 
 const x = "" + this.state.dateTime;
 const y = "" + this.state.dateTimeOutdoor;
@@ -1047,15 +1053,21 @@ const poolPMvolume = this.state.poolShapePMSelect === "0" || this.state.poolShap
 const poolPConceStatus = this.state.poolPCweek || this.state.poolPCmonth ? true : false; const poolPCweekStatus = this.state.poolPConce || this.state.poolPCmonth ? true : false; const poolPCmonthStatus = this.state.poolPCweek || this.state.poolPConce ? true : false;
 const poolPMonceStatus = this.state.poolPMweek || this.state.poolPMmonth ? true : false; const poolPMweekStatus = this.state.poolPMonce || this.state.poolPMmonth ? true : false; const poolPMmonthStatus = this.state.poolPMweek || this.state.poolPMonce ? true : false;
 
-const poolPCgreenAlgaeStatus = this.state.poolPCmustardAlgae || this.state.poolPCblackAlgae ? true : false; const poolPCmustardAlgaeStatus = this.state.poolPCgreenAlgae || this.state.poolPCblackAlgae ? true : false; const poolPCblackAlgaeStatus = this.state.poolPCmustardAlgae || this.state.poolPCgreenAlgae ? true : false;
-const poolPMgreenAlgaeStatus = this.state.poolPMmustardAlgae || this.state.poolPMblackAlgae ? true : false; const poolPMmustardAlgaeStatus = this.state.poolPMgreenAlgae || this.state.poolPMblackAlgae ? true : false; const poolPMblackAlgaeStatus = this.state.poolPMmustardAlgae || this.state.poolPMgreenAlgae ? true : false;
+const poolPCgreenAlgaeStatus = this.state.poolPCmustardAlgae || this.state.poolPCblackAlgae || this.state.poolPCcloudy? true : false; const poolPCmustardAlgaeStatus = this.state.poolPCgreenAlgae || this.state.poolPCblackAlgae || this.state.poolPCcloudy? true : false; const poolPCblackAlgaeStatus = this.state.poolPCmustardAlgae || this.state.poolPCgreenAlgae || this.state.poolPCcloudy? true : false;
+const poolPMgreenAlgaeStatus = this.state.poolPMmustardAlgae || this.state.poolPMblackAlgae || this.state.poolPMcloudy? true : false; const poolPMmustardAlgaeStatus = this.state.poolPMgreenAlgae || this.state.poolPMblackAlgae || this.state.poolPMcloudy? true : false; const poolPMblackAlgaeStatus = this.state.poolPMmustardAlgae || this.state.poolPMgreenAlgae || this.state.poolPMcloudy? true : false;
+const poolPCcloudyStatus = this.state.poolPCmustardAlgae || this.state.poolPCblackAlgae || this.state.poolPCgreenAlgae? true : false; 
+const poolPMcloudyStatus = this.state.poolPCmustardAlgae || this.state.poolPCblackAlgae || this.state.poolPMgreenAlgae? true : false; 
 
 const poolPCfreq = this.state.poolPConce ? "OnceOFF" : this.state.poolPCweek ? "Weekly" : this.state.poolPCmonth ? "Monthly" : "";
 const poolPMfreq = this.state.poolPMonce ? "OnceOFF" : this.state.poolPMweek ? "Weekly" : this.state.poolPMmonth ? "Monthly" : "";
 
-
 const poolPCalgae = this.state.poolPCgreenAlgae ? "Green" : this.state.poolPCmustardAlgae ? "Mustard" : this.state.poolPCblackAlgae ? "Black" : "";
 const poolPMalgae = this.state.poolPMgreenAlgae ? "Green" : this.state.poolPMmustardAlgae ? "Mustard" : this.state.poolPMblackAlgae ? "Black" : "";
+
+const poolPCvolPriceMultiplier = poolPCvolume > 0 && poolPCvolume <= 100 ? 1 : poolPCvolume > 100 && poolPCvolume <= 250 ? 1.5 : poolPCvolume > 250 && poolPCvolume <= 500 ? 1.75 : poolPCvolume > 500 && poolPCvolume <= 750 ? 2 : poolPCvolume > 750 && poolPCvolume <= 1000 ? 2.5 : 0;
+const poolPCissuePriceMultiplier = this.state.poolPCcloudy? 1.25 : this.state.poolPCgreenAlgae? 1.5 : this.state.poolPCmustardAlgae? 1.75 : this.state.poolPCblackAlgae ? 2 : 1;
+const poolPCfreqMultiplier = this.state.poolPConce ? 1 : this.state.poolPCweek ? 0.9 : this.state.poolPMmonth ? 0.95 : 0;
+const totalPool = (150 + (100 * poolPCvolPriceMultiplier * poolPCissuePriceMultiplier * poolPCfreqMultiplier)) * this.state.handlePoolGenCleaningPromo;
 
 const options = locations;
 const ExampleCustomInput = ({ value, onClick }) => (
@@ -1947,24 +1959,24 @@ return (
                                       { this.state.poolShapePCSelect === "0" ||  this.state.poolShapePCSelect === "1" ?
                                       <Form>
                                           <FormInput
-                                            id="fname"
+                                            id="pcL"
                                             size="10"
                                             type="number"
-                                            name="fname"
+                                            name="pcL"
                                             placeholder="Length (m)"
                                             onChange = {this.handlePoolRectanglePCvolumeL.bind(this)}
-                                            min="0" max="9999999"
+                                            min="0" max="20"
                                             required
                                           />
 
                                           <FormInput
-                                            id="fname"
+                                            id="pcW"
                                             size="10"
                                             type="number"
-                                            name="fname"
+                                            name="pcW"
                                             placeholder="Width (m)"
                                             onChange = {this.handlePoolRectanglePCvolumeW.bind(this)}
-                                            min="0" max="9999999"
+                                            min="0" max="20"
                                             required
                                           />
 
@@ -1975,7 +1987,7 @@ return (
                                             name="fname"
                                             placeholder="Deep (m)"
                                             onChange = {this.handlePoolRectanglePCvolumeD.bind(this)}
-                                            min="0" max="9999999"
+                                            min="0" max="3"
                                             required
                                           />   
                                           <FormInput
@@ -1985,7 +1997,7 @@ return (
                                             name="fname"
                                             placeholder="Shallow (m)"
                                             onChange = {this.handlePoolRectanglePCvolumeS.bind(this)}
-                                            min="0" max="9999999"
+                                            min="0" max="2"
                                             required
                                           />                                
                                       </Form>                                      
@@ -1998,7 +2010,7 @@ return (
                                                 name="fname"
                                                 placeholder="Radius (m)"
                                                 onChange = {this.handlePoolCircularPCvolumeR.bind(this)}
-                                                min="0" max="9999999"
+                                                min="0" max="10"
                                                 required
                                             />
                                             
@@ -2009,7 +2021,7 @@ return (
                                                 name="fname"
                                                 placeholder="Deep (m)"
                                                 onChange = {this.handlePoolCircularPCvolumeD.bind(this)}
-                                                min="0" max="9999999"
+                                                min="0" max="3"
                                                 required
                                             />   
                                             <FormInput
@@ -2019,7 +2031,7 @@ return (
                                                 name="fname"
                                                 placeholder="Shallow (m)"
                                                 onChange = {this.handlePoolCircularPCvolumeS.bind(this)}
-                                                min="0" max="9999999"
+                                                min="0" max="2"
                                                 required
                                             />                               
                                     </Form>                                     
@@ -2032,7 +2044,7 @@ return (
                                                 name="fname"
                                                 placeholder="Base (m)"
                                                 onChange = {this.handlePoolTrianglePCvolumeB.bind(this)}
-                                                min="0" max="9999999"
+                                                min="0" max="20"
                                                 required
                                             />
                                             
@@ -2043,7 +2055,7 @@ return (
                                                 name="fname"
                                                 placeholder="Height (m)"
                                                 onChange = {this.handlePoolTrianglePCvolumeH.bind(this)}
-                                                min="0" max="9999999"
+                                                min="0" max="20"
                                                 required
                                             />
                                         <FormInput
@@ -2053,7 +2065,7 @@ return (
                                                 name="fname"
                                                 placeholder="Deep (m)"
                                                 onChange = {this.handlePoolTrianglePCvolumeD.bind(this)}
-                                                min="0" max="9999999"
+                                                min="0" max="3"
                                                 required
                                             />
 
@@ -2064,7 +2076,7 @@ return (
                                                 name="fname"
                                                 placeholder="Shallow (m)"
                                                 onChange = {this.handlePoolTrianglePCvolumeS.bind(this)}
-                                                min="0" max="9999999"
+                                                min="0" max="2"
                                                 required
                                             />
                                 
@@ -2078,7 +2090,7 @@ return (
                                                 name="fname"
                                                 placeholder="Length (m)"
                                                 onChange = {this.handlePoolIrregularPCvolumeL.bind(this)}
-                                                min="0" max="9999999"
+                                                min="0" max="20"
                                                 required
                                             />
 
@@ -2089,7 +2101,7 @@ return (
                                                 name="fname"
                                                 placeholder="Large Diameter (m)"
                                                 onChange = {this.handlePoolIrregularPCvolumeA.bind(this)}
-                                                min="0" max="9999999"
+                                                min="0" max="20"
                                                 required
                                             /> 
 
@@ -2100,7 +2112,7 @@ return (
                                                 name="fname"
                                                 placeholder="Small Diameter (m)"
                                                 onChange = {this.handlePoolIrregularPCvolumeB.bind(this)}
-                                                min="0" max="9999999"
+                                                min="0" max="20"
                                                 required
                                             />
 
@@ -2111,7 +2123,7 @@ return (
                                                 name="fname"
                                                 placeholder="Deep (m)"
                                                 onChange = {this.handlePoolIrregularPCvolumeD.bind(this)}
-                                                min="0" max="9999999"
+                                                min="0" max="3"
                                                 required
                                             /> 
 
@@ -2122,7 +2134,7 @@ return (
                                                 name="fname"
                                                 placeholder="Shallow (m)"
                                                 onChange = {this.handlePoolIrregularPCvolumeS.bind(this)}  
-                                                min="0" max="9999999"
+                                                min="0" max="2"
                                                 required
                                             /> 
                                         </Form>
@@ -2132,7 +2144,7 @@ return (
 
                                   <div>
                                       <ServiceTest> Pool Issues</ServiceTest>
-                                      <Checkbox toggle label = "  Cloudy" onChange={ this.handleCleanWeek }  disabled = {cleanWeekStatus} priceCleanWeek =  {this.state.priceCleanWeek}/>
+                                      <Checkbox toggle label = "  Cloudy" onChange={ this.poolPCcloudy } disabled =  {poolPCcloudyStatus}/>
                                       <ServiceTest> Algae</ServiceTest>
                                       <div>
                                         <Checkbox toggle label = "  Green" onChange={ this.poolPCgreenAlgae }  disabled = {poolPCgreenAlgaeStatus} />
@@ -2185,7 +2197,7 @@ return (
                                             name="fname"
                                             placeholder="Length (m)"
                                             onChange = {this.handlePoolRectanglePMvolumeL.bind(this)}
-                                            min="0" max="9999999"
+                                            min="0" max="20"
                                             required
                                           />
 
@@ -2196,7 +2208,7 @@ return (
                                             name="fname"
                                             placeholder="Width (m)"
                                             onChange = {this.handlePoolRectanglePMvolumeW.bind(this)}
-                                            min="0" max="9999999"
+                                            min="0" max="20"
                                             required
                                           />
 
@@ -2207,7 +2219,7 @@ return (
                                             name="fname"
                                             placeholder="Deep (m)"
                                             onChange = {this.handlePoolRectanglePMvolumeD.bind(this)}
-                                            min="0" max="9999999"
+                                            min="0" max="3"
                                             required
                                           />   
                                           <FormInput
@@ -2217,7 +2229,7 @@ return (
                                             name="fname"
                                             placeholder="Shallow (m)"
                                             onChange = {this.handlePoolRectanglePMvolumeS.bind(this)}
-                                            min="0" max="9999999"
+                                            min="0" max="1"
                                             required
                                           />                                
                                       </Form>                                      
@@ -2228,9 +2240,9 @@ return (
                                                 size="10"
                                                 type="number"
                                                 name="fname"
-                                                placeholder="Diameter (m)"
+                                                placeholder="Radius (m)"
                                                 onChange = {this.handlePoolCircularPMvolumeR.bind(this)}
-                                                min="0" max="9999999"
+                                                min="0" max="10"
                                                 required
                                             />
                                             
@@ -2241,7 +2253,7 @@ return (
                                                 name="fname"
                                                 placeholder="Deep (m)"
                                                 onChange = {this.handlePoolCircularPMvolumeD.bind(this)}
-                                                min="0" max="9999999"
+                                                min="0" max="3"
                                                 required
                                             />   
                                             <FormInput
@@ -2251,7 +2263,7 @@ return (
                                                 name="fname"
                                                 placeholder="Shallow (m)"
                                                 onChange = {this.handlePoolCircularPMvolumeS.bind(this)}
-                                                min="0" max="9999999"
+                                                min="0" max="2"
                                                 required
                                             />                               
                                     </Form>                                     
@@ -2264,7 +2276,7 @@ return (
                                                 name="fname"
                                                 placeholder="Base (m)"
                                                 onChange = {this.handlePoolTrianglePMvolumeB.bind(this)}
-                                                min="0" max="9999999"
+                                                min="0" max="20"
                                                 required
                                             />
                                             
@@ -2275,7 +2287,7 @@ return (
                                                 name="fname"
                                                 placeholder="Height (m)"
                                                 onChange = {this.handlePoolTrianglePMvolumeH.bind(this)}
-                                                min="0" max="9999999"
+                                                min="0" max="20"
                                                 required
                                             />
                                         <FormInput
@@ -2285,7 +2297,7 @@ return (
                                                 name="fname"
                                                 placeholder="Deep (m)"
                                                 onChange = {this.handlePoolTrianglePMvolumeD.bind(this)}
-                                                min="0" max="9999999"
+                                                min="0" max="3"
                                                 required
                                             />
 
@@ -2296,7 +2308,7 @@ return (
                                                 name="fname"
                                                 placeholder="Shallow (m)"
                                                 onChange = {this.handlePoolTrianglePMvolumeS.bind(this)}
-                                                min="0" max="9999999"
+                                                min="0" max="2"
                                                 required
                                             />
                                 
@@ -2310,7 +2322,7 @@ return (
                                                 name="fname"
                                                 placeholder="Length (m)"
                                                 onChange = {this.handlePoolIrregularPMvolumeL.bind(this)}
-                                                min="0" max="9999999"
+                                                min="0" max="20"
                                                 required
                                             />
 
@@ -2321,7 +2333,7 @@ return (
                                                 name="fname"
                                                 placeholder="Large Diameter (m)"
                                                 onChange = {this.handlePoolIrregularPMvolumeA.bind(this)}
-                                                min="0" max="9999999"
+                                                min="0" max="20"
                                                 required
                                             /> 
 
@@ -2332,7 +2344,7 @@ return (
                                                 name="fname"
                                                 placeholder="Small Diameter (m)"
                                                 onChange = {this.handlePoolIrregularPMvolumeB.bind(this)}
-                                                min="0" max="9999999"
+                                                min="0" max="20"
                                                 required
                                             />
 
@@ -2343,7 +2355,7 @@ return (
                                                 name="fname"
                                                 placeholder="Deep (m)"
                                                 onChange = {this.handlePoolIrregularPMvolumeD.bind(this)}
-                                                min="0" max="9999999"
+                                                min="0" max="3"
                                                 required
                                             /> 
 
@@ -2354,7 +2366,7 @@ return (
                                                 name="fname"
                                                 placeholder="Shallow (m)"
                                                 onChange = {this.handlePoolIrregularPMvolumeS.bind(this)}  
-                                                min="0" max="9999999"
+                                                min="0" max="2"
                                                 required
                                             /> 
                                         </Form>
@@ -2363,7 +2375,7 @@ return (
                                   </div>
                               <div>
                                     <ServiceTest> Pool Issues</ServiceTest>
-                                    <Checkbox toggle label = "  Cloudy" onChange={ this.handleCleanWeek }  disabled = {cleanWeekStatus} priceCleanWeek =  {this.state.priceCleanWeek}/>
+                                    <Checkbox toggle label = "  Cloudy" onChange={ this.poolPMcloudy }  disabled = {poolPMcloudyStatus}/>
                                     <ServiceTest> Algae</ServiceTest>
                                     <div>
                                       <Checkbox toggle label = "  Green" onChange={ this.poolPMgreenAlgae }  disabled = {poolPMgreenAlgaeStatus} />
@@ -2380,14 +2392,14 @@ return (
                                 </ContentTitle>
                                 <Options3>
                                   <div style = {{"margin-left" : "2px"}}>
-                                    <Message2>Booking Details</Message2>
+                                    <Message2>Booking</Message2>
 
                                     <EventLog logs={this.state.locPool}/>
 
                                     {poolPCfreq !== ""?
-                                    <Message>Frequency : {poolPCfreq} </Message>
+                                    <Message>Freq. : {poolPCfreq} </Message>
                                     : poolPMfreq !== ""?
-                                    <Message>Frequency : {poolPMfreq} </Message>
+                                    <Message>Freq. : {poolPMfreq} </Message>
                                     : null
                                     }
                                     {this.state.PoolTime.length !== 0 ?
@@ -2396,11 +2408,11 @@ return (
                                     }                                           
                                   </div>
                                   <div>      
-                                    <Message2>Pool Details</Message2>
+                                    <Message2>Pool</Message2>
                                     {this.state.PoolClean && poolPCvolume > 0?
-                                      <Message>Volume : {1000 * poolPCvolume.toFixed(0)} litres</Message>
+                                      <Message>Vol : {1000 * poolPCvolume.toFixed(0)} l</Message>
                                       : this.state.PoolMaint && poolPMvolume > 0? 
-                                      <Message>Volume : {1000 * poolPMvolume.toFixed(2)} </Message>
+                                      <Message>Vol : {1000 * poolPMvolume.toFixed(2)} l</Message>
                                       : null
                                     }
 
@@ -2408,6 +2420,8 @@ return (
                                     <Message>Algae : {poolPCalgae} </Message>
                                     : poolPMalgae !== ""?
                                     <Message>Algae : {poolPMalgae} </Message>
+                                    : this.state.poolPCcloudy || this.state.poolPMcloudy ?
+                                      <Message>Issues : Cloudy </Message>
                                     : null
                                     }
 
@@ -2415,9 +2429,10 @@ return (
                                   <div>
                                     <Message2>Costs</Message2>
                                     {this.state.PoolClean?
-                                        <Message>
-                                        Total : R {totalPool.toFixed(2)} 
-                                        </Message>
+                                      totalPool > 150 ?
+                                        <Message>Total : R {totalPool.toFixed(2)} </Message>
+                                        : <Message>Total : R 0.00 </Message>
+                                        
                                       
                                       :  this.state.PoolMaint ?
                                       <Message>       
