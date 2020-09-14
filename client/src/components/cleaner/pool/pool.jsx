@@ -25,7 +25,7 @@ class Pool extends React.Component {
             option: false,
             option2: false,
             HowOften: '',
-            dateTime: "" + this.props.dateTime,
+            dateTimePool: "" + this.props.dateTimePool,
             response: '',
             CardPayment: false,
             CashPayment: false,
@@ -79,11 +79,11 @@ class Pool extends React.Component {
         event.preventDefault();
         const form = event.target;
         const data = new FormData(form);
-        const {dateTime} = this.state;
+        const {dateTimePool} = this.state;
         const min = 1;
         const max = 1000;
         const random = min + (Math.random() * (max - min));
-        const service = this.props.poolCleaning? this.props.poolCleaning : this.props.poolMaintanence? this.props.poolMaintanence : "";
+        const service = this.props.poolRequiredService;//this.props.poolCleaning? this.props.poolCleaning : this.props.poolMaintanence? this.props.poolMaintanence : "";
         const payment = this.state.CashPayment ? "CAS" : this.state.CardPayment ? "ONLINE" : "";
         this.setState({
             item : 
@@ -92,7 +92,7 @@ class Pool extends React.Component {
                   bookingDate : new Date(),
                   category : 'Pool',
                   service : service,
-                  serviceDate : dateTime.replace("GMT+0200 (South Africa Standard Time)",""),
+                  serviceDate : dateTimePool.replace("GMT+0200 (South Africa Standard Time)",""),
                   frequency: this.props.serviceInterval,
                   payment: payment
                 }
@@ -109,12 +109,11 @@ class Pool extends React.Component {
             "subject": "Pool Services",
             "comments": data.get('comments'),
             "address": data.get('address'),
-            "natureOfServices": "Pool",
-            "timeAllocation": this.props.time + " hrs",
+            "natureOfServices": service,
+            "extraServices": "Shape : " + this.props.poolShape + "; Volume : " + this.props.poolVolume + "; Issues : " + this.props.poolIssue,
             "serviceIntervals": this.props.serviceInterval,
-            "extraServices": service,
-            "date": dateTime.replace("GMT+0200 (South Africa Standard Time)",""),
-            "costs": "R " + this.props.total
+            "date": dateTimePool.replace("GMT+0200 (South Africa Standard Time)",""),
+            "costs": "R " + this.props.totalPool
         })
           })
           //.then((response) => {response.json();console.log(response.ok)})
@@ -185,8 +184,8 @@ class Pool extends React.Component {
                                         <div style={{marginBottom:"20px"}}>    
                                         <ContentTitle> Required Services
                                         </ContentTitle>
-                                            <Message4>{this.props.poolCleaning}</Message4>
-                                            <Message4>{this.props.poolMaintanence}</Message4>
+                                            <Message4>{this.props.poolRequiredService}</Message4>
+
                                             </div>
                                         <div style={{marginBottom:"20px"}}>   
                                             <ContentTitle> Services Intervals
@@ -194,22 +193,20 @@ class Pool extends React.Component {
                                             <Message4>{this.props.serviceInterval}</Message4>
                                         </div>
                                         <div style={{marginBottom:"20px"}}>
-                                        <ContentTitle> Time allocation
-                                        </ContentTitle>
-                                            <Message4>{this.props.time} hrs</Message4>
+                                        <ContentTitle> Pool Details </ContentTitle>
+                                            <Message4>Shape : {this.props.poolShape}</Message4>
+                                            <Message4>Volume : {this.props.poolVolume} l</Message4>
+                                            <Message4>Issues : {this.props.poolIssue}</Message4>
                                         </div>
                                         <div style={{marginBottom:"20px"}}>
                                         <ContentTitle> Date
                                         </ContentTitle>
-                                        <Message4>{this.state.dateTime.replace("GMT+0200 (South Africa Standard Time)","")}</Message4>
+                                        <Message4>{this.props.dateTimePool.replace("GMT+0200 (South Africa Standard Time)","")}</Message4>
                                         </div>
                                         <div style={{marginBottom:"20px"}}>
                                         <ContentTitle> Total Costs
                                         </ContentTitle>
-                                            <Message4> R {this.props.total?
-                                                this.props.total.toFixed(2)
-                                                : null
-                                                }</Message4>
+                                            <Message4> R {this.props.totalPool}</Message4>
                                             </div>
                                     </Right>  
                                  </Details> 

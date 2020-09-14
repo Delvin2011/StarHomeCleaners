@@ -1050,13 +1050,14 @@ const poolPMvolume = this.state.poolShapePMSelect === "0" || this.state.poolShap
                      this.state.poolShapePMSelect === "3" ? (this.state.handlePoolTrianglePMvolumeB/2) * this.state.handlePoolTrianglePMvolumeH * ((this.state.handlePoolTrianglePMvolumeD * 1) + (this.state.handlePoolTrianglePMvolumeS * 1))/2 :
                      this.state.poolShapePMSelect === "4" ? 0.45 * ((this.state.handlePoolIrregularPMvolumeA * 1) + (this.state.handlePoolIrregularPMvolumeB * 1)) * this.state.handlePoolIrregularPMvolumeL * ((this.state.handlePoolIrregularPMvolumeD * 1) + (this.state.handlePoolIrregularPMvolumeS * 1))/2 : 0;
 
+const poolVolume = this.state.PoolClean? poolPCvolume * 1000 : this.state.PoolMaint? poolPMvolume * 1000 : 0;
 const poolPConceStatus = this.state.poolPCweek || this.state.poolPCmonth ? true : false; const poolPCweekStatus = this.state.poolPConce || this.state.poolPCmonth ? true : false; const poolPCmonthStatus = this.state.poolPCweek || this.state.poolPConce ? true : false;
 const poolPMonceStatus = this.state.poolPMweek || this.state.poolPMmonth ? true : false; const poolPMweekStatus = this.state.poolPMonce || this.state.poolPMmonth ? true : false; const poolPMmonthStatus = this.state.poolPMweek || this.state.poolPMonce ? true : false;
 
 const poolPCgreenAlgaeStatus = this.state.poolPCmustardAlgae || this.state.poolPCblackAlgae || this.state.poolPCcloudy? true : false; const poolPCmustardAlgaeStatus = this.state.poolPCgreenAlgae || this.state.poolPCblackAlgae || this.state.poolPCcloudy? true : false; const poolPCblackAlgaeStatus = this.state.poolPCmustardAlgae || this.state.poolPCgreenAlgae || this.state.poolPCcloudy? true : false;
 const poolPMgreenAlgaeStatus = this.state.poolPMmustardAlgae || this.state.poolPMblackAlgae || this.state.poolPMcloudy? true : false; const poolPMmustardAlgaeStatus = this.state.poolPMgreenAlgae || this.state.poolPMblackAlgae || this.state.poolPMcloudy? true : false; const poolPMblackAlgaeStatus = this.state.poolPMmustardAlgae || this.state.poolPMgreenAlgae || this.state.poolPMcloudy? true : false;
 const poolPCcloudyStatus = this.state.poolPCmustardAlgae || this.state.poolPCblackAlgae || this.state.poolPCgreenAlgae? true : false; 
-const poolPMcloudyStatus = this.state.poolPCmustardAlgae || this.state.poolPCblackAlgae || this.state.poolPMgreenAlgae? true : false; 
+const poolPMcloudyStatus = this.state.poolPMmustardAlgae || this.state.poolPMblackAlgae || this.state.poolPMgreenAlgae? true : false; 
 
 const poolPCfreq = this.state.poolPConce ? "OnceOFF" : this.state.poolPCweek ? "Weekly" : this.state.poolPCmonth ? "Monthly" : "";
 const poolPMfreq = this.state.poolPMonce ? "OnceOFF" : this.state.poolPMweek ? "Weekly" : this.state.poolPMmonth ? "Monthly" : "";
@@ -1066,9 +1067,22 @@ const poolPMalgae = this.state.poolPMgreenAlgae ? "Green" : this.state.poolPMmus
 
 const poolPCvolPriceMultiplier = poolPCvolume > 0 && poolPCvolume <= 100 ? 1 : poolPCvolume > 100 && poolPCvolume <= 250 ? 1.5 : poolPCvolume > 250 && poolPCvolume <= 500 ? 1.75 : poolPCvolume > 500 && poolPCvolume <= 750 ? 2 : poolPCvolume > 750 && poolPCvolume <= 1000 ? 2.5 : 0;
 const poolPCissuePriceMultiplier = this.state.poolPCcloudy? 1.25 : this.state.poolPCgreenAlgae? 1.5 : this.state.poolPCmustardAlgae? 1.75 : this.state.poolPCblackAlgae ? 2 : 1;
-const poolPCfreqMultiplier = this.state.poolPConce ? 1 : this.state.poolPCweek ? 0.9 : this.state.poolPMmonth ? 0.95 : 0;
-const totalPool = (150 + (100 * poolPCvolPriceMultiplier * poolPCissuePriceMultiplier * poolPCfreqMultiplier)) * this.state.handlePoolGenCleaningPromo;
+const poolPCfreqMultiplier = this.state.poolPConce ? 1 : this.state.poolPCweek ? 0.9 : this.state.poolPCmonth ? 0.95 : 0;
+const totalPCpool = this.state.PoolClean? (150 + (100 * poolPCvolPriceMultiplier * poolPCissuePriceMultiplier * poolPCfreqMultiplier)) * this.state.handlePoolGenCleaningPromo : 0;
 
+const poolPMvolPriceMultiplier = poolPMvolume > 0 && poolPMvolume <= 100 ? 1 : poolPMvolume > 100 && poolPMvolume <= 250 ? 1.5 : poolPMvolume > 250 && poolPMvolume <= 500 ? 1.75 : poolPMvolume > 500 && poolPMvolume <= 750 ? 2 : poolPMvolume > 750 && poolPMvolume <= 1000 ? 2.5 : 0;
+const poolPMissuePriceMultiplier = this.state.poolPMcloudy? 1.25 : this.state.poolPMgreenAlgae? 1.5 : this.state.poolPMmustardAlgae? 1.75 : this.state.poolPMblackAlgae ? 2 : 1;
+const poolPMfreqMultiplier = this.state.poolPMonce ? 1 : this.state.poolPMweek ? 0.9 : this.state.poolPMmonth ? 0.95 : 0;
+const totalPMpool = this.state.PoolMaint? (150 + (200 * poolPMvolPriceMultiplier * poolPMissuePriceMultiplier * poolPMfreqMultiplier)) * this.state.handlePoolMaintanancePromo : 0;
+
+const totalPool = totalPCpool + totalPMpool;
+console.log(totalPool);
+const poolShape = this.state.poolShapePMSelect === "0" || this.state.poolShapePMSelect === "1" || this.state.poolShapePCSelect === "0" ||  this.state.poolShapePCSelect === "1" ? "Rectangular" :
+                  this.state.poolShapePMSelect === "2" || this.state.poolShapePCSelect === "2" ? "Circular" : this.state.poolShapePMSelect === "3" || this.state.poolShapePCSelect === "3"? "Triangular":
+                  this.state.poolShapePMSelect === "4" || this.state.poolShapePCSelect === "4" ? "Irregular" : null;
+
+const poolIssue = poolPCalgae !== ""? poolPCalgae  + " Algae": poolPMalgae !== ""? poolPMalgae + " Algae": this.state.poolPCcloudy || this.state.poolPMcloudy ? "Cloudyness" : null;
+const poolRequiredService = this.state.PoolClean? "General Cleaning" : this.state.PoolMaint ? "Maintenance" : "";
 const options = locations;
 const ExampleCustomInput = ({ value, onClick }) => (
     <CustomButton style = {{"background": "#e91e63"}} onClick={onClick} size="sm">{
@@ -2415,6 +2429,10 @@ return (
                                       <Message>Vol : {1000 * poolPMvolume.toFixed(2)} l</Message>
                                       : null
                                     }
+                                    {poolShape !== null?
+                                      <Message>Shape : {poolShape} </Message>
+                                      : null
+                                    }
 
                                     {poolPCalgae !== ""?
                                     <Message>Algae : {poolPCalgae} </Message>
@@ -2429,18 +2447,15 @@ return (
                                   <div>
                                     <Message2>Costs</Message2>
                                     {this.state.PoolClean?
-                                      totalPool > 150 ?
-                                        <Message>Total : R {totalPool.toFixed(2)} </Message>
+                                      totalPCpool > 150 ?
+                                        <Message>Total : R {totalPCpool.toFixed(2)} </Message>
                                         : <Message>Total : R 0.00 </Message>
                                         
                                       
                                       :  this.state.PoolMaint ?
-                                      <Message>       
-
-                                        Total : R {totalPool.toFixed(2)} 
-                                        </Message>
-
-
+                                      totalPMpool > 150 ?
+                                        <Message>Total : R {totalPMpool.toFixed(2)}</Message> 
+                                        : <Message>Total : R 0.00 </Message>                                        
                                       : null
                                       }
                                   </div>
@@ -2482,9 +2497,9 @@ return (
 
             {this.state.showPopupPool ?
                this.props.currentUser?
-                <Pool showPopupPool = {this.state.showPopupPool} currentUser = {this.props.currentUser} closePopup={this.props.closePopup} dateTime = {this.state.dateTimePool} total = {this.state.totalPool} time = {this.state.poolHrs} poolCleaning = {this.state.PoolCleanService} poolMaintanence = {this.state.PoolMaintService} serviceInterval = {this.state.serviceInterval}/>
+                <Pool showPopupPool = {this.state.showPopupPool} currentUser = {this.props.currentUser} closePopup={this.props.closePopup} dateTimePool = {poolTime} totalPool = {totalPool}  poolRequiredService = {poolRequiredService}  serviceInterval = {this.state.serviceInterval} poolShape = {poolShape} poolVolume = {poolVolume} poolIssue = {poolIssue}/>
                 : !this.props.currentUser?
-                  <PromptSinIn currentUser = {this.props.currentUser} showPopupPool = {this.state.showPopupPool} closePopup={this.props.closePopup} dateTime = {this.state.dateTimePool} total = {this.state.totalPool} time = {this.state.poolHrs} poolCleaning = {this.state.PoolCleanService} poolMaintanence = {this.state.PoolMaintService} serviceInterval = {this.state.serviceInterval}/>
+                  <PromptSinIn currentUser = {this.props.currentUser} showPopupPool = {this.state.showPopupPool} closePopup={this.props.closePopup} dateTimePool = {poolTime} totalPool = {totalPool}  poolRequiredService = {poolRequiredService} serviceInterval = {this.state.serviceInterval} poolShape = {poolShape} poolVolume = {poolVolume} poolIssue = {poolIssue}/>
                 : null
 
               :null
