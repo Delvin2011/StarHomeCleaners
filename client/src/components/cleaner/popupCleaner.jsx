@@ -1068,15 +1068,14 @@ const poolPMalgae = this.state.poolPMgreenAlgae ? "Green" : this.state.poolPMmus
 const poolPCvolPriceMultiplier = poolPCvolume > 0 && poolPCvolume <= 100 ? 1 : poolPCvolume > 100 && poolPCvolume <= 250 ? 1.5 : poolPCvolume > 250 && poolPCvolume <= 500 ? 1.75 : poolPCvolume > 500 && poolPCvolume <= 750 ? 2 : poolPCvolume > 750 && poolPCvolume <= 1000 ? 2.5 : 0;
 const poolPCissuePriceMultiplier = this.state.poolPCcloudy? 1.25 : this.state.poolPCgreenAlgae? 1.5 : this.state.poolPCmustardAlgae? 1.75 : this.state.poolPCblackAlgae ? 2 : 1;
 const poolPCfreqMultiplier = this.state.poolPConce ? 1 : this.state.poolPCweek ? 0.9 : this.state.poolPCmonth ? 0.95 : 0;
-const totalPCpool = this.state.PoolClean? (150 + (100 * poolPCvolPriceMultiplier * poolPCissuePriceMultiplier * poolPCfreqMultiplier)) * this.state.handlePoolGenCleaningPromo : 0;
+const totalPCpool = this.state.PoolClean? (170 + (120 * poolPCvolPriceMultiplier * poolPCissuePriceMultiplier * poolPCfreqMultiplier)) * this.state.handlePoolGenCleaningPromo : 0;
 
 const poolPMvolPriceMultiplier = poolPMvolume > 0 && poolPMvolume <= 100 ? 1 : poolPMvolume > 100 && poolPMvolume <= 250 ? 1.5 : poolPMvolume > 250 && poolPMvolume <= 500 ? 1.75 : poolPMvolume > 500 && poolPMvolume <= 750 ? 2 : poolPMvolume > 750 && poolPMvolume <= 1000 ? 2.5 : 0;
 const poolPMissuePriceMultiplier = this.state.poolPMcloudy? 1.25 : this.state.poolPMgreenAlgae? 1.5 : this.state.poolPMmustardAlgae? 1.75 : this.state.poolPMblackAlgae ? 2 : 1;
 const poolPMfreqMultiplier = this.state.poolPMonce ? 1 : this.state.poolPMweek ? 0.9 : this.state.poolPMmonth ? 0.95 : 0;
-const totalPMpool = this.state.PoolMaint? (150 + (200 * poolPMvolPriceMultiplier * poolPMissuePriceMultiplier * poolPMfreqMultiplier)) * this.state.handlePoolMaintanancePromo : 0;
+const totalPMpool = this.state.PoolMaint? (170 + (220 * poolPMvolPriceMultiplier * poolPMissuePriceMultiplier * poolPMfreqMultiplier)) * this.state.handlePoolMaintanancePromo : 0;
 
 const totalPool = totalPCpool + totalPMpool;
-console.log(totalPool);
 const poolShape = this.state.poolShapePMSelect === "0" || this.state.poolShapePMSelect === "1" || this.state.poolShapePCSelect === "0" ||  this.state.poolShapePCSelect === "1" ? "Rectangular" :
                   this.state.poolShapePMSelect === "2" || this.state.poolShapePCSelect === "2" ? "Circular" : this.state.poolShapePMSelect === "3" || this.state.poolShapePCSelect === "3"? "Triangular":
                   this.state.poolShapePMSelect === "4" || this.state.poolShapePCSelect === "4" ? "Irregular" : null;
