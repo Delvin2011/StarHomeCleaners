@@ -22,8 +22,8 @@ import {FaBookReader} from "react-icons/fa";
 import {GoSignIn} from "react-icons/go";
 import {GoSignOut} from "react-icons/go";
 import {MdLiveHelp} from "react-icons/md";
-
 import { ImNewspaper } from "react-icons/im";
+import {SiMicroDotBlog} from "react-icons/si";
 
 
 import {selectCurrentUser} from '../../redux/user/user-selectors';
@@ -100,7 +100,7 @@ const useStyles = makeStyles(styles);
             className={classes.navLink}
             onClick = {() => setBooking(!Booking)}
           >
-            <FaBlog className={classes.icons} /> Book  a Service
+            <SiMicroDotBlog className={classes.icons} /> Book  a Service
         </Button>
         </ListItem>
 
@@ -168,6 +168,8 @@ const useStyles = makeStyles(styles);
             </Button>
           </ListItem>
 
+
+
         {Email ?
           <Contact showPopup = {Email} closePopup={() => setEmail(!Email)} currentUser = {currentUser}/>
           : null
@@ -207,3 +209,14 @@ const mapStateToProps = createStructuredSelector({ //state will be the root.redu
 
 export default connect(mapStateToProps,mapDispatchToProps)(HeaderLinks);
 
+/*          <ListItem className={classes.listItem}>
+
+          <Button
+              href="Blogs"
+              color="transparent"
+              target="_blank"
+              className={classes.navLink}
+            >
+              <FaBlog className={classes.icons} /> Blogs
+            </Button>
+          </ListItem> */

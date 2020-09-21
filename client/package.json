@@ -17,6 +17,7 @@
     "axios": "^0.19.2",
     "classnames": "^2.2.6",
     "create-react-class": "^15.6.3",
+    "date-fns": "^2.16.1",
     "firebase": "^7.17.2",
     "history": "4.9.0",
     "moment": "^2.24.0",

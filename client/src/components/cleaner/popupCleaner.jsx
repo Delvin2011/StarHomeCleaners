@@ -34,6 +34,10 @@ import NavPills from "../NavPills/NavPills.js";
 import {GiVacuumCleaner} from 'react-icons/gi';
 import {GiWheelbarrow} from 'react-icons/gi';
 import {FaSwimmingPool} from 'react-icons/fa';
+
+import setHours from 'date-fns/setHours'
+import setMinutes from 'date-fns/setMinutes'
+
 import Select from 'react-select';
 //import FilteredList from '../LocationFilter/locationFilter';
 import locations from './locations';
@@ -940,20 +944,6 @@ showPoolServicesInfo(event) { this.setState({ showPoolServicesInfo: !this.state.
     this.setState({ value: option }); 
 };
 
-    /*pick5(event) {
-      this.setState({
-        picked5: !this.state.picked5,
-        value6: this.state.picked5? null : "Inside Cabinets",
-        price5: this.state.picked5? 0 : 25
-      });
-    }
-    pick6(event) {
-      this.setState({
-        picked6: !this.state.picked6,
-        value7: this.state.picked6? null : "Inside Fridge",
-        price6: this.state.picked6? 0 : 27
-      });
-    }*/
 
 
 render() {  
@@ -1106,6 +1096,12 @@ const ExampleCustomInput = ({ value, onClick }) => (
         })
     }
 }
+
+function addDays(date, days) {
+  var result = new Date(date);
+  result.setDate(result.getDate() + days);
+  return result;
+}
 const selectedService = this.state.IndoorCleanService? this.state.IndoorCleanService : this.state.IndoorAfterBuildCleanService? this.state.IndoorAfterBuildCleanService : this.state.IndoorEndTenancyCleanService? this.state.IndoorEndTenancyCleanService : this.state.IndoorSanitiseService? this.state.IndoorSanitiseService : '';
 
 return (
@@ -1133,14 +1129,56 @@ return (
                                           selected={this.state.dateTime}
                                           value={this.state.dateTime}
                                           onChange={this.handleChange2}
-                                          minDate={new Date()}
-                                          showTimeInput
+                                          minDate={addDays(new Date(),2)}                                        
+                                          showTimeSelect
                                           timeFormat="HH:mm"
                                           timeIntervals={30}
-                                          timeCaption="time"
+                                          timeCaption="Time"
                                           customInput={<ExampleCustomInput />}
                                           dateFormat="MMMM d, yyyy h:mm aa"
-                                          shouldCloseOnSelect={false}  
+                                          shouldCloseOnSelect={false} 
+                                          excludeTimes={[
+                                                setHours(setMinutes(new Date(), 0), 0),
+                                                setHours(setMinutes(new Date(), 0), 0),
+                                                setHours(setMinutes(new Date(), 30), 0),
+                                                setHours(setMinutes(new Date(), 0), 1),
+                                                setHours(setMinutes(new Date(), 30), 1),
+                                                setHours(setMinutes(new Date(), 0), 2),
+                                                setHours(setMinutes(new Date(), 30), 2),
+                                                setHours(setMinutes(new Date(), 0), 3),
+                                                setHours(setMinutes(new Date(), 30), 3),
+                                                setHours(setMinutes(new Date(), 0), 4),
+                                                setHours(setMinutes(new Date(), 30), 4),
+                                                setHours(setMinutes(new Date(), 0), 5),
+                                                setHours(setMinutes(new Date(), 30), 5),
+                                                setHours(setMinutes(new Date(), 0), 6),
+                                                setHours(setMinutes(new Date(), 30), 6),
+                                                setHours(setMinutes(new Date(), 0), 7),
+                                                setHours(setMinutes(new Date(), 30), 7),
+                                                setHours(setMinutes(new Date(), 0), 8),
+                                                setHours(setMinutes(new Date(), 30), 8),
+                                                setHours(setMinutes(new Date(), 0), 9),
+                                                setHours(setMinutes(new Date(), 30), 9),
+                                                setHours(setMinutes(new Date(), 30), 14),
+                                                setHours(setMinutes(new Date(), 0), 15),
+                                                setHours(setMinutes(new Date(), 30), 15),
+                                                setHours(setMinutes(new Date(), 0), 16),
+                                                setHours(setMinutes(new Date(), 30), 16),
+                                                setHours(setMinutes(new Date(), 0), 17),
+                                                setHours(setMinutes(new Date(), 30), 17),
+                                                setHours(setMinutes(new Date(), 0), 18),
+                                                setHours(setMinutes(new Date(), 30), 18),
+                                                setHours(setMinutes(new Date(), 0), 19),
+                                                setHours(setMinutes(new Date(), 30), 19),
+                                                setHours(setMinutes(new Date(), 0), 20),
+                                                setHours(setMinutes(new Date(), 30), 20),
+                                                setHours(setMinutes(new Date(), 0), 21),
+                                                setHours(setMinutes(new Date(), 30), 21),
+                                                setHours(setMinutes(new Date(), 0), 22),
+                                                setHours(setMinutes(new Date(), 30), 22),
+                                                setHours(setMinutes(new Date(), 0), 23),
+                                                setHours(setMinutes(new Date(), 30), 23)
+                                              ]} 
                                      />
 
                                       
@@ -1438,12 +1476,54 @@ return (
                                       selected={this.state.dateTimeOutdoor}
                                       value={this.state.dateTimeOutdoor}
                                       onChange={this.handleDateChangeOutdoor}
-                                      minDate={new Date()}
+                                      minDate={addDays(new Date(),2)} 
+                                      timeIntervals={30}                                       
+                                      showTimeSelect
+                                      excludeTimes={[
+                                            setHours(setMinutes(new Date(), 0), 0),
+                                            setHours(setMinutes(new Date(), 0), 0),
+                                            setHours(setMinutes(new Date(), 30), 0),
+                                            setHours(setMinutes(new Date(), 0), 1),
+                                            setHours(setMinutes(new Date(), 30), 1),
+                                            setHours(setMinutes(new Date(), 0), 2),
+                                            setHours(setMinutes(new Date(), 30), 2),
+                                            setHours(setMinutes(new Date(), 0), 3),
+                                            setHours(setMinutes(new Date(), 30), 3),
+                                            setHours(setMinutes(new Date(), 0), 4),
+                                            setHours(setMinutes(new Date(), 30), 4),
+                                            setHours(setMinutes(new Date(), 0), 5),
+                                            setHours(setMinutes(new Date(), 30), 5),
+                                            setHours(setMinutes(new Date(), 0), 6),
+                                            setHours(setMinutes(new Date(), 30), 6),
+                                            setHours(setMinutes(new Date(), 0), 7),
+                                            setHours(setMinutes(new Date(), 30), 7),
+                                            setHours(setMinutes(new Date(), 0), 8),
+                                            setHours(setMinutes(new Date(), 30), 8),
+                                            setHours(setMinutes(new Date(), 0), 9),
+                                            setHours(setMinutes(new Date(), 30), 9),
+                                            setHours(setMinutes(new Date(), 30), 14),
+                                            setHours(setMinutes(new Date(), 0), 15),
+                                            setHours(setMinutes(new Date(), 30), 15),
+                                            setHours(setMinutes(new Date(), 0), 16),
+                                            setHours(setMinutes(new Date(), 30), 16),
+                                            setHours(setMinutes(new Date(), 0), 17),
+                                            setHours(setMinutes(new Date(), 30), 17),
+                                            setHours(setMinutes(new Date(), 0), 18),
+                                            setHours(setMinutes(new Date(), 30), 18),
+                                            setHours(setMinutes(new Date(), 0), 19),
+                                            setHours(setMinutes(new Date(), 30), 19),
+                                            setHours(setMinutes(new Date(), 0), 20),
+                                            setHours(setMinutes(new Date(), 30), 20),
+                                            setHours(setMinutes(new Date(), 0), 21),
+                                            setHours(setMinutes(new Date(), 30), 21),
+                                            setHours(setMinutes(new Date(), 0), 22),
+                                            setHours(setMinutes(new Date(), 30), 22),
+                                            setHours(setMinutes(new Date(), 0), 23),
+                                            setHours(setMinutes(new Date(), 30), 23)
+                                          ]} 
                                       customInput={<ExampleCustomInput />}
-                                      showTimeInput
                                       timeFormat="HH:mm"
-                                      timeIntervals={1}
-                                      timeCaption="time"
+                                      timeCaption="Time"
                                       dateFormat="MMMM d, yyyy h:mm aa"
                                       shouldCloseOnSelect={false} />
 
@@ -1907,11 +1987,53 @@ return (
                                           selected={this.state.dateTimePool}
                                           value={this.state.dateTimePool}
                                           onChange={this.handleChangePool}
-                                          minDate={new Date()}
-                                          showTimeInput
+                                          minDate={addDays(new Date(),2)} 
+                                          timeIntervals={30}                                       
+                                          showTimeSelect
+                                          excludeTimes={[
+                                                setHours(setMinutes(new Date(), 0), 0),
+                                                setHours(setMinutes(new Date(), 0), 0),
+                                                setHours(setMinutes(new Date(), 30), 0),
+                                                setHours(setMinutes(new Date(), 0), 1),
+                                                setHours(setMinutes(new Date(), 30), 1),
+                                                setHours(setMinutes(new Date(), 0), 2),
+                                                setHours(setMinutes(new Date(), 30), 2),
+                                                setHours(setMinutes(new Date(), 0), 3),
+                                                setHours(setMinutes(new Date(), 30), 3),
+                                                setHours(setMinutes(new Date(), 0), 4),
+                                                setHours(setMinutes(new Date(), 30), 4),
+                                                setHours(setMinutes(new Date(), 0), 5),
+                                                setHours(setMinutes(new Date(), 30), 5),
+                                                setHours(setMinutes(new Date(), 0), 6),
+                                                setHours(setMinutes(new Date(), 30), 6),
+                                                setHours(setMinutes(new Date(), 0), 7),
+                                                setHours(setMinutes(new Date(), 30), 7),
+                                                setHours(setMinutes(new Date(), 0), 8),
+                                                setHours(setMinutes(new Date(), 30), 8),
+                                                setHours(setMinutes(new Date(), 0), 9),
+                                                setHours(setMinutes(new Date(), 30), 9),
+                                                setHours(setMinutes(new Date(), 30), 14),
+                                                setHours(setMinutes(new Date(), 0), 15),
+                                                setHours(setMinutes(new Date(), 30), 15),
+                                                setHours(setMinutes(new Date(), 0), 16),
+                                                setHours(setMinutes(new Date(), 30), 16),
+                                                setHours(setMinutes(new Date(), 0), 17),
+                                                setHours(setMinutes(new Date(), 30), 17),
+                                                setHours(setMinutes(new Date(), 0), 18),
+                                                setHours(setMinutes(new Date(), 30), 18),
+                                                setHours(setMinutes(new Date(), 0), 19),
+                                                setHours(setMinutes(new Date(), 30), 19),
+                                                setHours(setMinutes(new Date(), 0), 20),
+                                                setHours(setMinutes(new Date(), 30), 20),
+                                                setHours(setMinutes(new Date(), 0), 21),
+                                                setHours(setMinutes(new Date(), 30), 21),
+                                                setHours(setMinutes(new Date(), 0), 22),
+                                                setHours(setMinutes(new Date(), 30), 22),
+                                                setHours(setMinutes(new Date(), 0), 23),
+                                                setHours(setMinutes(new Date(), 30), 23)
+                                              ]} 
                                           timeFormat="HH:mm"
-                                          timeIntervals={1}
-                                          timeCaption="time"
+                                          timeCaption="Time"
                                           dateFormat="MMMM d, yyyy h:mm aa"
                                           customInput={<ExampleCustomInput />}
                                           shouldCloseOnSelect={false} />

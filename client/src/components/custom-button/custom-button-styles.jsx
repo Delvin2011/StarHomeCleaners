@@ -1,20 +1,17 @@
 import styled, { css } from 'styled-components';
 
 const buttonStyles = css`
-  background-color: red;
+  background-color: black;
   color: white;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   letter-spacing: 1px;
-  border-radius: 10px;
   border-style: outset;
   position: center;
 
   &:hover {
     background-color: white;
-    color: red;
-    border-radius: 2%;
+    color: black;
     border-style: outset;
-    border-radius: 10px;
     position: center;
   }
 `;
