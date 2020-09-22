@@ -50,48 +50,7 @@ const useStyles = makeStyles(styles);
   const [GetBookings, setGetBookings] = useState(false);
   return (
     <List className={classes.list}>
-      <ListItem className={classes.listItem}>
-        <CustomDropdown
-          noLiPadding
-          buttonText="Contacts"
-          buttonProps={{
-            className: classes.navLink,
-            color: "transparent"
-          }}
-          buttonIcon={Apps}
-          dropdownList={[
-            <a
-              href="https://wa.me/27787243693"
-              target="_blank"
-              className={classes.dropdownLink}
-            > <IoLogoWhatsapp style={{color: '#25d366'}}/> WhatsApp
-            </a>,
-            <a
-              href="https://www.facebook.com/StarHomecleaningservices"
-              target="_blank"
-              className={classes.dropdownLink}
-             
-            > <FaFacebook style={{color: '#3b5998'}}/> Facebook
-            </a>,
-            <a
-              className={classes.dropdownLink}
-              onClick = {() => setEmail(!Email)}
-            > <MdEmail style={{color: '#B8B8B8'}}/> Email
-            </a>,
-            <a
-              href="http://www.google.com/maps/place/-26.174525,28.255771"
-              target="_blank"
-              className={classes.dropdownLink}
-            > <MdLocationOn style={{color: 'red'}}/> Location
-            </a>,
-            <a
-              onClick = {() => setPhone(!Phone)}
-              className={classes.dropdownLink}
-            > <MdLocalPhone style={{color: '#00FFFF'}}/> Phone
-            </a>
-          ]}
-        />
-      </ListItem>
+
       <ListItem className={classes.listItem}>
         <Button
             //href="blogs-page"
@@ -168,6 +127,48 @@ const useStyles = makeStyles(styles);
             </Button>
           </ListItem>
 
+        <ListItem className={classes.listItem}>
+        <CustomDropdown
+          noLiPadding
+          buttonText="Contact US"
+          buttonProps={{
+            className: classes.navLink,
+            color: "transparent"
+          }}
+          buttonIcon={Apps}
+          dropdownList={[
+            <a
+              href="https://wa.me/27787243693"
+              target="_blank"
+              className={classes.dropdownLink}
+            > <IoLogoWhatsapp style={{color: '#25d366'}}/> WhatsApp
+            </a>,
+            <a
+              href="https://www.facebook.com/StarHomecleaningservices"
+              target="_blank"
+              className={classes.dropdownLink}
+             
+            > <FaFacebook style={{color: '#3b5998'}}/> Facebook
+            </a>,
+            <a
+              className={classes.dropdownLink}
+              onClick = {() => setEmail(!Email)}
+            > <MdEmail style={{color: '#B8B8B8'}}/> Email
+            </a>,
+            <a
+              href="http://www.google.com/maps/place/-26.174525,28.255771"
+              target="_blank"
+              className={classes.dropdownLink}
+            > <MdLocationOn style={{color: 'red'}}/> Location
+            </a>,
+            <a
+              onClick = {() => setPhone(!Phone)}
+              className={classes.dropdownLink}
+            > <MdLocalPhone style={{color: '#00FFFF'}}/> Phone
+            </a>
+          ]}
+        />
+      </ListItem>
 
 
         {Email ?
