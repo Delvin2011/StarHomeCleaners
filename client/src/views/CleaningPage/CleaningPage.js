@@ -81,7 +81,7 @@ export default function CleaningPage(props) {
                   </div>
                   <div className={classes.description}>
                     <p className={classes.description}>
-                    Offering high quality janitorial cleaning services, that leaves your home sparkling clean. Our team is well trained, experienced and always ready to transform your space into the cleanest and healthiest place.
+                    Offering high quality janitorial cleaning services, that leaves your home sparkling clean. By following simple steps to make a booking, our well trained and experienced team will come and transform your home into the cleanest and healthiest place.
                     </p>
                   </div>
                 </div>
@@ -91,7 +91,7 @@ export default function CleaningPage(props) {
               <GridContainer justify="center">
               <GridItem xs={12} sm={12} md={3}>
                 <InfoArea
-                  title="Book Service Online"
+                  title="1. Book Service Online"
                   description="Make use of our online platform to book services of choice."
                   icon={ImportantDevicesIcon}
                   iconColor="info"
@@ -100,7 +100,7 @@ export default function CleaningPage(props) {
               </GridItem>
               <GridItem xs={12} sm={12} md={3}>
                   <InfoArea
-                    title="We Acknowledge Booking"
+                    title="2. We Acknowledge Booking"
                     description="Once booking is done, we receive and confirm the booking. "
                     icon={AssignmentTurnedInIcon}
                     iconColor="success"
@@ -109,7 +109,7 @@ export default function CleaningPage(props) {
               </GridItem>
               <GridItem xs={12} sm={12} md={3}>
                 <InfoArea
-                  title="We Dispatch Worker"
+                  title="3. We Dispatch Worker"
                   description="We dispatch the appropriate worker/s for the services required."
                   icon={IoIosSpeedometer}
                   iconColor="warning"
@@ -118,7 +118,7 @@ export default function CleaningPage(props) {
             </GridItem>
             <GridItem xs={12} sm={12} md={3}>
               <InfoArea
-                title="We Leave You Satisfied"
+                title="4. We Leave You Satisfied"
                 description="We offer our services with excellence and to your satisfaction."
                 icon={StarsIcon}
                 iconColor="danger"
