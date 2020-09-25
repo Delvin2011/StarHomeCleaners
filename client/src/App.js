@@ -10,6 +10,7 @@ import AboutUsPage from "./views/AboutUsPage/AboutUsPage.js";
 import FAQsPage from "./views/FAQsPage/FAQsPage.js";
 import MessengerCustomerChat from 'react-messenger-customer-chat';
 import Blogs from './views/Blogs/Blogs';
+import CostlyDIY from  './views/Blogs/CostlyDIY';
 //import './App.css';
 
 import Header from "./components/Header/Header.js";
@@ -65,6 +66,7 @@ class App extends React.Component {
             <Route path="/about-us" component={AboutUsPage} />
             <Route path="/FAQs" component={FAQsPage} />
             <Route path="/Blogs" component={Blogs} />
+            <Route path="/CostlyDIY" component={CostlyDIY} />
             <Route path="/" component={() => <CleaningPage/>}/>
 
         </Switch>

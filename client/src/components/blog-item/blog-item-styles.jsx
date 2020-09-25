@@ -3,8 +3,8 @@ import CustomButton from '../custom-button/custom-button';
 
 export const CollectionItemContainer = styled.div`
 
-  width: 23vw;
-  height: 400px;
+width: 100%;
+  height: 250px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,7 +13,7 @@ export const CollectionItemContainer = styled.div`
   &:hover {
     .image {
       opacity: 0.8;
-      border-style: outset;
+      
     }
     button {
       opacity: 0.85;
@@ -21,11 +21,8 @@ export const CollectionItemContainer = styled.div`
     }
   }
   @media screen and (max-width: 800px) {
-    width: 45vw;
-    height:275px;
-    border-style: groove;
-    border-color: lightgrey;
-    border-width: thin;
+    width: 100%;
+    height: 250px;
     &:hover {
       .image {
         opacity: unset;
@@ -65,7 +62,7 @@ export const ViewButton = styled(CustomButton)`
   display: none;
   colour: black;
   @media screen and (max-width: 800px) {
-    top: 150px;
+    /*top: 150px;
     display: block;
     width: 60%;
     opacity: 0.9;
@@ -73,15 +70,18 @@ export const ViewButton = styled(CustomButton)`
     padding: 0 10px;
     font-size: 70%;  
     width: 50%;
-    height: 40px;
+    height: 40px;*/
+    display: none;
+    visibility: hidden;
     
   }
 `;
 
 export const BackgroundImage = styled.div`
   width: 100%;
-  height: 50%;
-  background-size: cover;
+  height: 100%;
+  background-size: 100%;
+  background-repeat: no-repeat;
   background-position: center;
   margin-bottom: 5px;
   background-image: ${({ imageUrl }) => `url(${imageUrl})`};
@@ -113,10 +113,34 @@ export const SummaryContainer = styled.p`
 
 export const BlogsContainer = styled.div`
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
       grid-gap: 10px;
+      margin-top : 10px;
   @media screen and (max-width: 800px) {
+    margin-top : 10px;
     grid-template-columns: 1fr;  
+  }
+`;
+
+export const Content = styled.p`
+  font-size: 14px; 
+  letter-spacing: 1.5px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: justify;
+  @media screen and (max-width: 800px) {
+    font-size: 12px;
+    letter-spacing: 1.25px;   
+  }
+`;
+
+export const HeaderContent = styled.p`
+  font-size: 14px; 
+  letter-spacing: 1.5px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+  @media screen and (max-width: 800px) {
+    font-size: 12px;
+    letter-spacing: 1.25px;   
   }
 `;
 

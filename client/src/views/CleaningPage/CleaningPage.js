@@ -111,7 +111,7 @@ export default function CleaningPage(props) {
                 <InfoArea
                   title="3. We Dispatch Worker"
                   description="We dispatch the appropriate worker/s for the services required."
-                  icon={IoIosSpeedometer}
+                  icon = {IoIosSpeedometer}
                   iconColor="warning"
                   vertical
                 />

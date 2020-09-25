@@ -55,6 +55,7 @@ class Pool extends React.Component {
       closePop(e) {
         console.log(e)
       }
+
       CreditCardPayment(event) {
         this.setState({
             CardPayment: this.state.CashPayment === true ? false : !this.state.CardPayment
@@ -234,7 +235,7 @@ class Pool extends React.Component {
                                     } 
                                     </Form>    
                                     {this.state.CardPayment ?
-                                        <StripeCheckoutButton service = {service} price = {this.props.totalIndoor} item = {this.state.item}/>
+                                        <StripeCheckoutButton category = "Pool Services" service = {this.props.poolRequiredService} total = {this.props.totalPool} item = {this.state.item}/>
                                             : null
                                     }                             
                 </PopupInner>  

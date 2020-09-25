@@ -13,7 +13,7 @@ import Footer from "components/Footer/Footer.js";
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
 import Parallax from "components/Parallax2/Parallax.js";
-
+import {withRouter} from 'react-router-dom';
 //import profile from "assets/img/faces/christian.jpg";
 import profile from '../../assets/img/logo1.png';
 import styles from "assets/jss/material-kit-react/views/profilePage.js";
@@ -25,14 +25,15 @@ import {
   ViewButton,
   BackgroundImage,
   SummaryContainer,
-  BlogsContainer
+  BlogsContainer,
+  HeaderContent
 } from '../../components/blog-item/blog-item-styles';
 
 import 'react-accessible-accordion/dist/fancy-example.css';
 
 const useStyles = makeStyles(styles);
 
-export default function Blogs(props) {
+const Blogs = ({ props, history }) => {
   const classes = useStyles();
   const [GetIndoorService, setGetIndoorService] = useState(false);
   const { ...rest } = props;
@@ -57,45 +58,35 @@ export default function Blogs(props) {
                   <div className={classes.name}>
                     <h3 className={classes.title}>StarHome Cleaners</h3>
                   </div>
-                  <div className={classes.description}>
-                    <p className={classes.description}>
-                    Offering high quality janitorial cleaning services, that leaves your home sparkling clean. Our team is well trained, experienced and always ready to transform your space into the cleanest and healthiest place.
-                    </p>
-                  </div>
+                    <HeaderContent >
+                     Offering high quality janitorial cleaning services, that leaves your home sparkling clean. By following simple steps to make a booking, our well trained and experienced team will come and transform your home into the cleanest and healthiest place.
+                    </HeaderContent>
                 </div>
               </GridItem>
             </GridContainer>
             <GridContainer justify="center" style = {{"textAlign": "center"}}>
               <GridItem xs={12} sm={12} md={8}>
-                <h3 className={classes.title}>Frequently Asked Questions</h3>
-                <p className={classes.description}>
-                  From the survey conducted, the frequently asked questions (FAQ's) are resolved below. However, if you might still have unaswered questions, please do contact our support team.
-                </p>
+                <h4 className={classes.title}>Blogs</h4>
+                <HeaderContent >
+                  StarHome Cleaners strives to engage with clients through blog material that equips them with relevant information on how to keep their homes immaculate all the time.
+                </HeaderContent>
               </GridItem>
             </GridContainer>
-            <BlogsContainer>
-            <CollectionItemContainer>
-              <BackgroundImage className='image' imageUrl={require("assets/img/examples/Dining.jpg")} />
-              <CollectionFooterContainer>
-                <SummaryContainer>From the survey conducted, the frequently asked questions (FAQ's) are resolved below.</SummaryContainer>
-              </CollectionFooterContainer>
-              <ViewButton>
-                      Read More 
-              </ViewButton>
-            </CollectionItemContainer>
 
+            <BlogsContainer>
             <CollectionItemContainer>
               <BackgroundImage className='image' imageUrl={require("assets/img/examples/grant_me_courage.png")} />
               <CollectionFooterContainer>
-                <SummaryContainer>From the survey conducted, the frequently asked questions (FAQ's) are resolved below.</SummaryContainer>
+                <HeaderContent>DIY cleaning tends to be costly than budgted for. But how so?<a href = "/CostlyDIY"> Read more...</a></HeaderContent>
               </CollectionFooterContainer>
-              <ViewButton>
+              <ViewButton onClick={() => { history.push('/CostlyDIY');}}>
                       Read More 
               </ViewButton>
             </CollectionItemContainer>
           </BlogsContainer>
+
             </div>                
-            <div className={classes.container}>
+            <div className={classes.container} style = {{"marginTop": "60px"}}>
               <SectionDownload/>          
             </div>
       </div>
@@ -109,6 +100,7 @@ export default function Blogs(props) {
   );
 }
 
+export default withRouter(Blogs);
 /*<AddButton onClick={() => addItem(item)} inverted>
 Add to cart
 </AddButton>*/

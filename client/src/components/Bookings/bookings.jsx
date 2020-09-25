@@ -44,7 +44,7 @@ return (
                 <CloseButton className = 'remove-button' style = {{"color":"black"}} onClick = {this.props.closePopup} >&#10005;</CloseButton>
                 <TabsContainer >                  
                 <GridContainer  >
-                  <GridItem  style = {{"padding-left":"5px","padding-right":"5px"}}>
+                  <GridItem  style = {{"paddingLeft":"5px","padding-right":"5px"}}>
                     <NavPills
                     alignCenter
                       color="rose"
@@ -57,7 +57,7 @@ return (
                             { this.props.currentUser ? 
                                 
                                 this.props.cartItems.length > 0 ?
-                                <div style = {{"margin-top": "-5px"}}>
+                                <div style = {{"marginTop": "-5px"}}>
                                       <ContentTitle> Details
                                       <span><hr width="300"/></span>
                                       </ContentTitle>   
@@ -81,7 +81,7 @@ return (
                                               <BookingDetail>{this.props.cartItems[key].frequency}</BookingDetail>
                                               <BookingDetail>{status}</BookingDetail>
                                               <BookingDetail>{this.props.cartItems[key].payment}</BookingDetail>
-                                              <Tooltip title="Cancel Booking" aria-label="add"><BookingDetail onClick = {() => this.props.clearItem(this.props.cartItems[key])} style = {{"cursor": "pointer","align-items": "left"}}>&#10005;</BookingDetail></Tooltip>
+                                              <Tooltip title="Cancel Booking" aria-label="add"><BookingDetail onClick = {() => this.props.clearItem(this.props.cartItems[key])} style = {{"cursor": "pointer","alignItems": "left"}}>&#10005;</BookingDetail></Tooltip>
                                             </Details>
                                           )                        
                                          }
@@ -105,7 +105,7 @@ return (
                                 </TCList>
                                 <br/>
                                 <br/>
-                                <p style = {{"textAlign" : "center"}}><CustomButton  onClick = {this.showPopupSignIn.bind(this)} style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>Sign In</CustomButton></p>     
+                                <p style = {{"textAlign" : "center"}}><CustomButton  onClick = {this.showPopupSignIn.bind(this)} style = {{"marginTop" : "12.5px", "background": "#e91e63"}}>Sign In</CustomButton></p>     
  
                               </div>
 
@@ -120,7 +120,7 @@ return (
                           tabContent: (
                           <div>
                             { this.props.currentUser ? 
-                              <div style = {{"margin-top": "-5px"}}>
+                              <div style = {{"marginTop": "-5px"}}>
                                     <ContentTitle> Details <span><hr width="300"/></span> </ContentTitle> 
 
                                     <DetailHeader>Promo Code : {PromoCode}</DetailHeader>
@@ -155,7 +155,7 @@ return (
                                 <br/>
                                 <br/>
                                 <br/>
-                                <p style = {{"textAlign" : "center"}}><CustomButton  onClick = {this.showPopupSignIn.bind(this)} style = {{"margin-top" : "12.5px", "background": "#e91e63"}} >Sign In/Up</CustomButton></p>     
+                                <p style = {{"textAlign" : "center"}}><CustomButton  onClick = {this.showPopupSignIn.bind(this)} style = {{"marginTop" : "12.5px", "background": "#e91e63"}} >Sign In/Up</CustomButton></p>     
  
                               </div>
                             }

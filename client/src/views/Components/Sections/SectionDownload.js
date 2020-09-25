@@ -42,22 +42,28 @@ export default function SectionDownload() {
           <GridContainer justify="center">
             <h4 style = {{color : "#3C4858"}}>Secure Payment!</h4>
           </GridContainer>
-          <Button color="gray" size="sm">
+          <Button color="google" size="sm">
             <i className={classes.socials + " fab fa-cc-mastercard"} /> MasterCard
           </Button>
-          <Button color="gray" size="sm">
+          <Button color="facebook" size="sm">
             <i className={classes.socials + " fab fa-cc-visa"} /> Visa
           </Button>
-          <Button color="gray" size="sm">
-            <i className={classes.socials + " fab fa-cc-paypal"} /> PayPal
-                      </Button>
+
         </div>
       </div>
     </div>
   );
 }
 
-/*<GridContainer className={classes.textCenter} justify="center">
+/*
+          <Button color="gray" size="sm">
+            <i className={classes.socials + " fab fa-cc-paypal"} /> PayPal
+                      </Button>
+
+
+
+
+<GridContainer className={classes.textCenter} justify="center">
           <GridItem xs={12} sm={12} md={8}>
             <h2>Do you love this UI Kit?</h2>
             <h4>

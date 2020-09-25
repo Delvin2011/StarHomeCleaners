@@ -127,6 +127,16 @@ const useStyles = makeStyles(styles);
             </Button>
           </ListItem>
 
+          <ListItem className={classes.listItem}>
+              <Button
+                  href="Blogs"
+                  color="transparent"
+                  target="_blank"
+                  className={classes.navLink}
+                >
+                  <FaBlog className={classes.icons} /> Blogs
+                </Button>
+            </ListItem>
         <ListItem className={classes.listItem}>
         <CustomDropdown
           noLiPadding
@@ -210,14 +220,4 @@ const mapStateToProps = createStructuredSelector({ //state will be the root.redu
 
 export default connect(mapStateToProps,mapDispatchToProps)(HeaderLinks);
 
-/*          <ListItem className={classes.listItem}>
-
-          <Button
-              href="Blogs"
-              color="transparent"
-              target="_blank"
-              className={classes.navLink}
-            >
-              <FaBlog className={classes.icons} /> Blogs
-            </Button>
-          </ListItem> */
+/*         */

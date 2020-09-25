@@ -88,14 +88,14 @@ import { addItem } from '../../redux/cart/cart-actions';
                 <input type="hidden" name="merchant_id" value="10788743" onChange={this.onInputChange}/>
                 <input type="hidden" name="merchant_key" value="bhxrbdcmch80c" onChange={this.onInputChange}/>
                 <input type="hidden" name="return_url" value="https://yourApplication/paymentscreen" onChange={this.onInputChange}/>
-                <input type="hidden" name="cancel_url" value="https://yourApplication/paymentscreen" onChange={this.onInputChange}/>
+                <input type="hidden" name="cancel_url" value="http://localhost:3000/" onChange={this.onInputChange}/>
                 <input type="hidden" name="notify_url" value="https://yourApplication/paymentscreen" onChange={this.onInputChange}/>
                 <input type="hidden" name="name_first" value="Testing" onChange={this.onInputChange}/>
                 <input type="hidden" name="email_address" value="t@gmail.com" onChange={this.onInputChange}/>
                 <input type="hidden" name="m_payment_id" value="1" onChange={this.onInputChange}/>
-                <input type="hidden" name="amount" value="100" onChange={this.onInputChange}/>
-                <input type="hidden" name="item_name" value="Testing" onChange={this.onInputChange}/>
-                <input type="hidden" name="item_description" value="Pool service" onChange={this.onInputChange}/>
+                <input type="hidden" name="amount" value= {this.props.total} onChange={this.onInputChange}/>
+                <input type="hidden" name="item_name" value = {this.props.category} onChange={this.onInputChange}/>
+                <input type="hidden" name="item_description" value= {this.props.category} onChange={this.onInputChange}/>
                 <input type="hidden" name="custom_int1" value="1" onChange={this.onInputChange}/>
     
                 <p style = {{"textAlign" : "center"}}><CustomButton  type = 'submit' onClick={() => this.props.addItem(this.props.item)} style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">MAKE PAYMENT</CustomButton></p> 
