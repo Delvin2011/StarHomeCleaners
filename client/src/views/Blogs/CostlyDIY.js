@@ -79,7 +79,7 @@ export default function CostlyDIY(props) {
                 <Content >
                 Home owners tend to have a bias towards expensive cleaning products, a biasness that doesn't automatically translate to an immaculate and hygeinic home.
                 However professional cleaners, knows the appropriate and less costly cleaning products and also their application in right amounts to ensure your home is in optimum condition.
-                Moreover, if you hire a recurring home cleaning service, you won’t need to worry about keeping cleaning supplies stocked as the cleaning professionals bring the appropriate supplies with them.
+                Moreover, if you hire a recurring home cleaning service, you won’t need to worry about stocking cleaning supplies as the cleaning professionals bring the appropriate supplies with them.
                 </Content>
               </GridItem>
               <GridItem xs={12} sm={12} md={12}>
@@ -94,22 +94,21 @@ export default function CostlyDIY(props) {
                 <h4 className={classes.title}>3. Costly medical bills </h4>
                 <Content >
                 With DIY cleaning, home owners tends to overlook or forget certain areas when cleaning, thus also leaving hotspots for emanation of germs and bacteria that causes sicknesses. This results in costly medical attention being a priority, a predicament
- that could have been easily avoided by hiring professional cleaning service. Professionals will make sure to clean your niche in the best possible ways eliminating the chances of having germs and disease causing pests lingering in the nooks and corners of the house and therefore saving home owners some medical bills in the long run.
-
+that could have been easily avoided by hiring a professional cleaning service. Professionals will make sure to clean your niche in the best possible ways, eliminating the chances of having germs and disease causing pests lingering in the nooks and corners of your home and therefore saving home owners some medical bills in the long run.
                 </Content>
               </GridItem>
               <GridItem xs={12} sm={12} md={12}>
                 <h4 className={classes.title}>4. Costly time wasted</h4>
                 <Content >
-                DIY cleaning requires several hours of commitiment every week, an endeavour that hinders most home owners of resting or relaxing. Such a commitiment on a weekly basis is costly, as several hours spent on DIY, could have been spent on other productive things e.g. catching up on a project or online courses, meeting with business partners,
+                DIY cleaning requires several hours of commitiment every week, an endeavour that hinders most home owners of resting or relaxing. Such a commitiment on a weekly basis is costly, as several hours spent on DIY cleaning, could have been spent on other productive things e.g. catching up on a project or online courses, meeting with business partners,
  going out to make some sales/business, time with family or resting to recuperate energies for fure tasks. Hiring affordable professional cleaning services, will provide home owners with increasd free time that can be channeled to other relevent and truly cherished activitiies.
  </Content>
               </GridItem>
               <GridItem xs={12} sm={12} md={12}>
                 <h4 className={classes.title}>5.  Costly home repairs or home market value drop</h4>
                 <Content >
-                Most home owners, don’t possess the experience and specialized knowledge to clean every area of their homes properly. This will inturn result in bugs infesting in rooms and things starting to break down. The end result of such a predicament is very costly as the home stats losing its market value and also costly repairs of anything broken down.
- By hiring professional cleaning services, the services keeps your home sanitary, looking inviting, keeping bugs down to a minimum and saving your investment in the long run. </Content>
+                Most home owners, don’t possess the experience and specialized knowledge to clean every area of their homes properly. This will inturn result in bugs infesting in rooms and things starting to break down. The end result of such a predicament is very costly as most homes start losing their market value and also requiring costly repairs for any break downs.
+By hiring professional cleaning services, the services keeps your home sanitary, looking inviting, keeping bugs down to a minimum and saving your investment in the long run. </Content>
               </GridItem>
             </GridContainer>
 
