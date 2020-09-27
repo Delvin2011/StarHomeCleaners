@@ -101,7 +101,7 @@ that could have been easily avoided by hiring a professional cleaning service. P
                 <h4 className={classes.title}>4. Costly time wasted</h4>
                 <Content >
                 DIY cleaning requires several hours of commitiment every week, an endeavour that hinders most home owners of resting or relaxing. Such a commitiment on a weekly basis is costly, as several hours spent on DIY cleaning, could have been spent on other productive things e.g. catching up on a project or online courses, meeting with business partners,
- going out to make some sales/business, time with family or resting to recuperate energies for fure tasks. Hiring affordable professional cleaning services, will provide home owners with increasd free time that can be channeled to other relevent and truly cherished activitiies.
+ going out to make some sales/business, time with family or resting to recuperate energies for future tasks. Hiring affordable professional cleaning services, will provide home owners with increasd free time that can be channeled to other relevent and truly cherished activitiies.
  </Content>
               </GridItem>
               <GridItem xs={12} sm={12} md={12}>
