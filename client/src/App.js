@@ -7,6 +7,8 @@ import {checkUserSession} from './redux/user/user-actions';
 import "assets/scss/material-kit-react.scss?v=1.8.0";
 import CleaningPage from "./views/CleaningPage/CleaningPage.js";
 import AboutUsPage from "./views/AboutUsPage/AboutUsPage.js";
+import TransactionFailed from "./views/TransactionFailed/TransactionFailed.js";
+
 import FAQsPage from "./views/FAQsPage/FAQsPage.js";
 import MessengerCustomerChat from 'react-messenger-customer-chat';
 import Blogs from './views/Blogs/Blogs';
@@ -67,6 +69,8 @@ class App extends React.Component {
             <Route path="/FAQs" component={FAQsPage} />
             <Route path="/Blogs" component={Blogs} />
             <Route path="/CostlyDIY" component={CostlyDIY} />
+            <Route path="/TransactionFailed" component={TransactionFailed} />
+            
             <Route path="/" component={() => <CleaningPage/>}/>
 
         </Switch>

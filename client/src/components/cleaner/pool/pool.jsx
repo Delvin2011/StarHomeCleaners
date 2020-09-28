@@ -8,6 +8,7 @@ import Fab from '@material-ui/core/Fab';
 import { connect } from 'react-redux';
 import { addItem } from '../../../redux/cart/cart-actions';
 import Tooltip from '@material-ui/core/Tooltip';
+import SignIn from '../../sign-in/sign-in';
 
 class Pool extends React.Component {  
     constructor(props){
@@ -29,6 +30,7 @@ class Pool extends React.Component {
             response: '',
             CardPayment: false,
             CashPayment: false,
+            showPopupSignIn: false,
             item : 
                 {
                   id:'',
@@ -144,6 +146,12 @@ class Pool extends React.Component {
         this.setState({[name]: value});
     }
 
+    showPopupSignIn(event) {
+        this.setState({
+            showPopupSignIn: !this.state.showPopupSignIn
+        });
+      }
+
 
 //https://www.telerik.com/kendo-react-ui/components/dateinputs/datetimepicker/integration-with-json/
   render() {  
@@ -151,7 +159,8 @@ class Pool extends React.Component {
     const {customerName, email, phoneNumber,address,comments,response,error,item} = this.state;
     const {currentUser} = this.props;
     const {service} = "Pool Cleaning Services";
-    console.log(item);
+    console.log(phoneNumber);
+    console.log(address);
         return (  
             <Popup>  
                 <PopupInner>                   
@@ -235,9 +244,18 @@ class Pool extends React.Component {
                                     } 
                                     </Form>    
                                     {this.state.CardPayment ?
-                                        <StripeCheckoutButton category = "Pool Services" service = {this.props.poolRequiredService} total = {this.props.totalPool} item = {this.state.item}/>
-                                            : null
-                                    }                             
+                                        this.props.currentUser?
+                                        <StripeCheckoutButton category = "Pool Services" service = {this.props.poolRequiredService} total = {this.props.totalPool} item = {this.state.item} customerName = {customerName} email = {email} phoneNumber = {phoneNumber} address = {address} comments = {comments}/>
+                                         : !this.props.currentUser?   
+                                         <p style = {{"textAlign" : "center"}}><CustomButton  onClick = {this.showPopupSignIn.bind(this)} style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>Sign In</CustomButton></p> 
+                                        : null
+                                    : null
+                                    }  
+
+                    {this.state.showPopupSignIn ?
+                        <SignIn showPopupSignIn = {this.state.showPopupSignIn} closePopupSignIn = {this.showPopupSignIn.bind(this)}/>
+                    : null
+                    }                           
                 </PopupInner>  
             </Popup>  
         );  

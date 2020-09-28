@@ -82,24 +82,29 @@ import { addItem } from '../../redux/cart/cart-actions';
     }
 
     render() {  
+        console.log(this.props.phoneNumber);
+        console.log(this.props.address);
     return (
         <div>
             <form action="https://www.payfast.co.za/eng/process" method="POST" id="checkout"> 
                 <input type="hidden" name="merchant_id" value="10788743" onChange={this.onInputChange}/>
                 <input type="hidden" name="merchant_key" value="bhxrbdcmch80c" onChange={this.onInputChange}/>
                 <input type="hidden" name="return_url" value="https://yourApplication/paymentscreen" onChange={this.onInputChange}/>
-                <input type="hidden" name="cancel_url" value="http://localhost:3000/" onChange={this.onInputChange}/>
+                <input type="hidden" name="cancel_url" value="https://www.starhomecleaners.co.za/TransactionFailed" onChange={this.onInputChange}/>
                 <input type="hidden" name="notify_url" value="https://yourApplication/paymentscreen" onChange={this.onInputChange}/>
-                <input type="hidden" name="name_first" value="Testing" onChange={this.onInputChange}/>
-                <input type="hidden" name="email_address" value="t@gmail.com" onChange={this.onInputChange}/>
+                <input type="hidden" name="name_first" value= {this.props.customerName} onChange={this.onInputChange}/>
+                <input type="hidden" name="email_address" value= {this.props.email} onChange={this.onInputChange}/>
                 <input type="hidden" name="m_payment_id" value="1" onChange={this.onInputChange}/>
                 <input type="hidden" name="amount" value= {this.props.total} onChange={this.onInputChange}/>
                 <input type="hidden" name="item_name" value = {this.props.category} onChange={this.onInputChange}/>
                 <input type="hidden" name="item_description" value= {this.props.category} onChange={this.onInputChange}/>
                 <input type="hidden" name="custom_int1" value="1" onChange={this.onInputChange}/>
     
-                <p style = {{"textAlign" : "center"}}><CustomButton  type = 'submit' onClick={() => this.props.addItem(this.props.item)} style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">MAKE PAYMENT</CustomButton></p> 
-            
+    { this.props.phoneNumber !== "" && this.props.address !== ""?
+        <p style = {{"textAlign" : "center"}}><CustomButton  type = 'submit' onClick={() => this.props.addItem(this.props.item)} style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">MAKE PAYMENT</CustomButton></p> 
+       : <p style = {{"textAlign" : "center"}}><CustomButton style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">COMPLETE FORM</CustomButton></p> 
+    }
+
             
             </form>
     
