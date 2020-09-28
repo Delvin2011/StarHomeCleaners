@@ -17,7 +17,8 @@ const sendMail = ( email,subject,emailBody,cb) => {
    
     const mailOptions = {
         from: email, // Twhere the email is coming from
-        to: 'info@starhomecleaners.co.za', // TODO: the receiver email has to be authorized for the free tier
+        //to: 'info@starhomecleaners.co.za', // TODO: the receiver email has to be authorized for the free tier
+        to: 'takutapfu@gmail.com', // TODO: the receiver email has to be authorized for the free tier
         subject,
         text: emailBody
     };
