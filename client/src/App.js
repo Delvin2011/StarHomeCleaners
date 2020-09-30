@@ -8,6 +8,7 @@ import "assets/scss/material-kit-react.scss?v=1.8.0";
 import CleaningPage from "./views/CleaningPage/CleaningPage.js";
 import AboutUsPage from "./views/AboutUsPage/AboutUsPage.js";
 import TransactionFailed from "./views/TransactionFailed/TransactionFailed.js";
+import TransactionSuccess from "./views/TransactionSuccess/TransactionSuccess.js";
 
 import FAQsPage from "./views/FAQsPage/FAQsPage.js";
 import MessengerCustomerChat from 'react-messenger-customer-chat';
@@ -70,7 +71,7 @@ class App extends React.Component {
             <Route path="/Blogs" component={Blogs} />
             <Route path="/CostlyDIY" component={CostlyDIY} />
             <Route path="/TransactionFailed" component={TransactionFailed} />
-            
+            <Route path="/TransactionSuccess" component={TransactionSuccess} />
             <Route path="/" component={() => <CleaningPage/>}/>
 
         </Switch>

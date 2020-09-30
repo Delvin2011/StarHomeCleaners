@@ -38,6 +38,7 @@ const status = "Pending";
 const id = this.props.currentUser ? this.props.currentUser.id : '';
 const PromoCode = this.props.currentUser ? id.slice(0,5).toUpperCase() : '';
 const FriendCode = this.props.currentUser ? id.slice(-5).toUpperCase() : '';
+console.log(this.props.cartItems);
 return (          
             <Popup>  
                 <PopupInner> 
@@ -71,8 +72,7 @@ return (
                                         <DetailHeader>Status</DetailHeader>
                                         <DetailHeader>Payment</DetailHeader>
                                       </Details>  
-
-                                         {
+                                      {
                                             Object.entries(this.props.cartItems).map(([key, val]) => 
                                             <Details key={key}>
                                               <BookingDetail>{this.props.cartItems[key].serviceDate}</BookingDetail>
@@ -85,6 +85,7 @@ return (
                                             </Details>
                                           )                        
                                          }
+
 
                                       <ContentTitle> Services Rating
                                       <span><hr width="300"/></span>
@@ -192,3 +193,5 @@ const mapStateToProps = createStructuredSelector ({
 
 
 export default connect(mapStateToProps,mapDispatchToProps)(Bookings);
+
+/*                                        */

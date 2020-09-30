@@ -16,30 +16,25 @@ import {createStructuredSelector} from 'reselect';
 import CardHeader from "components/Card/CardHeader.js";
 //import CardFooter from "components/Card/CardFooter.js";
 //import CustomInput from "components/CustomInput/CustomInput.js";
-import {Heading, Container,Content} from "./TransactionFailed-styles";
+import {Heading, Container,Content} from "./TransactionSuccess-styles";
 import styles from "assets/jss/material-kit-react/views/loginPage.js";
 import {withRouter} from 'react-router-dom';
 import image from "assets/img/bg7.jpg";
 import CustomButton from "components/CustomButtons/Button";
 import Cleaner from "components/cleaner/popupCleaner";
 
-import {selectCartItems} from '../../redux/cart/cart-selectors';
-import { clearItemFromCart } from '../../redux/cart/cart-actions';
 import {selectCurrentUser} from '../../redux/user/user-selectors';
 
 const useStyles = makeStyles(styles);
 
-  const TransactionFailed = ({ currentUser, cartItems, clearItem, props, history }) => {
+  const TransactionFailed = ({ currentUser, props, history }) => {
   const [Booking, setBooking] = useState(false);
   const [cardAnimaton, setCardAnimation] = React.useState("cardHidden");
   setTimeout(function() {
     setCardAnimation("");
   }, 700);
   const classes = useStyles();
-
   const { ...rest } = props;
-  console.log(cartItems.length);
-  console.log(cartItems[cartItems.length - 1]);
   return (
     <div>
       <Header
@@ -62,18 +57,14 @@ const useStyles = makeStyles(styles);
             <GridItem xs={12} sm={12} md={8}>
               <Card className={classes[cardAnimaton]}>
                 <form className={classes.form}>
-                  <CardHeader color="danger" className={classes.cardHeader} >
-                    <h4>Transaction has been cancelled</h4>
+                  <CardHeader color= "success" className={classes.cardHeader} >
+                    <h4>Transaction successful</h4>
 
                   </CardHeader>
                   <Container>
-                  <Heading>Please try again?</Heading>
+                  <Heading>Complete Booking</Heading>
                       <br/>
-                      <p style = {{"textAlign" : "center"}}><CustomButton  onClick = {() => setBooking(!Booking)} style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">Book Service</CustomButton></p> 
-                      <br/>
-                  <Heading>Proceed to Home Page?</Heading>
-                      <br/>
-                      <p style = {{"textAlign" : "center"}}><CustomButton onClick={() => { history.push('/'); clearItem(cartItems[cartItems.length - 1])}} style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">Home</CustomButton></p> 
+                      <p style = {{"textAlign" : "center"}}><CustomButton onClick={() => { history.push('/');}} style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">Complete Booking</CustomButton></p> 
                       <br/>
                   </Container>
                 </form>
@@ -92,12 +83,7 @@ const useStyles = makeStyles(styles);
   );
 }
 
-const mapDispatchToProps = dispatch => ({
-  clearItem: item => dispatch(clearItemFromCart(item)),
-});
-
 const mapStateToProps = createStructuredSelector({ //state will be the root.reducer
-  cartItems: selectCartItems,
   currentUser : selectCurrentUser
 }); 
 
@@ -105,7 +91,7 @@ const mapStateToProps = createStructuredSelector({ //state will be the root.redu
 
 export default withRouter(connect(
   mapStateToProps,
-  mapDispatchToProps
+  null
 )(TransactionFailed));
 /*
 

@@ -34,12 +34,16 @@ class Pool extends React.Component {
             item : 
                 {
                   id:'',
+                  customerName: '',
+                  email: '',
+                  phoneNumber: '',
                   bookingDate : new Date(),
                   category: '',
                   service : '',
                   serviceDate : new Date(),
                   frequency: '',
-                  payment: ''
+                  payment: '',
+                  total: ""
                 }
         }
         this.handleDropdownChange = this.handleDropdownChange.bind(this);
@@ -59,8 +63,33 @@ class Pool extends React.Component {
       }
 
       CreditCardPayment(event) {
+        const {customerName, email, phoneNumber,address,comments,dateTimePool} = this.state;
+        const {currentUser} = this.props;
+        const name = this.props.currentUser? currentUser.displayName : customerName;
+        const emailAd = this.props.currentUser? currentUser.email : email;
+        const min = 1;
+        const max = 1000;
+        const random = min + (Math.random() * (max - min));
+        const service = this.props.poolRequiredService;//this.props.poolCleaning? this.props.poolCleaning : this.props.poolMaintanence? this.props.poolMaintanence : "";
+        const payment = this.state.CashPayment ? "CAS" : this.state.CardPayment ? "ONLINE" : "";
         this.setState({
-            CardPayment: this.state.CashPayment === true ? false : !this.state.CardPayment
+            CardPayment: this.state.CashPayment === true ? false : !this.state.CardPayment,
+            item : 
+            {
+              id: Math.ceil(random) + "PL",
+              customerName : name,
+              email : emailAd,
+              phoneNumber : phoneNumber,
+              address : address,
+              comments : comments,
+              bookingDate : new Date(),
+              category : 'Pool Services',
+              service : service,
+              serviceDate : dateTimePool.replace("GMT+0200 (South Africa Standard Time)",""),
+              frequency: this.props.serviceInterval,
+              payment: payment,
+              total :  this.props.totalPool
+            }
         });
       }
   
@@ -205,7 +234,7 @@ class Pool extends React.Component {
                                         <div style={{marginBottom:"20px"}}>
                                         <ContentTitle> Pool Details </ContentTitle>
                                             <Message4>Shape : {this.props.poolShape}</Message4>
-                                            <Message4>Volume : {this.props.poolVolume} l</Message4>
+                                            <Message4>Volume : {this.props.poolVolume.toFixed(0)} l</Message4>
                                             <Message4>Issues : {this.props.poolIssue}</Message4>
                                         </div>
                                         <div style={{marginBottom:"20px"}}>
@@ -245,7 +274,7 @@ class Pool extends React.Component {
                                     </Form>    
                                     {this.state.CardPayment ?
                                         this.props.currentUser?
-                                        <StripeCheckoutButton category = "Pool Services" service = {this.props.poolRequiredService} total = {this.props.totalPool} item = {this.state.item} customerName = {customerName} email = {email} phoneNumber = {phoneNumber} address = {address} comments = {comments}/>
+                                        <StripeCheckoutButton item = {this.state.item}/>
                                          : !this.props.currentUser?   
                                          <p style = {{"textAlign" : "center"}}><CustomButton  onClick = {this.showPopupSignIn.bind(this)} style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>Sign In</CustomButton></p> 
                                         : null
