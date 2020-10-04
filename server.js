@@ -67,7 +67,7 @@ app.post('/email', (req, res) => {
 
    }
 
-   //console.log(emailBody);
+   console.log(emailBody);
    //console.log(email);
  
     sendMail(email,subject,emailBody, function(err, data) {

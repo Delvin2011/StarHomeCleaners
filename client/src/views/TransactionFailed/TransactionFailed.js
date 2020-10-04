@@ -69,7 +69,7 @@ const useStyles = makeStyles(styles);
                   <Container>
                   <Heading>Please try again?</Heading>
                       <br/>
-                      <p style = {{"textAlign" : "center"}}><CustomButton  onClick = {() => setBooking(!Booking)} style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">Book Service</CustomButton></p> 
+                      <p style = {{"textAlign" : "center"}}><CustomButton  onClick = {() => {setBooking(!Booking); clearItem(cartItems[cartItems.length - 1])}} style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">Book Service</CustomButton></p> 
                       <br/>
                   <Heading>Proceed to Home Page?</Heading>
                       <br/>

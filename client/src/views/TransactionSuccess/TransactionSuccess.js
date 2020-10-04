@@ -16,25 +16,64 @@ import {createStructuredSelector} from 'reselect';
 import CardHeader from "components/Card/CardHeader.js";
 //import CardFooter from "components/Card/CardFooter.js";
 //import CustomInput from "components/CustomInput/CustomInput.js";
-import {Heading, Container,Content} from "./TransactionSuccess-styles";
+import {Heading, Container,Content,Response,Errors} from "./TransactionSuccess-styles";
 import styles from "assets/jss/material-kit-react/views/loginPage.js";
 import {withRouter} from 'react-router-dom';
 import image from "assets/img/bg7.jpg";
 import CustomButton from "components/CustomButtons/Button";
 import Cleaner from "components/cleaner/popupCleaner";
-
+import {selectCartItems} from '../../redux/cart/cart-selectors';
 import {selectCurrentUser} from '../../redux/user/user-selectors';
 
 const useStyles = makeStyles(styles);
 
-  const TransactionFailed = ({ currentUser, props, history }) => {
+  const TransactionSuccess = ({ currentUser, cartItems, props, history }) => {
   const [Booking, setBooking] = useState(false);
+  const [response, setResponse] = useState("");
+  const [error, setError] = useState("");
   const [cardAnimaton, setCardAnimation] = React.useState("cardHidden");
   setTimeout(function() {
     setCardAnimation("");
   }, 700);
+
+
   const classes = useStyles();
   const { ...rest } = props;
+
+  const handleClick = () => {
+    const payment = "Online  - Successful";
+    
+       fetch('/email', {
+        method: 'post',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            "email" : cartItems[cartItems.length - 1].email,
+            "customerName" : cartItems[cartItems.length - 1].customerName,
+            "phoneNumber": cartItems[cartItems.length - 1].phoneNumber,
+            "subject": "Pool Services",
+            "comments": cartItems[cartItems.length - 1].comments,
+            "address": cartItems[cartItems.length - 1].address,
+            "natureOfServices": cartItems[cartItems.length - 1].service,
+            "extraServices": "Shape : " ,//+ this.props.poolShape + "; Volume : " + this.props.poolVolume + "; Issues : " + this.props.poolIssue,
+            "serviceIntervals": cartItems[cartItems.length - 1].frequency,
+            "date": cartItems[cartItems.length - 1].serviceDate,
+            "costs": "R " + cartItems[cartItems.length - 1].total,
+            "payment": payment
+        })
+          })
+          //.then((response) => {response.json();console.log(response.ok)})
+          .then((response) => {
+            //this.setState({ response: response.status });
+            setResponse(response.status)
+            console.log('Success:', response.status);
+          })
+          .catch((error) => {
+            //this.setState({ error: error });
+            setError(error)
+            console.error('Error:', error);
+          });
+    };
+    
   return (
     <div>
       <Header
@@ -59,12 +98,24 @@ const useStyles = makeStyles(styles);
                 <form className={classes.form}>
                   <CardHeader color= "success" className={classes.cardHeader} >
                     <h4>Transaction successful</h4>
-
                   </CardHeader>
                   <Container>
-                  <Heading>Complete Booking</Heading>
+                  <Heading>Submit Booking</Heading>
                       <br/>
-                      <p style = {{"textAlign" : "center"}}><CustomButton onClick={() => { history.push('/');}} style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">Complete Booking</CustomButton></p> 
+                      {  
+                          response === 200  ? 
+                          <div>
+                              <Response>Booking Submitted!!!!</Response>
+                              <p style = {{"textAlign" : "center"}}><CustomButton  onClick={() => {history.push('/')}} style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">CLOSE</CustomButton></p> 
+
+                          </div>
+                          : response === 500 || response === 404 ?
+                              <div>
+                                  <Errors>Booking Not Submitted!!!!</Errors>
+                                  <p style = {{"textAlign" : "center"}}><CustomButton  type = 'submit' style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">RESUBMIT</CustomButton></p> 
+                              </div>
+                          :   <p style = {{"textAlign" : "center"}}><CustomButton  onClick={handleClick} style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">SUBMIT BOOKING</CustomButton></p>                                    
+                      } 
                       <br/>
                   </Container>
                 </form>
@@ -84,69 +135,11 @@ const useStyles = makeStyles(styles);
 }
 
 const mapStateToProps = createStructuredSelector({ //state will be the root.reducer
+  cartItems: selectCartItems,
   currentUser : selectCurrentUser
 }); 
-
-//export default withRouter(TransactionFailed);
 
 export default withRouter(connect(
   mapStateToProps,
   null
-)(TransactionFailed));
-/*
-
-                  <CardBody>
-                    <CustomInput
-                      labelText="First Name..."
-                      id="first"
-                      formControlProps={{
-                        fullWidth: true
-                      }}
-                      inputProps={{
-                        type: "text",
-                        endAdornment: (
-                          <InputAdornment position="end">
-                            <People className={classes.inputIconsColor} />
-                          </InputAdornment>
-                        )
-                      }}
-                    />
-                    <CustomInput
-                      labelText="Email..."
-                      id="email"
-                      formControlProps={{
-                        fullWidth: true
-                      }}
-                      inputProps={{
-                        type: "email",
-                        endAdornment: (
-                          <InputAdornment position="end">
-                            <Email className={classes.inputIconsColor} />
-                          </InputAdornment>
-                        )
-                      }}
-                    />
-                    <CustomInput
-                      labelText="Password"
-                      id="pass"
-                      formControlProps={{
-                        fullWidth: true
-                      }}
-                      inputProps={{
-                        type: "password",
-                        endAdornment: (
-                          <InputAdornment position="end">
-                            <Icon className={classes.inputIconsColor}>
-                              lock_outline
-                            </Icon>
-                          </InputAdornment>
-                        ),
-                        autoComplete: "off"
-                      }}
-                    />
-                  </CardBody>
-                  <CardFooter className={classes.cardFooter}>
-                    <Button simple color="primary" size="lg">
-                      Get started
-                    </Button>
-                  </CardFooter>*/
+)(TransactionSuccess));
