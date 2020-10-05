@@ -230,7 +230,7 @@ class Indoor extends React.Component {
                                     <Title> PAYMENT METHODS </Title>
                                     <PaymentOptionsContainer>
                                         <PayGridSplit><Fab><CASpayment onClick = {this.CashAfterServicePayment.bind(this)} IndoorCashPayment = {this.state.IndoorCashPayment}/></Fab><PayOptions>CAS (Cash After Service)</PayOptions></PayGridSplit>
-                                        <PayGridSplit><Fab><CreditCardPayment onClick = {this.CreditCardPayment.bind(this)} IndoorCardPayment = {this.state.IndoorCardPayment}/></Fab><PayOptions>Online Payment</PayOptions></PayGridSplit>
+                                        <PayGridSplit><Fab><CreditCardPayment onClick = {this.CreditCardPayment.bind(this)} IndoorCardPayment = {this.state.IndoorCardPayment}/></Fab><PayOptions>Online Payment (Coming Soon)</PayOptions></PayGridSplit>
                                     </PaymentOptionsContainer>
                                      
                                     {   this.state.IndoorCashPayment ?
@@ -251,9 +251,9 @@ class Indoor extends React.Component {
                                         : null
                                     } 
                                     </Form>    
-                                    {this.state.IndoorCardPayment ?
+                                    {/*this.state.IndoorCardPayment ?
                                         <StripeCheckoutButton service = {service} price = {this.props.totalIndoor}/>
-                                            : null
+                                            : null*/
                                     }
                 </PopupInner>  
             </Popup>  

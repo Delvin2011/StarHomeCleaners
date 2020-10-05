@@ -574,7 +574,7 @@ class Cleaner extends React.Component {
       event.preventDefault();
       console.log(event.target.value);
       const code = event.target.value.toLowerCase();
-      const genPromo = code.length === 7 && (code.substring(5,7) === "pt" || code.substring(5,7) === "fr")? 0.8 : 1;
+      const genPromo = code.length === 7 && (code.substring(5,7) === "pt" || code.substring(5,7) === "fr")? 0.5 : 1;
       this.setState({
         handleIndoorGenPromo: genPromo
       });
@@ -584,7 +584,7 @@ class Cleaner extends React.Component {
       event.preventDefault();
       console.log(event.target.value);
       const code = event.target.value.toLowerCase();
-      const genPromo = code.length === 7 && (code.substring(5,7) === "pt" || code.substring(5,7) === "fr")? 0.8 : 1;
+      const genPromo = code.length === 7 && (code.substring(5,7) === "pt" || code.substring(5,7) === "fr")? 0.5 : 1;
       this.setState({
         handleIndoorAfterBuildPromo: genPromo
       });
@@ -594,7 +594,7 @@ class Cleaner extends React.Component {
       event.preventDefault();
       console.log(event.target.value);
       const code = event.target.value.toLowerCase();
-      const genPromo = code.length === 7 && (code.substring(5,7) === "pt" || code.substring(5,7) === "fr")? 0.8 : 1;
+      const genPromo = code.length === 7 && (code.substring(5,7) === "pt" || code.substring(5,7) === "fr")? 0.5 : 1;
       this.setState({
         handleIndoorEndTenencyPromo: genPromo
       });
@@ -604,7 +604,7 @@ class Cleaner extends React.Component {
       event.preventDefault();
       console.log(event.target.value);
       const code = event.target.value.toLowerCase();
-      const genPromo = code.length === 7 && (code.substring(5,7) === "pt" || code.substring(5,7) === "fr")? 0.8 : 1;
+      const genPromo = code.length === 7 && (code.substring(5,7) === "pt" || code.substring(5,7) === "fr")? 0.5 : 1;
       this.setState({
         handleIndoorSanitisePromo: genPromo
       });
@@ -755,7 +755,7 @@ class Cleaner extends React.Component {
           event.preventDefault();
           const code = event.target.value.toLowerCase();
           console.log(code);
-          const genPromo = code.length === 7 && (code.substring(5,7) === "pt" || code.substring(5,7) === "fr")? 0.8 : 1;
+          const genPromo = code.length === 7 && (code.substring(5,7) === "pt" || code.substring(5,7) === "fr")? 0.5 : 1;
           this.setState({
             handleYCoutdoorPromo: genPromo
           });
@@ -764,7 +764,7 @@ class Cleaner extends React.Component {
         handleLMoutdoorPromo(event) {
           event.preventDefault();
           const code = event.target.value.toLowerCase();
-          const genPromo = code.length === 7 && (code.substring(5,7) === "pt" || code.substring(5,7) === "fr")? 0.8 : 1;
+          const genPromo = code.length === 7 && (code.substring(5,7) === "pt" || code.substring(5,7) === "fr")? 0.5 : 1;
           this.setState({
             handleLMoutdoorPromo: genPromo
           });
@@ -773,7 +773,7 @@ class Cleaner extends React.Component {
         handleFBoutdoorPromo(event) {
           event.preventDefault();
           const code = event.target.value.toLowerCase();
-          const genPromo = code.length === 7 && (code.substring(5,7) === "pt" || code.substring(5,7) === "fr")? 0.8 : 1;
+          const genPromo = code.length === 7 && (code.substring(5,7) === "pt" || code.substring(5,7) === "fr")? 0.5 : 1;
           this.setState({
             handleFBoutdoorPromo: genPromo
           });
@@ -782,7 +782,7 @@ class Cleaner extends React.Component {
         handleDCoutdoorPromo(event) {
           event.preventDefault();
           const code = event.target.value.toLowerCase();
-          const genPromo = code.length === 7 && (code.substring(5,7) === "pt" || code.substring(5,7) === "fr")? 0.8 : 1;
+          const genPromo = code.length === 7 && (code.substring(5,7) === "pt" || code.substring(5,7) === "fr")? 0.5 : 1;
           this.setState({
             handleDCoutdoorPromo: genPromo
           });
@@ -827,7 +827,7 @@ class Cleaner extends React.Component {
       event.preventDefault();
       console.log(event.target.value);
       const code = event.target.value.toLowerCase();
-      const genPromo = code.length === 7 && (code.substring(5,7) === "pt" || code.substring(5,7) === "fr")? 0.8 : 1;
+      const genPromo = code.length === 7 && (code.substring(5,7) === "pt" || code.substring(5,7) === "fr")? 0.5 : 1;
       this.setState({
         handlePoolGenCleaningPromo: genPromo
       });
@@ -837,7 +837,7 @@ class Cleaner extends React.Component {
       event.preventDefault();
       console.log(event.target.value);
       const code = event.target.value.toLowerCase();
-      const genPromo = code.length === 7 && (code.substring(5,7) === "pt" || code.substring(5,7) === "fr")? 0.8 : 1;
+      const genPromo = code.length === 7 && (code.substring(5,7) === "pt" || code.substring(5,7) === "fr")? 0.5 : 1;
       this.setState({
         handlePoolMaintanancePromo: genPromo
       });
@@ -1405,7 +1405,7 @@ return (
                                               <div>
 
                                               <Message>Total : R {totalIndoor.toFixed(2)}</Message>
-                                              <Message>Applied Promo : -20%</Message>
+                                              <Message>Applied Promo : -50%</Message>
                                               </div>
 
 
@@ -1421,7 +1421,7 @@ return (
                                               <div>
 
                                               <Message>Total : R {totalIndoor.toFixed(2)}</Message>
-                                              <Message>Applied Promo : -20%</Message>
+                                              <Message>Applied Promo : -50%</Message>
                                               </div>
                                             }
                                             </div>
@@ -1434,7 +1434,7 @@ return (
                                               <div>
 
                                               <Message>Total : R {totalIndoor.toFixed(2)}</Message>
-                                              <Message>Applied Promo : -20%</Message>
+                                              <Message>Applied Promo : -50%</Message>
                                               </div>
                                             }
                                             </div>
@@ -1447,7 +1447,7 @@ return (
                                               <div>
 
                                               <Message>Total : R {totalIndoor.toFixed(2)}</Message>
-                                              <Message>Applied Promo : -20%</Message>
+                                              <Message>Applied Promo : -50%</Message>
                                               </div>
                                             }
                                             </div>
@@ -1918,7 +1918,7 @@ return (
                                               <div>
 
                                               <Message>Total : R {totalOutdoor.toFixed(2)}</Message>
-                                              <Message>Applied Promo : -20%</Message>
+                                              <Message>Applied Promo : -50%</Message>
                                               </div>
 
 
@@ -1934,7 +1934,7 @@ return (
                                               <div>
 
                                               <Message>Total : R {totalOutdoor.toFixed(2)}</Message>
-                                              <Message>Applied Promo : -20%</Message>
+                                              <Message>Applied Promo : -50%</Message>
                                               </div>
                                             }
                                           </div>
@@ -1947,7 +1947,7 @@ return (
                                               <div>
 
                                               <Message>Total : R {totalOutdoor.toFixed(2)}</Message>
-                                              <Message>Applied Promo : -20%</Message>
+                                              <Message>Applied Promo : -50%</Message>
                                               </div>
                                             }
                                           </div>
@@ -1960,7 +1960,7 @@ return (
                                               <div>
 
                                               <Message>Total : R {totalOutdoor.toFixed(2)}</Message>
-                                              <Message>Applied Promo : -20%</Message>
+                                              <Message>Applied Promo : -50%</Message>
                                               </div>
                                             }
                                           </div>

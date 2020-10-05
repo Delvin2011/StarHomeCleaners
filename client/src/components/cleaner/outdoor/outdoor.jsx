@@ -215,7 +215,7 @@ class Outdoor extends React.Component {
                                  <Title> PAYMENT METHODS </Title>
                                     <PaymentOptionsContainer>
                                         <PayGridSplit><Fab><CASpayment onClick={this.CashAfterServicePayment.bind(this)} CashPayment = {this.state.CashPayment}/></Fab><PayOptions>CAS (Cash After Service)</PayOptions></PayGridSplit>
-                                        <PayGridSplit><Fab><CreditCardPayment onClick={this.CreditCardPayment.bind(this)} CardPayment = {this.state.CardPayment}/></Fab><PayOptions>Online Payment</PayOptions></PayGridSplit>
+                                        <PayGridSplit><Fab><CreditCardPayment onClick={this.CreditCardPayment.bind(this)} CardPayment = {this.state.CardPayment}/></Fab><PayOptions>Online Payment (Coming Soon)</PayOptions></PayGridSplit>
                                     </PaymentOptionsContainer>
                                      
                                     {   this.state.CashPayment ?
@@ -236,9 +236,9 @@ class Outdoor extends React.Component {
                                         : null
                                     } 
                                     </Form>    
-                                    {this.state.CardPayment ?
+                                    {/*this.state.CardPayment ?
                                         <StripeCheckoutButton service = {service} price = {this.props.totalIndoor}/>
-                                            : null
+                                            : null*/
                                     }                            
                 </PopupInner>  
             </Popup>  

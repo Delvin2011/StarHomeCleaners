@@ -252,7 +252,7 @@ class Pool extends React.Component {
                                  <Title> PAYMENT METHODS </Title>
                                     <PaymentOptionsContainer>
                                         <PayGridSplit><Fab><CASpayment onClick = {this.CashAfterServicePayment.bind(this)} CashPayment = {this.state.CashPayment}/></Fab><PayOptions>CAS (Cash After Service)</PayOptions></PayGridSplit>
-                                        <PayGridSplit><Fab><CreditCardPayment onClick = {this.CreditCardPayment.bind(this)} CardPayment = {this.state.CardPayment}/></Fab><PayOptions>Online Payment</PayOptions></PayGridSplit>
+                                        <PayGridSplit><Fab><CreditCardPayment onClick = {this.CreditCardPayment.bind(this)} CardPayment = {this.state.CardPayment}/></Fab><PayOptions>Online Payment (Coming Soon)</PayOptions></PayGridSplit>
                                     </PaymentOptionsContainer>
                                      
                                     {   this.state.CashPayment ?
@@ -272,13 +272,13 @@ class Pool extends React.Component {
                                         : null
                                     } 
                                     </Form>    
-                                    {this.state.CardPayment ?
+                                    {/*this.state.CardPayment ?
                                         this.props.currentUser?
                                         <StripeCheckoutButton item = {this.state.item}/>
                                          : !this.props.currentUser?   
                                          <p style = {{"textAlign" : "center"}}><CustomButton  onClick = {this.showPopupSignIn.bind(this)} style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>Sign In</CustomButton></p> 
                                         : null
-                                    : null
+                                    : null*/
                                     }  
 
                     {this.state.showPopupSignIn ?
