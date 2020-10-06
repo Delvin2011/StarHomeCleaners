@@ -38,7 +38,7 @@ const status = "Pending";
 const id = this.props.currentUser ? this.props.currentUser.id : '';
 const PromoCode = this.props.currentUser ? id.slice(0,5).toUpperCase() : '';
 const FriendCode = this.props.currentUser ? id.slice(-5).toUpperCase() : '';
-console.log(this.props.cartItems);
+//console.log(this.props.cartItems);
 return (          
             <Popup>  
                 <PopupInner> 
@@ -61,9 +61,7 @@ return (
                                 <div style = {{"marginTop": "-5px"}}>
                                       <ContentTitle> Details
                                       <span><hr width="300"/></span>
-                                      </ContentTitle>   
-
-
+                                      </ContentTitle>
                                       <Details>
                                         <DetailHeader>Date</DetailHeader>
                                         <DetailHeader>Category</DetailHeader>
@@ -73,23 +71,18 @@ return (
                                         <DetailHeader>Payment</DetailHeader>
                                       </Details>  
                                       {
-                                            Object.entries(this.props.cartItems).map(([key, val]) => 
-                                            <Details key={key}>
-                                              <BookingDetail>{this.props.cartItems[key].serviceDate}</BookingDetail>
-                                              <BookingDetail>{this.props.cartItems[key].category}</BookingDetail>
-                                              <BookingDetail>{this.props.cartItems[key].service}</BookingDetail>
-                                              <BookingDetail>{this.props.cartItems[key].frequency}</BookingDetail>
-                                              <BookingDetail>{status}</BookingDetail>
-                                              <BookingDetail>{this.props.cartItems[key].payment}</BookingDetail>
-                                              <Tooltip title="Cancel Booking" aria-label="add"><BookingDetail onClick = {() => this.props.clearItem(this.props.cartItems[key])} style = {{"cursor": "pointer","alignItems": "left"}}>&#10005;</BookingDetail></Tooltip>
-                                            </Details>
-                                          )                        
-                                         }
-
-
-                                      <ContentTitle> Services Rating
-                                      <span><hr width="300"/></span>
-                                      </ContentTitle>                           
+                                          Object.entries(this.props.cartItems).map(([key, val]) => 
+                                          <Details key={key}>
+                                            <BookingDetail>{this.props.cartItems[key].serviceDate}</BookingDetail>
+                                            <BookingDetail>{this.props.cartItems[key].category}</BookingDetail>
+                                            <BookingDetail>{this.props.cartItems[key].service}</BookingDetail>
+                                            <BookingDetail>{this.props.cartItems[key].frequency}</BookingDetail>
+                                            <BookingDetail>{status}</BookingDetail>
+                                            <BookingDetail>{this.props.cartItems[key].payment}</BookingDetail>
+                                            <Tooltip title="Cancel Booking" aria-label="add"><BookingDetail onClick = {() => this.props.clearItem(this.props.cartItems[key])} style = {{"cursor": "pointer","alignItems": "left"}}>&#10005;</BookingDetail></Tooltip>
+                                          </Details>
+                                        )                        
+                                      }                        
                                     
                                   </div>
                                 : <ContentTitle> No Previous Bookings<span><hr width="300"/></span> </ContentTitle>
@@ -138,10 +131,7 @@ return (
                                         <li>Friend's successful booking attracts 20% discount on 1st booking.</li>
                                         <li>You get 50% discount for 3 successful friends referrals.</li>
                                     </TCList>
-
-  
                               </div>
-
                               : 
                               <div>  
                                 <ContentTitle> Sign IN/UP <span><hr width="300"/></span> </ContentTitle>
@@ -194,4 +184,6 @@ const mapStateToProps = createStructuredSelector ({
 
 export default connect(mapStateToProps,mapDispatchToProps)(Bookings);
 
-/*                                        */
+/*  <ContentTitle> Services Rating
+    <span><hr width="300"/></span>
+    </ContentTitle>   */

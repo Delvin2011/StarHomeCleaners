@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import { addItem } from '../../../redux/cart/cart-actions';
 import Tooltip from '@material-ui/core/Tooltip';
 import SignIn from '../../sign-in/sign-in';
-
+import {withRouter} from 'react-router-dom';
 class Pool extends React.Component {  
     constructor(props){
         super(props);   
@@ -31,6 +31,7 @@ class Pool extends React.Component {
             CardPayment: false,
             CashPayment: false,
             showPopupSignIn: false,
+            spinner: false,
             item : 
                 {
                   id:'',
@@ -41,6 +42,8 @@ class Pool extends React.Component {
                   category: '',
                   service : '',
                   serviceDate : new Date(),
+                  comments : '',
+                  poolDimensions : '',
                   frequency: '',
                   payment: '',
                   total: ""
@@ -52,14 +55,15 @@ class Pool extends React.Component {
 
         this.CreditCardPayment= this.CreditCardPayment.bind(this);
         this.CashAfterServicePayment= this.CashAfterServicePayment.bind(this);
+        //this.closePop= 
         this.closePop= this.props.closePopup;
     }
     handleDropdownChange(e) {
         this.setState({ selectValue: e.target.value });
       }
 
-      closePop(e) {
-        console.log(e)
+      closePop = () => {
+        //console.log(e)
       }
 
       CreditCardPayment(event) {
@@ -71,7 +75,7 @@ class Pool extends React.Component {
         const max = 1000;
         const random = min + (Math.random() * (max - min));
         const service = this.props.poolRequiredService;//this.props.poolCleaning? this.props.poolCleaning : this.props.poolMaintanence? this.props.poolMaintanence : "";
-        const payment = this.state.CashPayment ? "CAS" : this.state.CardPayment ? "ONLINE" : "";
+        const payment = "ONLINE";
         this.setState({
             CardPayment: this.state.CashPayment === true ? false : !this.state.CardPayment,
             item : 
@@ -83,8 +87,9 @@ class Pool extends React.Component {
               address : address,
               comments : comments,
               bookingDate : new Date(),
-              category : 'Pool Services',
+              category : "Pool Services",
               service : service,
+              poolDimensions : "Shape : " + this.props.poolShape + "; Volume : " + this.props.poolVolume + "; Issues : " + this.props.poolIssue,
               serviceDate : dateTimePool.replace("GMT+0200 (South Africa Standard Time)",""),
               frequency: this.props.serviceInterval,
               payment: payment,
@@ -116,19 +121,26 @@ class Pool extends React.Component {
         const max = 1000;
         const random = min + (Math.random() * (max - min));
         const service = this.props.poolRequiredService;//this.props.poolCleaning? this.props.poolCleaning : this.props.poolMaintanence? this.props.poolMaintanence : "";
-        const payment = this.state.CashPayment ? "CAS" : this.state.CardPayment ? "ONLINE" : "";
+        const payment = "CAS";
         this.setState({
+            spinner: true,
             item : 
                 {
                   id: Math.ceil(random) + "PL",
+                  customerName : data.get('customerName'),
+                  email : data.get('email'),
+                  phoneNumber : data.get('phoneNumber'),
+                  address : data.get('address'),
+                  comments : data.get('comments'),
                   bookingDate : new Date(),
-                  category : 'Pool',
+                  category : 'Pool Services',
                   service : service,
+                  poolDimensions : "Shape : " + this.props.poolShape + "; Volume : " + this.props.poolVolume + "; Issues : " + this.props.poolIssue,
                   serviceDate : dateTimePool.replace("GMT+0200 (South Africa Standard Time)",""),
                   frequency: this.props.serviceInterval,
-                  payment: payment
+                  payment: payment,
+                  total :  this.props.totalPool
                 }
-               
         });
 
        fetch('/email', {
@@ -145,12 +157,13 @@ class Pool extends React.Component {
             "extraServices": "Shape : " + this.props.poolShape + "; Volume : " + this.props.poolVolume + "; Issues : " + this.props.poolIssue,
             "serviceIntervals": this.props.serviceInterval,
             "date": dateTimePool.replace("GMT+0200 (South Africa Standard Time)",""),
-            "costs": "R " + this.props.totalPool
+            "costs": "R " + this.props.totalPool,
+            "payment": payment
         })
           })
           //.then((response) => {response.json();console.log(response.ok)})
           .then((response) => {
-            this.setState({ response: response.status });
+            this.setState({ response: response.status, spinner : false });
             console.log('Success:', response.status);
           })
           .catch((error) => {
@@ -169,7 +182,6 @@ class Pool extends React.Component {
         });
     }
 
-
     handleChange = event => { //destructure off of the event
         const {name, value} = event.target;
         this.setState({[name]: value});
@@ -181,15 +193,13 @@ class Pool extends React.Component {
         });
       }
 
-
 //https://www.telerik.com/kendo-react-ui/components/dateinputs/datetimepicker/integration-with-json/
   render() {  
 
-    const {customerName, email, phoneNumber,address,comments,response,error,item} = this.state;
+    const {customerName, email, phoneNumber,address,comments,response,error,item,spinner} = this.state;
     const {currentUser} = this.props;
-    const {service} = "Pool Cleaning Services";
-    console.log(phoneNumber);
-    console.log(address);
+    //const {service} = "Pool Cleaning Services";
+
         return (  
             <Popup>  
                 <PopupInner>                   
@@ -252,7 +262,7 @@ class Pool extends React.Component {
                                  <Title> PAYMENT METHODS </Title>
                                     <PaymentOptionsContainer>
                                         <PayGridSplit><Fab><CASpayment onClick = {this.CashAfterServicePayment.bind(this)} CashPayment = {this.state.CashPayment}/></Fab><PayOptions>CAS (Cash After Service)</PayOptions></PayGridSplit>
-                                        <PayGridSplit><Fab><CreditCardPayment onClick = {this.CreditCardPayment.bind(this)} CardPayment = {this.state.CardPayment}/></Fab><PayOptions>Online Payment (Coming Soon)</PayOptions></PayGridSplit>
+                                        <PayGridSplit><Fab><CreditCardPayment onClick = {this.CreditCardPayment.bind(this)} CardPayment = {this.state.CardPayment}/></Fab><PayOptions>Online Payment</PayOptions></PayGridSplit>
                                     </PaymentOptionsContainer>
                                      
                                     {   this.state.CashPayment ?
@@ -268,17 +278,22 @@ class Pool extends React.Component {
                                                     <Errors>Email Not Sent!!!!</Errors>
                                                     <p style = {{"textAlign" : "center"}}><CustomButton  type = 'submit' style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">RESEND</CustomButton></p> 
                                                 </div>
-                                                :    <p style = {{"textAlign" : "center"}}><CustomButton  type = 'submit' style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">BOOK SERVICE</CustomButton></p>                                    
+                                                :   spinner? <p style = {{"textAlign" : "center"}}><CustomButton  style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">Loading...</CustomButton></p>  
+    
+
+                                                : <p style = {{"textAlign" : "center"}}><CustomButton  type = 'submit' style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">BOOK SERVICE</CustomButton></p>                                    
+                                        
+                                        
                                         : null
                                     } 
                                     </Form>    
-                                    {/*this.state.CardPayment ?
+                                    {this.state.CardPayment ?
                                         this.props.currentUser?
                                         <StripeCheckoutButton item = {this.state.item}/>
                                          : !this.props.currentUser?   
                                          <p style = {{"textAlign" : "center"}}><CustomButton  onClick = {this.showPopupSignIn.bind(this)} style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>Sign In</CustomButton></p> 
                                         : null
-                                    : null*/
+                                    : null
                                     }  
 
                     {this.state.showPopupSignIn ?
@@ -297,7 +312,7 @@ const mapDispatchToProps = dispatch => ({
     addItem: item => dispatch(addItem(item))
   });
   
-  export default connect(
+  export default withRouter(connect(
     null,
     mapDispatchToProps
-  )(Pool);
+  )(Pool));

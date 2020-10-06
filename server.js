@@ -39,7 +39,7 @@ app.listen(port, error => {
 
 // email, subject, text (receiving data from the client)
 app.post('/email', (req, res) => {
-    const { customerName,phoneNumber,subject, email, address, comments,natureOfServices,homeDetails, extraServices, date, costs,pickup,delivery,serviceIntervals,requiredServices} = req.body;
+    const { customerName,phoneNumber,subject, email, address, comments,natureOfServices,homeDetails, extraServices, date, costs,pickup,delivery,serviceIntervals,requiredServices,payment} = req.body;
     
     var emailBody = "";
     if(subject === "Outdoors Cleaning Services" || subject === "Indoors Cleaning Services") {
@@ -52,7 +52,7 @@ app.post('/email', (req, res) => {
    else if(subject === "Pool Services") {
 
     emailBody = "Good Sir/Madam" + '\n\n' + "Would like to request for services with the below details: " + '\n\n\t' + "Nature of service : " + natureOfServices + '\n\t' + "Pool Dimensions : " + extraServices  + 
-   '\n\t' + "Service Intervals : " + serviceIntervals  + '\n\t'+ "Date : " + date + '\n\t' + "Physical Address : " + address + '\n\t' + "Comments : " + comments + '\n\t' + "Agreed cost payable after services : " + costs + '\n\n' + "Yours faithfully" +  '\n\n' + customerName + '\n' + phoneNumber
+   '\n\t' + "Service Intervals : " + serviceIntervals  + '\n\t'+ "Date : " + date + '\n\t' + "Physical Address : " + address + '\n\t' + "Comments : " + comments + '\n\t' + "Agreed cost payable after services : " + costs + '\n\t' + "Payment Plan : " + payment + '\n\n' + "Yours faithfully" +  '\n\n' + customerName + '\n' + phoneNumber
 
 }
 

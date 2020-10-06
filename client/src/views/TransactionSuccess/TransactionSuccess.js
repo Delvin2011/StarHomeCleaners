@@ -8,7 +8,7 @@ import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
 import Button from "components/CustomButtons/Button.js";
 import Card from "components/Card/Card.js";
-
+import Spinner from 'react-bootstrap/Spinner'
 import {connect} from 'react-redux';
 import {createStructuredSelector} from 'reselect';
 
@@ -31,6 +31,7 @@ const useStyles = makeStyles(styles);
   const [Booking, setBooking] = useState(false);
   const [response, setResponse] = useState("");
   const [error, setError] = useState("");
+  const [spinner, setSpinner] = useState(false);
   const [cardAnimaton, setCardAnimation] = React.useState("cardHidden");
   setTimeout(function() {
     setCardAnimation("");
@@ -41,8 +42,7 @@ const useStyles = makeStyles(styles);
   const { ...rest } = props;
 
   const handleClick = () => {
-    const payment = "Online  - Successful";
-    
+      setSpinner(true);
        fetch('/email', {
         method: 'post',
         headers: {'Content-Type': 'application/json'},
@@ -50,15 +50,15 @@ const useStyles = makeStyles(styles);
             "email" : cartItems[cartItems.length - 1].email,
             "customerName" : cartItems[cartItems.length - 1].customerName,
             "phoneNumber": cartItems[cartItems.length - 1].phoneNumber,
-            "subject": "Pool Services",
+            "subject": cartItems[cartItems.length - 1].category,
             "comments": cartItems[cartItems.length - 1].comments,
             "address": cartItems[cartItems.length - 1].address,
             "natureOfServices": cartItems[cartItems.length - 1].service,
-            "extraServices": "Shape : " ,//+ this.props.poolShape + "; Volume : " + this.props.poolVolume + "; Issues : " + this.props.poolIssue,
+            "extraServices": cartItems[cartItems.length - 1].poolDimensions,
             "serviceIntervals": cartItems[cartItems.length - 1].frequency,
             "date": cartItems[cartItems.length - 1].serviceDate,
             "costs": "R " + cartItems[cartItems.length - 1].total,
-            "payment": payment
+            "payment": cartItems[cartItems.length - 1].payment
         })
           })
           //.then((response) => {response.json();console.log(response.ok)})
@@ -66,6 +66,7 @@ const useStyles = makeStyles(styles);
             //this.setState({ response: response.status });
             setResponse(response.status)
             console.log('Success:', response.status);
+            setSpinner(false);
           })
           .catch((error) => {
             //this.setState({ error: error });
@@ -114,7 +115,10 @@ const useStyles = makeStyles(styles);
                                   <Errors>Booking Not Submitted!!!!</Errors>
                                   <p style = {{"textAlign" : "center"}}><CustomButton  type = 'submit' style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">RESUBMIT</CustomButton></p> 
                               </div>
+                          :   spinner? <p style = {{"textAlign" : "center"}}><CustomButton  style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">Loading...</CustomButton></p>  
+                          
                           :   <p style = {{"textAlign" : "center"}}><CustomButton  onClick={handleClick} style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">SUBMIT BOOKING</CustomButton></p>                                    
+
                       } 
                       <br/>
                   </Container>

@@ -497,7 +497,7 @@ class Cleaner extends React.Component {
 
     genIndoorCleanLaundry () {
       this.setState({genIndoorCleanLaundry: !this.state.genIndoorCleanLaundry,
-        genIndoorCleanLaundryService : this.state.genIndoorCleanLaundry? null : "Laundry",
+        genIndoorCleanLaundryService : this.state.genIndoorCleanLaundry? null : "Oven",
       priceGenIndoorCleanLaundry : this.state.genIndoorCleanLaundry? 0 : 50});
     }
 
@@ -1040,7 +1040,7 @@ const poolPMvolume = this.state.poolShapePMSelect === "0" || this.state.poolShap
                      this.state.poolShapePMSelect === "3" ? (this.state.handlePoolTrianglePMvolumeB/2) * this.state.handlePoolTrianglePMvolumeH * ((this.state.handlePoolTrianglePMvolumeD * 1) + (this.state.handlePoolTrianglePMvolumeS * 1))/2 :
                      this.state.poolShapePMSelect === "4" ? 0.45 * ((this.state.handlePoolIrregularPMvolumeA * 1) + (this.state.handlePoolIrregularPMvolumeB * 1)) * this.state.handlePoolIrregularPMvolumeL * ((this.state.handlePoolIrregularPMvolumeD * 1) + (this.state.handlePoolIrregularPMvolumeS * 1))/2 : 0;
 
-const poolVolume = this.state.PoolClean? poolPCvolume * 1000 : this.state.PoolMaint? poolPMvolume * 1000 : 0;
+const poolVolume = this.state.PoolClean? poolPCvolume.toFixed(0) * 1000 : this.state.PoolMaint? poolPMvolume.toFixed(0) * 1000 : 0;
 const poolPConceStatus = this.state.poolPCweek || this.state.poolPCmonth ? true : false; const poolPCweekStatus = this.state.poolPConce || this.state.poolPCmonth ? true : false; const poolPCmonthStatus = this.state.poolPCweek || this.state.poolPConce ? true : false;
 const poolPMonceStatus = this.state.poolPMweek || this.state.poolPMmonth ? true : false; const poolPMweekStatus = this.state.poolPMonce || this.state.poolPMmonth ? true : false; const poolPMmonthStatus = this.state.poolPMweek || this.state.poolPMonce ? true : false;
 
@@ -1337,7 +1337,7 @@ return (
                                             <div style = {{"margin-top" : "0px"}}>
                                               <Checkbox toggle label = "  Walls" onChange={ this.genIndoorCleanWalls } />
                                               <Checkbox toggle label = "  Windows" onChange={ this.genIndoorCleanWindows } />
-                                              <Checkbox toggle label = "  Laundry" onChange={ this.genIndoorCleanLaundry } />
+                                              <Checkbox toggle label = "  Oven" onChange={ this.genIndoorCleanLaundry } />
                                             </div>
                                           </div>
 
