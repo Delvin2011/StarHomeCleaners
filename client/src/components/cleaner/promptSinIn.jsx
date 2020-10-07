@@ -100,7 +100,7 @@ class PromptSinIn extends React.Component {
                 
                 {this.state.showPopupIndoor ?
                     <Indoor showPopupIndoor = {this.state.showPopupIndoor} closePopupSignIn = {this.showPopupSignIn.bind(this)} closePopup={this.props.closePopup} dateTime = {this.props.dateTime} totalIndoor = {this.props.totalIndoor} genIndoorCleanWallsService = {this.props.genIndoorCleanWallsService} genIndoorCleanWindowsService = {this.props.genIndoorCleanWindowsService} genIndoorCleanLaundryService = {this.props.genIndoorCleanLaundryService} afterBuildIndoorCleanWallsService = {this.props.afterBuildIndoorCleanWallsService} serviceIntervalIndoor = {this.props.serviceIntervalIndoor}  IndoorDetergents = {this.props.IndoorDetergents}
-                afterBuildIndoorCleanWindowsService = {this.props.afterBuildIndoorCleanWindowsService} endTenancyIndoorCleanWallsService = {this.props.endTenancyIndoorCleanWallsService} endTenancyIndoorCleanWindowsService = {this.props.endTenancyIndoorCleanWindowsService} bedRooms = {this.props.bedRooms} bathRooms = {this.props.bathRooms} IndoorBookedService = {this.props.IndoorBookedService}/>
+                afterBuildIndoorCleanWindowsService = {this.props.afterBuildIndoorCleanWindowsService} endTenancyIndoorCleanWallsService = {this.props.endTenancyIndoorCleanWallsService} endTenancyIndoorCleanWindowsService = {this.props.endTenancyIndoorCleanWindowsService} bedRooms = {this.props.bedRooms} bathRooms = {this.props.bathRooms} IndoorBookedService = {this.props.IndoorBookedService} IndoorExtras = {this.props.IndoorExtras}/>
                     : null
                 }
 

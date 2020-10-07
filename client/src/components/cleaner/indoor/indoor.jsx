@@ -11,7 +11,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import { connect } from 'react-redux';
 import { addItem } from '../../../redux/cart/cart-actions';
 import StripeCheckoutButton from '../../stripe-button/stripe-button';
-
+import SignIn from '../../sign-in/sign-in';
 
 
 class Indoor extends React.Component {  
@@ -33,15 +33,23 @@ class Indoor extends React.Component {
             dateTime: "" + this.props.dateTime,
             IndoorCardPayment: false,
             IndoorCashPayment: false,
+            spinner: false,
             item : 
             {
-              id:'',
-              bookingDate : new Date(),
-              category: '',
-              service : '',
-              serviceDate : new Date(),
-              frequency: '',
-              payment: ''
+                id:'',
+                customerName: '',
+                email: '',
+                phoneNumber: '',
+                address: '',
+                bookingDate : new Date(),
+                category: '',
+                service : '',
+                serviceDate : new Date(),
+                comments : '',
+                homeDetails : '',
+                frequency: '',
+                payment: '',
+                total: ""
             }
         }
         this.handleDropdownChange = this.handleDropdownChange.bind(this);
@@ -49,10 +57,6 @@ class Indoor extends React.Component {
 
         this.CreditCardPayment= this.CreditCardPayment.bind(this);
         this.CashAfterServicePayment= this.CashAfterServicePayment.bind(this);
-
-        this.closePop= this.props.closePopup;
-
-        //this.Demo.simpleCart = this.Demo.simpleCart.bind(this);
     }
 
 
@@ -60,21 +64,41 @@ class Indoor extends React.Component {
         this.setState({ selectValue: e.target.value });
       }
 
-
-      closePop(e) {
-        console.log(e)
-      }
-
-
-      CreditCardPayment(event) {
-        this.setState({
-            IndoorCardPayment: this.state.IndoorCashPayment === true ? false : !this.state.IndoorCardPayment
-        });
-      }
-  
       CashAfterServicePayment(event) {
         this.setState({
             IndoorCashPayment: this.state.IndoorCardPayment === true? false : !this.state.IndoorCashPayment
+        });
+      }
+
+      CreditCardPayment(event) {
+        const {customerName, email, phoneNumber,address,comments,dateTime} = this.state;
+        const {currentUser} = this.props;
+        const name = this.props.currentUser? currentUser.displayName : customerName;
+        const emailAd = this.props.currentUser? currentUser.email : email;
+        const min = 1;
+        const max = 1000;
+        const random = min + (Math.random() * (max - min));
+        const service = this.props.IndoorDetergents ? this.props.IndoorBookedService + " with Detergents" : this.props.IndoorBookedService;
+        const payment = "ONLINE";
+        this.setState({
+            CardPayment: this.state.CashPayment === true ? false : !this.state.CardPayment,
+            item : 
+            {
+              id: Math.ceil(random) + "IN",
+              customerName : name,
+              email : emailAd,
+              phoneNumber : phoneNumber,
+              address : address,
+              comments : comments,
+              bookingDate : new Date(),
+              category : "Indoor Services",
+              service : service,
+              homeDetails : "Bedrooms : " + this.props.bedRooms + "; Bathrooms : " + this.props.bathRooms + "; Extras : " + this.props.IndoorExtras,
+              serviceDate : dateTime.replace("GMT+0200 (South Africa Standard Time)",""),
+              frequency: this.props.serviceIntervalIndoor,
+              payment: payment,
+              total :  this.props.totalIndoor
+            }
         });
       }
 
@@ -88,17 +112,25 @@ class Indoor extends React.Component {
         const max = 1000;
         const random = min + (Math.random() * (max - min));
         const service = this.props.IndoorDetergents ? this.props.IndoorBookedService + " with Detergents" : this.props.IndoorBookedService;
-        const payment = this.state.IndoorCashPayment ? "CAS" : this.state.IndoorCardPayment ? "ONLINE" : "";
+        const payment = "CAS";
         this.setState({
+            spinner: true,
             item : 
                 {
-                  id: Math.ceil(random) + "IN",
-                  bookingDate : new Date(),
-                  category : 'Indoor',
-                  service : service, 
-                  serviceDate : dateTime.replace("GMT+0200 (South Africa Standard Time)",""),
-                  frequency: this.props.serviceIntervalIndoor,
-                  payment: payment
+                    id: Math.ceil(random) + "IN",
+                    customerName : data.get('customerName'),
+                    email : data.get('email'),
+                    phoneNumber : data.get('phoneNumber'),
+                    address : data.get('address'),
+                    comments : data.get('comments'),
+                    bookingDate : new Date(),
+                    category : "Indoor Services",
+                    service : service,
+                    homeDetails : "Bedrooms : " + this.props.bedRooms + "; Bathrooms : " + this.props.bathRooms + "; Extras : " + this.props.IndoorExtras,
+                    serviceDate : dateTime.replace("GMT+0200 (South Africa Standard Time)",""),
+                    frequency: this.props.serviceIntervalIndoor,
+                    payment: payment,
+                    total :  this.props.totalIndoor
                 }
                
         });
@@ -109,21 +141,20 @@ class Indoor extends React.Component {
           "email" : data.get('email'),
           "customerName" : data.get('customerName'),
           "phoneNumber": data.get('phoneNumber'),
-          "subject": "Indoors Cleaning Services",
+          "subject": "Indoor Services",
           "comments": data.get('comments'),
           "address": data.get('address'),
-          "natureOfServices": "Indoors",
-          "homeDetails": this.props.bedRooms + " and " + this.props.bathRooms,
-          "requiredServices": service,//this.props.IndoorCleanService + ", " + this.props.IndoorAfterBuildCleanService + ", " + this.props.IndoorEndTenancyCleanService + ", " + this.props.IndoorSanitiseService,
+          "natureOfServices": service,
           "serviceIntervals": this.props.serviceIntervalIndoor, // + "," + this.state.serviceIntervalIndoorSanitise,
-          "extraServices": this.props.genIndoorCleanWallsService + ", " + this.props.genIndoorCleanWindowsService + ", " + this.props.genIndoorCleanLaundryService + ", " + this.props.afterBuildIndoorCleanWallsService + ", " + this.props.afterBuildIndoorCleanWindowsService + ", " + this.props.endTenancyIndoorCleanWallsService + ", " + this.props.endTenancyIndoorCleanWindowsService,
+          "extraServices": "Bedrooms : " + this.props.bedRooms + "; Bathrooms : " + this.props.bathRooms + "; Extras : " + this.props.IndoorExtras,
           "date": dateTime.replace("GMT+0200 (South Africa Standard Time)",""),
           "costs": "R " + this.props.totalIndoor
         })
 
           }).then((response) => {
-            this.setState({ response: response.status });
+            this.setState({ response: response.status, spinner : false });
             console.log('Success:', response.status);
+            this.props.addItem(this.state.item);
           })
           .catch((error) => {
             this.setState({ error: error });
@@ -140,23 +171,27 @@ class Indoor extends React.Component {
             events: this.logs.slice()
         });
     }
+
     handleChange = event => { //destructure off of the event
         const {name, value} = event.target;
         this.setState({[name]: value});
     }
 
+    showPopupSignIn(event) {
+        this.setState({
+            showPopupSignIn: !this.state.showPopupSignIn
+        });
+      }
 //https://www.telerik.com/kendo-react-ui/components/dateinputs/datetimepicker/integration-with-json/
   render() {  
 
-    const {customerName, email, phoneNumber,address,comments,response,error,item} = this.state;
+    const {customerName, email, phoneNumber,address,comments,response,error,item,spinner} = this.state;
     const {currentUser} = this.props;
-    const {service} = "Indoors Cleaning Services";
-    //console.log(this.props.bedRooms);
-    //console.log(this.props.bathRooms);
+
         return (  
             <Popup>  
                 <PopupInner>                   
-                        <CloseButton className = 'remove-button' style = {{"color":"black"}} onClick = {this.closePop.bind(this)} >&#10005;</CloseButton>  
+                        <CloseButton className = 'remove-button' style = {{"color":"black"}} onClick = {this.props.closePopup} >&#10005;</CloseButton>  
                         <LogoContainer src= {Logo} />
                         <Title> Enter Contact Details
                         </Title>
@@ -202,13 +237,7 @@ class Indoor extends React.Component {
                                         </div>
                                         <div style={{marginBottom:"20px"}}>
                                         <ContentTitle> Extra Services </ContentTitle> 
-                                            <Message4>{this.props.genIndoorCleanWallsService}</Message4>
-                                            <Message4>{this.props.genIndoorCleanWindowsService}</Message4>
-                                            <Message4>{this.props.genIndoorCleanLaundryService}</Message4>
-                                            <Message4>{this.props.afterBuildIndoorCleanWallsService}</Message4>
-                                            <Message4>{this.props.afterBuildIndoorCleanWindowsService}</Message4>
-                                            <Message4>{this.props.endTenancyIndoorCleanWallsService}</Message4>
-                                            <Message4>{this.props.endTenancyIndoorCleanWindowsService}</Message4>
+                                        <Message4>{this.props.IndoorExtras}</Message4> 
                                         </div>
                                         <div style={{marginBottom:"20px"}}>
                                         <ContentTitle> Services Intervals</ContentTitle> 
@@ -230,7 +259,7 @@ class Indoor extends React.Component {
                                     <Title> PAYMENT METHODS </Title>
                                     <PaymentOptionsContainer>
                                         <PayGridSplit><Fab><CASpayment onClick = {this.CashAfterServicePayment.bind(this)} IndoorCashPayment = {this.state.IndoorCashPayment}/></Fab><PayOptions>CAS (Cash After Service)</PayOptions></PayGridSplit>
-                                        <PayGridSplit><Fab><CreditCardPayment onClick = {this.CreditCardPayment.bind(this)} IndoorCardPayment = {this.state.IndoorCardPayment}/></Fab><PayOptions>Online Payment (Coming Soon)</PayOptions></PayGridSplit>
+                                        <PayGridSplit><Fab><CreditCardPayment onClick = {this.CreditCardPayment.bind(this)} IndoorCardPayment = {this.state.IndoorCardPayment}/></Fab><PayOptions>Online Payment</PayOptions></PayGridSplit>
                                     </PaymentOptionsContainer>
                                      
                                     {   this.state.IndoorCashPayment ?
@@ -238,23 +267,33 @@ class Indoor extends React.Component {
                                             response === 200  ? 
                                             <div>
                                                 <Response>Email Sent!!!!</Response>
-                                                <p style = {{"textAlign" : "center"}}><CustomButton onClick={() => {this.props.addItem(item);this.closePop.bind(this)}}  style = {{"margin-top" : "10px", "background": "#e91e63"}} size="sm">CLOSE</CustomButton></p> 
+                                                <p style = {{"textAlign" : "center"}}><CustomButton onClick={this.props.closePopup}  style = {{"margin-top" : "10px", "background": "#e91e63"}} size="sm">CLOSE</CustomButton></p> 
 
                                             </div>
                                             : response === 500 || response === 404 ?
                                                 <div>
                                                     <Errors>Email Not Sent!!!!</Errors>
                                                     <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit'  style = {{"margin-top" : "10px", "background": "#e91e63"}} size="sm">RESEND</CustomButton></p> 
-
                                                 </div>
-                                                :    <p style = {{"textAlign" : "center"}}><CustomButton  type = 'submit'  style = {{"margin-top" : "10px", "background": "#e91e63"}} size="sm">BOOK SERVICE</CustomButton></p>                                    
+                                                :   spinner? <p style = {{"textAlign" : "center"}}><CustomButton  style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">Loading...</CustomButton></p>  
+    
+                                                :   <p style = {{"textAlign" : "center"}}><CustomButton  type = 'submit'  style = {{"margin-top" : "10px", "background": "#e91e63"}} size="sm">BOOK SERVICE</CustomButton></p>                                    
                                         : null
                                     } 
                                     </Form>    
-                                    {/*this.state.IndoorCardPayment ?
-                                        <StripeCheckoutButton service = {service} price = {this.props.totalIndoor}/>
-                                            : null*/
+                                    {this.state.CardPayment ?
+                                        this.props.currentUser?
+                                        <StripeCheckoutButton item = {this.state.item}/>
+                                         : !this.props.currentUser?   
+                                         <p style = {{"textAlign" : "center"}}><CustomButton  onClick = {this.showPopupSignIn.bind(this)} style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>Sign In</CustomButton></p> 
+                                        : null
+                                    : null
                                     }
+
+                                    {this.state.showPopupSignIn ?
+                                        <SignIn showPopupSignIn = {this.state.showPopupSignIn} closePopupSignIn = {this.showPopupSignIn.bind(this)}/>
+                                    : null
+                                    } 
                 </PopupInner>  
             </Popup>  
         );  
@@ -271,6 +310,12 @@ const mapDispatchToProps = dispatch => ({
     mapDispatchToProps
   )(Indoor);
 
-
+/*                                            <Message4>{this.props.genIndoorCleanWallsService}</Message4>
+                                            <Message4>{this.props.genIndoorCleanWindowsService}</Message4>
+                                            <Message4>{this.props.genIndoorCleanLaundryService}</Message4>
+                                            <Message4>{this.props.afterBuildIndoorCleanWallsService}</Message4>
+                                            <Message4>{this.props.afterBuildIndoorCleanWindowsService}</Message4>
+                                            <Message4>{this.props.endTenancyIndoorCleanWallsService}</Message4>
+                                            <Message4>{this.props.endTenancyIndoorCleanWindowsService}</Message4>*/
 
 

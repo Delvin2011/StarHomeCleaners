@@ -11,6 +11,9 @@ import { connect } from 'react-redux';
 import { addItem } from '../../../redux/cart/cart-actions';
 import Fab from '@material-ui/core/Fab';
 import Tooltip from '@material-ui/core/Tooltip';
+
+import SignIn from '../../sign-in/sign-in';
+
 class Outdoor extends React.Component {  
     constructor(props){
         super(props);   
@@ -31,21 +34,27 @@ class Outdoor extends React.Component {
             response: '',
             CardPayment: false,
             CashPayment: false,
+            spinner: false,
             item : 
             {
-              id:'',
-              bookingDate : new Date(),
-              category: '',
-              service : '',
-              serviceDate : new Date(),
-              frequency: '',
-              payment: ''
+                id:'',
+                customerName: '',
+                email: '',
+                phoneNumber: '',
+                bookingDate : new Date(),
+                category: '',
+                service : '',
+                serviceDate : new Date(),
+                comments : '',
+                propertyDetails : '',
+                frequency: '',
+                payment: '',
+                total: ""
             }
         }
         this.handleDropdownChange = this.handleDropdownChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleSubmit1 = this.handleSubmit1.bind(this);
-        this.closePop= this.props.closePopup;
         this.CreditCardPayment= this.CreditCardPayment.bind(this);
         this.CashAfterServicePayment= this.CashAfterServicePayment.bind(this);
     }
@@ -53,13 +62,37 @@ class Outdoor extends React.Component {
         this.setState({ selectValue: e.target.value });
       }
 
-      closePop(e) {
-        console.log(e)
-      }
+
 
       CreditCardPayment(event) {
+        const {customerName, email, phoneNumber,address,comments,dateTime} = this.state;
+        const {currentUser} = this.props;
+        const name = this.props.currentUser? currentUser.displayName : customerName;
+        const emailAd = this.props.currentUser? currentUser.email : email;
+        const min = 1;
+        const max = 1000;
+        const random = min + (Math.random() * (max - min));
+        const service = this.props.OutdoorBookedService;
+        const payment = "ONLINE";
         this.setState({
-            CardPayment: this.state.CashPayment === true ? false : !this.state.CardPayment
+            CardPayment: this.state.CashPayment === true ? false : !this.state.CardPayment,
+            item : 
+            {
+              id: Math.ceil(random) + "OT",
+              customerName : name,
+              email : emailAd,
+              phoneNumber : phoneNumber,
+              address : address,
+              comments : comments,
+              bookingDate : new Date(),
+              category : "Outdoor Services",
+              service : service,
+              propertyDetails : "Property Type : " + this.props.OutdoorPropertType + "; Property Kind : " + this.props.OutdoorPropertKind + "; Size : " + this.props.OutdoorYardSize + "; Work Yard Location : " + this.props.OutdoorWorkYard,
+              serviceDate : dateTime.replace("GMT+0200 (South Africa Standard Time)",""),
+              frequency: this.props.serviceIntervalOutdoor,
+              payment: payment,
+              total :  this.props.totalOutdoor
+            }
         });
       }
   
@@ -85,18 +118,26 @@ class Outdoor extends React.Component {
         const min = 1;
         const max = 1000;
         const random = min + (Math.random() * (max - min));
-        const service = this.props.wheelbarrow ? this.props.wheelbarrow : this.props.windows? ", " + this.props.windows : this.props.box ? ", " + this.props.box : this.props.mower? ", " + this.props.mower : "";
-        const payment = this.state.CashPayment ? "CAS" : this.state.CardPayment ? "ONLINE" : "";
+        const service = this.props.OutdoorBookedService;
+        const payment = "CAS";
         this.setState({
+            spinner: true,
             item : 
                 {
                   id: Math.ceil(random) + "OT",
+                  customerName : data.get('customerName'),
+                  email : data.get('email'),
+                  phoneNumber : data.get('phoneNumber'),
+                  address : data.get('address'),
+                  comments : data.get('comments'),
                   bookingDate : new Date(),
-                  category : 'Outdoor',
+                  category : 'Outdoor Services',
                   service : service,
+                  propertyDetails : "Property Type : " + this.props.OutdoorPropertType + "; Property Kind : " + this.props.OutdoorPropertKind + "; Size : " + this.props.OutdoorYardSize + "; Work Yard Location : " + this.props.OutdoorWorkYard,
                   serviceDate : dateTime.replace("GMT+0200 (South Africa Standard Time)",""),
-                  frequency: "Once OFF",
-                  payment: payment
+                  frequency: this.props.serviceIntervalOutdoor,
+                  payment: payment,
+                  total :  this.props.totalOutdoor
                 }
                
         });
@@ -107,20 +148,22 @@ class Outdoor extends React.Component {
             "email" : data.get('email'),
             "customerName" : data.get('customerName'),
             "phoneNumber": data.get('phoneNumber'),
-            "subject": "Outdoors Cleaning Services",
+            "subject": "Outdoor Services",
             "comments": data.get('comments'),
             "address": data.get('address'),
-            "natureOfServices": "Outdoors",
-            "homeDetails": this.props.time + " hrs",
-            "extraServices": service,
+            "natureOfServices": service,
+            "extraServices": "Property Type : " + this.props.OutdoorPropertType + "; Property Kind : " + this.props.OutdoorPropertKind + "; Size : " + this.props.OutdoorYardSize + "; Work Yard Location : " + this.props.OutdoorWorkYard,
+            "serviceIntervals": "" + this.props.serviceIntervalOutdoor,
             "date": dateTime.replace("GMT+0200 (South Africa Standard Time)",""),
-            "costs": "R " + this.props.total
+            "costs": "R " + this.props.totalOutdoor,
+            "payment": payment
         })
           })
           //.then((response) => {response.json();console.log(response)})
           .then((response) => {
-            this.setState({ response: response.status });
+            this.setState({ response: response.status, spinner : false });
             console.log('Success:', response.status);
+            this.props.addItem(this.state.item);
           })
           .catch((error) => {
             this.setState({ error: error });
@@ -145,10 +188,16 @@ class Outdoor extends React.Component {
     }
 
 
+    showPopupSignIn(event) {
+        this.setState({
+            showPopupSignIn: !this.state.showPopupSignIn
+        });
+      }
+
 //https://www.telerik.com/kendo-react-ui/components/dateinputs/datetimepicker/integration-with-json/
   render() {  
 
-    const {customerName, email, phoneNumber,address,comments,response,error,item} = this.state;
+    const {customerName, email, phoneNumber,address,comments,response,error,item,spinner} = this.state;
     const {currentUser} = this.props;
     const {service} = "Outdoor Cleaning Services";
     return (  
@@ -215,7 +264,7 @@ class Outdoor extends React.Component {
                                  <Title> PAYMENT METHODS </Title>
                                     <PaymentOptionsContainer>
                                         <PayGridSplit><Fab><CASpayment onClick={this.CashAfterServicePayment.bind(this)} CashPayment = {this.state.CashPayment}/></Fab><PayOptions>CAS (Cash After Service)</PayOptions></PayGridSplit>
-                                        <PayGridSplit><Fab><CreditCardPayment onClick={this.CreditCardPayment.bind(this)} CardPayment = {this.state.CardPayment}/></Fab><PayOptions>Online Payment (Coming Soon)</PayOptions></PayGridSplit>
+                                        <PayGridSplit><Fab><CreditCardPayment onClick={this.CreditCardPayment.bind(this)} CardPayment = {this.state.CardPayment}/></Fab><PayOptions>Online Payment</PayOptions></PayGridSplit>
                                     </PaymentOptionsContainer>
                                      
                                     {   this.state.CashPayment ?
@@ -223,23 +272,33 @@ class Outdoor extends React.Component {
                                             response === 200  ? 
                                             <div>
                                                 <Response>Email Sent!!!!</Response>
-                                                <p style = {{"textAlign" : "center"}}><CustomButton  onClick={() => {this.props.addItem(item);this.closePop.bind(this)}} style = {{"margin-top" : "10px", "background": "#e91e63"}} size="sm">CLOSE</CustomButton></p> 
+                                                <p style = {{"textAlign" : "center"}}><CustomButton  onClick={this.props.closePopup} style = {{"margin-top" : "10px", "background": "#e91e63"}} size="sm">CLOSE</CustomButton></p> 
 
                                             </div>
                                             : response === 500 || response === 404 ?
                                                 <div>
                                                     <Errors>Email Not Sent!!!!</Errors>
                                                     <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit' style = {{"margin-top" : "10px", "background": "#e91e63"}} size="sm">RESEND</CustomButton></p> 
-
                                                 </div>
+                                                :   spinner? <p style = {{"textAlign" : "center"}}><CustomButton  style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">Loading...</CustomButton></p>  
+
                                                 :    <p style = {{"textAlign" : "center"}}><CustomButton  type = 'submit' style = {{"margin-top" : "10px", "background": "#e91e63"}} size="sm">BOOK SERVICE</CustomButton></p>                                    
                                         : null
                                     } 
                                     </Form>    
-                                    {/*this.state.CardPayment ?
-                                        <StripeCheckoutButton service = {service} price = {this.props.totalIndoor}/>
-                                            : null*/
-                                    }                            
+                                    {this.state.CardPayment ?
+                                        this.props.currentUser?
+                                        <StripeCheckoutButton item = {this.state.item}/>
+                                         : !this.props.currentUser?   
+                                         <p style = {{"textAlign" : "center"}}><CustomButton  onClick = {this.showPopupSignIn.bind(this)} style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>Sign In</CustomButton></p> 
+                                        : null
+                                    : null
+                                    }
+
+                                    {this.state.showPopupSignIn ?
+                                            <SignIn showPopupSignIn = {this.state.showPopupSignIn} closePopupSignIn = {this.showPopupSignIn.bind(this)}/>
+                                        : null
+                                    } 
                 </PopupInner>  
             </Popup>  
         );  

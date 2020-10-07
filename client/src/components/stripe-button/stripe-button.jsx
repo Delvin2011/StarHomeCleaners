@@ -24,7 +24,7 @@ import { addItem } from '../../redux/cart/cart-actions';
                 <input type="hidden" name="merchant_id" value="10788743" onChange={this.onInputChange}/>
                 <input type="hidden" name="merchant_key" value="bhxrbdcmch80c" onChange={this.onInputChange}/>
                 <input type="hidden" name="return_url" value="https://www.starhomecleaners.co.za/TransactionSuccess" onChange={this.onInputChange}/>
-                <input type="hidden" name="cancel_url" value="http://localhost:3000/TransactionSuccess" onChange={this.onInputChange}/>
+                <input type="hidden" name="cancel_url" value="https://www.starhomecleaners.co.za/TransactionFailed" onChange={this.onInputChange}/>
                 <input type="hidden" name="notify_url" value="https://www.starhomecleaners.co.za/notify.html" onChange={this.onInputChange}/>
                 <input type="hidden" name="name_first" value= {this.props.item.customerName} onChange={this.onInputChange}/>
                 <input type="hidden" name="email_address" value= {this.props.item.email} onChange={this.onInputChange}/>

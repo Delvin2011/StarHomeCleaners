@@ -7,9 +7,9 @@ import StripeCheckoutButton from '../../stripe-button/stripe-button';
 import Fab from '@material-ui/core/Fab';
 import { connect } from 'react-redux';
 import { addItem } from '../../../redux/cart/cart-actions';
-import Tooltip from '@material-ui/core/Tooltip';
+//import Tooltip from '@material-ui/core/Tooltip';
 import SignIn from '../../sign-in/sign-in';
-import {withRouter} from 'react-router-dom';
+
 class Pool extends React.Component {  
     constructor(props){
         super(props);   
@@ -18,8 +18,8 @@ class Pool extends React.Component {
             email: '',
             phoneNumber: '',
             subject: '',
-            address: '',
             comments: '',
+            address: '',
             selectValue: '',
             error: '',
             data: new FormData(),
@@ -38,6 +38,7 @@ class Pool extends React.Component {
                   customerName: '',
                   email: '',
                   phoneNumber: '',
+                  address: '',
                   bookingDate : new Date(),
                   category: '',
                   service : '',
@@ -55,15 +56,9 @@ class Pool extends React.Component {
 
         this.CreditCardPayment= this.CreditCardPayment.bind(this);
         this.CashAfterServicePayment= this.CashAfterServicePayment.bind(this);
-        //this.closePop= 
-        this.closePop= this.props.closePopup;
     }
     handleDropdownChange(e) {
         this.setState({ selectValue: e.target.value });
-      }
-
-      closePop = () => {
-        //console.log(e)
       }
 
       CreditCardPayment(event) {
@@ -165,6 +160,7 @@ class Pool extends React.Component {
           .then((response) => {
             this.setState({ response: response.status, spinner : false });
             console.log('Success:', response.status);
+            this.props.addItem(this.state.item);
           })
           .catch((error) => {
             this.setState({ error: error });
@@ -203,7 +199,7 @@ class Pool extends React.Component {
         return (  
             <Popup>  
                 <PopupInner>                   
-                        <CloseButton className = 'remove-button' style = {{"color":"black"}} onClick = {this.closePop.bind(this)} >&#10005;</CloseButton>  
+                        <CloseButton className = 'remove-button' style = {{"color":"black"}} onClick = {this.props.closePopup} >&#10005;</CloseButton>  
                         <LogoContainer src= {Logo} />   
                         <Title> Enter Contact Details </Title>                                    
                             <Form className = 'COD-form' onSubmit = {this.handleSubmit}>                
@@ -270,7 +266,7 @@ class Pool extends React.Component {
                                             response === 200  ? 
                                             <div>
                                                 <Response>Email Sent!!!!</Response>
-                                                <p style = {{"textAlign" : "center"}}><CustomButton  onClick={() => {this.props.addItem(item);this.closePop.bind(this)}} style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">CLOSE</CustomButton></p> 
+                                                <p style = {{"textAlign" : "center"}}><CustomButton  onClick={this.props.closePopup} style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">CLOSE</CustomButton></p> 
 
                                             </div>
                                             : response === 500 || response === 404 ?
@@ -282,8 +278,7 @@ class Pool extends React.Component {
     
 
                                                 : <p style = {{"textAlign" : "center"}}><CustomButton  type = 'submit' style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">BOOK SERVICE</CustomButton></p>                                    
-                                        
-                                        
+                                                                            
                                         : null
                                     } 
                                     </Form>    
@@ -312,7 +307,7 @@ const mapDispatchToProps = dispatch => ({
     addItem: item => dispatch(addItem(item))
   });
   
-  export default withRouter(connect(
+  export default connect(
     null,
     mapDispatchToProps
-  )(Pool));
+  )(Pool);
