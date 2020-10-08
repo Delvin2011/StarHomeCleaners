@@ -21,8 +21,8 @@ import { addItem } from '../../redux/cart/cart-actions';
     return (
         <div>
             <form action="https://www.payfast.co.za/eng/process" method="POST" id="checkout"> 
-                <input type="hidden" name="merchant_id" value= {process.env.Merchant_id} onChange={this.onInputChange}/>
-                <input type="hidden" name="merchant_key" value= {process.env.Merchant_key} onChange={this.onInputChange}/>
+                <input type="hidden" name="merchant_id" value= "10788743" onChange={this.onInputChange}/>
+                <input type="hidden" name="merchant_key" value= "bhxrbdcmch80c" onChange={this.onInputChange}/>
                 <input type="hidden" name="return_url" value="https://www.starhomecleaners.co.za/TransactionSuccess" onChange={this.onInputChange}/>
                 <input type="hidden" name="cancel_url" value="https://www.starhomecleaners.co.za/TransactionFailed" onChange={this.onInputChange}/>
                 <input type="hidden" name="notify_url" value="https://www.starhomecleaners.co.za/notify.html" onChange={this.onInputChange}/>
