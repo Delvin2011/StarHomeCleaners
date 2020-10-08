@@ -265,14 +265,14 @@ class Pool extends React.Component {
 
                                             response === 200  ? 
                                             <div>
-                                                <Response>Email Sent!!!!</Response>
+                                                <Response>Booking Submitted!!!</Response>
                                                 <p style = {{"textAlign" : "center"}}><CustomButton  onClick={this.props.closePopup} style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">CLOSE</CustomButton></p> 
 
                                             </div>
                                             : response === 500 || response === 404 ?
                                                 <div>
-                                                    <Errors>Email Not Sent!!!!</Errors>
-                                                    <p style = {{"textAlign" : "center"}}><CustomButton  type = 'submit' style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">RESEND</CustomButton></p> 
+                                                    <Errors>Booking Not Submitted!!!</Errors>
+                                                    <p style = {{"textAlign" : "center"}}><CustomButton  type = 'submit' style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">RESUBMIT</CustomButton></p> 
                                                 </div>
                                                 :   spinner? <p style = {{"textAlign" : "center"}}><CustomButton  style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">Loading...</CustomButton></p>  
     

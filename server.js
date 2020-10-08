@@ -44,7 +44,7 @@ app.post('/email', (req, res) => {
     var emailBody = "";
     if( subject === "Indoor Services") {
 
-        emailBody = "Good Sir/Madam" + '\n\n' + "Would like to request for services with the below details: " + '\n\n\t' + "Nature of service : " + natureOfServices + '\n\t' + "Details : " + extraServices + '\n\t' + "Service Intervals: " + serviceIntervals  + 
+        emailBody = "Good Sir/Madam" + '\n\n' + "Would like to request for services with the below details: " + '\n\n\t' + "Nature of service : " + natureOfServices + '\n\t' + "Details : " + extraServices + '\n\t' + "Service Intervals: " + serviceIntervals  + '\n\t' + 
        "Date : " + date + '\n\t' + "Physical Address : " + address + '\n\t' + "Comments : " + comments + '\n\t' + "Agreed cost payable after services : " + costs + '\n\n' + "Yours faithfully" +  '\n\n' + customerName + '\n' + phoneNumber
 
    }
@@ -55,12 +55,6 @@ app.post('/email', (req, res) => {
    '\n\t' + "Service Intervals : " + serviceIntervals  + '\n\t'+ "Date : " + date + '\n\t' + "Physical Address : " + address + '\n\t' + "Comments : " + comments + '\n\t' + "Agreed cost payable after services : " + costs + '\n\t' + "Payment Plan : " + payment + '\n\n' + "Yours faithfully" +  '\n\n' + customerName + '\n' + phoneNumber
 
 }
-
-  /* else if(subject === "Laundry" || subject === "Bedding" ||subject === "Alterations" || subject === "Dry Cleaning" ||subject === "Carpet or Sofa") {
-
-       emailBody = "Good Sir/Madam" + '\n\n' + "Would like to request for services with the below details: " + '\n\n\t' + "Nature of service : " + subject + '\n\t' + "Pickup Date : " + pickup + '\n\t' + "Delivery Date : " + delivery  + '\n\t' + "Physical Address : " + address + '\n\t' + "Comments : " + comments + '\n\n' + "Yours faithfully" +  '\n\n' + customerName + '\n' + phoneNumber
-
-   }*/
 
    else{
        emailBody = "Good Sir/Madam" + '\n\n' + "Would like to inquire on the below details: " + '\n\n\t' + "Nature of Inquiry : " + subject + '\n\t' +  "Comments : " + comments + '\n\n' + "Yours faithfully" +  '\n\n' + customerName + '\n' + phoneNumber
