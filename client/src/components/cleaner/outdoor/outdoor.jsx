@@ -10,7 +10,6 @@ import StripeCheckoutButton from '../../stripe-button/stripe-button';
 import { connect } from 'react-redux';
 import { addItem } from '../../../redux/cart/cart-actions';
 import Fab from '@material-ui/core/Fab';
-import Tooltip from '@material-ui/core/Tooltip';
 
 import SignIn from '../../sign-in/sign-in';
 
