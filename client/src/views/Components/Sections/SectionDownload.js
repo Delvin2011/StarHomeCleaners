@@ -42,11 +42,15 @@ export default function SectionDownload() {
           <GridContainer justify="center">
             <h4 style = {{color : "#3C4858"}}>Secure Payment!</h4>
           </GridContainer>
+
+          <Button color="facebook" size="sm">
+            <i className={classes.socials + " fab fa-cc-visa"} /> Visa
+          </Button>
           <Button color="google" size="sm">
             <i className={classes.socials + " fab fa-cc-mastercard"} /> MasterCard
           </Button>
-          <Button color="facebook" size="sm">
-            <i className={classes.socials + " fab fa-cc-visa"} /> Visa
+          <Button color="twitter" size="sm">
+            <b> E F T</b>
           </Button>
 
         </div>

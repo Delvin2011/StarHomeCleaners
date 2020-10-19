@@ -46,8 +46,6 @@ class SignIn extends React.Component {
 
   render() {
     const {googleSignInStart} = this.props;
-    console.log(this.props.currentUser);
-    console.log(this.props.error);
     return (
       <Popup>  
         <PopupInner> 
