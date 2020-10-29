@@ -1312,6 +1312,24 @@ return (
                                               <div style = {{"margin-top" : "0px"}}>
                                               <Checkbox toggle label = "  OnceOFF" onChange={ this.sanitiseIndoorOnceOFF }  disabled = {sanitiseOnceStatus} />
                                               <Checkbox toggle label = "  Monthly" onChange={ this.sanitiseIndoorMonth }  disabled = {sanitiseMonthStatus} />
+
+                                              {this.state.sanitiseIndoorMonth?
+                                              <div>
+                                              <ServiceTest> No. of Months<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                              <FormInput
+                                                      id="fname"
+                                                      size="10"
+                                                      type="number"
+                                                      name="fname"
+                                                      placeholder="2"
+                                                      onChange ={this.handleDCareaL.bind(this)}
+                                                      min="2" max="10"
+                                                      required
+                                                  />
+                                              </div>
+                                              : null
+
+                                            }
                                               </div>
                                             </div>
                                           : <ServiceGridSplit><ServiceTest>After Builders</ServiceTest> <Tooltip title="After Builders Cleaning" aria-label="add"><Fab2><AfterBuildIcon onClick={this.afterBuildIndoorClean.bind(this)} IndoorAfterBuildClean = {this.state.IndoorAfterBuildClean}/></Fab2></Tooltip></ServiceGridSplit>
@@ -1324,39 +1342,6 @@ return (
                                               <Checkbox toggle label = "  OnceOFF" onChange={ this.genIndoorCleanOnce }  disabled = {genIndoorCleanOnceStatus} />
                                               <Checkbox toggle label = "  Weekly" onChange={ this.genIndoorCleanWeek }  disabled = {genIndoorCleanWeekStatus} />
                                               <Checkbox toggle label = "  Monthly" onChange={ this.genIndoorCleanMonth }  disabled = {genIndoorCleanMonthStatus} />
-                                            {this.state.genIndoorCleanWeek?
-                                              <div>
-                                              <ServiceTest> No. of Weeks<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
-                                              <FormInput
-                                                      id="fname"
-                                                      size="10"
-                                                      type="number"
-                                                      name="fname"
-                                                      placeholder="2"
-                                                      onChange ={this.handleDCareaL.bind(this)}
-                                                      min="2" max="10"
-                                                      required
-                                                  />
-                                              </div>
-
-                                            :
-                                            this.state.genIndoorCleanMonth?
-                                              <div>
-                                              <ServiceTest> No. of Months<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
-                                              <FormInput
-                                                      id="fname"
-                                                      size="10"
-                                                      type="number"
-                                                      name="fname"
-                                                      placeholder="Months"
-                                                      onChange ={this.handleDCareaL.bind(this)}
-                                                      min="2" max="10"
-                                                      required
-                                                  />
-                                              </div>
-                                              : null
-
-                                            }
 
                                             </div>
                                           </div>
