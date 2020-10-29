@@ -1136,7 +1136,7 @@ return (
                           tabIcon: GiVacuumCleaner,
                           tabContent: (
                                   <div style = {{"margin-top": "-5px"}}>
-                                    <ContentTitle> Details <Info onClick = {this.showTcsIn.bind(this)} showTcIn = {this.state.showTcIn}/>
+                                    <ContentTitle> Enter Details <Info onClick = {this.showTcsIn.bind(this)} showTcIn = {this.state.showTcIn}/>
                                     <span><hr width="300"/></span>
                                     </ContentTitle>                                  
                                     <Options>
@@ -1225,7 +1225,7 @@ return (
                                       </select> 
 
                                     </Options>
-                                    <ContentTitle> Cleaning Services <Info onClick = {this.showServicesInfo.bind(this)} showServicesInfo = {this.state.showServicesInfo}/>
+                                    <ContentTitle> Select Cleaning Services <Info onClick = {this.showServicesInfo.bind(this)} showServicesInfo = {this.state.showServicesInfo}/>
                                       <span><hr width="300"/></span>
                                     </ContentTitle>
                                     <Options4>
@@ -1324,6 +1324,40 @@ return (
                                               <Checkbox toggle label = "  OnceOFF" onChange={ this.genIndoorCleanOnce }  disabled = {genIndoorCleanOnceStatus} />
                                               <Checkbox toggle label = "  Weekly" onChange={ this.genIndoorCleanWeek }  disabled = {genIndoorCleanWeekStatus} />
                                               <Checkbox toggle label = "  Monthly" onChange={ this.genIndoorCleanMonth }  disabled = {genIndoorCleanMonthStatus} />
+                                            {this.state.genIndoorCleanWeek?
+                                              <div>
+                                              <ServiceTest> No. of Weeks<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                              <FormInput
+                                                      id="fname"
+                                                      size="10"
+                                                      type="number"
+                                                      name="fname"
+                                                      placeholder="2"
+                                                      onChange ={this.handleDCareaL.bind(this)}
+                                                      min="2" max="10"
+                                                      required
+                                                  />
+                                              </div>
+
+                                            :
+                                            this.state.genIndoorCleanMonth?
+                                              <div>
+                                              <ServiceTest> No. of Months<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                              <FormInput
+                                                      id="fname"
+                                                      size="10"
+                                                      type="number"
+                                                      name="fname"
+                                                      placeholder="Months"
+                                                      onChange ={this.handleDCareaL.bind(this)}
+                                                      min="2" max="10"
+                                                      required
+                                                  />
+                                              </div>
+                                              : null
+
+                                            }
+
                                             </div>
                                           </div>
 
