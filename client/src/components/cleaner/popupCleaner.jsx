@@ -1123,12 +1123,12 @@ const ExampleCustomInput = ({ value, onClick }) => (
       value?
       value
       :     
-      "Select Date & Time"
+      "Select"
     }   
     </CustomButton>
   );
 
-  const customStyles = (width = 100, height = 20) => {
+  const customStyles = (width = 100, height = 15) => {
     return {
         container: (base) => ({
             ...base,
@@ -1172,6 +1172,7 @@ return (
                                     <Options4>
                                         {this.state.IndoorAfterBuildClean ?
                                           <div>
+                                          <ServiceTest> Date & Time? </ServiceTest>
                                           <DatePicker
                                           selected={this.state.dateTime}
                                           value={this.state.dateTime}
@@ -1182,7 +1183,8 @@ return (
                                           timeIntervals={30}
                                           timeCaption="Time"
                                           customInput={<ExampleCustomInput />}
-                                          dateFormat="MMMM d, yyyy h:mm aa"
+                                          //dateFormat="MMMM d, yyyy h:mm aa"
+                                          dateFormat="MM/dd/yyyy h:mm aa"
                                           shouldCloseOnSelect={false} 
                                           excludeTimes={[
                                                 setHours(setMinutes(new Date(), 0), 0),
@@ -1244,6 +1246,7 @@ return (
                                         : this.state.IndoorEndTenancyClean ?
 
                                           <div>
+                                          <ServiceTest> Date & Time? </ServiceTest>
                                           <DatePicker
                                           selected={this.state.dateTime}
                                           value={this.state.dateTime}
@@ -1254,7 +1257,8 @@ return (
                                           timeIntervals={30}
                                           timeCaption="Time"
                                           customInput={<ExampleCustomInput />}
-                                          dateFormat="MMMM d, yyyy h:mm aa"
+                                          //dateFormat="MMMM d, yyyy h:mm aa"
+                                          dateFormat="MM/dd/yyyy h:mm aa"
                                           shouldCloseOnSelect={false} 
                                           excludeTimes={[
                                                 setHours(setMinutes(new Date(), 0), 0),
@@ -1315,6 +1319,7 @@ return (
                                         
                                         : this.state.IndoorSanitise ?
                                           <div>
+                                          <ServiceTest> Date & Time? </ServiceTest>
                                           <DatePicker
                                           selected={this.state.dateTime}
                                           value={this.state.dateTime}
@@ -1325,7 +1330,8 @@ return (
                                           timeIntervals={30}
                                           timeCaption="Time"
                                           customInput={<ExampleCustomInput />}
-                                          dateFormat="MMMM d, yyyy h:mm aa"
+                                          //dateFormat="MMMM d, yyyy h:mm aa"
+                                          dateFormat="MM/dd/yyyy h:mm aa"
                                           shouldCloseOnSelect={false} 
                                           excludeTimes={[
                                                 setHours(setMinutes(new Date(), 0), 0),
@@ -1389,7 +1395,7 @@ return (
                                         
                                         { this.state.IndoorGenClean ?
                                           <div>
-                                          
+                                          <ServiceTest> Date & Time? </ServiceTest>
                                           <DatePicker
                                           selected={this.state.dateTime}
                                           value={this.state.dateTime}
@@ -1400,7 +1406,8 @@ return (
                                           timeIntervals={30}
                                           timeCaption="Time"
                                           customInput={<ExampleCustomInput />}
-                                          dateFormat="MMMM d, yyyy h:mm aa"
+                                          //dateFormat="MMMM d, yyyy h:mm aa"
+                                          dateFormat="MM/dd/yyyy h:mm aa"
                                           shouldCloseOnSelect={false} 
                                           excludeTimes={[
                                                 setHours(setMinutes(new Date(), 0), 0),
@@ -1689,7 +1696,7 @@ return (
 
                                     </EnterDetails>
                                     
-                                    <ContentTitle> Service Details & Costs
+                                    <ContentTitle style = {{"margin-top" : "10px"}}> Service Details & Costs
                                       <span><hr width="300"/></span>
                                     </ContentTitle>
                                     <Options3>
