@@ -1123,12 +1123,12 @@ const ExampleCustomInput = ({ value, onClick }) => (
       value?
       value
       :     
-      "Select"
+      "Date & Time"
     }   
     </CustomButton>
   );
 
-  const customStyles = (width = 100, height = 15) => {
+  const customStyles = (width = 50, height = 10) => {
     return {
         container: (base) => ({
             ...base,
@@ -1184,7 +1184,7 @@ return (
                                           timeCaption="Time"
                                           customInput={<ExampleCustomInput />}
                                           //dateFormat="MMMM d, yyyy h:mm aa"
-                                          dateFormat="MM/dd/yyyy h:mm aa"
+                                          dateFormat="MM/dd/yy"
                                           shouldCloseOnSelect={false} 
                                           excludeTimes={[
                                                 setHours(setMinutes(new Date(), 0), 0),
@@ -1258,7 +1258,7 @@ return (
                                           timeCaption="Time"
                                           customInput={<ExampleCustomInput />}
                                           //dateFormat="MMMM d, yyyy h:mm aa"
-                                          dateFormat="MM/dd/yyyy h:mm aa"
+                                          dateFormat="MM/dd/yy"
                                           shouldCloseOnSelect={false} 
                                           excludeTimes={[
                                                 setHours(setMinutes(new Date(), 0), 0),
@@ -1331,7 +1331,7 @@ return (
                                           timeCaption="Time"
                                           customInput={<ExampleCustomInput />}
                                           //dateFormat="MMMM d, yyyy h:mm aa"
-                                          dateFormat="MM/dd/yyyy h:mm aa"
+                                          dateFormat="MM/dd/yy"
                                           shouldCloseOnSelect={false} 
                                           excludeTimes={[
                                                 setHours(setMinutes(new Date(), 0), 0),
@@ -1395,7 +1395,7 @@ return (
                                         
                                         { this.state.IndoorGenClean ?
                                           <div>
-                                          <ServiceTest> Date & Time? </ServiceTest>
+                                          <ServiceTest> Location & Date </ServiceTest>
                                           <DatePicker
                                           selected={this.state.dateTime}
                                           value={this.state.dateTime}
@@ -1407,7 +1407,7 @@ return (
                                           timeCaption="Time"
                                           customInput={<ExampleCustomInput />}
                                           //dateFormat="MMMM d, yyyy h:mm aa"
-                                          dateFormat="MM/dd/yyyy h:mm aa"
+                                          dateFormat="MM/dd/yy"
                                           shouldCloseOnSelect={false} 
                                           excludeTimes={[
                                                 setHours(setMinutes(new Date(), 0), 0),
@@ -1452,18 +1452,17 @@ return (
                                                 setHours(setMinutes(new Date(), 30), 23)
                                               ]} 
                                      />
-                                          <ServiceTest> Promo Code </ServiceTest>
-                                          <FormInput
-                                            id="fname"
-                                            size="10"
-                                            maxlength="7"
-                                            type="text"
-                                            name="fname"
-                                            placeholder="Code"
-                                            onKeyUp={this.handleIndoorGenPromo}
-                                            min="0" max="9999999"
-                                            required
-                                          />
+
+                                        <div style = {{"width": "120px","height": "5px","color": 'grey'}}>
+                                        <Select
+                                          styles= {customStyles}
+                                          onChange={this.handleIndoorLoc}
+                                          options={options}
+                                          value={this.state.genCleanloc}
+                                          placeholder="Location..."
+                                          
+                                        />
+                                      </div>
                                           </div>
 
                                           : this.state.IndoorEndTenancyClean ?
@@ -1667,16 +1666,6 @@ return (
                                     <span><hr width="300"/></span>
                                     </ContentTitle>                                  
                                     <EnterDetails>                                      
-                                      <div style = {{"width": "150px","height": "22px","color": 'grey'}}>
-                                        <Select
-                                          styles= {customStyles}
-                                          onChange={this.handleIndoorLoc}
-                                          options={options}
-                                          value={this.state.genCleanloc}
-                                          placeholder="Location..."
-                                          
-                                        />
-                                      </div>
                                       <select id="dropdown" onChange={this.handleDropdownChange} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
                                           <option value="N/A">Bedrooms</option>
                                           <option value="1">1 Bedroom</option>
@@ -1693,7 +1682,19 @@ return (
                                           <option value="4">4 Bathrooms</option>
                                           <option value="5">5 Bathrooms</option>
                                       </select> 
-
+                                      <div style = {{"margin-top":"0px"}}>
+                                          <FormInput
+                                            id="fname"
+                                            size="10"
+                                            maxlength="7"
+                                            type="text"
+                                            name="fname"
+                                            placeholder="Promo Code?"
+                                            onKeyUp={this.handleIndoorGenPromo}
+                                            min="0" max="9999999"
+                                            required
+                                          />
+                                      </div>
                                     </EnterDetails>
                                     
                                     <ContentTitle style = {{"margin-top" : "10px"}}> Service Details & Costs
