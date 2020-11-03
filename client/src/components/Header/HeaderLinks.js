@@ -148,7 +148,7 @@ const useStyles = makeStyles(styles);
           buttonIcon={Apps}
           dropdownList={[
             <a
-              href="https://wa.me/27787243693"
+              href="https://wa.me/27640461900"
               target="_blank"
               className={classes.dropdownLink}
             > <IoLogoWhatsapp style={{color: '#25d366'}}/> WhatsApp

@@ -1128,7 +1128,7 @@ const ExampleCustomInput = ({ value, onClick }) => (
     </CustomButton>
   );
 
-  const customStyles = (width = 50, height = 10) => {
+  const customStyles = (width = 50, height = 5) => {
     return {
         container: (base) => ({
             ...base,
@@ -1390,12 +1390,19 @@ return (
                                           />
                                           </div>
 
-                                        : <ServiceGridSplit><ServiceTest>General Cleaning</ServiceTest><Tooltip title="General Cleaning" aria-label="add"><Fab2><GenCleanIcon onClick={this.genIndoorClean.bind(this)} IndoorGenClean = {this.state.IndoorGenClean}/></Fab2></Tooltip></ServiceGridSplit>
-                                        }
-                                        
-                                        { this.state.IndoorGenClean ?
-                                          <div>
-                                          <ServiceTest> Location & Date </ServiceTest>
+                                        :  this.state.IndoorGenClean ? 
+                                        <div>
+                                          <ServiceTest> Location & Date<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                          <div style = {{"width": "105px","height": "40px","color": 'grey'}}>
+                                            <Select
+                                              styles= {customStyles}
+                                              onChange={this.handleIndoorLoc}
+                                              options={options}
+                                              value={this.state.genCleanloc}
+                                              placeholder="Location..."
+                                              
+                                            />
+                                          </div>
                                           <DatePicker
                                           selected={this.state.dateTime}
                                           value={this.state.dateTime}
@@ -1406,7 +1413,6 @@ return (
                                           timeIntervals={30}
                                           timeCaption="Time"
                                           customInput={<ExampleCustomInput />}
-                                          //dateFormat="MMMM d, yyyy h:mm aa"
                                           dateFormat="MM/dd/yy"
                                           shouldCloseOnSelect={false} 
                                           excludeTimes={[
@@ -1452,19 +1458,14 @@ return (
                                                 setHours(setMinutes(new Date(), 30), 23)
                                               ]} 
                                      />
+                                        </div>
+                                        :<ServiceGridSplit><ServiceTest>General Cleaning</ServiceTest><Tooltip title="General Cleaning" aria-label="add"><Fab2><GenCleanIcon onClick={this.genIndoorClean.bind(this)} IndoorGenClean = {this.state.IndoorGenClean}/></Fab2></Tooltip></ServiceGridSplit>
+                                        
+                                        }
+                                        
+                                        { this.state.IndoorGenClean ?
 
-                                        <div style = {{"width": "120px","height": "5px","color": 'grey'}}>
-                                        <Select
-                                          styles= {customStyles}
-                                          onChange={this.handleIndoorLoc}
-                                          options={options}
-                                          value={this.state.genCleanloc}
-                                          placeholder="Location..."
-                                          
-                                        />
-                                      </div>
-                                          </div>
-
+                                          <ServiceGridSplit><ServiceTest>General Cleaning</ServiceTest><Tooltip title="General Cleaning" aria-label="add"><Fab2><GenCleanIcon onClick={this.genIndoorClean.bind(this)} IndoorGenClean = {this.state.IndoorGenClean}/></Fab2></Tooltip></ServiceGridSplit>
                                           : this.state.IndoorEndTenancyClean ?
                                         <div>
                                         <ServiceTest> How Often? <span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>

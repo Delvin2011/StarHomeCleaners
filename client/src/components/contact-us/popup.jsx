@@ -105,7 +105,7 @@ class ContactUs extends React.Component {
                                 <br></br>
                                 <br></br>
                                 <h2 style = {{color : "#4a4a4a"}}>Alternatively:</h2>
-                                <h4 style = {{color : "#4a4a4a"}}>078 724 3693</h4>
+                                <h4 style = {{color : "#4a4a4a"}}>064 046 1900</h4>
                                 <br></br>
                                 <br></br>
                                 <p style = {{"textAlign" : "center"}}><CustomButton type = 'submit' onClick={this.props.closePopupPhone} style = {{"margin-top" : "12.5px", "background": "#e91e63"}}>CLOSE</CustomButton></p>

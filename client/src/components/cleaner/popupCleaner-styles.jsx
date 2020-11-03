@@ -329,11 +329,12 @@ export const TabsContainer = styled.div`
     alignItems: center; 
     margin-left: 10%;
     margin-right: 10%;
-    margin-top: -10px;
+    margin-top: -10px; 
 
     @media screen and (max-width: 800px){
-    margin-left: 5%;
-    margin-right: 5%;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    margin-top: -20px;
 }
 `;
 
