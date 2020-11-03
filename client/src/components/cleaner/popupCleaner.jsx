@@ -1464,8 +1464,22 @@ return (
                                         }
                                         
                                         { this.state.IndoorGenClean ?
-
-                                          <ServiceGridSplit><ServiceTest>General Cleaning</ServiceTest><Tooltip title="General Cleaning" aria-label="add"><Fab2><GenCleanIcon onClick={this.genIndoorClean.bind(this)} IndoorGenClean = {this.state.IndoorGenClean}/></Fab2></Tooltip></ServiceGridSplit>
+                                          <div>
+                                            <ServiceGridSplit><ServiceTest>General Cleaning</ServiceTest><Tooltip title="General Cleaning" aria-label="add"><Fab2><GenCleanIcon onClick={this.genIndoorClean.bind(this)} IndoorGenClean = {this.state.IndoorGenClean}/></Fab2></Tooltip></ServiceGridSplit>
+                                            <div style = {{"margin-top":"8px"}}>
+                                                <FormInput
+                                                  id="fname"
+                                                  size="10"
+                                                  maxlength="7"
+                                                  type="text"
+                                                  name="fname"
+                                                  placeholder="Promo Code?"
+                                                  onKeyUp={this.handleIndoorGenPromo}
+                                                  min="0" max="9999999"
+                                                  required
+                                                />
+                                            </div>
+                                          </div>
                                           : this.state.IndoorEndTenancyClean ?
                                         <div>
                                         <ServiceTest> How Often? <span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
@@ -1683,19 +1697,17 @@ return (
                                           <option value="4">4 Bathrooms</option>
                                           <option value="5">5 Bathrooms</option>
                                       </select> 
-                                      <div style = {{"margin-top":"0px"}}>
-                                          <FormInput
-                                            id="fname"
-                                            size="10"
-                                            maxlength="7"
-                                            type="text"
-                                            name="fname"
-                                            placeholder="Promo Code?"
-                                            onKeyUp={this.handleIndoorGenPromo}
-                                            min="0" max="9999999"
-                                            required
-                                          />
-                                      </div>
+                                      { this.state.IndoorCleanService?
+                                          <Checkbox toggle label = "  Detergents?" onChange={ this.genIndoorDetergents }/>
+
+                                          : this.state.IndoorAfterBuildCleanService?
+                                              <Checkbox toggle label = "  Detergents?" onChange={ this.afterBuilderDetergents }  />
+                                          
+                                          : this.state.IndoorEndTenancyCleanService?
+                                                <Checkbox toggle label = "  Detergents?" onChange={ this.endTenancyDetergents } />
+
+                                          : null
+                                        }
                                     </EnterDetails>
                                     
                                     <ContentTitle style = {{"margin-top" : "10px"}}> Service Details & Costs
@@ -1721,17 +1733,7 @@ return (
                                       </div>
                                       <div>
                                         <Message2>Extras</Message2>
-                                        { this.state.IndoorCleanService?
-                                          <Checkbox toggle label = "  Detergents" onChange={ this.genIndoorDetergents }/>
 
-                                          : this.state.IndoorAfterBuildCleanService?
-                                              <Checkbox toggle label = "  Detergents" onChange={ this.afterBuilderDetergents }  />
-                                          
-                                          : this.state.IndoorEndTenancyCleanService?
-                                                <Checkbox toggle label = "  Detergents" onChange={ this.endTenancyDetergents } />
-
-                                          : null
-                                        }
                                         <Message>{extrasIN}</Message>
                                         
                                       </div>
