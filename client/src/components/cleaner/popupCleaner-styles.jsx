@@ -143,6 +143,23 @@ export const Options = styled.div`
     }
 `;
 
+export const EnterDetails = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 2px;
+  justify-items: center;
+  text-align: center;
+  font-size: 14px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    @media screen and (max-width: 800px){
+      grid-template-columns: repeat(3, 1fr);  
+      font-size: 12px;
+      justify-items: left;
+      text-align: left;
+      grid-gap: 2px;
+    }
+`;
+
 export const Options5 = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);

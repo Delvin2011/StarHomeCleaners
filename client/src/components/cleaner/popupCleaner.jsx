@@ -1,5 +1,5 @@
 import React from 'react';  
-import {Popup,PopupInner,ContentTitle,CloseButton,LogoContainer2,TabsContainer,RangeSliderContainer,Options,Options2,Options3,GenCleanIcon,AfterBuildIcon,EndTenancyIcon,SanitiseIcon,Fab2,Message,Message2,Wheelbarrow, Options4,Options5,Info,Flowers,Driveway,Maintanance,Installations,ServicePool,Options3p1,ServiceGridSplit,ServiceName,Form,ServiceTest,Info2} from './popupCleaner-styles'; 
+import {Popup,PopupInner,ContentTitle,CloseButton,LogoContainer2,TabsContainer,EnterDetails,Options,Options2,Options3,GenCleanIcon,AfterBuildIcon,EndTenancyIcon,SanitiseIcon,Fab2,Message,Message2,Wheelbarrow, Options4,Options5,Info,Flowers,Driveway,Maintanance,Installations,ServicePool,Options3p1,ServiceGridSplit,ServiceName,Form,ServiceTest,Info2} from './popupCleaner-styles'; 
 import Outdoor from './outdoor/outdoor';
 import Indoor from './indoor/indoor';
 import Pool from './pool/pool';
@@ -175,7 +175,7 @@ class Cleaner extends React.Component {
           IndoorEndTenancyCleanPrice: 0,
           IndoorSanitisePrice: 0,
           priceDetergent: 0,
-           
+          Beds: "", Baths: "",IndoorLocation: "",          
           priceGenIndoorCleanOnce: 0, priceGenIndoorCleanWeek: 0, priceGenIndoorCleanMonth: 0,
           priceABcleanOnce: 0, priceABcleanWeek: 0, priceABcleanMonth: 0,
           priceETcleanOnce: 0, priceETcleanMonth: 0,
@@ -270,6 +270,15 @@ class Cleaner extends React.Component {
         this.handleIndoorAfterBuildPromo = this.handleIndoorAfterBuildPromo.bind(this);
         this.handleIndoorSanitisePromo = this.handleIndoorSanitisePromo.bind(this);
 
+        this.handleSanitiseFreq  = this.handleSanitiseFreq.bind(this);
+        this.handleEndTenancyFreq  = this.handleEndTenancyFreq.bind(this);
+        /**/
+        this.handleGenCleaningWeekFreq = this.handleGenCleaningWeekFreq.bind(this);
+        this.handleGenCleaningMonthFreq  = this.handleGenCleaningMonthFreq.bind(this);
+        this.handleAfterBuildersWeekFreq  = this.handleAfterBuildersWeekFreq.bind(this);
+        this.handleAfterBuildersMonthFreq  = this.handleAfterBuildersMonthFreq.bind(this);
+        
+
 
         /***********Outdoor Services Handling*************/
         this.handleOutdoorPropertType = this.handleOutdoorPropertType.bind(this);
@@ -343,17 +352,17 @@ class Cleaner extends React.Component {
     }
 
     handleDropdownChange(e) {
-      this.logs.shift();
-      this.logs.unshift("Bedrooms : " + e.target.value);
-      this.setState({ selectValue: e.target.value,
+      //this.logs.shift();
+      //this.logs.unshift("Bedrooms : " + e.target.value);
+      this.setState({ Beds: "Beds : " + e.target.value,
         bedPrice: e.target.value === "1"? 30 : e.target.value === "2"? 60 : e.target.value === "3"? 90 : e.target.value === "4"? 120 : e.target.value === "5"? 150 : 0,
         bedRooms: e.target.value === "1"? e.target.value + " Bedroom" : e.target.value  + " Bedrooms" });
       }
       
     handleDropdownChange2(e) {
-      this.logs2.shift();
-      this.logs2.unshift("Bathrooms : " + e.target.value);
-        this.setState({ selectValue: e.target.value,
+      //this.logs2.shift();
+      //this.logs2.unshift("Bathrooms : " + e.target.value);
+        this.setState({ Baths: "Baths : " + e.target.value,
           bathPrice: e.target.value === "1"? 20 : e.target.value === "2"? 40 : e.target.value === "3"? 60 : e.target.value === "4"? 80 : e.target.value === "5"? 100 : 0,
           bathRooms: e.target.value === "1"? e.target.value + " Bathroom" : e.target.value  + " Bathrooms"});
         }
@@ -419,6 +428,8 @@ class Cleaner extends React.Component {
         genIndoorCleanWalls : false, genIndoorCleanWindows : false, genIndoorCleanLaundry : false, genIndoorDetergents : false,
         genIndoorCleanOnce : false, genIndoorCleanWeek : false, genIndoorCleanMonth : false,
         handleIndoorGenPromo: 1,
+        handleGenCleaningWeekFreq: 2,
+        handleGenCleaningMonthFreq: 2,
         priceGenIndoorCleanWalls : 0, priceGenIndoorCleanWindows : 0, priceGenIndoorCleanLaundry : 0, priceGenIndoorDetergents : 0,
         IndoorGenClean: this.state.IndoorAfterBuildClean === true || this.state.IndoorEndTenancyClean === true || this.state.IndoorSanitise === true ? false : !this.state.IndoorGenClean,
         IndoorCleanService: this.state.IndoorAfterBuildClean === true || this.state.IndoorEndTenancyClean === true || this.state.IndoorSanitise === true || this.state.IndoorGenClean? null : "General",
@@ -431,6 +442,8 @@ class Cleaner extends React.Component {
         afterBuildIndoorCleanWalls : false, afterBuildIndoorCleanWindows : false, afterBuilderDetergents : false,
         afterBuildCleanOnce : false, afterBuildCleanWeek : false, afterBuildCleanMonth : false,
         handleIndoorAfterBuildPromo: 1,
+        handleAfterBuildersWeekFreq: 2,
+        handleAfterBuildersMonthFreq: 2,
         priceAfterBuildIndoorCleanWalls : 0, priceAfterBuildIndoorCleanWindows : 0, priceAfterBuilderDetergents : 0,
         IndoorAfterBuildClean: this.state.IndoorGenClean === true || this.state.IndoorEndTenancyClean === true || this.state.IndoorSanitise === true ? false : !this.state.IndoorAfterBuildClean,
         IndoorAfterBuildCleanService: this.state.IndoorGenClean === true || this.state.IndoorEndTenancyClean === true || this.state.IndoorSanitise === true || this.state.IndoorAfterBuildClean? null : "After Builders",
@@ -443,6 +456,7 @@ class Cleaner extends React.Component {
         endTenancyIndoorCleanWalls : false, endTenancyIndoorCleanWindows : false, endTenancyDetergents : false,
         endTenancyCleanOnce : false, endTenancyCleanMonth : false,
         handleIndoorEndTenencyPromo: 1,
+        handleEndTenancyFreq: 2,
         priceEndTenancyIndoorCleanWalls : 0, priceEndTenancyIndoorCleanWindows : 0, priceEndTenancyDetergents : 0,
         IndoorEndTenancyClean: this.state.IndoorAfterBuildClean === true || this.state.IndoorGenClean === true || this.state.IndoorSanitise === true ? false : !this.state.IndoorEndTenancyClean,
         IndoorEndTenancyCleanService: this.state.IndoorAfterBuildClean === true || this.state.IndoorGenClean === true || this.state.IndoorSanitise === true || this.state.IndoorEndTenancyClean? null : "End of Tenancy",
@@ -455,6 +469,7 @@ class Cleaner extends React.Component {
         sanitiseIndoorOnceOFF : false, sanitiseIndoorMonth : false,
         priceSanitiseIndoorOnceOFF : 0, priceSanitiseIndoorMonth : 0,
         handleIndoorSanitisePromo: 1,
+        handleSanitiseFreq: 2,
         IndoorSanitise: this.state.IndoorAfterBuildClean === true || this.state.IndoorEndTenancyClean === true || this.state.IndoorGenClean === true ? false : !this.state.IndoorSanitise,
         IndoorSanitiseService: this.state.IndoorAfterBuildClean === true || this.state.IndoorEndTenancyClean === true || this.state.IndoorGenClean === true || this.state.IndoorSanitise? null : "Antiviral Sanitisation",
         IndoorSanitisePrice: this.state.IndoorSanitise? 0 : 30
@@ -462,18 +477,18 @@ class Cleaner extends React.Component {
     }
 
 
-    genIndoorCleanOnce () { this.setState({genIndoorCleanOnce: !this.state.genIndoorCleanOnce, priceGenIndoorCleanOnce : this.state.genIndoorCleanOnce? 0 : 1}); }
-    genIndoorCleanWeek () { this.setState({genIndoorCleanWeek: !this.state.genIndoorCleanWeek, priceGenIndoorCleanWeek : this.state.genIndoorCleanWeek? 0 : 0.9}); }
-    genIndoorCleanMonth () { this.setState({genIndoorCleanMonth: !this.state.genIndoorCleanMonth, priceGenIndoorCleanMonth : this.state.genIndoorCleanMonth? 0 : 0.95}); }
+    genIndoorCleanOnce () { this.setState({handleGenCleaningWeekFreq: 2, handleGenCleaningMonthFreq: 2, genIndoorCleanOnce: !this.state.genIndoorCleanOnce, priceGenIndoorCleanOnce : this.state.genIndoorCleanOnce? 0 : 1}); }
+    genIndoorCleanWeek () { this.setState({handleGenCleaningMonthFreq: 2, genIndoorCleanWeek: !this.state.genIndoorCleanWeek, priceGenIndoorCleanWeek : this.state.genIndoorCleanWeek? 0 : 0.9}); }
+    genIndoorCleanMonth () { this.setState({handleGenCleaningWeekFreq: 2, genIndoorCleanMonth: !this.state.genIndoorCleanMonth, priceGenIndoorCleanMonth : this.state.genIndoorCleanMonth? 0 : 0.95}); }
      
-    afterBuildCleanOnce () { this.setState({afterBuildCleanOnce: !this.state.afterBuildCleanOnce, priceABcleanOnce : this.state.afterBuildCleanOnce? 0 : 1}); }
-    afterBuildCleanWeek () { this.setState({afterBuildCleanWeek: !this.state.afterBuildCleanWeek, priceABcleanWeek : this.state.afterBuildCleanWeek? 0 : 0.9}); }
-    afterBuildCleanMonth () { this.setState({afterBuildCleanMonth: !this.state.afterBuildCleanMonth, priceABcleanMonth : this.state.afterBuildCleanMonth? 0 : 0.95}); }
+    afterBuildCleanOnce () { this.setState({handleAfterBuildersWeekFreq: 2, handleAfterBuildersMonthFreq: 2,afterBuildCleanOnce: !this.state.afterBuildCleanOnce, priceABcleanOnce : this.state.afterBuildCleanOnce? 0 : 1}); }
+    afterBuildCleanWeek () { this.setState({handleAfterBuildersMonthFreq: 2,afterBuildCleanWeek: !this.state.afterBuildCleanWeek, priceABcleanWeek : this.state.afterBuildCleanWeek? 0 : 0.9}); }
+    afterBuildCleanMonth () { this.setState({handleAfterBuildersWeekFreq: 2,afterBuildCleanMonth: !this.state.afterBuildCleanMonth, priceABcleanMonth : this.state.afterBuildCleanMonth? 0 : 0.95}); }
      
-    endTenancyCleanOnce () { this.setState({endTenancyCleanOnce: !this.state.endTenancyCleanOnce, priceETcleanOnce : this.state.endTenancyCleanOnce? 0 : 1}); }
+    endTenancyCleanOnce () { this.setState({endTenancyCleanMonth: 2, endTenancyCleanOnce: !this.state.endTenancyCleanOnce, priceETcleanOnce : this.state.endTenancyCleanOnce? 0 : 1}); }
     endTenancyCleanMonth () { this.setState({endTenancyCleanMonth: !this.state.endTenancyCleanMonth, priceETcleanMonth : this.state.endTenancyCleanMonth? 0 : 0.95}); }
 
-    sanitiseIndoorOnceOFF () { this.setState({sanitiseIndoorOnceOFF: !this.state.sanitiseIndoorOnceOFF, priceSanitiseIndoorOnceOFF : this.state.sanitiseIndoorOnceOFF? 0 : 1}); }
+    sanitiseIndoorOnceOFF () { this.setState({handleSanitiseFreq:2, sanitiseIndoorOnceOFF: !this.state.sanitiseIndoorOnceOFF, priceSanitiseIndoorOnceOFF : this.state.sanitiseIndoorOnceOFF? 0 : 1}); }
     sanitiseIndoorMonth () { this.setState({sanitiseIndoorMonth: !this.state.sanitiseIndoorMonth, priceSanitiseIndoorMonth : this.state.sanitiseIndoorMonth? 0 : 0.9}); }
       
       
@@ -564,9 +579,11 @@ class Cleaner extends React.Component {
 
 
     handleIndoorLoc = option => {
-      this.logs3.shift();
-      this.logs3.unshift("Location : " + option.value);
-        this.setState({ genCleanloc: option
+      //this.logs3.shift();
+      //this.logs3.unshift("Location : " + option.value);
+        this.setState({ genCleanloc: option,
+          IndoorLocation : "Location : " + option.value
+
         });
       }
 
@@ -609,6 +626,16 @@ class Cleaner extends React.Component {
         handleIndoorSanitisePromo: genPromo
       });
     }
+
+    
+    handleSanitiseFreq(event) { event.preventDefault(); this.setState({ handleSanitiseFreq: event.target.value})};
+    handleEndTenancyFreq(event) { event.preventDefault(); this.setState({ handleEndTenancyFreq: event.target.value})};
+    handleGenCleaningWeekFreq(event) { event.preventDefault(); this.setState({ handleGenCleaningWeekFreq: event.target.value})};
+    handleGenCleaningMonthFreq(event) { event.preventDefault(); this.setState({ handleGenCleaningMonthFreq: event.target.value})};
+
+    handleAfterBuildersWeekFreq(event) { event.preventDefault(); this.setState({ handleAfterBuildersWeekFreq: event.target.value})};
+    handleAfterBuildersMonthFreq(event) { event.preventDefault(); this.setState({ handleAfterBuildersMonthFreq: event.target.value})};
+    
     /**************Outdoor Services Handling********************/
 
     showOutdoorServicesInfo(event) {
@@ -984,12 +1011,15 @@ const extrasIN = gIN_Extra !== "" && (this.state.genIndoorCleanWallsService || t
                  afIN_Extra !== "" && (this.state.afterBuildIndoorCleanWallsService || this.state.afterBuildIndoorCleanWindowsService) ? afIN_Extra :
                  etIN_Extra !== "" && (this.state.endTenancyIndoorCleanWallsService || this.state.endTenancyIndoorCleanWindowsService) ? etIN_Extra : "";
 
+                 
+const SanitiseFreqMultiplier = this.state.sanitiseIndoorMonth ? this.state.handleSanitiseFreq : 1; const EndTenancyFreqMultiplier = this.state.endTenancyCleanMonth ? this.state.handleEndTenancyFreq : 1;
+const GenCleanFreqMultiplier = this.state.genIndoorCleanWeek ? this.state.handleGenCleaningWeekFreq : this.state.genIndoorCleanMonth ? this.state.handleGenCleaningMonthFreq : 1;
+const AfterBuildersFreqMultiplier = this.state.afterBuildCleanWeek ? this.state.handleAfterBuildersWeekFreq : this.state.afterBuildCleanMonth ? this.state.handleAfterBuildersMonthFreq : 1;
 
-
-const totalGenIndoorClean = this.state.genIndoorCleanOnce || this.state.genIndoorCleanWeek || this.state.genIndoorCleanMonth? (150 + this.state.bedPrice + this.state.bathPrice + this.state.priceGenIndoorCleanWalls + this.state.priceGenIndoorCleanWindows + this.state.priceGenIndoorCleanLaundry + this.state.priceGenIndoorDetergents) * (this.state.priceGenIndoorCleanOnce + this.state.priceGenIndoorCleanWeek + this.state.priceGenIndoorCleanMonth) * this.state.handleIndoorGenPromo : 0;
-const totalAfterBuildIndoorClean = this.state.afterBuildCleanOnce || this.state.afterBuildCleanWeek || this.state.afterBuildCleanMonth?  (180 + this.state.bedPrice + this.state.bathPrice + this.state.priceAfterBuildIndoorCleanWalls + this.state.priceAfterBuildIndoorCleanWindows + this.state.priceAfterBuilderDetergents) * (this.state.priceABcleanOnce + this.state.priceABcleanWeek + this.state.priceABcleanMonth) * this.state.handleIndoorAfterBuildPromo : 0;
-const totalEndTenancyIndoorClean =  this.state.endTenancyCleanOnce || this.state.endTenancyCleanMonth ? (180 + this.state.bedPrice + this.state.bathPrice + this.state.priceEndTenancyIndoorCleanWalls + this.state.priceEndTenancyIndoorCleanWindows + this.state.priceEndTenancyDetergents) * (this.state.priceETcleanOnce + this.state.priceETcleanMonth) * this.state.handleIndoorEndTenencyPromo  : 0;
-const totalSanitiseIndoor = this.state.sanitiseIndoorOnceOFF || this.state.sanitiseIndoorMonth? (230 + this.state.bedPrice + this.state.bathPrice) * (this.state.priceSanitiseIndoorOnceOFF + this.state.priceSanitiseIndoorMonth) * (this.state.priceSanitiseIndoorOnceOFF + this.state.priceSanitiseIndoorMonth) * this.state.handleIndoorSanitisePromo : 0;
+const totalGenIndoorClean = this.state.genIndoorCleanOnce || this.state.genIndoorCleanWeek || this.state.genIndoorCleanMonth? (150 + this.state.bedPrice + this.state.bathPrice + this.state.priceGenIndoorCleanWalls + this.state.priceGenIndoorCleanWindows + this.state.priceGenIndoorCleanLaundry + this.state.priceGenIndoorDetergents) * (this.state.priceGenIndoorCleanOnce + this.state.priceGenIndoorCleanWeek + this.state.priceGenIndoorCleanMonth) * this.state.handleIndoorGenPromo * GenCleanFreqMultiplier : 0;
+const totalAfterBuildIndoorClean = this.state.afterBuildCleanOnce || this.state.afterBuildCleanWeek || this.state.afterBuildCleanMonth?  (180 + this.state.bedPrice + this.state.bathPrice + this.state.priceAfterBuildIndoorCleanWalls + this.state.priceAfterBuildIndoorCleanWindows + this.state.priceAfterBuilderDetergents) * (this.state.priceABcleanOnce + this.state.priceABcleanWeek + this.state.priceABcleanMonth) * this.state.handleIndoorAfterBuildPromo * AfterBuildersFreqMultiplier: 0;
+const totalEndTenancyIndoorClean =  this.state.endTenancyCleanOnce || this.state.endTenancyCleanMonth ? (180 + this.state.bedPrice + this.state.bathPrice + this.state.priceEndTenancyIndoorCleanWalls + this.state.priceEndTenancyIndoorCleanWindows + this.state.priceEndTenancyDetergents) * (this.state.priceETcleanOnce + this.state.priceETcleanMonth) * this.state.handleIndoorEndTenencyPromo * EndTenancyFreqMultiplier : 0;
+const totalSanitiseIndoor = this.state.sanitiseIndoorOnceOFF || this.state.sanitiseIndoorMonth? (230 + this.state.bedPrice + this.state.bathPrice) * (this.state.priceSanitiseIndoorOnceOFF + this.state.priceSanitiseIndoorMonth) * (this.state.priceSanitiseIndoorOnceOFF + this.state.priceSanitiseIndoorMonth) * this.state.handleIndoorSanitisePromo * SanitiseFreqMultiplier : 0;
 const totalIndoor = this.state.IndoorGenClean ? totalGenIndoorClean :  this.state.IndoorAfterBuildClean ? totalAfterBuildIndoorClean : this.state.IndoorEndTenancyClean ? totalEndTenancyIndoorClean : this.state.IndoorSanitise ? totalSanitiseIndoor : 0;
 /********************Outdoor*****************/
 const outdoorYCwholeYardStatus = this.state.outdoorYCfrontYard || this.state.outdoorYCbackYard || this.state.outdoorYCsideYard? true : false;
@@ -1136,11 +1166,13 @@ return (
                           tabIcon: GiVacuumCleaner,
                           tabContent: (
                                   <div style = {{"margin-top": "-5px"}}>
-                                    <ContentTitle> Enter Details <Info onClick = {this.showTcsIn.bind(this)} showTcIn = {this.state.showTcIn}/>
-                                    <span><hr width="300"/></span>
-                                    </ContentTitle>                                  
-                                    <Options>
-                                    <DatePicker
+                                    <ContentTitle> Select Cleaning Service <Info onClick = {this.showServicesInfo.bind(this)} showServicesInfo = {this.state.showServicesInfo}/>
+                                      <span><hr width="300"/></span>
+                                    </ContentTitle>
+                                    <Options4>
+                                        {this.state.IndoorAfterBuildClean ?
+                                          <div>
+                                          <DatePicker
                                           selected={this.state.dateTime}
                                           value={this.state.dateTime}
                                           onChange={this.handleChange2}
@@ -1195,42 +1227,6 @@ return (
                                                 setHours(setMinutes(new Date(), 30), 23)
                                               ]} 
                                      />
-
-                                      
-                                      <div style = {{"width": "150px","height": "22px","color": 'grey'}}>
-                                        <Select
-                                          styles= {customStyles}
-                                          onChange={this.handleIndoorLoc}
-                                          options={options}
-                                          value={this.state.genCleanloc}
-                                          placeholder="Location..."
-                                          
-                                        />
-                                      </div>
-                                      <select id="dropdown" onChange={this.handleDropdownChange} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
-                                          <option value="N/A">Bedrooms</option>
-                                          <option value="1">1 Bedroom</option>
-                                          <option value="2">2 Bedrooms</option>
-                                          <option value="3">3 Bedrooms</option>
-                                          <option value="4">4 Bedrooms</option>
-                                          <option value="5">5 Bedrooms</option>
-                                      </select>
-                                      <select id="dropdown" onChange={this.handleDropdownChange2} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
-                                          <option value="N/A">Bathrooms</option>
-                                          <option value="1">1 Bathroom</option>
-                                          <option value="2">2 Bathrooms</option>
-                                          <option value="3">3 Bathrooms</option>
-                                          <option value="4">4 Bathrooms</option>
-                                          <option value="5">5 Bathrooms</option>
-                                      </select> 
-
-                                    </Options>
-                                    <ContentTitle> Select Cleaning Services <Info onClick = {this.showServicesInfo.bind(this)} showServicesInfo = {this.state.showServicesInfo}/>
-                                      <span><hr width="300"/></span>
-                                    </ContentTitle>
-                                    <Options4>
-                                        {this.state.IndoorAfterBuildClean ?
-                                          <div>
                                             <ServiceTest> Promo Code </ServiceTest>
                                             <FormInput
                                                   id="fname"
@@ -1248,6 +1244,61 @@ return (
                                         : this.state.IndoorEndTenancyClean ?
 
                                           <div>
+                                          <DatePicker
+                                          selected={this.state.dateTime}
+                                          value={this.state.dateTime}
+                                          onChange={this.handleChange2}
+                                          minDate={addDays(new Date(),2)}                                        
+                                          showTimeSelect
+                                          timeFormat="HH:mm"
+                                          timeIntervals={30}
+                                          timeCaption="Time"
+                                          customInput={<ExampleCustomInput />}
+                                          dateFormat="MMMM d, yyyy h:mm aa"
+                                          shouldCloseOnSelect={false} 
+                                          excludeTimes={[
+                                                setHours(setMinutes(new Date(), 0), 0),
+                                                setHours(setMinutes(new Date(), 0), 0),
+                                                setHours(setMinutes(new Date(), 30), 0),
+                                                setHours(setMinutes(new Date(), 0), 1),
+                                                setHours(setMinutes(new Date(), 30), 1),
+                                                setHours(setMinutes(new Date(), 0), 2),
+                                                setHours(setMinutes(new Date(), 30), 2),
+                                                setHours(setMinutes(new Date(), 0), 3),
+                                                setHours(setMinutes(new Date(), 30), 3),
+                                                setHours(setMinutes(new Date(), 0), 4),
+                                                setHours(setMinutes(new Date(), 30), 4),
+                                                setHours(setMinutes(new Date(), 0), 5),
+                                                setHours(setMinutes(new Date(), 30), 5),
+                                                setHours(setMinutes(new Date(), 0), 6),
+                                                setHours(setMinutes(new Date(), 30), 6),
+                                                setHours(setMinutes(new Date(), 0), 7),
+                                                setHours(setMinutes(new Date(), 30), 7),
+                                                setHours(setMinutes(new Date(), 0), 8),
+                                                setHours(setMinutes(new Date(), 30), 8),
+                                                setHours(setMinutes(new Date(), 0), 9),
+                                                setHours(setMinutes(new Date(), 30), 9),
+                                                setHours(setMinutes(new Date(), 30), 14),
+                                                setHours(setMinutes(new Date(), 0), 15),
+                                                setHours(setMinutes(new Date(), 30), 15),
+                                                setHours(setMinutes(new Date(), 0), 16),
+                                                setHours(setMinutes(new Date(), 30), 16),
+                                                setHours(setMinutes(new Date(), 0), 17),
+                                                setHours(setMinutes(new Date(), 30), 17),
+                                                setHours(setMinutes(new Date(), 0), 18),
+                                                setHours(setMinutes(new Date(), 30), 18),
+                                                setHours(setMinutes(new Date(), 0), 19),
+                                                setHours(setMinutes(new Date(), 30), 19),
+                                                setHours(setMinutes(new Date(), 0), 20),
+                                                setHours(setMinutes(new Date(), 30), 20),
+                                                setHours(setMinutes(new Date(), 0), 21),
+                                                setHours(setMinutes(new Date(), 30), 21),
+                                                setHours(setMinutes(new Date(), 0), 22),
+                                                setHours(setMinutes(new Date(), 30), 22),
+                                                setHours(setMinutes(new Date(), 0), 23),
+                                                setHours(setMinutes(new Date(), 30), 23)
+                                              ]} 
+                                     />
                                           <ServiceTest> Promo Code </ServiceTest>
                                           <FormInput
                                               id="fname"
@@ -1264,6 +1315,61 @@ return (
                                         
                                         : this.state.IndoorSanitise ?
                                           <div>
+                                          <DatePicker
+                                          selected={this.state.dateTime}
+                                          value={this.state.dateTime}
+                                          onChange={this.handleChange2}
+                                          minDate={addDays(new Date(),2)}                                        
+                                          showTimeSelect
+                                          timeFormat="HH:mm"
+                                          timeIntervals={30}
+                                          timeCaption="Time"
+                                          customInput={<ExampleCustomInput />}
+                                          dateFormat="MMMM d, yyyy h:mm aa"
+                                          shouldCloseOnSelect={false} 
+                                          excludeTimes={[
+                                                setHours(setMinutes(new Date(), 0), 0),
+                                                setHours(setMinutes(new Date(), 0), 0),
+                                                setHours(setMinutes(new Date(), 30), 0),
+                                                setHours(setMinutes(new Date(), 0), 1),
+                                                setHours(setMinutes(new Date(), 30), 1),
+                                                setHours(setMinutes(new Date(), 0), 2),
+                                                setHours(setMinutes(new Date(), 30), 2),
+                                                setHours(setMinutes(new Date(), 0), 3),
+                                                setHours(setMinutes(new Date(), 30), 3),
+                                                setHours(setMinutes(new Date(), 0), 4),
+                                                setHours(setMinutes(new Date(), 30), 4),
+                                                setHours(setMinutes(new Date(), 0), 5),
+                                                setHours(setMinutes(new Date(), 30), 5),
+                                                setHours(setMinutes(new Date(), 0), 6),
+                                                setHours(setMinutes(new Date(), 30), 6),
+                                                setHours(setMinutes(new Date(), 0), 7),
+                                                setHours(setMinutes(new Date(), 30), 7),
+                                                setHours(setMinutes(new Date(), 0), 8),
+                                                setHours(setMinutes(new Date(), 30), 8),
+                                                setHours(setMinutes(new Date(), 0), 9),
+                                                setHours(setMinutes(new Date(), 30), 9),
+                                                setHours(setMinutes(new Date(), 30), 14),
+                                                setHours(setMinutes(new Date(), 0), 15),
+                                                setHours(setMinutes(new Date(), 30), 15),
+                                                setHours(setMinutes(new Date(), 0), 16),
+                                                setHours(setMinutes(new Date(), 30), 16),
+                                                setHours(setMinutes(new Date(), 0), 17),
+                                                setHours(setMinutes(new Date(), 30), 17),
+                                                setHours(setMinutes(new Date(), 0), 18),
+                                                setHours(setMinutes(new Date(), 30), 18),
+                                                setHours(setMinutes(new Date(), 0), 19),
+                                                setHours(setMinutes(new Date(), 30), 19),
+                                                setHours(setMinutes(new Date(), 0), 20),
+                                                setHours(setMinutes(new Date(), 30), 20),
+                                                setHours(setMinutes(new Date(), 0), 21),
+                                                setHours(setMinutes(new Date(), 30), 21),
+                                                setHours(setMinutes(new Date(), 0), 22),
+                                                setHours(setMinutes(new Date(), 30), 22),
+                                                setHours(setMinutes(new Date(), 0), 23),
+                                                setHours(setMinutes(new Date(), 30), 23)
+                                              ]} 
+                                     />
                                           <ServiceTest> Promo Code </ServiceTest>
                                           <FormInput
                                               id="fname"
@@ -1283,6 +1389,62 @@ return (
                                         
                                         { this.state.IndoorGenClean ?
                                           <div>
+                                          
+                                          <DatePicker
+                                          selected={this.state.dateTime}
+                                          value={this.state.dateTime}
+                                          onChange={this.handleChange2}
+                                          minDate={addDays(new Date(),2)}                                        
+                                          showTimeSelect
+                                          timeFormat="HH:mm"
+                                          timeIntervals={30}
+                                          timeCaption="Time"
+                                          customInput={<ExampleCustomInput />}
+                                          dateFormat="MMMM d, yyyy h:mm aa"
+                                          shouldCloseOnSelect={false} 
+                                          excludeTimes={[
+                                                setHours(setMinutes(new Date(), 0), 0),
+                                                setHours(setMinutes(new Date(), 0), 0),
+                                                setHours(setMinutes(new Date(), 30), 0),
+                                                setHours(setMinutes(new Date(), 0), 1),
+                                                setHours(setMinutes(new Date(), 30), 1),
+                                                setHours(setMinutes(new Date(), 0), 2),
+                                                setHours(setMinutes(new Date(), 30), 2),
+                                                setHours(setMinutes(new Date(), 0), 3),
+                                                setHours(setMinutes(new Date(), 30), 3),
+                                                setHours(setMinutes(new Date(), 0), 4),
+                                                setHours(setMinutes(new Date(), 30), 4),
+                                                setHours(setMinutes(new Date(), 0), 5),
+                                                setHours(setMinutes(new Date(), 30), 5),
+                                                setHours(setMinutes(new Date(), 0), 6),
+                                                setHours(setMinutes(new Date(), 30), 6),
+                                                setHours(setMinutes(new Date(), 0), 7),
+                                                setHours(setMinutes(new Date(), 30), 7),
+                                                setHours(setMinutes(new Date(), 0), 8),
+                                                setHours(setMinutes(new Date(), 30), 8),
+                                                setHours(setMinutes(new Date(), 0), 9),
+                                                setHours(setMinutes(new Date(), 30), 9),
+                                                setHours(setMinutes(new Date(), 30), 14),
+                                                setHours(setMinutes(new Date(), 0), 15),
+                                                setHours(setMinutes(new Date(), 30), 15),
+                                                setHours(setMinutes(new Date(), 0), 16),
+                                                setHours(setMinutes(new Date(), 30), 16),
+                                                setHours(setMinutes(new Date(), 0), 17),
+                                                setHours(setMinutes(new Date(), 30), 17),
+                                                setHours(setMinutes(new Date(), 0), 18),
+                                                setHours(setMinutes(new Date(), 30), 18),
+                                                setHours(setMinutes(new Date(), 0), 19),
+                                                setHours(setMinutes(new Date(), 30), 19),
+                                                setHours(setMinutes(new Date(), 0), 20),
+                                                setHours(setMinutes(new Date(), 30), 20),
+                                                setHours(setMinutes(new Date(), 0), 21),
+                                                setHours(setMinutes(new Date(), 30), 21),
+                                                setHours(setMinutes(new Date(), 0), 22),
+                                                setHours(setMinutes(new Date(), 30), 22),
+                                                setHours(setMinutes(new Date(), 0), 23),
+                                                setHours(setMinutes(new Date(), 30), 23)
+                                              ]} 
+                                     />
                                           <ServiceTest> Promo Code </ServiceTest>
                                           <FormInput
                                             id="fname"
@@ -1299,16 +1461,37 @@ return (
 
                                           : this.state.IndoorEndTenancyClean ?
                                         <div>
-                                          <ServiceTest> Frequency</ServiceTest>
+                                        <ServiceTest> How Often? <span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
                                             <div style = {{"margin-top" : "0px"}}>
                                               <Checkbox toggle label = "  OnceOFF" onChange={ this.endTenancyCleanOnce }  disabled = {endTenancyOnceStatus} />
                                               <Checkbox toggle label = "  Monthly" onChange={ this.endTenancyCleanMonth }  disabled = {endTenancyMonthStatus} />
+                                              {this.state.endTenancyCleanMonth?
+                                              <div>
+                                              <ServiceTest> No. of Months<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                              <Form style = {{"color": "red", fontSize : "10px"}}>
+                                                <FormInput
+                                                        id="fname"
+                                                        size="100"
+                                                        type="number"
+                                                        name="fname"
+                                                        placeholder="2"
+                                                        onChange ={this.handleEndTenancyFreq.bind(this)}
+                                                        min="2" max="10"
+                                                        required
+                                                    />
+                                              </Form>
+                                              </div>
+                                              : null
+
+                                            }
+                                            
+                                            
                                             </div>
                                           </div>
 
                                           : this.state.IndoorSanitise ?
                                           <div>
-                                            <ServiceTest> Frequency</ServiceTest>
+                                              <ServiceTest> How Often? <span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
                                               <div style = {{"margin-top" : "0px"}}>
                                               <Checkbox toggle label = "  OnceOFF" onChange={ this.sanitiseIndoorOnceOFF }  disabled = {sanitiseOnceStatus} />
                                               <Checkbox toggle label = "  Monthly" onChange={ this.sanitiseIndoorMonth }  disabled = {sanitiseMonthStatus} />
@@ -1316,16 +1499,18 @@ return (
                                               {this.state.sanitiseIndoorMonth?
                                               <div>
                                               <ServiceTest> No. of Months<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
-                                              <FormInput
-                                                      id="fname"
-                                                      size="10"
-                                                      type="number"
-                                                      name="fname"
-                                                      placeholder="2"
-                                                      onChange ={this.handleDCareaL.bind(this)}
-                                                      min="2" max="10"
-                                                      required
-                                                  />
+                                              <Form>
+                                                <FormInput
+                                                        id="fname"
+                                                        size="10"
+                                                        type="number"
+                                                        name="fname"
+                                                        placeholder="2"
+                                                        onChange ={this.handleSanitiseFreq.bind(this)}
+                                                        min="2" max="10"
+                                                        required
+                                                    />
+                                              </Form>
                                               </div>
                                               : null
 
@@ -1337,22 +1522,95 @@ return (
 
                                         { this.state.IndoorGenClean ?
                                           <div>
-                                          <ServiceTest> Frequency</ServiceTest>
+                                          <ServiceTest> How Often? <span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
                                             <div style = {{"margin-top" : "0px"}}>
                                               <Checkbox toggle label = "  OnceOFF" onChange={ this.genIndoorCleanOnce }  disabled = {genIndoorCleanOnceStatus} />
                                               <Checkbox toggle label = "  Weekly" onChange={ this.genIndoorCleanWeek }  disabled = {genIndoorCleanWeekStatus} />
                                               <Checkbox toggle label = "  Monthly" onChange={ this.genIndoorCleanMonth }  disabled = {genIndoorCleanMonthStatus} />
+                                              
+                                              {this.state.genIndoorCleanWeek?
+                                              <div>
+                                              <ServiceTest> No. of Weeks<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                              <Form>
+                                                <FormInput
+                                                        id="fname"
+                                                        size="10"
+                                                        type="number"
+                                                        name="fname"
+                                                        placeholder="2"
+                                                        onChange ={this.handleGenCleaningWeekFreq.bind(this)}
+                                                        min="2" max="10"
+                                                        required
+                                                    />
+                                              </Form>
+                                              </div>
+                                              : this.state.genIndoorCleanMonth?
+                                              <div>
+                                              <ServiceTest> No. of Months<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                              <Form>
+                                                <FormInput
+                                                        id="fname"
+                                                        size="10"
+                                                        type="number"
+                                                        name="fname"
+                                                        placeholder="2"
+                                                        onChange ={this.handleGenCleaningMonthFreq.bind(this)}
+                                                        min="2" max="10"
+                                                        required
+                                                    />
+                                              </Form>
+                                              </div>
+                                                                                                                                       
+                                              :null
 
+                                            }
                                             </div>
                                           </div>
 
                                           : this.state.IndoorAfterBuildClean ?
                                           <div>
-                                          <ServiceTest> Frequency</ServiceTest>
+                                          <ServiceTest> How Often? <span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
                                             <div style = {{"margin-top" : "0px"}}>
                                               <Checkbox toggle label = "  OnceOFF" onChange={ this.afterBuildCleanOnce }  disabled = {afterBuildOnceStatus} />
                                               <Checkbox toggle label = "  Weekly" onChange={ this.afterBuildCleanWeek }  disabled = {afterBuildWeekStatus} />
                                               <Checkbox toggle label = "  Monthly" onChange={ this.afterBuildCleanMonth }  disabled = {afterBuildMonthStatus} />
+                                              {this.state.afterBuildCleanWeek?
+                                              <div>
+                                              <ServiceTest> No. of Weeks<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                              <Form>
+                                                <FormInput
+                                                        id="fname"
+                                                        size="10"
+                                                        type="number"
+                                                        name="fname"
+                                                        placeholder="2"
+                                                        onChange ={this.handleAfterBuildersWeekFreq.bind(this)}
+                                                        min="2" max="10"
+                                                        required
+                                                    />
+                                              </Form>
+                                              </div>
+                                              : this.state.afterBuildCleanMonth?
+                                              <div>
+                                              <ServiceTest> No. of Months<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                              <Form>
+                                                <FormInput
+                                                        id="fname"
+                                                        size="10"
+                                                        type="number"
+                                                        name="fname"
+                                                        placeholder="2"
+                                                        onChange ={this.handleAfterBuildersMonthFreq.bind(this)}
+                                                        min="2" max="10"
+                                                        required
+                                                    />
+                                              </Form>
+                                              </div>
+                                                                                                                                       
+                                              :null
+
+                                            }
+                                            
                                             </div>
                                           </div>
 
@@ -1395,18 +1653,57 @@ return (
                                             </div>
                                           </div>
 
-                                          : <ServiceGridSplit><ServiceTest>Antiviral Sanitisation</ServiceTest><Tooltip title="Antiviral Sanitisation" aria-label="add"><Fab2><SanitiseIcon onClick={this.sanitiseIndoorClean.bind(this)} IndoorSanitise = {this.state.IndoorSanitise}/></Fab2></Tooltip> </ServiceGridSplit>                                   
+                                          : <ServiceGridSplit><ServiceTest>Sanitisation</ServiceTest><Tooltip title="Antiviral Sanitisation" aria-label="add"><Fab2><SanitiseIcon onClick={this.sanitiseIndoorClean.bind(this)} IndoorSanitise = {this.state.IndoorSanitise}/></Fab2></Tooltip> </ServiceGridSplit>                                   
                                         } 
                                     </Options4>                        
+                                    <ContentTitle> Enter Details <Info onClick = {this.showTcsIn.bind(this)} showTcIn = {this.state.showTcIn}/>
+                                    <span><hr width="300"/></span>
+                                    </ContentTitle>                                  
+                                    <EnterDetails>                                      
+                                      <div style = {{"width": "150px","height": "22px","color": 'grey'}}>
+                                        <Select
+                                          styles= {customStyles}
+                                          onChange={this.handleIndoorLoc}
+                                          options={options}
+                                          value={this.state.genCleanloc}
+                                          placeholder="Location..."
+                                          
+                                        />
+                                      </div>
+                                      <select id="dropdown" onChange={this.handleDropdownChange} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
+                                          <option value="N/A">Bedrooms</option>
+                                          <option value="1">1 Bedroom</option>
+                                          <option value="2">2 Bedrooms</option>
+                                          <option value="3">3 Bedrooms</option>
+                                          <option value="4">4 Bedrooms</option>
+                                          <option value="5">5 Bedrooms</option>
+                                      </select>
+                                      <select id="dropdown" onChange={this.handleDropdownChange2} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
+                                          <option value="N/A">Bathrooms</option>
+                                          <option value="1">1 Bathroom</option>
+                                          <option value="2">2 Bathrooms</option>
+                                          <option value="3">3 Bathrooms</option>
+                                          <option value="4">4 Bathrooms</option>
+                                          <option value="5">5 Bathrooms</option>
+                                      </select> 
+
+                                    </EnterDetails>
+                                    
                                     <ContentTitle> Service Details & Costs
                                       <span><hr width="300"/></span>
                                     </ContentTitle>
                                     <Options3>
                                       <div>
                                         <Message2 style = {{"margin-left" : "1px"}}>Home Details</Message2>
-                                        <EventLog logs={this.state.events3}/>
-                                        <EventLog logs={this.state.events}/>
-                                        <EventLog logs={this.state.events2}/> 
+                                        {this.state.IndoorLocation !== ""? <Message>{this.state.IndoorLocation}</Message> : null}
+                                        {this.state.Beds !== "" && this.state.Baths === "" ?
+                                          <Message>{this.state.Beds}</Message>
+                                          : this.state.Beds === "" && this.state.Baths !== "" ?
+                                            <Message>{this.state.Beds}</Message>
+                                            : this.state.Beds !== "" && this.state.Baths !== "" ?
+                                              <Message>{this.state.Beds}, {this.state.Baths}</Message>
+                                              : null
+                                        }
                                         {this.state.events4.length !== 0 ?
                                           <Message>Date : {x.replace("GMT+0200 (South Africa Standard Time)","")}</Message> 
                                         : null
@@ -1431,61 +1728,24 @@ return (
                                       </div>
                                       <div>
                                       <Message2>Costs</Message2>
-                                          {this.state.IndoorCleanService?
+                                          {this.state.IndoorCleanService || this.state.IndoorAfterBuildCleanService || this.state.IndoorEndTenancyCleanService || this.state.IndoorSanitiseService?
                                           <div>
-                                            {this.state.handleIndoorGenPromo === 1? 
+                                            {this.state.genIndoorCleanOnce || this.state.afterBuildCleanOnce || this.state.endTenancyCleanOnce || this.state.sanitiseIndoorOnceOFF? 
                                               <Message>Total : R {totalIndoor.toFixed(2)}</Message>
-                                              : 
-                                              <div>
-
-                                              <Message>Total : R {totalIndoor.toFixed(2)}</Message>
-                                              <Message>Applied Promo : -50%</Message>
-                                              </div>
-
-
+                                              : this.state.afterBuildCleanWeek || this.state.genIndoorCleanWeek  ?
+                                                <div>
+                                                  <Message>Total : R {totalIndoor.toFixed(2)}</Message>
+                                                  <Message>Discount : 10%</Message>
+                                                </div>
+                                              : this.state.genIndoorCleanMonth || this.state.endTenancyCleanMonth || this.state.sanitiseIndoorMonth || this.state.afterBuildCleanMonth?
+                                                <div>
+                                                  <Message>Total : R {totalIndoor.toFixed(2)}</Message>
+                                                  <Message>Discount : 5%</Message>
+                                                </div>
+                                              :
+                                              null
                                             }
-                                            </div>
-                                         
-
-                                            : this.state.IndoorAfterBuildCleanService?
-                                            <div>
-                                            {this.state.handleIndoorAfterBuildPromo === 1? 
-                                              <Message>Total : R {totalIndoor.toFixed(2)}</Message>
-                                              : 
-                                              <div>
-
-                                              <Message>Total : R {totalIndoor.toFixed(2)}</Message>
-                                              <Message>Applied Promo : -50%</Message>
-                                              </div>
-                                            }
-                                            </div>
-
-                                          : this.state.IndoorEndTenancyCleanService?
-                                          <div>
-                                            {this.state.handleIndoorEndTenencyPromo === 1? 
-                                              <Message>Total : R {totalIndoor.toFixed(2)}</Message>
-                                              : 
-                                              <div>
-
-                                              <Message>Total : R {totalIndoor.toFixed(2)}</Message>
-                                              <Message>Applied Promo : -50%</Message>
-                                              </div>
-                                            }
-                                            </div>
-
-                                          : this.state.IndoorSanitiseService?
-                                          <div>
-                                            {this.state.handleIndoorSanitisePromo === 1? 
-                                              <Message>Total : R {totalIndoor.toFixed(2)}</Message>
-                                              : 
-                                              <div>
-
-                                              <Message>Total : R {totalIndoor.toFixed(2)}</Message>
-                                              <Message>Applied Promo : -50%</Message>
-                                              </div>
-                                            }
-                                            </div>
-
+                                          </div>                                        
                                           : null
                                           }                          
 
