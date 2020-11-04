@@ -1171,227 +1171,7 @@ return (
                                     </ContentTitle>
                                     <Options4>
                                         {this.state.IndoorAfterBuildClean ?
-                                          <div>
-                                          <ServiceTest> Date & Time? </ServiceTest>
-                                          <DatePicker
-                                          selected={this.state.dateTime}
-                                          value={this.state.dateTime}
-                                          onChange={this.handleChange2}
-                                          minDate={addDays(new Date(),2)}                                        
-                                          showTimeSelect
-                                          timeFormat="HH:mm"
-                                          timeIntervals={30}
-                                          timeCaption="Time"
-                                          customInput={<ExampleCustomInput />}
-                                          //dateFormat="MMMM d, yyyy h:mm aa"
-                                          dateFormat="MM/dd/yy"
-                                          shouldCloseOnSelect={false} 
-                                          excludeTimes={[
-                                                setHours(setMinutes(new Date(), 0), 0),
-                                                setHours(setMinutes(new Date(), 0), 0),
-                                                setHours(setMinutes(new Date(), 30), 0),
-                                                setHours(setMinutes(new Date(), 0), 1),
-                                                setHours(setMinutes(new Date(), 30), 1),
-                                                setHours(setMinutes(new Date(), 0), 2),
-                                                setHours(setMinutes(new Date(), 30), 2),
-                                                setHours(setMinutes(new Date(), 0), 3),
-                                                setHours(setMinutes(new Date(), 30), 3),
-                                                setHours(setMinutes(new Date(), 0), 4),
-                                                setHours(setMinutes(new Date(), 30), 4),
-                                                setHours(setMinutes(new Date(), 0), 5),
-                                                setHours(setMinutes(new Date(), 30), 5),
-                                                setHours(setMinutes(new Date(), 0), 6),
-                                                setHours(setMinutes(new Date(), 30), 6),
-                                                setHours(setMinutes(new Date(), 0), 7),
-                                                setHours(setMinutes(new Date(), 30), 7),
-                                                setHours(setMinutes(new Date(), 0), 8),
-                                                setHours(setMinutes(new Date(), 30), 8),
-                                                setHours(setMinutes(new Date(), 0), 9),
-                                                setHours(setMinutes(new Date(), 30), 9),
-                                                setHours(setMinutes(new Date(), 30), 14),
-                                                setHours(setMinutes(new Date(), 0), 15),
-                                                setHours(setMinutes(new Date(), 30), 15),
-                                                setHours(setMinutes(new Date(), 0), 16),
-                                                setHours(setMinutes(new Date(), 30), 16),
-                                                setHours(setMinutes(new Date(), 0), 17),
-                                                setHours(setMinutes(new Date(), 30), 17),
-                                                setHours(setMinutes(new Date(), 0), 18),
-                                                setHours(setMinutes(new Date(), 30), 18),
-                                                setHours(setMinutes(new Date(), 0), 19),
-                                                setHours(setMinutes(new Date(), 30), 19),
-                                                setHours(setMinutes(new Date(), 0), 20),
-                                                setHours(setMinutes(new Date(), 30), 20),
-                                                setHours(setMinutes(new Date(), 0), 21),
-                                                setHours(setMinutes(new Date(), 30), 21),
-                                                setHours(setMinutes(new Date(), 0), 22),
-                                                setHours(setMinutes(new Date(), 30), 22),
-                                                setHours(setMinutes(new Date(), 0), 23),
-                                                setHours(setMinutes(new Date(), 30), 23)
-                                              ]} 
-                                     />
-                                            <ServiceTest> Promo Code </ServiceTest>
-                                            <FormInput
-                                                  id="fname"
-                                                  size="10"
-                                                  maxlength="7"
-                                                  type="text"
-                                                  name="fname"
-                                                  placeholder="Code"
-                                                  onKeyUp = {this.handleIndoorAfterBuildPromo}
-                                                  min="0" max="9999999"
-                                                  required
-                                              />
-                                            </div>
-
-                                        : this.state.IndoorEndTenancyClean ?
-
-                                          <div>
-                                          <ServiceTest> Date & Time? </ServiceTest>
-                                          <DatePicker
-                                          selected={this.state.dateTime}
-                                          value={this.state.dateTime}
-                                          onChange={this.handleChange2}
-                                          minDate={addDays(new Date(),2)}                                        
-                                          showTimeSelect
-                                          timeFormat="HH:mm"
-                                          timeIntervals={30}
-                                          timeCaption="Time"
-                                          customInput={<ExampleCustomInput />}
-                                          //dateFormat="MMMM d, yyyy h:mm aa"
-                                          dateFormat="MM/dd/yy"
-                                          shouldCloseOnSelect={false} 
-                                          excludeTimes={[
-                                                setHours(setMinutes(new Date(), 0), 0),
-                                                setHours(setMinutes(new Date(), 0), 0),
-                                                setHours(setMinutes(new Date(), 30), 0),
-                                                setHours(setMinutes(new Date(), 0), 1),
-                                                setHours(setMinutes(new Date(), 30), 1),
-                                                setHours(setMinutes(new Date(), 0), 2),
-                                                setHours(setMinutes(new Date(), 30), 2),
-                                                setHours(setMinutes(new Date(), 0), 3),
-                                                setHours(setMinutes(new Date(), 30), 3),
-                                                setHours(setMinutes(new Date(), 0), 4),
-                                                setHours(setMinutes(new Date(), 30), 4),
-                                                setHours(setMinutes(new Date(), 0), 5),
-                                                setHours(setMinutes(new Date(), 30), 5),
-                                                setHours(setMinutes(new Date(), 0), 6),
-                                                setHours(setMinutes(new Date(), 30), 6),
-                                                setHours(setMinutes(new Date(), 0), 7),
-                                                setHours(setMinutes(new Date(), 30), 7),
-                                                setHours(setMinutes(new Date(), 0), 8),
-                                                setHours(setMinutes(new Date(), 30), 8),
-                                                setHours(setMinutes(new Date(), 0), 9),
-                                                setHours(setMinutes(new Date(), 30), 9),
-                                                setHours(setMinutes(new Date(), 30), 14),
-                                                setHours(setMinutes(new Date(), 0), 15),
-                                                setHours(setMinutes(new Date(), 30), 15),
-                                                setHours(setMinutes(new Date(), 0), 16),
-                                                setHours(setMinutes(new Date(), 30), 16),
-                                                setHours(setMinutes(new Date(), 0), 17),
-                                                setHours(setMinutes(new Date(), 30), 17),
-                                                setHours(setMinutes(new Date(), 0), 18),
-                                                setHours(setMinutes(new Date(), 30), 18),
-                                                setHours(setMinutes(new Date(), 0), 19),
-                                                setHours(setMinutes(new Date(), 30), 19),
-                                                setHours(setMinutes(new Date(), 0), 20),
-                                                setHours(setMinutes(new Date(), 30), 20),
-                                                setHours(setMinutes(new Date(), 0), 21),
-                                                setHours(setMinutes(new Date(), 30), 21),
-                                                setHours(setMinutes(new Date(), 0), 22),
-                                                setHours(setMinutes(new Date(), 30), 22),
-                                                setHours(setMinutes(new Date(), 0), 23),
-                                                setHours(setMinutes(new Date(), 30), 23)
-                                              ]} 
-                                     />
-                                          <ServiceTest> Promo Code </ServiceTest>
-                                          <FormInput
-                                              id="fname"
-                                              size="10"
-                                              maxlength="7"
-                                              type="text"
-                                              name="fname"
-                                              placeholder="Code"
-                                              onKeyUp = {this.handleIndoorEndTenencyPromo}
-                                              min="0" max="9999999"
-                                              required
-                                          />
-                                            </div>
-                                        
-                                        : this.state.IndoorSanitise ?
-                                          <div>
-                                          <ServiceTest> Date & Time? </ServiceTest>
-                                          <DatePicker
-                                          selected={this.state.dateTime}
-                                          value={this.state.dateTime}
-                                          onChange={this.handleChange2}
-                                          minDate={addDays(new Date(),2)}                                        
-                                          showTimeSelect
-                                          timeFormat="HH:mm"
-                                          timeIntervals={30}
-                                          timeCaption="Time"
-                                          customInput={<ExampleCustomInput />}
-                                          //dateFormat="MMMM d, yyyy h:mm aa"
-                                          dateFormat="MM/dd/yy"
-                                          shouldCloseOnSelect={false} 
-                                          excludeTimes={[
-                                                setHours(setMinutes(new Date(), 0), 0),
-                                                setHours(setMinutes(new Date(), 0), 0),
-                                                setHours(setMinutes(new Date(), 30), 0),
-                                                setHours(setMinutes(new Date(), 0), 1),
-                                                setHours(setMinutes(new Date(), 30), 1),
-                                                setHours(setMinutes(new Date(), 0), 2),
-                                                setHours(setMinutes(new Date(), 30), 2),
-                                                setHours(setMinutes(new Date(), 0), 3),
-                                                setHours(setMinutes(new Date(), 30), 3),
-                                                setHours(setMinutes(new Date(), 0), 4),
-                                                setHours(setMinutes(new Date(), 30), 4),
-                                                setHours(setMinutes(new Date(), 0), 5),
-                                                setHours(setMinutes(new Date(), 30), 5),
-                                                setHours(setMinutes(new Date(), 0), 6),
-                                                setHours(setMinutes(new Date(), 30), 6),
-                                                setHours(setMinutes(new Date(), 0), 7),
-                                                setHours(setMinutes(new Date(), 30), 7),
-                                                setHours(setMinutes(new Date(), 0), 8),
-                                                setHours(setMinutes(new Date(), 30), 8),
-                                                setHours(setMinutes(new Date(), 0), 9),
-                                                setHours(setMinutes(new Date(), 30), 9),
-                                                setHours(setMinutes(new Date(), 30), 14),
-                                                setHours(setMinutes(new Date(), 0), 15),
-                                                setHours(setMinutes(new Date(), 30), 15),
-                                                setHours(setMinutes(new Date(), 0), 16),
-                                                setHours(setMinutes(new Date(), 30), 16),
-                                                setHours(setMinutes(new Date(), 0), 17),
-                                                setHours(setMinutes(new Date(), 30), 17),
-                                                setHours(setMinutes(new Date(), 0), 18),
-                                                setHours(setMinutes(new Date(), 30), 18),
-                                                setHours(setMinutes(new Date(), 0), 19),
-                                                setHours(setMinutes(new Date(), 30), 19),
-                                                setHours(setMinutes(new Date(), 0), 20),
-                                                setHours(setMinutes(new Date(), 30), 20),
-                                                setHours(setMinutes(new Date(), 0), 21),
-                                                setHours(setMinutes(new Date(), 30), 21),
-                                                setHours(setMinutes(new Date(), 0), 22),
-                                                setHours(setMinutes(new Date(), 30), 22),
-                                                setHours(setMinutes(new Date(), 0), 23),
-                                                setHours(setMinutes(new Date(), 30), 23)
-                                              ]} 
-                                     />
-                                          <ServiceTest> Promo Code </ServiceTest>
-                                          <FormInput
-                                              id="fname"
-                                              size="10"
-                                              maxlength="7"
-                                              type="text"
-                                              name="fname"
-                                              placeholder="Code"
-                                              onKeyUp = {this.handleIndoorSanitisePromo}
-                                              min="0" max="9999999"
-                                              required
-                                          />
-                                          </div>
-
-                                        :  this.state.IndoorGenClean ? 
-                                        <div>
+                                            <div>
                                           <ServiceTest> Location & Date<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
                                           <div style = {{"width": "105px","height": "40px","color": 'grey'}}>
                                             <Select
@@ -1457,7 +1237,217 @@ return (
                                                 setHours(setMinutes(new Date(), 0), 23),
                                                 setHours(setMinutes(new Date(), 30), 23)
                                               ]} 
-                                     />
+                                              />
+                                        </div>
+
+                                        : this.state.IndoorEndTenancyClean ?
+                                              <div>
+                                                <ServiceTest> Location & Date<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                                <div style = {{"width": "105px","height": "40px","color": 'grey'}}>
+                                                  <Select
+                                                    styles= {customStyles}
+                                                    onChange={this.handleIndoorLoc}
+                                                    options={options}
+                                                    value={this.state.genCleanloc}
+                                                    placeholder="Location..."
+                                                    
+                                                  />
+                                                </div>
+                                                  <DatePicker
+                                                  selected={this.state.dateTime}
+                                                  value={this.state.dateTime}
+                                                  onChange={this.handleChange2}
+                                                  minDate={addDays(new Date(),2)}                                        
+                                                  showTimeSelect
+                                                  timeFormat="HH:mm"
+                                                  timeIntervals={30}
+                                                  timeCaption="Time"
+                                                  customInput={<ExampleCustomInput />}
+                                                  dateFormat="MM/dd/yy"
+                                                  shouldCloseOnSelect={false} 
+                                                  excludeTimes={[
+                                                        setHours(setMinutes(new Date(), 0), 0),
+                                                        setHours(setMinutes(new Date(), 0), 0),
+                                                        setHours(setMinutes(new Date(), 30), 0),
+                                                        setHours(setMinutes(new Date(), 0), 1),
+                                                        setHours(setMinutes(new Date(), 30), 1),
+                                                        setHours(setMinutes(new Date(), 0), 2),
+                                                        setHours(setMinutes(new Date(), 30), 2),
+                                                        setHours(setMinutes(new Date(), 0), 3),
+                                                        setHours(setMinutes(new Date(), 30), 3),
+                                                        setHours(setMinutes(new Date(), 0), 4),
+                                                        setHours(setMinutes(new Date(), 30), 4),
+                                                        setHours(setMinutes(new Date(), 0), 5),
+                                                        setHours(setMinutes(new Date(), 30), 5),
+                                                        setHours(setMinutes(new Date(), 0), 6),
+                                                        setHours(setMinutes(new Date(), 30), 6),
+                                                        setHours(setMinutes(new Date(), 0), 7),
+                                                        setHours(setMinutes(new Date(), 30), 7),
+                                                        setHours(setMinutes(new Date(), 0), 8),
+                                                        setHours(setMinutes(new Date(), 30), 8),
+                                                        setHours(setMinutes(new Date(), 0), 9),
+                                                        setHours(setMinutes(new Date(), 30), 9),
+                                                        setHours(setMinutes(new Date(), 30), 14),
+                                                        setHours(setMinutes(new Date(), 0), 15),
+                                                        setHours(setMinutes(new Date(), 30), 15),
+                                                        setHours(setMinutes(new Date(), 0), 16),
+                                                        setHours(setMinutes(new Date(), 30), 16),
+                                                        setHours(setMinutes(new Date(), 0), 17),
+                                                        setHours(setMinutes(new Date(), 30), 17),
+                                                        setHours(setMinutes(new Date(), 0), 18),
+                                                        setHours(setMinutes(new Date(), 30), 18),
+                                                        setHours(setMinutes(new Date(), 0), 19),
+                                                        setHours(setMinutes(new Date(), 30), 19),
+                                                        setHours(setMinutes(new Date(), 0), 20),
+                                                        setHours(setMinutes(new Date(), 30), 20),
+                                                        setHours(setMinutes(new Date(), 0), 21),
+                                                        setHours(setMinutes(new Date(), 30), 21),
+                                                        setHours(setMinutes(new Date(), 0), 22),
+                                                        setHours(setMinutes(new Date(), 30), 22),
+                                                        setHours(setMinutes(new Date(), 0), 23),
+                                                        setHours(setMinutes(new Date(), 30), 23)
+                                                      ]} 
+                                                  />
+                                              </div>
+                                        
+                                        : this.state.IndoorSanitise ?
+                                              <div>
+                                                <ServiceTest> Location & Date<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                                <div style = {{"width": "105px","height": "40px","color": 'grey'}}>
+                                                  <Select
+                                                    styles= {customStyles}
+                                                    onChange={this.handleIndoorLoc}
+                                                    options={options}
+                                                    value={this.state.genCleanloc}
+                                                    placeholder="Location..."
+                                                    
+                                                  />
+                                                </div>
+                                                  <DatePicker
+                                                  selected={this.state.dateTime}
+                                                  value={this.state.dateTime}
+                                                  onChange={this.handleChange2}
+                                                  minDate={addDays(new Date(),2)}                                        
+                                                  showTimeSelect
+                                                  timeFormat="HH:mm"
+                                                  timeIntervals={30}
+                                                  timeCaption="Time"
+                                                  customInput={<ExampleCustomInput />}
+                                                  dateFormat="MM/dd/yy"
+                                                  shouldCloseOnSelect={false} 
+                                                  excludeTimes={[
+                                                        setHours(setMinutes(new Date(), 0), 0),
+                                                        setHours(setMinutes(new Date(), 0), 0),
+                                                        setHours(setMinutes(new Date(), 30), 0),
+                                                        setHours(setMinutes(new Date(), 0), 1),
+                                                        setHours(setMinutes(new Date(), 30), 1),
+                                                        setHours(setMinutes(new Date(), 0), 2),
+                                                        setHours(setMinutes(new Date(), 30), 2),
+                                                        setHours(setMinutes(new Date(), 0), 3),
+                                                        setHours(setMinutes(new Date(), 30), 3),
+                                                        setHours(setMinutes(new Date(), 0), 4),
+                                                        setHours(setMinutes(new Date(), 30), 4),
+                                                        setHours(setMinutes(new Date(), 0), 5),
+                                                        setHours(setMinutes(new Date(), 30), 5),
+                                                        setHours(setMinutes(new Date(), 0), 6),
+                                                        setHours(setMinutes(new Date(), 30), 6),
+                                                        setHours(setMinutes(new Date(), 0), 7),
+                                                        setHours(setMinutes(new Date(), 30), 7),
+                                                        setHours(setMinutes(new Date(), 0), 8),
+                                                        setHours(setMinutes(new Date(), 30), 8),
+                                                        setHours(setMinutes(new Date(), 0), 9),
+                                                        setHours(setMinutes(new Date(), 30), 9),
+                                                        setHours(setMinutes(new Date(), 30), 14),
+                                                        setHours(setMinutes(new Date(), 0), 15),
+                                                        setHours(setMinutes(new Date(), 30), 15),
+                                                        setHours(setMinutes(new Date(), 0), 16),
+                                                        setHours(setMinutes(new Date(), 30), 16),
+                                                        setHours(setMinutes(new Date(), 0), 17),
+                                                        setHours(setMinutes(new Date(), 30), 17),
+                                                        setHours(setMinutes(new Date(), 0), 18),
+                                                        setHours(setMinutes(new Date(), 30), 18),
+                                                        setHours(setMinutes(new Date(), 0), 19),
+                                                        setHours(setMinutes(new Date(), 30), 19),
+                                                        setHours(setMinutes(new Date(), 0), 20),
+                                                        setHours(setMinutes(new Date(), 30), 20),
+                                                        setHours(setMinutes(new Date(), 0), 21),
+                                                        setHours(setMinutes(new Date(), 30), 21),
+                                                        setHours(setMinutes(new Date(), 0), 22),
+                                                        setHours(setMinutes(new Date(), 30), 22),
+                                                        setHours(setMinutes(new Date(), 0), 23),
+                                                        setHours(setMinutes(new Date(), 30), 23)
+                                                      ]} 
+                                                  />
+                                              </div>
+
+                                        :  this.state.IndoorGenClean ? 
+                                        <div>
+                                          <ServiceTest> Location & Date<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                          <div style = {{"width": "105px","height": "40px","color": 'grey'}}>
+                                            <Select
+                                              styles= {customStyles}
+                                              onChange={this.handleIndoorLoc}
+                                              options={options}
+                                              value={this.state.genCleanloc}
+                                              placeholder="Location..."
+                                              
+                                            />
+                                          </div>
+                                            <DatePicker
+                                            selected={this.state.dateTime}
+                                            value={this.state.dateTime}
+                                            onChange={this.handleChange2}
+                                            minDate={addDays(new Date(),2)}                                        
+                                            showTimeSelect
+                                            timeFormat="HH:mm"
+                                            timeIntervals={30}
+                                            timeCaption="Time"
+                                            customInput={<ExampleCustomInput />}
+                                            dateFormat="MM/dd/yy"
+                                            shouldCloseOnSelect={false} 
+                                            excludeTimes={[
+                                                  setHours(setMinutes(new Date(), 0), 0),
+                                                  setHours(setMinutes(new Date(), 0), 0),
+                                                  setHours(setMinutes(new Date(), 30), 0),
+                                                  setHours(setMinutes(new Date(), 0), 1),
+                                                  setHours(setMinutes(new Date(), 30), 1),
+                                                  setHours(setMinutes(new Date(), 0), 2),
+                                                  setHours(setMinutes(new Date(), 30), 2),
+                                                  setHours(setMinutes(new Date(), 0), 3),
+                                                  setHours(setMinutes(new Date(), 30), 3),
+                                                  setHours(setMinutes(new Date(), 0), 4),
+                                                  setHours(setMinutes(new Date(), 30), 4),
+                                                  setHours(setMinutes(new Date(), 0), 5),
+                                                  setHours(setMinutes(new Date(), 30), 5),
+                                                  setHours(setMinutes(new Date(), 0), 6),
+                                                  setHours(setMinutes(new Date(), 30), 6),
+                                                  setHours(setMinutes(new Date(), 0), 7),
+                                                  setHours(setMinutes(new Date(), 30), 7),
+                                                  setHours(setMinutes(new Date(), 0), 8),
+                                                  setHours(setMinutes(new Date(), 30), 8),
+                                                  setHours(setMinutes(new Date(), 0), 9),
+                                                  setHours(setMinutes(new Date(), 30), 9),
+                                                  setHours(setMinutes(new Date(), 30), 14),
+                                                  setHours(setMinutes(new Date(), 0), 15),
+                                                  setHours(setMinutes(new Date(), 30), 15),
+                                                  setHours(setMinutes(new Date(), 0), 16),
+                                                  setHours(setMinutes(new Date(), 30), 16),
+                                                  setHours(setMinutes(new Date(), 0), 17),
+                                                  setHours(setMinutes(new Date(), 30), 17),
+                                                  setHours(setMinutes(new Date(), 0), 18),
+                                                  setHours(setMinutes(new Date(), 30), 18),
+                                                  setHours(setMinutes(new Date(), 0), 19),
+                                                  setHours(setMinutes(new Date(), 30), 19),
+                                                  setHours(setMinutes(new Date(), 0), 20),
+                                                  setHours(setMinutes(new Date(), 30), 20),
+                                                  setHours(setMinutes(new Date(), 0), 21),
+                                                  setHours(setMinutes(new Date(), 30), 21),
+                                                  setHours(setMinutes(new Date(), 0), 22),
+                                                  setHours(setMinutes(new Date(), 30), 22),
+                                                  setHours(setMinutes(new Date(), 0), 23),
+                                                  setHours(setMinutes(new Date(), 30), 23)
+                                                ]} 
+                                            />
                                         </div>
                                         :<ServiceGridSplit><ServiceTest>General Cleaning</ServiceTest><Tooltip title="General Cleaning" aria-label="add"><Fab2><GenCleanIcon onClick={this.genIndoorClean.bind(this)} IndoorGenClean = {this.state.IndoorGenClean}/></Fab2></Tooltip></ServiceGridSplit>
                                         
@@ -1466,7 +1456,7 @@ return (
                                         { this.state.IndoorGenClean ?
                                           <div>
                                             <ServiceGridSplit><ServiceTest>General Cleaning</ServiceTest><Tooltip title="General Cleaning" aria-label="add"><Fab2><GenCleanIcon onClick={this.genIndoorClean.bind(this)} IndoorGenClean = {this.state.IndoorGenClean}/></Fab2></Tooltip></ServiceGridSplit>
-                                            <div style = {{"margin-top":"8px"}}>
+                                            <div style = {{"margin-top":"10px"}}>
                                                 <FormInput
                                                   id="fname"
                                                   size="10"
@@ -1514,31 +1504,50 @@ return (
                                           <div>
                                               <ServiceTest> How Often? <span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
                                               <div style = {{"margin-top" : "0px"}}>
-                                              <Checkbox toggle label = "  OnceOFF" onChange={ this.sanitiseIndoorOnceOFF }  disabled = {sanitiseOnceStatus} />
-                                              <Checkbox toggle label = "  Monthly" onChange={ this.sanitiseIndoorMonth }  disabled = {sanitiseMonthStatus} />
+                                                <Checkbox toggle label = "  OnceOFF" onChange={ this.sanitiseIndoorOnceOFF }  disabled = {sanitiseOnceStatus} />
+                                                <Checkbox toggle label = "  Monthly" onChange={ this.sanitiseIndoorMonth }  disabled = {sanitiseMonthStatus} />
 
-                                              {this.state.sanitiseIndoorMonth?
-                                              <div>
-                                              <ServiceTest> No. of Months<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
-                                              <Form>
-                                                <FormInput
-                                                        id="fname"
-                                                        size="10"
-                                                        type="number"
-                                                        name="fname"
-                                                        placeholder="2"
-                                                        onChange ={this.handleSanitiseFreq.bind(this)}
-                                                        min="2" max="10"
-                                                        required
-                                                    />
-                                              </Form>
-                                              </div>
-                                              : null
-
-                                            }
+                                                {this.state.sanitiseIndoorMonth?
+                                                <div>
+                                                <ServiceTest> No. of Months<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                                <Form>
+                                                  <FormInput
+                                                          id="fname"
+                                                          size="10"
+                                                          type="number"
+                                                          name="fname"
+                                                          placeholder="2"
+                                                          onChange ={this.handleSanitiseFreq.bind(this)}
+                                                          min="2" max="10"
+                                                          required
+                                                      />
+                                                </Form>
+                                                </div>
+                                                : null
+                                                }
                                               </div>
                                             </div>
-                                          : <ServiceGridSplit><ServiceTest>After Builders</ServiceTest> <Tooltip title="After Builders Cleaning" aria-label="add"><Fab2><AfterBuildIcon onClick={this.afterBuildIndoorClean.bind(this)} IndoorAfterBuildClean = {this.state.IndoorAfterBuildClean}/></Fab2></Tooltip></ServiceGridSplit>
+                                          : 
+                                            <div>
+                                              <ServiceGridSplit><ServiceTest>After Builders</ServiceTest> <Tooltip title="After Builders Cleaning" aria-label="add"><Fab2><AfterBuildIcon onClick={this.afterBuildIndoorClean.bind(this)} IndoorAfterBuildClean = {this.state.IndoorAfterBuildClean}/></Fab2></Tooltip></ServiceGridSplit>
+                                                {this.state.IndoorAfterBuildClean ?
+                                                  <div style = {{"margin-top":"10px"}}>
+                                                      <FormInput
+                                                        id="fname"
+                                                        size="10"
+                                                        maxlength="7"
+                                                        type="text"
+                                                        name="fname"
+                                                        placeholder="Promo Code?"
+                                                        onKeyUp={this.handleIndoorAfterBuildPromo}
+                                                        min="0" max="9999999"
+                                                        required
+                                                      />
+                                                  </div> 
+                                                  : null
+                                                }
+ 
+                                            </div>
                                         }
 
                                         { this.state.IndoorGenClean ?
@@ -1641,7 +1650,26 @@ return (
                                             <Message style = {{"margin-top" : "0px"}}>
                                             </Message>
                                           </div>
-                                          : <ServiceGridSplit><ServiceTest>End of Tenancy</ServiceTest><Tooltip title="End of Tenancy Cleaning" aria-label="add"><Fab2><EndTenancyIcon onClick={this.endTenancyIndoorClean.bind(this)} IndoorEndTenancyClean = {this.state.IndoorEndTenancyClean}/></Fab2></Tooltip> </ServiceGridSplit>                                   
+                                          :                                             <div>
+                                            <ServiceGridSplit><ServiceTest>End of Tenancy</ServiceTest><Tooltip title="End of Tenancy Cleaning" aria-label="add"><Fab2><EndTenancyIcon onClick={this.endTenancyIndoorClean.bind(this)} IndoorEndTenancyClean = {this.state.IndoorEndTenancyClean}/></Fab2></Tooltip> </ServiceGridSplit>                                   
+                                                {this.state.IndoorEndTenancyClean ?
+                                                  <div style = {{"margin-top":"10px"}}>
+                                                      <FormInput
+                                                        id="fname"
+                                                        size="10"
+                                                        maxlength="7"
+                                                        type="text"
+                                                        name="fname"
+                                                        placeholder="Promo Code?"
+                                                        onKeyUp={this.handleIndoorEndTenencyPromo}
+                                                        min="0" max="9999999"
+                                                        required
+                                                      />
+                                                  </div> 
+                                                  : null
+                                                }
+ 
+                                            </div>
                                         }
 
                                         { this.state.IndoorGenClean ?
@@ -1674,7 +1702,26 @@ return (
                                             </div>
                                           </div>
 
-                                          : <ServiceGridSplit><ServiceTest>Sanitisation</ServiceTest><Tooltip title="Antiviral Sanitisation" aria-label="add"><Fab2><SanitiseIcon onClick={this.sanitiseIndoorClean.bind(this)} IndoorSanitise = {this.state.IndoorSanitise}/></Fab2></Tooltip> </ServiceGridSplit>                                   
+                                          : <div>
+                                          <ServiceGridSplit><ServiceTest>Sanitisation</ServiceTest><Tooltip title="Antiviral Sanitisation" aria-label="add"><Fab2><SanitiseIcon onClick={this.sanitiseIndoorClean.bind(this)} IndoorSanitise = {this.state.IndoorSanitise}/></Fab2></Tooltip> </ServiceGridSplit>                                   
+                                                {this.state.IndoorSanitise ?
+                                                  <div style = {{"margin-top":"10px"}}>
+                                                      <FormInput
+                                                        id="fname"
+                                                        size="10"
+                                                        maxlength="7"
+                                                        type="text"
+                                                        name="fname"
+                                                        placeholder="Promo Code?"
+                                                        onKeyUp={this.handleIndoorSanitisePromo}
+                                                        min="0" max="9999999"
+                                                        required
+                                                      />
+                                                  </div> 
+                                                  : null
+                                                }
+ 
+                                            </div>
                                         } 
                                     </Options4>                        
                                     <ContentTitle> Enter Details <Info onClick = {this.showTcsIn.bind(this)} showTcIn = {this.state.showTcIn}/>
