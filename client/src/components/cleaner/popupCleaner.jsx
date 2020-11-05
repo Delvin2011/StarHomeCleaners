@@ -2358,10 +2358,10 @@ return (
                                 <ServiceTest> Area Size? <span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
                                       <select id="areaSize" onChange={this.handleDCarea} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
                                           <option value="0">Select Size</option>
-                                          <option value="0-20 sq m">0-20 sq m</option>
-                                          <option value="20-75 sq m">20-75 sq m</option>
-                                          <option value="75-150 sq m">75-150 sq m</option>
-                                          <option value="150-250 sq m">150-250 sq m</option>        
+                                          <option value="0-20 sqm">0-20 sqm</option>
+                                          <option value="20-75 sqm">20-75 sqm</option>
+                                          <option value="75-150 sqm">75-150 sqm</option>
+                                          <option value="150-250 sqm">150-250 sqm</option>        
                                       </select>
                                 </div>
                                   <ServiceTest style = {{"margin-bottom": "-8px"}}> Or </ServiceTest>
@@ -2417,10 +2417,10 @@ return (
                                 <ServiceTest> Area Size? <span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
                                       <select id="areaSize" onChange={this.handleYCarea} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
                                           <option value="0">Select Size</option>
-                                          <option value="0-20 sq m">0-20 sq m</option>
-                                          <option value="20-75 sq m">20-75 sq m</option>
-                                          <option value="75-150 sq m">75-150 sq m</option>
-                                          <option value="150-250 sq m">150-250 sq m</option>        
+                                          <option value="0-20 sqm">0-20 sqm</option>
+                                          <option value="20-75 sqm">20-75 sqm</option>
+                                          <option value="75-150 sqm">75-150 sqm</option>
+                                          <option value="150-250 sqm">150-250 sqm</option>        
                                       </select>
                                 </div>
                                   <ServiceTest style = {{"margin-bottom": "-8px"}}> Or </ServiceTest>
@@ -2455,10 +2455,10 @@ return (
                                 <ServiceTest> Area Size? <span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
                                       <select id="areaSize" onChange={this.handleLMarea} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
                                       <option value="0">Select Size</option>
-                                          <option value="0-20 sq m">0-20 sq m</option>
-                                          <option value="20-75 sq m">20-75 sq m</option>
-                                          <option value="75-150 sq m">75-150 sq m</option>
-                                          <option value="150-250 sq m">150-250 sq m</option>  
+                                          <option value="0-20 sqm">0-20 sqm</option>
+                                          <option value="20-75 sqm">20-75 sqm</option>
+                                          <option value="75-150 sqm">75-150 sqm</option>
+                                          <option value="150-250 sqm">150-250 sqm</option>  
                                       </select>
                                 </div>
                                   <ServiceTest style = {{"margin-bottom": "-8px"}}> Or </ServiceTest>
@@ -2492,10 +2492,10 @@ return (
                                 <ServiceTest> Area Size? <span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
                                       <select id="areaSize" onChange={this.handleFBarea} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
                                           <option value="0">Select Size</option>
-                                          <option value="0-20 sq m">0-20 sq m</option>
-                                          <option value="20-75 sq m">20-75 sq m</option>
-                                          <option value="75-150 sq m">75-150 sq m</option>
-                                          <option value="150-250 sq m">150-250 sq m</option>        
+                                          <option value="0-20 sqm">0-20 sqm</option>
+                                          <option value="20-75 sqm">20-75 sqm</option>
+                                          <option value="75-150 sqm">75-150 sqm</option>
+                                          <option value="150-250 sqm">150-250 sqm</option>        
                                       </select>
                                 </div>
                                   <ServiceTest style = {{"margin-bottom": "-8px"}}> Or </ServiceTest>
