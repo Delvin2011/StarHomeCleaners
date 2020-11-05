@@ -104,8 +104,8 @@ class Cleaner extends React.Component {
           events4: this.logs4,
           events5: this.logs5,
           events6: this.logs6,
-          OutdoorPropType: this.logsOutdoorPropType,
-          OutdoorPropKind: this.logsOutdoorPropKind,
+          //OutdoorPropType: this.logsOutdoorPropType,
+          //OutdoorPropKind: this.logsOutdoorPropKind,
           eventsPoolHours: this.logsPoolHours,
           locPool: this.locationPool,
           PoolTime: this.poolTimes,
@@ -214,7 +214,7 @@ class Cleaner extends React.Component {
           outdoorDConce : false, outdoorDConcePrice : 0, outdoorDCweek: false, outdoorDCweekPrice : 0, outdoorDCmonth: false, outdoorDCmonthPrice : 0,
           YCareaPrice: 0, LMareaPrice : 0,FBareaPrice : 0, DCareaPrice : 0,
           handleYCoutdoorPromo : 1, handleLMoutdoorPromo : 1, handleFBoutdoorPromo : 1, handleDCoutdoorPromo : 1,
-          OutdoorBookedService : "", serviceIntervalOutdoor : "", OutdoorYardSize : "", OutdoorPropertType : "", OutdoorPropertKind : "",
+          OutdoorBookedService : "", serviceIntervalOutdoor : "", OutdoorYardSize : "", OutdoorPropertType : "", OutdoorPropertKind : "",OutdoorWorkYard : "",
           
           /*********************Pool****************************/
           poolShapePCSelect : 0, poolShapePMSelect : 0,
@@ -283,6 +283,7 @@ class Cleaner extends React.Component {
         /***********Outdoor Services Handling*************/
         this.handleOutdoorPropertType = this.handleOutdoorPropertType.bind(this);
         this.handleOutdoorPropertKind = this.handleOutdoorPropertKind.bind(this);
+        this.handleOutdoorWorkYard = this.handleOutdoorWorkYard.bind(this);
 
         this.outdoorYCwholeYard= this.outdoorYCwholeYard.bind(this);
         this.outdoorYCfrontYard= this.outdoorYCfrontYard.bind(this);
@@ -313,6 +314,11 @@ class Cleaner extends React.Component {
         this.outdoorLMonce= this.outdoorLMonce.bind(this); this.outdoorLMweek= this.outdoorLMweek.bind(this); this.outdoorLMmonth= this.outdoorLMmonth.bind(this);
         this.outdoorFBonce= this.outdoorFBonce.bind(this); this.outdoorFBweek= this.outdoorFBweek.bind(this); this.outdoorFBmonth= this.outdoorFBmonth.bind(this);
         this.outdoorDConce= this.outdoorDConce.bind(this); this.outdoorDCweek= this.outdoorDCweek.bind(this); this.outdoorDCmonth= this.outdoorDCmonth.bind(this);
+  
+        this.handleoutdoorYCweek= this.handleoutdoorYCweek.bind(this); this.handleoutdoorYCmonth= this.handleoutdoorYCmonth.bind(this);
+        this.handleoutdoorLMweek= this.handleoutdoorLMweek.bind(this); this.handleoutdoorLMmonth= this.handleoutdoorLMmonth.bind(this);
+        this.handleoutdoorFBweek= this.handleoutdoorFBweek.bind(this); this.handleoutdoorFBmonth= this.handleoutdoorFBmonth.bind(this);
+        this.handleoutdoorDCweek= this.handleoutdoorDCweek.bind(this); this.handleoutdoorDCmonth= this.handleoutdoorDCmonth.bind(this);
   
         this.handleYCoutdoorPromo= this.handleYCoutdoorPromo.bind(this); this.handleLMoutdoorPromo= this.handleLMoutdoorPromo.bind(this); this.handleFBoutdoorPromo= this.handleFBoutdoorPromo.bind(this); this.handleDCoutdoorPromo= this.handleDCoutdoorPromo.bind(this);
         this.handleYCareaL  = this.handleYCareaL.bind(this); this.handleYCareaW = this.handleYCareaW.bind(this);
@@ -654,22 +660,29 @@ class Cleaner extends React.Component {
     }
 
     handleOutdoorPropertType(e) {
-      this.logsOutdoorPropType.shift();
-      this.logsOutdoorPropType.unshift("Type : " + e.target.value );
-        this.setState({ OutdoorPropertType: e.target.value,
-          areaHours: e.target.value //to ignore
+      //this.logsOutdoorPropType.shift();
+      //this.logsOutdoorPropType.unshift("Type : " + e.target.value );
+        this.setState({ OutdoorPropertType: "Type : " + e.target.value,
         });
       }
 
 
       handleOutdoorPropertKind(e) {
-        this.logsOutdoorPropKind.shift();
-        this.logsOutdoorPropKind.unshift("Kind : " + e.target.value );
-          this.setState({ OutdoorPropertKind: e.target.value,
-            areaHours: e.target.value //to ignore
+        //this.logsOutdoorPropKind.shift();
+        //this.logsOutdoorPropKind.unshift("Kind : " + e.target.value );
+          this.setState({ OutdoorPropertKind: "Kind : "  + e.target.value,
           });
         }
-  
+
+        handleOutdoorWorkYard(e) {
+          //this.logsOutdoorPropKind.shift();
+          //this.logsOutdoorPropKind.unshift("Kind : " + e.target.value );
+            this.setState({ OutdoorWorkYard: "Work Area : " + e.target.value + " Yard",
+            });
+          }
+
+        handleOutdoorWrokArea
+  /**************************** */
         outdoorYCwholeYard () {this.setState({outdoorYCwholeYard: !this.state.outdoorYCwholeYard,outdoorYC_WYard:"Whole "})};
         outdoorYCfrontYard () {this.setState({outdoorYCfrontYard: !this.state.outdoorYCfrontYard,outdoorYC_FYard:"Front "})};
         outdoorYCbackYard () {this.setState({outdoorYCbackYard: !this.state.outdoorYCbackYard,outdoorYC_BYard:"Back "})};
@@ -689,13 +702,15 @@ class Cleaner extends React.Component {
         outdoorDCfrontYard () {this.setState({outdoorDCfrontYard: !this.state.outdoorDCfrontYard,outdoorDC_FYard:"Front "})};
         outdoorDCbackYard () {this.setState({outdoorDCbackYard: !this.state.outdoorDCbackYard,outdoorDC_BYard:"Back "})};
         outdoorDCsideYard () {this.setState({outdoorDCsideYard: !this.state.outdoorDCsideYard,outdoorDC_SYard:"Side "})};
-
+ /**************************** */
         YCoutdoorClean(event) {
           this.setState({
             outdoorYCwholeYard : false, outdoorYCfrontYard: false, outdoorYCbackYard : false, outdoorYCsideYard : false,
             outdoorYConce : false, outdoorYCweek: false, outdoorYCmonth : false,
             outdoorYConcePrice : 0, outdoorYCweekPrice : 0, outdoorYCmonthPrice : 0,
             handleYCoutdoorPromo : 1,
+            handleoutdoorYCweek: 2,
+            handleoutdoorYCmonth: 2,
             handleYCareaL : 0, handleYCareaW : 0,
             YCareaPrice : 0, YCarea : this.logsYCarea,
             YCoutdoorClean: !this.state.YCoutdoorClean,
@@ -711,6 +726,8 @@ class Cleaner extends React.Component {
             outdoorFBonce : false, outdoorFBweek: false, outdoorFBmonth : false,
             outdoorFBoncePrice : 0, outdoorFBweekPrice : 0, outdoorFBmonthPrice : 0,
             handleFBoutdoorPromo : 1,
+            handleoutdoorFBweek: 2,
+            handleoutdoorFBmonth: 2,
             handleFBareaL : 0, handleFBareaW : 0,
             FBareaPrice : 0, FBarea : this.logsFBarea,
             FBoutdoorClean: !this.state.FBoutdoorClean,
@@ -724,6 +741,8 @@ class Cleaner extends React.Component {
             outdoorDCwholeYard : false, outdoorDCfrontYard: false, outdoorDCbackYard : false, outdoorDCsideYard : false,
             outdoorDConce : false, outdoorDCweek: false, outdoorDCmonth : false,
             handleDCoutdoorPromo : 1,
+            handleoutdoorDCweek: 2,
+            handleoutdoorDCmonth:2,
             handleDCareaL : 0, handleDCareaW : 0,
             DCareaPrice : 0, DCarea : this.logsDCarea,
             DCoutdoorClean: !this.state.DCoutdoorClean,
@@ -739,6 +758,8 @@ class Cleaner extends React.Component {
             outdoorLMoncePrice : 0, outdoorLMweekPrice : 0, outdoorLMmonthPrice : 0,
             handleLMoutdoorPromo : 1,
             handleLMareaL : 0, handleLMareaW : 0,
+            handleoutdoorLMweek: 2,
+            handleoutdoorLMmonth: 2,
             LMareaPrice : 0, LMarea : this.logsLMarea,
             LMoutdoorClean: !this.state.LMoutdoorClean,
             LMoutdoorCleanDisplay: this.state.LMoutdoorClean? null : "Lawn Mowing",
@@ -751,21 +772,21 @@ class Cleaner extends React.Component {
         handleFBarea(e) { const area  = e.target.value; this.logsFBarea.shift(); this.logsFBarea.unshift("Area : " + e.target.value ); this.setState({ FBareaPrice: area === "0-20 sq m"? 90 : area === "20-75 sq m" ? 140 : area === "75-150 sq m"? 190 : area === "150-250 sq m" ? 240 : 0}); }
         handleDCarea(e) { const area  = e.target.value; this.logsDCarea.shift(); this.logsDCarea.unshift("Area : " + e.target.value ); this.setState({ DCareaPrice: area === "0-20 sq m"? 80 : area === "20-75 sq m" ? 130 : area === "75-150 sq m"? 180 : area === "150-250 sq m" ? 230 : 0}); } 
 
-        outdoorYConce () { this.setState({outdoorYConce: !this.state.outdoorYConce, outdoorYConcePrice : this.state.outdoorYConce? 0 : 1}); }
-        outdoorYCweek () { this.setState({outdoorYCweek: !this.state.outdoorYCweek, outdoorYCweekPrice : this.state.outdoorYCweek? 0 : 0.9}); }
-        outdoorYCmonth () { this.setState({outdoorYCmonth: !this.state.outdoorYCmonth, outdoorYCmonthPrice : this.state.outdoorYCmonth? 0 : 0.95}); }
+        outdoorYConce () { this.setState({handleoutdoorYCweek: 2, handleoutdoorYCmonth: 2, outdoorYConce: !this.state.outdoorYConce, outdoorYConcePrice : this.state.outdoorYConce? 0 : 1}); }
+        outdoorYCweek () { this.setState({handleoutdoorYCmonth: 2, outdoorYCweek: !this.state.outdoorYCweek, outdoorYCweekPrice : this.state.outdoorYCweek? 0 : 0.9}); }
+        outdoorYCmonth () { this.setState({handleoutdoorYCweek: 2, outdoorYCmonth: !this.state.outdoorYCmonth, outdoorYCmonthPrice : this.state.outdoorYCmonth? 0 : 0.95}); }
         
-        outdoorLMonce() { this.setState({outdoorLMonce: !this.state.outdoorLMonce, outdoorLMoncePrice : this.state.outdoorLMonce? 0 : 1}); }
-        outdoorLMweek () { this.setState({outdoorLMweek: !this.state.outdoorLMweek, outdoorLMweekPrice : this.state.outdoorLMweek? 0 : 0.9}); }
-        outdoorLMmonth () { this.setState({outdoorLMmonth: !this.state.outdoorLMmonth, outdoorLMmonthPrice : this.state.outdoorLMmonth? 0 : 0.95}); }
+        outdoorLMonce() { this.setState({handleoutdoorLMweek: 2, handleoutdoorLMmonth: 2, outdoorLMonce: !this.state.outdoorLMonce, outdoorLMoncePrice : this.state.outdoorLMonce? 0 : 1}); }
+        outdoorLMweek () { this.setState({handleoutdoorLMmonth: 2, outdoorLMweek: !this.state.outdoorLMweek, outdoorLMweekPrice : this.state.outdoorLMweek? 0 : 0.9}); }
+        outdoorLMmonth () { this.setState({handleoutdoorLMweek: 2,outdoorLMmonth: !this.state.outdoorLMmonth, outdoorLMmonthPrice : this.state.outdoorLMmonth? 0 : 0.95}); }
 
-        outdoorFBonce () { this.setState({outdoorFBonce: !this.state.outdoorFBonce, outdoorFBoncePrice : this.state.outdoorFBonce? 0 : 1}); }
-        outdoorFBweek () { this.setState({outdoorFBweek: !this.state.outdoorFBweek, outdoorFBweekPrice : this.state.outdoorFBweek? 0 : 0.9}); }
-        outdoorFBmonth () { this.setState({outdoorFBmonth: !this.state.outdoorFBmonth, outdoorFBmonthPrice : this.state.outdoorFBmonth? 0 : 0.95}); }
+        outdoorFBonce () { this.setState({handleoutdoorFBweek: 2, handleoutdoorFBmonth: 2, outdoorFBonce: !this.state.outdoorFBonce, outdoorFBoncePrice : this.state.outdoorFBonce? 0 : 1}); }
+        outdoorFBweek () { this.setState({ handleoutdoorFBmonth: 2, outdoorFBweek: !this.state.outdoorFBweek, outdoorFBweekPrice : this.state.outdoorFBweek? 0 : 0.9}); }
+        outdoorFBmonth () { this.setState({handleoutdoorFBweek: 2, outdoorFBmonth: !this.state.outdoorFBmonth, outdoorFBmonthPrice : this.state.outdoorFBmonth? 0 : 0.95}); }
 
-        outdoorDConce () { this.setState({outdoorDConce: !this.state.outdoorDConce, outdoorDConcePrice : this.state.outdoorDConce? 0 : 1}); }
-        outdoorDCweek () { this.setState({outdoorDCweek: !this.state.outdoorDCweek, outdoorDCweekPrice : this.state.outdoorDCweek? 0 : 0.9}); }
-        outdoorDCmonth () { this.setState({outdoorDCmonth: !this.state.outdoorDCmonth, outdoorDCmonthPrice : this.state.outdoorDCmonth? 0 : 0.95}); }
+        outdoorDConce () { this.setState({handleoutdoorDCweek: 2, handleoutdoorDCmonth: 2, outdoorDConce: !this.state.outdoorDConce, outdoorDConcePrice : this.state.outdoorDConce? 0 : 1}); }
+        outdoorDCweek () { this.setState({handleoutdoorDCmonth: 2, outdoorDCweek: !this.state.outdoorDCweek, outdoorDCweekPrice : this.state.outdoorDCweek? 0 : 0.9}); }
+        outdoorDCmonth () { this.setState({handleoutdoorDCweek: 2, outdoorDCmonth: !this.state.outdoorDCmonth, outdoorDCmonthPrice : this.state.outdoorDCmonth? 0 : 0.95}); }
         
         selectOutdoor(event) {
           this.setState({
@@ -821,6 +842,14 @@ class Cleaner extends React.Component {
         handleDCareaL(event) { event.preventDefault(); this.setState({ handleDCareaL: event.target.value});} handleDCareaW(event) { event.preventDefault(); this.setState({ handleDCareaW: event.target.value});}
       
 
+        handleoutdoorYCweek(event) { event.preventDefault(); this.setState({ handleoutdoorYCweek: event.target.value})};
+        handleoutdoorYCmonth(event) { event.preventDefault(); this.setState({ handleoutdoorYCmonth: event.target.value})};
+        handleoutdoorLMweek(event) { event.preventDefault(); this.setState({ handleoutdoorLMweek: event.target.value})};
+        handleoutdoorLMmonth(event) { event.preventDefault(); this.setState({ handleoutdoorLMmonth: event.target.value})};
+        handleoutdoorFBweek(event) { event.preventDefault(); this.setState({ handleoutdoorFBweek: event.target.value})};
+        handleoutdoorFBmonth(event) { event.preventDefault(); this.setState({ handleoutdoorFBmonth: event.target.value})};
+        handleoutdoorDCweek(event) { event.preventDefault(); this.setState({ handleoutdoorDCweek: event.target.value})};
+        handleoutdoorDCmonth(event) { event.preventDefault(); this.setState({ handleoutdoorDCmonth: event.target.value})};
     /**************Pool Services Handling********************/
     selectPool(event) {
       this.setState({
@@ -1012,7 +1041,8 @@ const extrasIN = gIN_Extra !== "" && (this.state.genIndoorCleanWallsService || t
                  etIN_Extra !== "" && (this.state.endTenancyIndoorCleanWallsService || this.state.endTenancyIndoorCleanWindowsService) ? etIN_Extra : "";
 
                  
-const SanitiseFreqMultiplier = this.state.sanitiseIndoorMonth ? this.state.handleSanitiseFreq : 1; const EndTenancyFreqMultiplier = this.state.endTenancyCleanMonth ? this.state.handleEndTenancyFreq : 1;
+const SanitiseFreqMultiplier = this.state.sanitiseIndoorMonth ? this.state.handleSanitiseFreq : 1; 
+const EndTenancyFreqMultiplier = this.state.endTenancyCleanMonth ? this.state.handleEndTenancyFreq : 1;
 const GenCleanFreqMultiplier = this.state.genIndoorCleanWeek ? this.state.handleGenCleaningWeekFreq : this.state.genIndoorCleanMonth ? this.state.handleGenCleaningMonthFreq : 1;
 const AfterBuildersFreqMultiplier = this.state.afterBuildCleanWeek ? this.state.handleAfterBuildersWeekFreq : this.state.afterBuildCleanMonth ? this.state.handleAfterBuildersMonthFreq : 1;
 
@@ -1025,7 +1055,7 @@ const totalIndoor = this.state.IndoorGenClean ? totalGenIndoorClean :  this.stat
 const outdoorYCwholeYardStatus = this.state.outdoorYCfrontYard || this.state.outdoorYCbackYard || this.state.outdoorYCsideYard? true : false;
 const outdoorNotWholeStatus = this.state.outdoorYCwholeYard ? true : false;
 
-
+/************** */
 const outdoorLMwholeYardStatus = this.state.outdoorLMfrontYard || this.state.outdoorLMbackYard || this.state.outdoorLMsideYard? true : false;
 const outdoorLMnotWholeStatus = this.state.outdoorLMwholeYard ? true : false;
 
@@ -1053,11 +1083,16 @@ const workYard = YC_yard_Status !== "" && (this.state.outdoorYC_WYard || this.st
                  LM_yard_Status !== "" && (this.state.outdoorLM_WYard || this.state.outdoorLM_FYard || this.state.outdoorLM_BYard || this.state.outdoorLM_SYard) ? LM_yard_Status :
                  FB_yard_Status !== "" && (this.state.outdoorFB_WYard || this.state.outdoorFB_FYard || this.state.outdoorFB_BYard || this.state.outdoorFB_SYard) ? FB_yard_Status :
                  DC_yard_Status !== "" && (this.state.outdoorDC_WYard || this.state.outdoorDC_FYard || this.state.outdoorDC_BYard || this.state.outdoorDC_SYard) ? DC_yard_Status : "";
-
+/*********** */
 const outdoorYConceStatus = this.state.outdoorYCweek || this.state.outdoorYCmonth ? true : false; const outdoorYCweekStatus = this.state.outdoorYConce || this.state.outdoorYCmonth ? true : false; const outdoorYCmonthStatus = this.state.outdoorYCweek || this.state.outdoorYConce ? true : false;
 const outdoorLMonceStatus = this.state.outdoorLMweek || this.state.outdoorLMmonth ? true : false; const outdoorLMweekStatus = this.state.outdoorLMonce || this.state.outdoorLMmonth ? true : false; const outdoorLMmonthStatus = this.state.outdoorLMweek || this.state.outdoorLMonce ? true : false;
 const outdoorFBonceStatus = this.state.outdoorFBweek || this.state.outdoorFBmonth ? true : false; const outdoorFBweekStatus = this.state.outdoorFBonce || this.state.outdoorFBmonth ? true : false; const outdoorFBmonthStatus = this.state.outdoorFBweek || this.state.outdoorFBonce ? true : false;
 const outdoorDConceStatus = this.state.outdoorDCweek || this.state.outdoorDCmonth ? true : false; const outdoorDCweekStatus = this.state.outdoorDConce || this.state.outdoorDCmonth ? true : false; const outdoorDCmonthStatus = this.state.outdoorDCweek || this.state.outdoorDConce ? true : false;
+
+const YCfreqMultiplier = this.state.outdoorYCweek? this.state.handleoutdoorYCweek : this.state.outdoorYCmonth ? this.state.handleoutdoorYCmonth : 1;
+const LMfreqMultiplier = this.state.outdoorLMweek? this.state.handleoutdoorLMweek : this.state.outdoorLMmonth ? this.state.handleoutdoorLMmonth : 1;
+const FBfreqMultiplier = this.state.outdoorFBweek? this.state.handleoutdoorFBweek : this.state.outdoorFBmonth ? this.state.handleoutdoorFBmonth : 1;
+const DCfreqMultiplier = this.state.outdoorDCweek? this.state.handleoutdoorDCweek : this.state.outdoorDCmonth ? this.state.handleoutdoorDCmonth : 1;
 
 const OutdoorAreaLW = this.state.YCoutdoorClean? this.state.handleYCareaL * this.state.handleYCareaW : this.state.LMoutdoorClean? this.state.handleLMareaL * this.state.handleLMareaW : this.state.FBoutdoorClean? this.state.handleFBareaL * this.state.handleFBareaW : this.state.DCoutdoorClean? this.state.handleDCareaL * this.state.handleDCareaW : 0;
 
@@ -1067,10 +1102,10 @@ const testLM = this.state.LMarea[0] === undefined || this.state.LMarea[0] === "A
 const testFB = this.state.FBarea[0] === undefined || this.state.FBarea[0] === "Area : 0" ? PriceAreaLW : this.state.FBareaPrice;
 const testDC = this.state.DCarea[0] === undefined || this.state.DCarea[0] === "Area : 0" ? PriceAreaLW : this.state.DCareaPrice;
 
-const totalYC = this.state.outdoorYConce || this.state.outdoorYCweek || this.state.outdoorYCmonth ? (150 + testYC * (this.state.outdoorYConcePrice + this.state.outdoorYCweekPrice + this.state.outdoorYCmonthPrice)) * this.state.handleYCoutdoorPromo : 0;
-const totalLM = this.state.outdoorLMonce || this.state.outdoorLMweek || this.state.outdoorLMmonth ? (150 + testLM * (this.state.outdoorLMoncePrice + this.state.outdoorLMweekPrice + this.state.outdoorLMmonthPrice)) * this.state.handleLMoutdoorPromo : 0;
-const totalFB = this.state.outdoorFBonce || this.state.outdoorFBweek || this.state.outdoorFBmonth ? (150 + testFB * (this.state.outdoorFBoncePrice + this.state.outdoorFBweekPrice + this.state.outdoorFBmonthPrice)) * this.state.handleFBoutdoorPromo : 0;
-const totalDC = this.state.outdoorDConce || this.state.outdoorDCweek || this.state.outdoorDCmonth ? (150 + testDC * (this.state.outdoorDConcePrice + this.state.outdoorDCweekPrice + this.state.outdoorDCmonthPrice)) * this.state.handleDCoutdoorPromo : 0;
+const totalYC = this.state.outdoorYConce || this.state.outdoorYCweek || this.state.outdoorYCmonth ? (150 + testYC * (this.state.outdoorYConcePrice + this.state.outdoorYCweekPrice + this.state.outdoorYCmonthPrice)) * this.state.handleYCoutdoorPromo * YCfreqMultiplier: 0;
+const totalLM = this.state.outdoorLMonce || this.state.outdoorLMweek || this.state.outdoorLMmonth ? (150 + testLM * (this.state.outdoorLMoncePrice + this.state.outdoorLMweekPrice + this.state.outdoorLMmonthPrice)) * this.state.handleLMoutdoorPromo * LMfreqMultiplier: 0;
+const totalFB = this.state.outdoorFBonce || this.state.outdoorFBweek || this.state.outdoorFBmonth ? (150 + testFB * (this.state.outdoorFBoncePrice + this.state.outdoorFBweekPrice + this.state.outdoorFBmonthPrice)) * this.state.handleFBoutdoorPromo * FBfreqMultiplier: 0;
+const totalDC = this.state.outdoorDConce || this.state.outdoorDCweek || this.state.outdoorDCmonth ? (150 + testDC * (this.state.outdoorDConcePrice + this.state.outdoorDCweekPrice + this.state.outdoorDCmonthPrice)) * this.state.handleDCoutdoorPromo * DCfreqMultiplier: 0;
 const totalOutdoor = this.state.YCoutdoorClean? totalYC : 0 + this.state.LMoutdoorClean ? totalLM : 0 + this.state.FBoutdoorClean ? totalFB : 0 + this.state.DCoutdoorClean ? totalDC : 0;
 
 /******************Pool***************/
@@ -1650,7 +1685,7 @@ return (
                                             <Message style = {{"margin-top" : "0px"}}>
                                             </Message>
                                           </div>
-                                          :                                             <div>
+                                          : <div>
                                             <ServiceGridSplit><ServiceTest>End of Tenancy</ServiceTest><Tooltip title="End of Tenancy Cleaning" aria-label="add"><Fab2><EndTenancyIcon onClick={this.endTenancyIndoorClean.bind(this)} IndoorEndTenancyClean = {this.state.IndoorEndTenancyClean}/></Fab2></Tooltip> </ServiceGridSplit>                                   
                                                 {this.state.IndoorEndTenancyClean ?
                                                   <div style = {{"margin-top":"10px"}}>
@@ -1754,7 +1789,7 @@ return (
                                                 <Checkbox toggle label = "  Detergents?" onChange={ this.endTenancyDetergents } />
 
                                           : null
-                                        }
+                                      }
                                     </EnterDetails>
                                     
                                     <ContentTitle style = {{"margin-top" : "10px"}}> Service Details & Costs
@@ -1820,234 +1855,513 @@ return (
                           tabIcon: GiWheelbarrow,
                           tabContent: (
                             <div>
-                                <ContentTitle> Details 
-                                  <span><hr width="300"/></span>
-                                </ContentTitle>
-                                <Options>
-                                    <DatePicker
-                                      selected={this.state.dateTimeOutdoor}
-                                      value={this.state.dateTimeOutdoor}
-                                      onChange={this.handleDateChangeOutdoor}
-                                      minDate={addDays(new Date(),2)} 
-                                      timeIntervals={30}                                       
-                                      showTimeSelect
-                                      excludeTimes={[
-                                            setHours(setMinutes(new Date(), 0), 0),
-                                            setHours(setMinutes(new Date(), 0), 0),
-                                            setHours(setMinutes(new Date(), 30), 0),
-                                            setHours(setMinutes(new Date(), 0), 1),
-                                            setHours(setMinutes(new Date(), 30), 1),
-                                            setHours(setMinutes(new Date(), 0), 2),
-                                            setHours(setMinutes(new Date(), 30), 2),
-                                            setHours(setMinutes(new Date(), 0), 3),
-                                            setHours(setMinutes(new Date(), 30), 3),
-                                            setHours(setMinutes(new Date(), 0), 4),
-                                            setHours(setMinutes(new Date(), 30), 4),
-                                            setHours(setMinutes(new Date(), 0), 5),
-                                            setHours(setMinutes(new Date(), 30), 5),
-                                            setHours(setMinutes(new Date(), 0), 6),
-                                            setHours(setMinutes(new Date(), 30), 6),
-                                            setHours(setMinutes(new Date(), 0), 7),
-                                            setHours(setMinutes(new Date(), 30), 7),
-                                            setHours(setMinutes(new Date(), 0), 8),
-                                            setHours(setMinutes(new Date(), 30), 8),
-                                            setHours(setMinutes(new Date(), 0), 9),
-                                            setHours(setMinutes(new Date(), 30), 9),
-                                            setHours(setMinutes(new Date(), 30), 14),
-                                            setHours(setMinutes(new Date(), 0), 15),
-                                            setHours(setMinutes(new Date(), 30), 15),
-                                            setHours(setMinutes(new Date(), 0), 16),
-                                            setHours(setMinutes(new Date(), 30), 16),
-                                            setHours(setMinutes(new Date(), 0), 17),
-                                            setHours(setMinutes(new Date(), 30), 17),
-                                            setHours(setMinutes(new Date(), 0), 18),
-                                            setHours(setMinutes(new Date(), 30), 18),
-                                            setHours(setMinutes(new Date(), 0), 19),
-                                            setHours(setMinutes(new Date(), 30), 19),
-                                            setHours(setMinutes(new Date(), 0), 20),
-                                            setHours(setMinutes(new Date(), 30), 20),
-                                            setHours(setMinutes(new Date(), 0), 21),
-                                            setHours(setMinutes(new Date(), 30), 21),
-                                            setHours(setMinutes(new Date(), 0), 22),
-                                            setHours(setMinutes(new Date(), 30), 22),
-                                            setHours(setMinutes(new Date(), 0), 23),
-                                            setHours(setMinutes(new Date(), 30), 23)
-                                          ]} 
-                                      customInput={<ExampleCustomInput />}
-                                      timeFormat="HH:mm"
-                                      timeCaption="Time"
-                                      dateFormat="MMMM d, yyyy h:mm aa"
-                                      shouldCloseOnSelect={false} />
-
-                                      <div style = {{"width": "150px","height": "22px","color": 'grey'}}>
-                                        <Select
-                                          styles= {customStyles}
-                                          onChange={this.handleOutdoorLoc}
-                                          options={options}
-                                          value={this.state.outdoorLoc}
-                                          placeholder="Location..."
-                                          
-                                        />
-                                      </div> 
-
-                                      <select id="areaSize" onChange={this.handleOutdoorPropertType} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
-                                        <option value="0">Property Type</option>
-                                        <option value="Residential">Residential</option>
-                                        <option value="Commercial">Commercial</option>
-                                      </select>   
-
-                                      <select id="areaSize" onChange={this.handleOutdoorPropertKind} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
-                                        <option value="0">Property Kind</option>
-                                        <option value="House">House</option>
-                                        <option value="Apartment">Apartment</option>
-                                        <option value="Townhouse">Townhouse</option>
-                                      </select>	  
-
-                                </Options>
-                                <ContentTitle> Required Services <Info onClick = {this.showOutdoorServicesInfo.bind(this)} showOutdoorServicesInfo = {this.state.showOutdoorServicesInfo}/>
+                              <ContentTitle> Select Required Service  <Info onClick = {this.showOutdoorServicesInfo.bind(this)} showOutdoorServicesInfo = {this.state.showOutdoorServicesInfo}/>
                                   <span><hr width="300"/></span>
                                 </ContentTitle>
                                 <Options4>
                               { this.state.LMoutdoorClean ?
                                 <div>
-                                  <ServiceTest> Frequency</ServiceTest>
-                                  <FormInput
-                                            id="fname"
-                                            size="10"
-                                            maxlength="7"
-                                            type="text"
-                                            name="fname"
-                                            placeholder=" Promo Code"
-                                            onKeyUp = {this.handleLMoutdoorPromo}
-                                            min="0" max="9999999"
-                                            required
-                                        />
-                                    <div style = {{"margin-top" : "0px"}}>
-                                      <Checkbox toggle label = "  Once" onChange={ this.outdoorLMonce }  disabled = {outdoorLMonceStatus}/>
-                                      <Checkbox toggle label = "  Weekly" onChange={ this.outdoorLMweek }  disabled = {outdoorLMweekStatus}/>
-                                      <Checkbox toggle label = "  Monthly" onChange={ this.outdoorLMmonth }  disabled = {outdoorLMmonthStatus}/>
-
-                                    </div>
-                                  </div>
+                                          <ServiceTest> Location & Date<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                          <div style = {{"width": "105px","height": "40px","color": 'grey'}}>
+                                            <Select
+                                              styles= {customStyles}
+                                              onChange={this.handleOutdoorLoc}
+                                              options={options}
+                                              value={this.state.outdoorLoc}
+                                              placeholder="Location..."
+                                              
+                                            />
+                                          </div>
+                                            <DatePicker
+                                            selected={this.state.dateTimeOutdoor}
+                                            value={this.state.dateTimeOutdoor}
+                                            onChange={this.handleDateChangeOutdoor}
+                                            minDate={addDays(new Date(),2)}                                        
+                                            showTimeSelect
+                                            timeFormat="HH:mm"
+                                            timeIntervals={30}
+                                            timeCaption="Time"
+                                            customInput={<ExampleCustomInput />}
+                                            dateFormat="MM/dd/yy"
+                                            shouldCloseOnSelect={false} 
+                                            excludeTimes={[
+                                                  setHours(setMinutes(new Date(), 0), 0),
+                                                  setHours(setMinutes(new Date(), 0), 0),
+                                                  setHours(setMinutes(new Date(), 30), 0),
+                                                  setHours(setMinutes(new Date(), 0), 1),
+                                                  setHours(setMinutes(new Date(), 30), 1),
+                                                  setHours(setMinutes(new Date(), 0), 2),
+                                                  setHours(setMinutes(new Date(), 30), 2),
+                                                  setHours(setMinutes(new Date(), 0), 3),
+                                                  setHours(setMinutes(new Date(), 30), 3),
+                                                  setHours(setMinutes(new Date(), 0), 4),
+                                                  setHours(setMinutes(new Date(), 30), 4),
+                                                  setHours(setMinutes(new Date(), 0), 5),
+                                                  setHours(setMinutes(new Date(), 30), 5),
+                                                  setHours(setMinutes(new Date(), 0), 6),
+                                                  setHours(setMinutes(new Date(), 30), 6),
+                                                  setHours(setMinutes(new Date(), 0), 7),
+                                                  setHours(setMinutes(new Date(), 30), 7),
+                                                  setHours(setMinutes(new Date(), 0), 8),
+                                                  setHours(setMinutes(new Date(), 30), 8),
+                                                  setHours(setMinutes(new Date(), 0), 9),
+                                                  setHours(setMinutes(new Date(), 30), 9),
+                                                  setHours(setMinutes(new Date(), 30), 14),
+                                                  setHours(setMinutes(new Date(), 0), 15),
+                                                  setHours(setMinutes(new Date(), 30), 15),
+                                                  setHours(setMinutes(new Date(), 0), 16),
+                                                  setHours(setMinutes(new Date(), 30), 16),
+                                                  setHours(setMinutes(new Date(), 0), 17),
+                                                  setHours(setMinutes(new Date(), 30), 17),
+                                                  setHours(setMinutes(new Date(), 0), 18),
+                                                  setHours(setMinutes(new Date(), 30), 18),
+                                                  setHours(setMinutes(new Date(), 0), 19),
+                                                  setHours(setMinutes(new Date(), 30), 19),
+                                                  setHours(setMinutes(new Date(), 0), 20),
+                                                  setHours(setMinutes(new Date(), 30), 20),
+                                                  setHours(setMinutes(new Date(), 0), 21),
+                                                  setHours(setMinutes(new Date(), 30), 21),
+                                                  setHours(setMinutes(new Date(), 0), 22),
+                                                  setHours(setMinutes(new Date(), 30), 22),
+                                                  setHours(setMinutes(new Date(), 0), 23),
+                                                  setHours(setMinutes(new Date(), 30), 23)
+                                                ]} 
+                                            />
+                                      </div>
 
                                : this.state.FBoutdoorClean?
 
-
-                                <div>
-                                  <ServiceTest> Frequency</ServiceTest>
-                                  <FormInput
-                                            id="fname"
-                                            size="10"
-                                            maxlength="7"
-                                            type="text"
-                                            name="fname"
-                                            placeholder=" Promo Code"
-                                            onKeyUp = {this.handleFBoutdoorPromo}
-                                            min="0" max="9999999"
-                                            required
-                                        />
-                                    <div style = {{"margin-top" : "0px"}}>
-                                      <Checkbox toggle label = "  Once" onChange={ this.outdoorFBonce }  disabled = {outdoorFBonceStatus} />
-                                      <Checkbox toggle label = "  Weekly" onChange={ this.outdoorFBweek }  disabled = {outdoorFBweekStatus} />
-                                      <Checkbox toggle label = "  Monthly" onChange={ this.outdoorFBmonth }  disabled = {outdoorFBmonthStatus} />
-
-                                    </div>
-                                  </div>
+                               <div>
+                                          <ServiceTest> Location & Date<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                          <div style = {{"width": "105px","height": "40px","color": 'grey'}}>
+                                            <Select
+                                              styles= {customStyles}
+                                              onChange={this.handleOutdoorLoc}
+                                              options={options}
+                                              value={this.state.outdoorLoc}
+                                              placeholder="Location..."
+                                              
+                                            />
+                                          </div>
+                                            <DatePicker
+                                            selected={this.state.dateTimeOutdoor}
+                                            value={this.state.dateTimeOutdoor}
+                                            onChange={this.handleDateChangeOutdoor}
+                                            minDate={addDays(new Date(),2)}                                        
+                                            showTimeSelect
+                                            timeFormat="HH:mm"
+                                            timeIntervals={30}
+                                            timeCaption="Time"
+                                            customInput={<ExampleCustomInput />}
+                                            dateFormat="MM/dd/yy"
+                                            shouldCloseOnSelect={false} 
+                                            excludeTimes={[
+                                                  setHours(setMinutes(new Date(), 0), 0),
+                                                  setHours(setMinutes(new Date(), 0), 0),
+                                                  setHours(setMinutes(new Date(), 30), 0),
+                                                  setHours(setMinutes(new Date(), 0), 1),
+                                                  setHours(setMinutes(new Date(), 30), 1),
+                                                  setHours(setMinutes(new Date(), 0), 2),
+                                                  setHours(setMinutes(new Date(), 30), 2),
+                                                  setHours(setMinutes(new Date(), 0), 3),
+                                                  setHours(setMinutes(new Date(), 30), 3),
+                                                  setHours(setMinutes(new Date(), 0), 4),
+                                                  setHours(setMinutes(new Date(), 30), 4),
+                                                  setHours(setMinutes(new Date(), 0), 5),
+                                                  setHours(setMinutes(new Date(), 30), 5),
+                                                  setHours(setMinutes(new Date(), 0), 6),
+                                                  setHours(setMinutes(new Date(), 30), 6),
+                                                  setHours(setMinutes(new Date(), 0), 7),
+                                                  setHours(setMinutes(new Date(), 30), 7),
+                                                  setHours(setMinutes(new Date(), 0), 8),
+                                                  setHours(setMinutes(new Date(), 30), 8),
+                                                  setHours(setMinutes(new Date(), 0), 9),
+                                                  setHours(setMinutes(new Date(), 30), 9),
+                                                  setHours(setMinutes(new Date(), 30), 14),
+                                                  setHours(setMinutes(new Date(), 0), 15),
+                                                  setHours(setMinutes(new Date(), 30), 15),
+                                                  setHours(setMinutes(new Date(), 0), 16),
+                                                  setHours(setMinutes(new Date(), 30), 16),
+                                                  setHours(setMinutes(new Date(), 0), 17),
+                                                  setHours(setMinutes(new Date(), 30), 17),
+                                                  setHours(setMinutes(new Date(), 0), 18),
+                                                  setHours(setMinutes(new Date(), 30), 18),
+                                                  setHours(setMinutes(new Date(), 0), 19),
+                                                  setHours(setMinutes(new Date(), 30), 19),
+                                                  setHours(setMinutes(new Date(), 0), 20),
+                                                  setHours(setMinutes(new Date(), 30), 20),
+                                                  setHours(setMinutes(new Date(), 0), 21),
+                                                  setHours(setMinutes(new Date(), 30), 21),
+                                                  setHours(setMinutes(new Date(), 0), 22),
+                                                  setHours(setMinutes(new Date(), 30), 22),
+                                                  setHours(setMinutes(new Date(), 0), 23),
+                                                  setHours(setMinutes(new Date(), 30), 23)
+                                                ]} 
+                                            />
+                                      </div>
 
                                 : this.state.DCoutdoorClean?
 
                                 <div>
-                                  <ServiceTest> Frequency</ServiceTest>
-                                    <div style = {{"margin-top" : "0px"}}>
-                                    <FormInput
-                                            id="fname"
-                                            size="10"
-                                            maxlength="7"
-                                            type="text"
-                                            name="fname"
-                                            placeholder=" Promo Code"
-                                            onKeyUp = {this.handleDCoutdoorPromo}
-                                            min="0" max="9999999"
-                                            required
-                                        />
-                                      <Checkbox toggle label = "  Once" onChange={ this.outdoorDConce }  disabled = {outdoorDConceStatus} />
-                                      <Checkbox toggle label = "  Weekly" onChange={ this.outdoorDCweek }  disabled = {outdoorDCweekStatus} />
-                                      <Checkbox toggle label = "  Monthly" onChange={ this.outdoorDCmonth }  disabled = {outdoorDCmonthStatus} />
+                                          <ServiceTest> Location & Date<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                          <div style = {{"width": "105px","height": "40px","color": 'grey'}}>
+                                            <Select
+                                              styles= {customStyles}
+                                              onChange={this.handleOutdoorLoc}
+                                              options={options}
+                                              value={this.state.outdoorLoc}
+                                              placeholder="Location..."
+                                              
+                                            />
+                                          </div>
+                                            <DatePicker
+                                            selected={this.state.dateTimeOutdoor}
+                                            value={this.state.dateTimeOutdoor}
+                                            onChange={this.handleDateChangeOutdoor}
+                                            minDate={addDays(new Date(),2)}                                        
+                                            showTimeSelect
+                                            timeFormat="HH:mm"
+                                            timeIntervals={30}
+                                            timeCaption="Time"
+                                            customInput={<ExampleCustomInput />}
+                                            dateFormat="MM/dd/yy"
+                                            shouldCloseOnSelect={false} 
+                                            excludeTimes={[
+                                                  setHours(setMinutes(new Date(), 0), 0),
+                                                  setHours(setMinutes(new Date(), 0), 0),
+                                                  setHours(setMinutes(new Date(), 30), 0),
+                                                  setHours(setMinutes(new Date(), 0), 1),
+                                                  setHours(setMinutes(new Date(), 30), 1),
+                                                  setHours(setMinutes(new Date(), 0), 2),
+                                                  setHours(setMinutes(new Date(), 30), 2),
+                                                  setHours(setMinutes(new Date(), 0), 3),
+                                                  setHours(setMinutes(new Date(), 30), 3),
+                                                  setHours(setMinutes(new Date(), 0), 4),
+                                                  setHours(setMinutes(new Date(), 30), 4),
+                                                  setHours(setMinutes(new Date(), 0), 5),
+                                                  setHours(setMinutes(new Date(), 30), 5),
+                                                  setHours(setMinutes(new Date(), 0), 6),
+                                                  setHours(setMinutes(new Date(), 30), 6),
+                                                  setHours(setMinutes(new Date(), 0), 7),
+                                                  setHours(setMinutes(new Date(), 30), 7),
+                                                  setHours(setMinutes(new Date(), 0), 8),
+                                                  setHours(setMinutes(new Date(), 30), 8),
+                                                  setHours(setMinutes(new Date(), 0), 9),
+                                                  setHours(setMinutes(new Date(), 30), 9),
+                                                  setHours(setMinutes(new Date(), 30), 14),
+                                                  setHours(setMinutes(new Date(), 0), 15),
+                                                  setHours(setMinutes(new Date(), 30), 15),
+                                                  setHours(setMinutes(new Date(), 0), 16),
+                                                  setHours(setMinutes(new Date(), 30), 16),
+                                                  setHours(setMinutes(new Date(), 0), 17),
+                                                  setHours(setMinutes(new Date(), 30), 17),
+                                                  setHours(setMinutes(new Date(), 0), 18),
+                                                  setHours(setMinutes(new Date(), 30), 18),
+                                                  setHours(setMinutes(new Date(), 0), 19),
+                                                  setHours(setMinutes(new Date(), 30), 19),
+                                                  setHours(setMinutes(new Date(), 0), 20),
+                                                  setHours(setMinutes(new Date(), 30), 20),
+                                                  setHours(setMinutes(new Date(), 0), 21),
+                                                  setHours(setMinutes(new Date(), 30), 21),
+                                                  setHours(setMinutes(new Date(), 0), 22),
+                                                  setHours(setMinutes(new Date(), 30), 22),
+                                                  setHours(setMinutes(new Date(), 0), 23),
+                                                  setHours(setMinutes(new Date(), 30), 23)
+                                                ]} 
+                                            />
+                                      </div>
 
-                                    </div>
-                                  </div>
-
+                          :      this.state.YCoutdoorClean?                                   
+                                      <div>
+                                          <ServiceTest> Location & Date<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                          <div style = {{"width": "105px","height": "40px","color": 'grey'}}>
+                                            <Select
+                                              styles= {customStyles}
+                                              onChange={this.handleOutdoorLoc}
+                                              options={options}
+                                              value={this.state.outdoorLoc}
+                                              placeholder="Location..."
+                                              
+                                            />
+                                          </div>
+                                            <DatePicker
+                                            selected={this.state.dateTimeOutdoor}
+                                            value={this.state.dateTimeOutdoor}
+                                            onChange={this.handleDateChangeOutdoor}
+                                            minDate={addDays(new Date(),2)}                                        
+                                            showTimeSelect
+                                            timeFormat="HH:mm"
+                                            timeIntervals={30}
+                                            timeCaption="Time"
+                                            customInput={<ExampleCustomInput />}
+                                            dateFormat="MM/dd/yy"
+                                            shouldCloseOnSelect={false} 
+                                            excludeTimes={[
+                                                  setHours(setMinutes(new Date(), 0), 0),
+                                                  setHours(setMinutes(new Date(), 0), 0),
+                                                  setHours(setMinutes(new Date(), 30), 0),
+                                                  setHours(setMinutes(new Date(), 0), 1),
+                                                  setHours(setMinutes(new Date(), 30), 1),
+                                                  setHours(setMinutes(new Date(), 0), 2),
+                                                  setHours(setMinutes(new Date(), 30), 2),
+                                                  setHours(setMinutes(new Date(), 0), 3),
+                                                  setHours(setMinutes(new Date(), 30), 3),
+                                                  setHours(setMinutes(new Date(), 0), 4),
+                                                  setHours(setMinutes(new Date(), 30), 4),
+                                                  setHours(setMinutes(new Date(), 0), 5),
+                                                  setHours(setMinutes(new Date(), 30), 5),
+                                                  setHours(setMinutes(new Date(), 0), 6),
+                                                  setHours(setMinutes(new Date(), 30), 6),
+                                                  setHours(setMinutes(new Date(), 0), 7),
+                                                  setHours(setMinutes(new Date(), 30), 7),
+                                                  setHours(setMinutes(new Date(), 0), 8),
+                                                  setHours(setMinutes(new Date(), 30), 8),
+                                                  setHours(setMinutes(new Date(), 0), 9),
+                                                  setHours(setMinutes(new Date(), 30), 9),
+                                                  setHours(setMinutes(new Date(), 30), 14),
+                                                  setHours(setMinutes(new Date(), 0), 15),
+                                                  setHours(setMinutes(new Date(), 30), 15),
+                                                  setHours(setMinutes(new Date(), 0), 16),
+                                                  setHours(setMinutes(new Date(), 30), 16),
+                                                  setHours(setMinutes(new Date(), 0), 17),
+                                                  setHours(setMinutes(new Date(), 30), 17),
+                                                  setHours(setMinutes(new Date(), 0), 18),
+                                                  setHours(setMinutes(new Date(), 30), 18),
+                                                  setHours(setMinutes(new Date(), 0), 19),
+                                                  setHours(setMinutes(new Date(), 30), 19),
+                                                  setHours(setMinutes(new Date(), 0), 20),
+                                                  setHours(setMinutes(new Date(), 30), 20),
+                                                  setHours(setMinutes(new Date(), 0), 21),
+                                                  setHours(setMinutes(new Date(), 30), 21),
+                                                  setHours(setMinutes(new Date(), 0), 22),
+                                                  setHours(setMinutes(new Date(), 30), 22),
+                                                  setHours(setMinutes(new Date(), 0), 23),
+                                                  setHours(setMinutes(new Date(), 30), 23)
+                                                ]} 
+                                            />
+                                      </div>
+                                        
+                                
                                 : <ServiceGridSplit><ServiceTest>Yard Cleaning</ServiceTest><Tooltip title="Yard Cleaning" aria-label="add"><Fab2><Wheelbarrow onClick={this.YCoutdoorClean.bind(this)} YCoutdoorClean = {this.state.YCoutdoorClean}/></Fab2></Tooltip></ServiceGridSplit>
                               }
 
 
                               {this.state.YCoutdoorClean?
                                 <div>
-                                  <ServiceTest> Frequency</ServiceTest>
-                                    <div style = {{"margin-top" : "0px"}}>
+                                <ServiceGridSplit><ServiceTest>Yard Cleaning</ServiceTest><Tooltip title="Yard Cleaning" aria-label="add"><Fab2><Wheelbarrow onClick={this.YCoutdoorClean.bind(this)} YCoutdoorClean = {this.state.YCoutdoorClean}/></Fab2></Tooltip></ServiceGridSplit>
+                                <div style = {{"margin-top":"10px"}}>
                                     <FormInput
-                                            id="fname"
-                                            size="10"
-                                            maxlength="7"
-                                            type="text"
-                                            name="fname"
-                                            placeholder=" Promo Code"
-                                            onKeyUp = {this.handleYCoutdoorPromo}
-                                            min="0" max="9999999"
-                                            required
-                                        />
-                                      <Checkbox toggle label = "  Once" onChange={ this.outdoorYConce }  disabled = {outdoorYConceStatus} />
-                                      <Checkbox toggle label = "  Weekly" onChange={ this.outdoorYCweek }  disabled = {outdoorYCweekStatus} />
-                                      <Checkbox toggle label = "  Monthly" onChange={ this.outdoorYCmonth }  disabled = {outdoorYCmonthStatus}/>
-                                    </div>
-                                  </div>
+                                      id="fname"
+                                      size="10"
+                                      maxlength="7"
+                                      type="text"
+                                      name="fname"
+                                      placeholder="Promo Code?"
+                                      onKeyUp={this.handleYCoutdoorPromo}
+                                      min="0" max="9999999"
+                                      required
+                                    />
+                                </div>
+                              </div>
 
                               :this.state.FBoutdoorClean?
                               <div>
-                                <div>
-                                <ServiceTest> Area Size</ServiceTest>
-                                      <select id="areaSize" onChange={this.handleFBarea} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
-                                      <option value="0">Select Size</option>
-                                          <option value="0-20 sq m">0-20 sq m</option>
-                                          <option value="20-75 sq m">20-75 sq m</option>
-                                          <option value="75-150 sq m">75-150 sq m</option>
-                                          <option value="150-250 sq m">150-250 sq m</option>  
-                                      </select>
-                                </div>
-                                <ServiceTest style = {{"margin-bottom": "-8px"}}> Or </ServiceTest>
-                                <Form>
-                                    <FormInput
-                                          id="fname"
-                                          size="10"
-                                          type="number"
-                                          name="fname"
-                                          placeholder="Length (m)"
-                                          onChange ={this.handleFBareaL.bind(this)}
-                                          min="0" max="9999999"
-                                          required
-                                      />                                               
-                                      <FormInput
-                                              id="fname"
-                                              size="10"
-                                              type="number"
-                                              name="fname"
-                                              placeholder="Width (m)"
-                                              onChange ={this.handleFBareaW.bind(this)}
-                                              min="0" max="9999999"
-                                              required
-                                          />
-                                </Form>
-                              </div>
+                                <ServiceTest> How Often? <span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                    <div style = {{"margin-top" : "0px"}}>
+                                      <Checkbox toggle label = "  Once" onChange={ this.outdoorFBonce }  disabled = {outdoorFBonceStatus} />
+                                      <Checkbox toggle label = "  Weekly" onChange={ this.outdoorFBweek }  disabled = {outdoorFBweekStatus} />
+                                      <Checkbox toggle label = "  Monthly" onChange={ this.outdoorFBmonth }  disabled = {outdoorFBmonthStatus}/>
+                                      {this.state.outdoorFBweek?
+                                              <div>
+                                              <ServiceTest> No. of Weeks<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                              <Form>
+                                                <FormInput
+                                                        id="fname"
+                                                        size="10"
+                                                        type="number"
+                                                        name="fname"
+                                                        placeholder="2"
+                                                        onChange ={this.handleoutdoorFBweek.bind(this)}
+                                                        min="2" max="10"
+                                                        required
+                                                    />
+                                              </Form>
+                                              </div>
+                                              : this.state.outdoorFBmonth?
+                                              <div>
+                                              <ServiceTest> No. of Months<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                              <Form>
+                                                <FormInput
+                                                        id="fname"
+                                                        size="10"
+                                                        type="number"
+                                                        name="fname"
+                                                        placeholder="2"
+                                                        onChange ={this.handleoutdoorFBmonth.bind(this)}
+                                                        min="2" max="10"
+                                                        required
+                                                    />
+                                              </Form>
+                                              </div>
+                                                                                                                                       
+                                              :null
+
+                                            }
+                                    </div>
+                                  </div>
                               : this.state.DCoutdoorClean?
                               <div>
+                                  <ServiceTest> How Often? <span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                    <div style = {{"margin-top" : "0px"}}>
+                                      <Checkbox toggle label = "  Once" onChange={ this.outdoorLMonce }  disabled = {outdoorLMonceStatus}/>
+                                      <Checkbox toggle label = "  Weekly" onChange={ this.outdoorLMweek }  disabled = {outdoorLMweekStatus}/>
+                                      <Checkbox toggle label = "  Monthly" onChange={ this.outdoorLMmonth }  disabled = {outdoorLMmonthStatus}/>
+                                      {this.state.outdoorLMweek?
+                                              <div>
+                                              <ServiceTest> No. of Weeks<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                              <Form>
+                                                <FormInput
+                                                        id="fname"
+                                                        size="10"
+                                                        type="number"
+                                                        name="fname"
+                                                        placeholder="2"
+                                                        onChange ={this.handleoutdoorDCweek.bind(this)}
+                                                        min="2" max="10"
+                                                        required
+                                                    />
+                                              </Form>
+                                              </div>
+                                              : this.state.outdoorLMmonth?
+                                              <div>
+                                              <ServiceTest> No. of Months<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                              <Form>
+                                                <FormInput
+                                                        id="fname"
+                                                        size="10"
+                                                        type="number"
+                                                        name="fname"
+                                                        placeholder="2"
+                                                        onChange ={this.handleoutdoorDCmonth.bind(this)}
+                                                        min="2" max="10"
+                                                        required
+                                                    />
+                                              </Form>
+                                              </div>
+                                                                                                                                       
+                                              :null
+
+                                            }
+                                    </div>
+                                </div>
+
+                              : this.state.LMoutdoorClean ?
+                                      <ServiceGridSplit><ServiceTest>Lawn Mowing</ServiceTest><Tooltip title="Lawn Mowing" aria-label="add"><Fab2><LogoContainer2 src={LawnMowerSelect} onClick={this.LMoutdoorClean.bind(this)}/></Fab2></Tooltip></ServiceGridSplit> 
+                                      :
+                                      <ServiceGridSplit><ServiceTest>Lawn Mowing</ServiceTest><Tooltip title="Lawn Mowing" aria-label="add"><Fab2><LogoContainer2 src={LawnMower} onClick={this.LMoutdoorClean.bind(this)}/></Fab2></Tooltip></ServiceGridSplit> 
+                              } 
+
+
+                              {this.state.YCoutdoorClean?
                                 <div>
-                                <ServiceTest> Area Size</ServiceTest>
+                                <ServiceTest> How Often? <span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                    <div style = {{"margin-top" : "0px"}}>
+                                      <Checkbox toggle label = "  Once" onChange={ this.outdoorYConce }  disabled = {outdoorYConceStatus} />
+                                      <Checkbox toggle label = "  Weekly" onChange={ this.outdoorYCweek }  disabled = {outdoorYCweekStatus} />
+                                      <Checkbox toggle label = "  Monthly" onChange={ this.outdoorYCmonth }  disabled = {outdoorYCmonthStatus}/>
+                                      {this.state.outdoorYCweek?
+                                              <div>
+                                              <ServiceTest> No. of Weeks<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                              <Form>
+                                                <FormInput
+                                                        id="fname"
+                                                        size="10"
+                                                        type="number"
+                                                        name="fname"
+                                                        placeholder="2"
+                                                        onChange ={this.handleoutdoorYCweek.bind(this)}
+                                                        min="2" max="10"
+                                                        required
+                                                    />
+                                              </Form>
+                                              </div>
+                                              : this.state.outdoorYCmonth?
+                                              <div>
+                                              <ServiceTest> No. of Months<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                              <Form>
+                                                <FormInput
+                                                        id="fname"
+                                                        size="10"
+                                                        type="number"
+                                                        name="fname"
+                                                        placeholder="2"
+                                                        onChange ={this.handleoutdoorYCmonth.bind(this)}
+                                                        min="2" max="10"
+                                                        required
+                                                    />
+                                              </Form>
+                                              </div>
+                                                                                                                                       
+                                              :null
+
+                                            }
+                                    </div>
+                                  </div>
+                              : this.state.LMoutdoorClean ?
+                              <div>
+                                  <ServiceTest> How Often? <span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                    <div style = {{"margin-top" : "0px"}}>
+                                      <Checkbox toggle label = "  Once" onChange={ this.outdoorLMonce }  disabled = {outdoorLMonceStatus}/>
+                                      <Checkbox toggle label = "  Weekly" onChange={ this.outdoorLMweek }  disabled = {outdoorLMweekStatus}/>
+                                      <Checkbox toggle label = "  Monthly" onChange={ this.outdoorLMmonth }  disabled = {outdoorLMmonthStatus}/>
+                                      {this.state.outdoorLMweek?
+                                              <div>
+                                              <ServiceTest> No. of Weeks<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                              <Form>
+                                                <FormInput
+                                                        id="fname"
+                                                        size="10"
+                                                        type="number"
+                                                        name="fname"
+                                                        placeholder="2"
+                                                        onChange ={this.handleoutdoorLMweek.bind(this)}
+                                                        min="2" max="10"
+                                                        required
+                                                    />
+                                              </Form>
+                                              </div>
+                                              : this.state.outdoorLMmonth?
+                                              <div>
+                                              <ServiceTest> No. of Months<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                              <Form>
+                                                <FormInput
+                                                        id="fname"
+                                                        size="10"
+                                                        type="number"
+                                                        name="fname"
+                                                        placeholder="2"
+                                                        onChange ={this.handleoutdoorLMmonth.bind(this)}
+                                                        min="2" max="10"
+                                                        required
+                                                    />
+                                              </Form>
+                                              </div>
+                                                                                                                                       
+                                              :null
+
+                                            }
+                                    </div>
+                                  </div>
+                              : this.state.DCoutdoorClean ?
+                              <div>
+                                <div>
+                                <ServiceTest> Area Size? <span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
                                       <select id="areaSize" onChange={this.handleDCarea} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
-                                      <option value="0">Select Size</option>
+                                          <option value="0">Select Size</option>
                                           <option value="0-20 sq m">0-20 sq m</option>
                                           <option value="20-75 sq m">20-75 sq m</option>
                                           <option value="75-150 sq m">75-150 sq m</option>
-                                          <option value="150-250 sq m">150-250 sq m</option>  
+                                          <option value="150-250 sq m">150-250 sq m</option>        
                                       </select>
                                 </div>
                                   <ServiceTest style = {{"margin-bottom": "-8px"}}> Or </ServiceTest>
@@ -2069,24 +2383,38 @@ return (
                                                 type="number"
                                                 name="fname"
                                                 placeholder="Width (m)"
-                                                onChange ={this.handleDCareaW.bind(this)}
+                                                onChange={this.handleDCareaW.bind(this)}
                                                 min="0" max="9999999"
                                                 required
                                             />
                                   </Form>
                               </div>
-
-                              : this.state.LMoutdoorClean ?
-                                      <ServiceGridSplit><ServiceTest>Lawn Mowing</ServiceTest><Tooltip title="Lawn Mowing" aria-label="add"><Fab2><LogoContainer2 src={LawnMowerSelect} onClick={this.LMoutdoorClean.bind(this)}/></Fab2></Tooltip></ServiceGridSplit> 
-                                      :
-                                      <ServiceGridSplit><ServiceTest>Lawn Mowing</ServiceTest><Tooltip title="Lawn Mowing" aria-label="add"><Fab2><LogoContainer2 src={LawnMower} onClick={this.LMoutdoorClean.bind(this)}/></Fab2></Tooltip></ServiceGridSplit> 
-                              } 
-
+                              : <div>
+                              <ServiceGridSplit><ServiceTest>Flower Bedding</ServiceTest><Tooltip  title="Flower Bedding" aria-label="add"><Fab2 ><Flowers onClick={this.FBoutdoorClean.bind(this)} FBoutdoorClean = {this.state.FBoutdoorClean}/></Fab2></Tooltip></ServiceGridSplit> 
+                              {this.state.FBoutdoorClean ?
+                                  <div style = {{"margin-top":"10px"}}>
+                                      <FormInput
+                                        id="fname"
+                                        size="10"
+                                        maxlength="7"
+                                        type="text"
+                                        name="fname"
+                                        placeholder="Promo Code?"
+                                        onKeyUp={this.handleFBoutdoorPromo}
+                                        min="0" max="9999999"
+                                        required
+                                      />
+                                  </div> 
+                                  : null
+                                }
+                              
+                                </div>
+                              }  
 
                               {this.state.YCoutdoorClean?
-                              <div>
                                 <div>
-                                <ServiceTest> Area Size</ServiceTest>
+                                <div>
+                                <ServiceTest> Area Size? <span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
                                       <select id="areaSize" onChange={this.handleYCarea} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
                                           <option value="0">Select Size</option>
                                           <option value="0-20 sq m">0-20 sq m</option>
@@ -2120,10 +2448,11 @@ return (
                                             />
                                   </Form>
                               </div>
-                              : this.state.LMoutdoorClean ?
-                              <div>
+
+                                :this.state.LMoutdoorClean ?
                                 <div>
-                                <ServiceTest> Area Size</ServiceTest>
+                                <div>
+                                <ServiceTest> Area Size? <span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
                                       <select id="areaSize" onChange={this.handleLMarea} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
                                       <option value="0">Select Size</option>
                                           <option value="0-20 sq m">0-20 sq m</option>
@@ -2157,69 +2486,108 @@ return (
                                             />
                                   </Form>
                               </div>
-                              : this.state.DCoutdoorClean ?
-                              <div>
-                                  <ServiceTest> Work Yard</ServiceTest>
-                                  <div style = {{"margin-top" : "0px"}}>
-                                    <Checkbox toggle label = "  Whole" onChange={ this.outdoorDCwholeYard }  disabled = {outdoorDCwholeYardStatus} />
-                                    <Checkbox toggle label = "  Front" onChange={ this.outdoorDCfrontYard }  disabled = {outdoorDCnotWholeStatus} />
-                                    <Checkbox toggle label = "  Back" onChange={ this.outdoorDCbackYard }  disabled = {outdoorDCnotWholeStatus} />
-                                    <Checkbox toggle label = "  Side" onChange={ this.outdoorDCsideYard }  disabled = {outdoorDCnotWholeStatus} />
-                                  </div>
-                                </div>
-                              : <ServiceGridSplit><ServiceTest>Flower Bedding</ServiceTest><Tooltip  title="Flower Bedding" aria-label="add"><Fab2 ><Flowers onClick={this.FBoutdoorClean.bind(this)} FBoutdoorClean = {this.state.FBoutdoorClean}/></Fab2></Tooltip></ServiceGridSplit> 
-                             
-                              }  
-
-                              {this.state.YCoutdoorClean?
-                                <div>
-                                  <ServiceTest> Work Yard</ServiceTest>
-                                  <div style = {{"margin-top" : "0px"}}>
-                                    <Checkbox toggle label = "  Whole" onChange={ this.outdoorYCwholeYard }  disabled = {outdoorYCwholeYardStatus} />
-                                    <Checkbox toggle label = "  Front" onChange={ this.outdoorYCfrontYard }  disabled = {outdoorNotWholeStatus} />
-                                    <Checkbox toggle label = "  Back" onChange={ this.outdoorYCbackYard }  disabled = {outdoorNotWholeStatus} />
-                                    <Checkbox toggle label = "  Side" onChange={ this.outdoorYCsideYard }  disabled = {outdoorNotWholeStatus} />
-                                  </div>
-                                </div>
-
-                                :this.state.LMoutdoorClean ?
-                                <div>
-                                  <ServiceTest> Work Yard</ServiceTest>
-                                  <div style = {{"margin-top" : "0px"}}>
-                                    <Checkbox toggle label = "  Whole" onChange={ this.outdoorLMwholeYard }  disabled = {outdoorLMwholeYardStatus} />
-                                    <Checkbox toggle label = "  Front" onChange={ this.outdoorLMfrontYard }  disabled = {outdoorLMnotWholeStatus} />
-                                    <Checkbox toggle label = "  Back" onChange={ this.outdoorLMbackYard }  disabled = {outdoorLMnotWholeStatus} />
-                                    <Checkbox toggle label = "  Side" onChange={ this.outdoorLMsideYard }  disabled = {outdoorLMnotWholeStatus} />
-                                  </div>
-                                </div>
                                 :this.state.FBoutdoorClean ?
                                 <div>
-                                  <ServiceTest> Work Yard</ServiceTest>
-                                  <div style = {{"margin-top" : "0px"}}>
-                                    <Checkbox toggle label = "  Whole" onChange={ this.outdoorFBwholeYard }  disabled = {outdoorFBwholeYardStatus} />
-                                    <Checkbox toggle label = "  Front" onChange={ this.outdoorFBfrontYard }  disabled = {outdoorFBnotWholeStatus} />
-                                    <Checkbox toggle label = "  Back" onChange={ this.outdoorFBbackYard }  disabled = {outdoorFBnotWholeStatus} />
-                                    <Checkbox toggle label = "  Side" onChange={ this.outdoorFBsideYard }  disabled = {outdoorFBnotWholeStatus} />
-                                  </div>
+                                <div>
+                                <ServiceTest> Area Size? <span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                      <select id="areaSize" onChange={this.handleFBarea} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
+                                          <option value="0">Select Size</option>
+                                          <option value="0-20 sq m">0-20 sq m</option>
+                                          <option value="20-75 sq m">20-75 sq m</option>
+                                          <option value="75-150 sq m">75-150 sq m</option>
+                                          <option value="150-250 sq m">150-250 sq m</option>        
+                                      </select>
                                 </div>
-                                :<ServiceGridSplit><ServiceTest>Driveway Cleaning</ServiceTest><Tooltip  title="Driveway Cleaning" aria-label="add"><Fab2 ><Driveway onClick={this.DCoutdoorClean.bind(this)} DCoutdoorClean = {this.state.DCoutdoorClean}/></Fab2></Tooltip></ServiceGridSplit>                             
+                                  <ServiceTest style = {{"margin-bottom": "-8px"}}> Or </ServiceTest>
+                                  <Form>
+                                      <FormInput
+                                            id="fname"
+                                            size="10"
+                                            type="number"
+                                            name="fname"
+                                            placeholder="Length (m)"
+                                            onChange ={this.handleFBareaL.bind(this)}
+                                            min="0" max="9999999"
+                                            required
+                                        />
+                                                    
+                                        <FormInput
+                                                id="fname"
+                                                size="10"
+                                                type="number"
+                                                name="fname"
+                                                placeholder="Width (m)"
+                                                onChange={this.handleFBareaW.bind(this)}
+                                                min="0" max="9999999"
+                                                required
+                                            />
+                                  </Form>
+                              </div>
+                                : <div>
+                                  
+                                <ServiceGridSplit><ServiceTest>Driveway Cleaning</ServiceTest><Tooltip  title="Driveway Cleaning" aria-label="add"><Fab2 ><Driveway onClick={this.DCoutdoorClean.bind(this)} DCoutdoorClean = {this.state.DCoutdoorClean}/></Fab2></Tooltip></ServiceGridSplit>                             
+                                {this.state.DCoutdoorClean ?
+                                  <div style = {{"margin-top":"10px"}}>
+                                      <FormInput
+                                        id="fname"
+                                        size="10"
+                                        maxlength="7"
+                                        type="text"
+                                        name="fname"
+                                        placeholder="Promo Code?"
+                                        onKeyUp={this.handleIndoorEndTenencyPromo}
+                                        min="0" max="9999999"
+                                        required
+                                      />
+                                  </div> 
+                                  : null
+                                }
+                                </div>
+                              
+                              
                               }                          
 
                                 </Options4>
+                                
+                                <ContentTitle> Enter Details
+                                  <span><hr width="300"/></span>
+                                </ContentTitle>
+                                <EnterDetails>
+                                      <select id="areaSize" onChange={this.handleOutdoorPropertType} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
+                                        <option value="0">Property Type</option>
+                                        <option value="Residential">Residential</option>
+                                        <option value="Commercial">Commercial</option>
+                                      </select>   
+
+                                      <select id="areaSize" onChange={this.handleOutdoorPropertKind} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
+                                        <option value="0">Property Kind</option>
+                                        <option value="House">House</option>
+                                        <option value="Apartment">Apartment</option>
+                                        <option value="Townhouse">Townhouse</option>
+                                      </select>	  
+
+                                      <select id="areaSize" onChange={this.handleOutdoorWorkYard} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
+                                        <option value="0">Work Area</option>
+                                        <option value="Whole">Whole Yard</option>
+                                        <option value="Front">Front Yard</option>
+                                        <option value="Side">Side Yard</option>
+                                        <option value="Side">Back Yard</option>
+                                      </select>
+                                </EnterDetails>
                                 <ContentTitle> Service Details & Costs
                                   <span><hr width="300"/></span>
                                 </ContentTitle>
                                 <Options3>
                                   <div style = {{"margin-left" : "2px"}}>
                                     <Message2>Outside Details</Message2>
-                                    <EventLog logs={this.state.events5}/>
-                                    <EventLog logs={this.state.OutdoorPropType}/>
-                                    <EventLog logs={this.state.OutdoorPropKind}/>
-
-                                    {this.state.events6.length !== 0 ?
-                                      <Message>Date : {y.replace("GMT+0200 (South Africa Standard Time)","")}</Message> 
-                                    : null
-                                    }                                           
+                                      <EventLog logs={this.state.events5}/>
+                                      <Message>{this.state.OutdoorPropertType !== ""? this.state.OutdoorPropertType : null}</Message>
+                                      <Message>{this.state.OutdoorPropertKind !== ""? this.state.OutdoorPropertKind : null}</Message>
+                                      <Message>{this.state.OutdoorWorkYard !== ""? this.state.OutdoorWorkYard : null}</Message>
+                                      {this.state.events6.length !== 0 ?
+                                        <Message>Date : {y.replace("GMT+0200 (South Africa Standard Time)","")}</Message> 
+                                      : null
+                                      }                                           
                                   </div>
                                   <div>
                                     <Message2>Services</Message2>
@@ -2949,9 +3317,9 @@ return (
 
             {this.state.showPopupOutdoor?
               this.props.currentUser?
-              <Outdoor showPopupOutdoor = {this.state.showPopupOutdoor} currentUser = {this.props.currentUser} closePopup={this.props.closePopup} dateTimeOutdoor = {this.state.dateTimeOutdoor} totalOutdoor = {totalOutdoor} OutdoorBookedService = {this.state.OutdoorBookedService} serviceIntervalOutdoor = {this.state.serviceIntervalOutdoor} OutdoorYardSize = {this.state.OutdoorYardSize} OutdoorPropertType = {this.state.OutdoorPropertType} OutdoorPropertKind = {this.state.OutdoorPropertKind} OutdoorWorkYard = {workYard} wheelbarrow = {this.state.YCoutdoorCleanDisplay} mower = {this.state.LMoutdoorCleanDisplay} windows = {this.state.FBoutdoorCleanDisplay} box = {this.state.DCoutdoorCleanDisplay} />
+              <Outdoor showPopupOutdoor = {this.state.showPopupOutdoor} currentUser = {this.props.currentUser} closePopup={this.props.closePopup} dateTimeOutdoor = {this.state.dateTimeOutdoor} totalOutdoor = {totalOutdoor} OutdoorBookedService = {this.state.OutdoorBookedService} serviceIntervalOutdoor = {this.state.serviceIntervalOutdoor} OutdoorYardSize = {this.state.OutdoorYardSize} OutdoorPropertType = {this.state.OutdoorPropertType} OutdoorPropertKind = {this.state.OutdoorPropertKind} OutdoorWorkYard = {this.state.OutdoorWorkYard} wheelbarrow = {this.state.YCoutdoorCleanDisplay} mower = {this.state.LMoutdoorCleanDisplay} windows = {this.state.FBoutdoorCleanDisplay} box = {this.state.DCoutdoorCleanDisplay} />
                 : !this.props.currentUser?
-                  <PromptSinIn currentUser = {this.props.currentUser} showPopupOutdoor = {this.state.showPopupOutdoor} closePopup={this.props.closePopup} dateTimeOutdoor = {this.state.dateTimeOutdoor} totalOutdoor = {totalOutdoor}  OutdoorBookedService = {this.state.OutdoorBookedService} serviceIntervalOutdoor = {this.state.serviceIntervalOutdoor} OutdoorYardSize = {this.state.OutdoorYardSize} OutdoorPropertType = {this.state.OutdoorPropertType} OutdoorPropertKind = {this.state.OutdoorPropertKind} OutdoorWorkYard = {workYard} wheelbarrow = {this.state.YCoutdoorCleanDisplay} mower = {this.state.LMoutdoorCleanDisplay} windows = {this.state.FBoutdoorCleanDisplay} box = {this.state.DCoutdoorCleanDisplay} />
+                  <PromptSinIn currentUser = {this.props.currentUser} showPopupOutdoor = {this.state.showPopupOutdoor} closePopup={this.props.closePopup} dateTimeOutdoor = {this.state.dateTimeOutdoor} totalOutdoor = {totalOutdoor}  OutdoorBookedService = {this.state.OutdoorBookedService} serviceIntervalOutdoor = {this.state.serviceIntervalOutdoor} OutdoorYardSize = {this.state.OutdoorYardSize} OutdoorPropertType = {this.state.OutdoorPropertType} OutdoorPropertKind = {this.state.OutdoorPropertKind} OutdoorWorkYard = {this.state.OutdoorWorkYard} wheelbarrow = {this.state.YCoutdoorCleanDisplay} mower = {this.state.LMoutdoorCleanDisplay} windows = {this.state.FBoutdoorCleanDisplay} box = {this.state.DCoutdoorCleanDisplay} />
                 : null
               :null
             } 
