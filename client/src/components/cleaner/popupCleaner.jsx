@@ -677,7 +677,7 @@ class Cleaner extends React.Component {
         handleOutdoorWorkYard(e) {
           //this.logsOutdoorPropKind.shift();
           //this.logsOutdoorPropKind.unshift("Kind : " + e.target.value );
-            this.setState({ OutdoorWorkYard: "Work Area : " + e.target.value + " Yard",
+            this.setState({ OutdoorWorkYard: "Area : " + e.target.value + " Yard",
             });
           }
 
@@ -767,10 +767,10 @@ class Cleaner extends React.Component {
           });
         }
 
-        handleYCarea(e) { const area  = e.target.value; this.logsYCarea.shift(); this.logsYCarea.unshift("Area : " + e.target.value ); this.setState({ YCareaPrice: area === "0-20 sq m"? 100 : area === "20-75 sq m" ? 150 : area === "75-150 sq m"? 200 : area === "150-250 sq m" ? 250 : 0}); }
-        handleLMarea(e) { const area  = e.target.value; this.logsLMarea.shift(); this.logsLMarea.unshift("Area : " + e.target.value ); this.setState({ LMareaPrice: area === "0-20 sq m"? 105 : area === "20-75 sq m" ? 155 : area === "75-150 sq m"? 205 : area === "150-250 sq m" ? 255 : 0 }); }
-        handleFBarea(e) { const area  = e.target.value; this.logsFBarea.shift(); this.logsFBarea.unshift("Area : " + e.target.value ); this.setState({ FBareaPrice: area === "0-20 sq m"? 90 : area === "20-75 sq m" ? 140 : area === "75-150 sq m"? 190 : area === "150-250 sq m" ? 240 : 0}); }
-        handleDCarea(e) { const area  = e.target.value; this.logsDCarea.shift(); this.logsDCarea.unshift("Area : " + e.target.value ); this.setState({ DCareaPrice: area === "0-20 sq m"? 80 : area === "20-75 sq m" ? 130 : area === "75-150 sq m"? 180 : area === "150-250 sq m" ? 230 : 0}); } 
+        handleYCarea(e) { const area  = e.target.value; this.logsYCarea.shift(); this.logsYCarea.unshift("Size : " + e.target.value ); this.setState({ YCareaPrice: area === "0-20 m2"? 100 : area === "20-75 m2" ? 150 : area === "75-150 m2"? 200 : area === "150-250 m2" ? 250 : 0}); }
+        handleLMarea(e) { const area  = e.target.value; this.logsLMarea.shift(); this.logsLMarea.unshift("Size : " + e.target.value ); this.setState({ LMareaPrice: area === "0-20 m2"? 105 : area === "20-75 m2" ? 155 : area === "75-150 m2"? 205 : area === "150-250 m2" ? 255 : 0 }); }
+        handleFBarea(e) { const area  = e.target.value; this.logsFBarea.shift(); this.logsFBarea.unshift("Size : " + e.target.value ); this.setState({ FBareaPrice: area === "0-20 m2"? 90 : area === "20-75 m2" ? 140 : area === "75-150 m2"? 190 : area === "150-250 m2" ? 240 : 0}); }
+        handleDCarea(e) { const area  = e.target.value; this.logsDCarea.shift(); this.logsDCarea.unshift("Size : " + e.target.value ); this.setState({ DCareaPrice: area === "0-20 m2"? 80 : area === "20-75 m2" ? 130 : area === "75-150 m2"? 180 : area === "150-250 m2" ? 230 : 0}); } 
 
         outdoorYConce () { this.setState({handleoutdoorYCweek: 2, handleoutdoorYCmonth: 2, outdoorYConce: !this.state.outdoorYConce, outdoorYConcePrice : this.state.outdoorYConce? 0 : 1}); }
         outdoorYCweek () { this.setState({handleoutdoorYCmonth: 2, outdoorYCweek: !this.state.outdoorYCweek, outdoorYCweekPrice : this.state.outdoorYCweek? 0 : 0.9}); }
@@ -2213,10 +2213,10 @@ return (
                               <div>
                                   <ServiceTest> How Often? <span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
                                     <div style = {{"margin-top" : "0px"}}>
-                                      <Checkbox toggle label = "  Once" onChange={ this.outdoorLMonce }  disabled = {outdoorLMonceStatus}/>
-                                      <Checkbox toggle label = "  Weekly" onChange={ this.outdoorLMweek }  disabled = {outdoorLMweekStatus}/>
-                                      <Checkbox toggle label = "  Monthly" onChange={ this.outdoorLMmonth }  disabled = {outdoorLMmonthStatus}/>
-                                      {this.state.outdoorLMweek?
+                                      <Checkbox toggle label = "  Once" onChange={ this.outdoorDConce }  disabled = {outdoorDConceStatus}/>
+                                      <Checkbox toggle label = "  Weekly" onChange={ this.outdoorDCweek }  disabled = {outdoorDCweekStatus}/>
+                                      <Checkbox toggle label = "  Monthly" onChange={ this.outdoorDCmonth }  disabled = {outdoorDCmonthStatus}/>
+                                      {this.state.outdoorDCweek?
                                               <div>
                                               <ServiceTest> No. of Weeks<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
                                               <Form>
@@ -2232,7 +2232,7 @@ return (
                                                     />
                                               </Form>
                                               </div>
-                                              : this.state.outdoorLMmonth?
+                                              : this.state.outdoorDCmonth?
                                               <div>
                                               <ServiceTest> No. of Months<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
                                               <Form>
@@ -2358,10 +2358,10 @@ return (
                                 <ServiceTest> Area Size? <span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
                                       <select id="areaSize" onChange={this.handleDCarea} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
                                           <option value="0">Select Size</option>
-                                          <option value="0-20 sqm">0-20 sqm</option>
-                                          <option value="20-75 sqm">20-75 sqm</option>
-                                          <option value="75-150 sqm">75-150 sqm</option>
-                                          <option value="150-250 sqm">150-250 sqm</option>        
+                                          <option value="0-20 m2">0-20 m2</option>
+                                          <option value="20-75 m2">20-75 m2</option>
+                                          <option value="75-150 m2">75-150 m2</option>
+                                          <option value="150-250 m2">150-250 m2</option>        
                                       </select>
                                 </div>
                                   <ServiceTest style = {{"margin-bottom": "-8px"}}> Or </ServiceTest>
@@ -2417,10 +2417,10 @@ return (
                                 <ServiceTest> Area Size? <span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
                                       <select id="areaSize" onChange={this.handleYCarea} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
                                           <option value="0">Select Size</option>
-                                          <option value="0-20 sqm">0-20 sqm</option>
-                                          <option value="20-75 sqm">20-75 sqm</option>
-                                          <option value="75-150 sqm">75-150 sqm</option>
-                                          <option value="150-250 sqm">150-250 sqm</option>        
+                                          <option value="0-20 m2">0-20 m2</option>
+                                          <option value="20-75 m2">20-75 m2</option>
+                                          <option value="75-150 m2">75-150 m2</option>
+                                          <option value="150-250 m2">150-250 m2</option>        
                                       </select>
                                 </div>
                                   <ServiceTest style = {{"margin-bottom": "-8px"}}> Or </ServiceTest>
@@ -2455,10 +2455,10 @@ return (
                                 <ServiceTest> Area Size? <span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
                                       <select id="areaSize" onChange={this.handleLMarea} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
                                       <option value="0">Select Size</option>
-                                          <option value="0-20 sqm">0-20 sqm</option>
-                                          <option value="20-75 sqm">20-75 sqm</option>
-                                          <option value="75-150 sqm">75-150 sqm</option>
-                                          <option value="150-250 sqm">150-250 sqm</option>  
+                                          <option value="0-20 m2">0-20 m2</option>
+                                          <option value="20-75 m2">20-75 m2</option>
+                                          <option value="75-150 m2">75-150 m2</option>
+                                          <option value="150-250 m2">150-250 m2</option>  
                                       </select>
                                 </div>
                                   <ServiceTest style = {{"margin-bottom": "-8px"}}> Or </ServiceTest>
@@ -2492,10 +2492,10 @@ return (
                                 <ServiceTest> Area Size? <span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
                                       <select id="areaSize" onChange={this.handleFBarea} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
                                           <option value="0">Select Size</option>
-                                          <option value="0-20 sqm">0-20 sqm</option>
-                                          <option value="20-75 sqm">20-75 sqm</option>
-                                          <option value="75-150 sqm">75-150 sqm</option>
-                                          <option value="150-250 sqm">150-250 sqm</option>        
+                                          <option value="0-20 m2">0-20 m2</option>
+                                          <option value="20-75 m2">20-75 m2</option>
+                                          <option value="75-150 m2">75-150 m2</option>
+                                          <option value="150-250 m2">150-250 m2</option>        
                                       </select>
                                 </div>
                                   <ServiceTest style = {{"margin-bottom": "-8px"}}> Or </ServiceTest>
@@ -2583,7 +2583,6 @@ return (
                                       <EventLog logs={this.state.events5}/>
                                       <Message>{this.state.OutdoorPropertType !== ""? this.state.OutdoorPropertType : null}</Message>
                                       <Message>{this.state.OutdoorPropertKind !== ""? this.state.OutdoorPropertKind : null}</Message>
-                                      <Message>{this.state.OutdoorWorkYard !== ""? this.state.OutdoorWorkYard : null}</Message>
                                       {this.state.events6.length !== 0 ?
                                         <Message>Date : {y.replace("GMT+0200 (South Africa Standard Time)","")}</Message> 
                                       : null
@@ -2592,35 +2591,32 @@ return (
                                   <div>
                                     <Message2>Services</Message2>
                                     <Message>{outDoorServiceRequired}</Message>   
-                                    {YC_yard_Status !== "" && (this.state.outdoorYC_WYard || this.state.outdoorYC_FYard || this.state.outdoorYC_BYard || this.state.outdoorYC_SYard)? <Message>Yard : {YC_yard_Status} </Message> : ""}
-                                    {LM_yard_Status !== "" && (this.state.outdoorLM_WYard || this.state.outdoorLM_FYard || this.state.outdoorLM_BYard || this.state.outdoorLM_SYard)?  <Message>Yard : {LM_yard_Status} </Message> : ""}
-                                    {FB_yard_Status !== "" && (this.state.outdoorFB_WYard || this.state.outdoorFB_FYard || this.state.outdoorFB_BYard || this.state.outdoorFB_SYard)? <Message>Yard : {FB_yard_Status} </Message>  : ""}
-                                    {DC_yard_Status !== "" && (this.state.outdoorDC_WYard || this.state.outdoorDC_FYard || this.state.outdoorDC_BYard || this.state.outdoorDC_SYard)?  <Message>Yard : {DC_yard_Status} </Message>  : ""} 
+                                    <Message>{this.state.OutdoorWorkYard !== ""? this.state.OutdoorWorkYard : null}</Message>
                                     
                                     {this.state.YCoutdoorClean? 
                                          (this.state.YCarea[0] === undefined || this.state.YCarea[0] === "Area : 0") && OutdoorAreaLW !== 0?
-                                         <Message>Area : {OutdoorAreaLW} sq m</Message>
+                                         <Message>Size : {OutdoorAreaLW} <span style = {{"text-transform": "none"}}>m2</span></Message>
                                          : <EventLog logs={this.state.YCarea}/>
                                       : ""                                    
                                     }
 
                                     {this.state.LMoutdoorClean? 
                                          (this.state.LMarea[0] === undefined || this.state.LMarea[0] === "Area : 0") && OutdoorAreaLW !== 0?
-                                         <Message>Area : {OutdoorAreaLW} sq m</Message>
+                                         <Message>Size : {OutdoorAreaLW} <span style = {{"text-transform": "none"}}>m2</span></Message>
                                          : <EventLog logs={this.state.LMarea}/>
                                       : ""                                    
                                     }
 
                                     {this.state.FBoutdoorClean? 
                                          (this.state.FBarea[0] === undefined || this.state.FBarea[0] === "Area : 0") && OutdoorAreaLW !== 0?
-                                         <Message>Area : {OutdoorAreaLW} sq m</Message>
+                                         <Message>Size : {OutdoorAreaLW} <span style = {{"text-transform": "none"}}>m2</span></Message>
                                          : <EventLog logs={this.state.FBarea}/>
                                       : ""                                    
                                     }
 
                                     {this.state.DCoutdoorClean? 
                                          (this.state.DCarea[0] === undefined || this.state.DCarea[0] === "Area : 0") && OutdoorAreaLW !== 0?
-                                         <Message>Area : {OutdoorAreaLW} sq m</Message>
+                                         <Message>Size : {OutdoorAreaLW} <span style = {{"text-transform": "none"}}>m2</span></Message>
                                          : <EventLog logs={this.state.DCarea}/>
                                       : ""                                    
                                     }
@@ -2629,63 +2625,27 @@ return (
                                   </div>
                                   <div>
                                     <Message2>Costs</Message2>
-
-                                    {this.state.YCoutdoorClean?
+                                    {this.state.YCoutdoorClean || this.state.FBoutdoorClean || this.state.DCoutdoorClean || this.state.LMoutdoorClean?
                                           <div>
-                                            {this.state.handleYCoutdoorPromo === 1? 
+                                            {this.state.outdoorYConce || this.state.outdoorFBonce || this.state.outdoorDConce || this.state.outdoorLMonce? 
                                               <Message>Total : R {totalOutdoor.toFixed(2)}</Message>
-                                              : 
-                                              <div>
-
-                                              <Message>Total : R {totalOutdoor.toFixed(2)}</Message>
-                                              <Message>Applied Promo : -50%</Message>
-                                              </div>
-
-
+                                              : this.state.outdoorYCweek || this.state.outdoorFBweek || this.state.outdoorDCweek || this.state.outdoorLMweek?
+                                                <div>
+                                                  <Message>Total : R {totalOutdoor.toFixed(2)}</Message>
+                                                  <Message>Discount : 10%</Message>
+                                                </div>
+                                              : this.state.outdoorYCmonth || this.state.outdoorFBmonth || this.state.outdoorDCmonth || this.state.outdoorLMmonth?
+                                                <div>
+                                                  <Message>Total : R {totalOutdoor.toFixed(2)}</Message>
+                                                  <Message>Discount : 5%</Message>
+                                                </div>
+                                              :
+                                              null
                                             }
-                                          </div>
-                                         
+                                          </div>                                        
+                                          : null
+                                          } 
 
-                                            : this.state.FBoutdoorClean?
-                                          <div>
-                                            {this.state.handleFBoutdoorPromo === 1? 
-                                              <Message>Total : R {totalOutdoor.toFixed(2)}</Message>
-                                              : 
-                                              <div>
-
-                                              <Message>Total : R {totalOutdoor.toFixed(2)}</Message>
-                                              <Message>Applied Promo : -50%</Message>
-                                              </div>
-                                            }
-                                          </div>
-
-                                          : this.state.DCoutdoorClean?
-                                          <div>
-                                            {this.state.handleDCoutdoorPromo === 1? 
-                                              <Message>Total : R {totalOutdoor.toFixed(2)}</Message>
-                                              : 
-                                              <div>
-
-                                              <Message>Total : R {totalOutdoor.toFixed(2)}</Message>
-                                              <Message>Applied Promo : -50%</Message>
-                                              </div>
-                                            }
-                                          </div>
-
-                                          : this.state.LMoutdoorClean?
-                                          <div>
-                                            {this.state.handleLMoutdoorPromo === 1? 
-                                              <Message>Total : R {totalOutdoor.toFixed(2)}</Message>
-                                              : 
-                                              <div>
-
-                                              <Message>Total : R {totalOutdoor.toFixed(2)}</Message>
-                                              <Message>Applied Promo : -50%</Message>
-                                              </div>
-                                            }
-                                          </div>
-                                        : null
-                                        }
                                       </div>
                                 </Options3>
                                 <p style = {{"textAlign" : "center"}}><CustomButton onClick={this.selectOutdoor.bind(this)} style = {{"margin-top" : "12.5px", "background": "#e91e63"}} size="sm">Book Service</CustomButton></p> 
