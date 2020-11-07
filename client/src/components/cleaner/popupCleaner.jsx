@@ -229,7 +229,7 @@ class Cleaner extends React.Component {
           handlePoolTrianglePMvolumeB : 0, handlePoolTrianglePMvolumeH : 0, handlePoolTrianglePMvolumeD: 0,handlePoolTrianglePMvolumeS: 0,
           handlePoolIrregularPMvolumeL : 0, handlePoolIrregularPMvolumeA : 0, handlePoolIrregularPMvolumeB: 0, handlePoolIrregularPMvolumeD: 0, handlePoolIrregularPMvolumeS: 0,
         
-          poolPMonce : false, poolPMoncePrice : 0, poolPMweek: false, poolPMweekPrice : 0, poolPMmonth: false, poolPMmonthPrice : 0,
+          poolPMmonth : false, poolPMmonthPrice : 0, poolPMquarter: false, poolPMquarterPrice : 0, poolPMyear: false, poolPMyearPrice : 0,
           poolPConce : false, poolPConcePrice : 0, poolPCweek: false, poolPCweekPrice : 0, poolPCmonth: false, poolPCmonthPrice : 0,
           
           poolPMgreenAlgae : false, poolPMgreenAlgaePrice : 0, poolPMmustardAlgae: false, poolPMmustardAlgaePrice : 0, poolPMblackAlgae: false, poolPMblackAlgaePrice : 0,
@@ -348,14 +348,18 @@ class Cleaner extends React.Component {
         this.handlePoolTrianglePMvolumeB  = this.handlePoolTrianglePMvolumeB.bind(this); this.handlePoolTrianglePMvolumeH = this.handlePoolTrianglePMvolumeH.bind(this); this.handlePoolTrianglePMvolumeD  = this.handlePoolTrianglePMvolumeD.bind(this); this.handlePoolTrianglePMvolumeS = this.handlePoolTrianglePMvolumeS.bind(this); 
         this.handlePoolIrregularPMvolumeL  = this.handlePoolIrregularPMvolumeL.bind(this); this.handlePoolIrregularPMvolumeA = this.handlePoolIrregularPMvolumeA.bind(this); this.handlePoolIrregularPMvolumeB  = this.handlePoolIrregularPMvolumeB.bind(this); this.handlePoolIrregularPMvolumeD = this.handlePoolIrregularPMvolumeD.bind(this);  this.handlePoolIrregularPMvolumeS = this.handlePoolIrregularPMvolumeS.bind(this);
 
-        this.poolPMonce= this.poolPMonce.bind(this); this.poolPMweek= this.poolPMweek.bind(this); this.poolPMmonth= this.poolPMmonth.bind(this);
+        this.poolPMmonth= this.poolPMmonth.bind(this); this.poolPMquarter= this.poolPMquarter.bind(this); this.poolPMyear= this.poolPMyear.bind(this);
         this.poolPConce= this.poolPConce.bind(this); this.poolPCweek= this.poolPCweek.bind(this); this.poolPCmonth= this.poolPCmonth.bind(this);
         
         this.poolPCgreenAlgae = this.poolPCgreenAlgae.bind(this); this.poolPCmustardAlgae= this.poolPCmustardAlgae.bind(this); this.poolPCblackAlgae= this.poolPCblackAlgae.bind(this);
         this.poolPMgreenAlgae= this.poolPMgreenAlgae.bind(this); this.poolPMmustardAlgae= this.poolPMmustardAlgae.bind(this); this.poolPMblackAlgae= this.poolPMblackAlgae.bind(this);
         this.poolPCcloudy = this.poolPCcloudy.bind(this); this.poolPMcloudy = this.poolPMcloudy.bind(this);
 
-    }
+        this.handlepoolPCweek= this.handlepoolPCweek.bind(this); this.handlepoolPCmonth= this.handlepoolPCmonth.bind(this);
+        this.handlepoolPMmonth= this.handlepoolPMmonth.bind(this); this.handlepoolPMquarter= this.handlepoolPMquarter.bind(this);
+    
+    
+      }
 
     handleDropdownChange(e) {
       //this.logs.shift();
@@ -863,6 +867,8 @@ class Cleaner extends React.Component {
       this.setState({
         PoolClean: this.state.PoolMaint === true ? false : !this.state.PoolClean,
         handlePoolGenCleaningPromo: 1,
+        handlepoolPCweek: 2,
+        handlepoolPCmonth: 2,
         poolPConce : false, poolPCweek: false, poolPCmonth: false,
         PoolCleanService: this.state.PoolMaint === true || this.state.PoolClean? null : "Pool Cleaning",
         PoolCleanPrice: this.state.PoolMaint === true || this.state.PoolClean? 0 : 177
@@ -873,7 +879,9 @@ class Cleaner extends React.Component {
       this.setState({
         PoolMaint: this.state.PoolClean === true ? false : !this.state.PoolMaint,
         handlePoolMaintanancePromo: 1,
-        poolPMonce : false, poolPMweek: false, poolPMmonth: false,
+        handlepoolPMmonth: 1,
+        handlepoolPMquarter: 1,
+        poolPMquarter : false, poolPMyear: false, poolPMmonth: false,
         PoolMaintService: this.state.PoolClean === true || this.state.PoolMaint? null : "Pool maintanance",
         PoolMaintPrice: this.state.PoolClean === true || this.state.PoolMaint? 0 : 177
       });
@@ -946,13 +954,13 @@ handlePoolIrregularPMvolumeB(event) { event.preventDefault(); this.setState({ ha
 handlePoolIrregularPMvolumeS(event) { event.preventDefault(); this.setState({ handlePoolIrregularPMvolumeS: event.target.value});}
 
 
-poolPMonce() { this.setState({poolPMonce: !this.state.poolPMonce, poolPMoncePrice : this.state.poolPMonce? 0 : 1}); }
-poolPMweek () { this.setState({poolPMweek: !this.state.poolPMweek, poolPMweekPrice : this.state.poolPMweek? 0 : 0.9}); }
-poolPMmonth () { this.setState({poolPMmonth: !this.state.poolPMmonth, poolPMmonthPrice : this.state.poolPMmonth? 0 : 0.95}); }
+poolPMmonth () { this.setState({poolPMmonth: !this.state.poolPMmonth, poolPMmonthPrice : this.state.poolPMmonth? 0 : 0.90}); }
+poolPMquarter() { this.setState({poolPMquarter: !this.state.poolPMquarter, poolPMquarterPrice : this.state.poolPMquarter? 0 : 0.95}); }
+poolPMyear () { this.setState({poolPMyear: !this.state.poolPMyear, poolPMyearPrice : this.state.poolPMyear? 0 : 1}); }
 
-poolPConce () { this.setState({poolPConce: !this.state.poolPConce, poolPConcePrice : this.state.poolPConce? 0 : 1}); }
-poolPCweek () { this.setState({poolPCweek: !this.state.poolPCweek, poolPCweekPrice : this.state.poolPCweek? 0 : 0.9}); }
-poolPCmonth () { this.setState({poolPCmonth: !this.state.poolPCmonth, poolPCmonthPrice : this.state.poolPCmonth? 0 : 0.95}); }
+poolPConce () { this.setState({handlepoolPCweek: 1, handlepoolPCmonth: 1, poolPConce: !this.state.poolPConce, poolPConcePrice : this.state.poolPConce? 0 : 1}); }
+poolPCweek () { this.setState({handlepoolPCmonth: 1, poolPCweek: !this.state.poolPCweek, poolPCweekPrice : this.state.poolPCweek? 0 : 0.9}); }
+poolPCmonth () { this.setState({handlepoolPCweek: 1, poolPCmonth: !this.state.poolPCmonth, poolPCmonthPrice : this.state.poolPCmonth? 0 : 0.95}); }
 
 poolPCgreenAlgae () { this.setState({poolPCgreenAlgae: !this.state.poolPCgreenAlgae, poolPCgreenAlgaePrice : this.state.poolPCgreenAlgae? 0 : 1}); }
 poolPCmustardAlgae () { this.setState({poolPCmustardAlgae: !this.state.poolPCmustardAlgae, poolPCmustardAlgaePrice : this.state.poolPCmustardAlgae? 0 : 0.9}); }
@@ -964,6 +972,13 @@ poolPMblackAlgae () { this.setState({poolPMblackAlgae: !this.state.poolPMblackAl
 
 poolPCcloudy () { this.setState({poolPCcloudy: !this.state.poolPCcloudy, poolPcloudyPrice : this.state.poolPCcloudy? 0 : 0.9}); }
 poolPMcloudy () { this.setState({poolPMcloudy: !this.state.poolPMcloudy, poolPMcloudyPrice : this.state.poolPMcloudy? 0 : 0.95}); }
+
+
+handlepoolPCweek(event) { event.preventDefault(); this.setState({ handlepoolPCweek: event.target.value})};
+handlepoolPCmonth(event) { event.preventDefault(); this.setState({ handlepoolPCmonth: event.target.value})};
+
+handlepoolPMmonth(event) { event.preventDefault(); this.setState({ handlepoolPMmonth: event.target.value})};
+handlepoolPMquarter(event) { event.preventDefault(); this.setState({ handlepoolPMquarter: event.target.value})};
 
 
 showPoolServicesInfo(event) { this.setState({ showPoolServicesInfo: !this.state.showPoolServicesInfo });}
@@ -1122,7 +1137,7 @@ const poolPMvolume = this.state.poolShapePMSelect === "0" || this.state.poolShap
 
 const poolVolume = this.state.PoolClean? poolPCvolume.toFixed(0) * 1000 : this.state.PoolMaint? poolPMvolume.toFixed(0) * 1000 : 0;
 const poolPConceStatus = this.state.poolPCweek || this.state.poolPCmonth ? true : false; const poolPCweekStatus = this.state.poolPConce || this.state.poolPCmonth ? true : false; const poolPCmonthStatus = this.state.poolPCweek || this.state.poolPConce ? true : false;
-const poolPMonceStatus = this.state.poolPMweek || this.state.poolPMmonth ? true : false; const poolPMweekStatus = this.state.poolPMonce || this.state.poolPMmonth ? true : false; const poolPMmonthStatus = this.state.poolPMweek || this.state.poolPMonce ? true : false;
+const poolPMmonthStatus = this.state.poolPMquarter || this.state.poolPMyear ? true : false; const poolPMquarterStatus = this.state.poolPMmonth || this.state.poolPMyear ? true : false; const poolPMyearStatus = this.state.poolPMmonth || this.state.poolPMquarter ? true : false;
 
 const poolPCgreenAlgaeStatus = this.state.poolPCmustardAlgae || this.state.poolPCblackAlgae || this.state.poolPCcloudy? true : false; const poolPCmustardAlgaeStatus = this.state.poolPCgreenAlgae || this.state.poolPCblackAlgae || this.state.poolPCcloudy? true : false; const poolPCblackAlgaeStatus = this.state.poolPCmustardAlgae || this.state.poolPCgreenAlgae || this.state.poolPCcloudy? true : false;
 const poolPMgreenAlgaeStatus = this.state.poolPMmustardAlgae || this.state.poolPMblackAlgae || this.state.poolPMcloudy? true : false; const poolPMmustardAlgaeStatus = this.state.poolPMgreenAlgae || this.state.poolPMblackAlgae || this.state.poolPMcloudy? true : false; const poolPMblackAlgaeStatus = this.state.poolPMmustardAlgae || this.state.poolPMgreenAlgae || this.state.poolPMcloudy? true : false;
@@ -1132,13 +1147,16 @@ const poolPMcloudyStatus = this.state.poolPMmustardAlgae || this.state.poolPMbla
 const poolPCfreq = this.state.poolPConce ? "OnceOFF" : this.state.poolPCweek ? "Weekly" : this.state.poolPCmonth ? "Monthly" : "";
 const poolPMfreq = this.state.poolPMonce ? "OnceOFF" : this.state.poolPMweek ? "Weekly" : this.state.poolPMmonth ? "Monthly" : "";
 
+const PCfreqMultiplier = this.state.poolPCweek? this.state.handlepoolPCweek : this.state.poolPCmonth ? this.state.handlepoolPCmonth : 1;
+
+
 const poolPCalgae = this.state.poolPCgreenAlgae ? "Green" : this.state.poolPCmustardAlgae ? "Mustard" : this.state.poolPCblackAlgae ? "Black" : "";
 const poolPMalgae = this.state.poolPMgreenAlgae ? "Green" : this.state.poolPMmustardAlgae ? "Mustard" : this.state.poolPMblackAlgae ? "Black" : "";
 
 const poolPCvolPriceMultiplier = poolPCvolume > 0 && poolPCvolume <= 100 ? 1 : poolPCvolume > 100 && poolPCvolume <= 250 ? 1.5 : poolPCvolume > 250 && poolPCvolume <= 500 ? 1.75 : poolPCvolume > 500 && poolPCvolume <= 750 ? 2 : poolPCvolume > 750 && poolPCvolume <= 1000 ? 2.5 : 0;
 const poolPCissuePriceMultiplier = this.state.poolPCcloudy? 1.25 : this.state.poolPCgreenAlgae? 1.5 : this.state.poolPCmustardAlgae? 1.75 : this.state.poolPCblackAlgae ? 2 : 1;
 const poolPCfreqMultiplier = this.state.poolPConce ? 1 : this.state.poolPCweek ? 0.9 : this.state.poolPCmonth ? 0.95 : 0;
-const totalPCpool = this.state.PoolClean? (170 + (120 * poolPCvolPriceMultiplier * poolPCissuePriceMultiplier * poolPCfreqMultiplier)) * this.state.handlePoolGenCleaningPromo : 0;
+const totalPCpool = this.state.PoolClean? (170 + (120 * poolPCvolPriceMultiplier * poolPCissuePriceMultiplier * poolPCfreqMultiplier)) * this.state.handlePoolGenCleaningPromo * PCfreqMultiplier: 0;
 
 const poolPMvolPriceMultiplier = poolPMvolume > 0 && poolPMvolume <= 100 ? 1 : poolPMvolume > 100 && poolPMvolume <= 250 ? 1.5 : poolPMvolume > 250 && poolPMvolume <= 500 ? 1.75 : poolPMvolume > 500 && poolPMvolume <= 750 ? 2 : poolPMvolume > 750 && poolPMvolume <= 1000 ? 2.5 : 0;
 const poolPMissuePriceMultiplier = this.state.poolPMcloudy? 1.25 : this.state.poolPMgreenAlgae? 1.5 : this.state.poolPMmustardAlgae? 1.75 : this.state.poolPMblackAlgae ? 2 : 1;
@@ -1206,7 +1224,7 @@ return (
                                     </ContentTitle>
                                     <Options4>
                                         {this.state.IndoorAfterBuildClean ?
-                                            <div>
+                                        <div>
                                           <ServiceTest> Location & Date<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
                                           <div style = {{"width": "105px","height": "40px","color": 'grey'}}>
                                             <Select
@@ -1273,7 +1291,7 @@ return (
                                                 setHours(setMinutes(new Date(), 30), 23)
                                               ]} 
                                               />
-                                        </div>
+                                      </div>
 
                                         : this.state.IndoorEndTenancyClean ?
                                               <div>
@@ -2579,7 +2597,7 @@ return (
                                 </ContentTitle>
                                 <Options3>
                                   <div style = {{"margin-left" : "2px"}}>
-                                    <Message2>Outside Details</Message2>
+                                    <Message2>Details</Message2>
                                       <EventLog logs={this.state.events5}/>
                                       <Message>{this.state.OutdoorPropertType !== ""? this.state.OutdoorPropertType : null}</Message>
                                       <Message>{this.state.OutdoorPropertKind !== ""? this.state.OutdoorPropertKind : null}</Message>
@@ -2659,17 +2677,42 @@ return (
                           tabIcon: FaSwimmingPool,
                           tabContent: ( 
                             <div>
-                                <ContentTitle> Details 
+                                <ContentTitle> Select Required Services <Info onClick = {this.showPoolServicesInfo.bind(this)} showPoolServicesInfo = {this.state.showPoolServicesInfo}/>
                                   <span><hr width="300"/></span>
                                 </ContentTitle>
-                                <Options>
-                                    <DatePicker
-                                          selected={this.state.dateTimePool}
-                                          value={this.state.dateTimePool}
-                                          onChange={this.handleChangePool}
-                                          minDate={addDays(new Date(),2)} 
-                                          timeIntervals={30}                                       
+
+                              {!this.state.PoolMaint && !this.state.PoolClean ?
+                                  <Options3p1>
+                                    <ServiceGridSplit><ServiceTest> Pool Cleaning</ServiceTest><Tooltip  title="Pool Cleaning" aria-label="add"><Fab2><Installations onClick={this.genPoolClean.bind(this)} PoolClean = {this.state.PoolClean}/></Fab2></Tooltip> </ServiceGridSplit>
+                                    <ServiceGridSplit><ServiceTest>Pool Maintanance</ServiceTest><Tooltip  title="Pool Maintanance" aria-label="add"><Fab2><Maintanance onClick={this.periodMaint.bind(this)} PoolMaint = {this.state.PoolMaint}/></Fab2></Tooltip></ServiceGridSplit>
+                                    <ServiceGridSplit><ServiceTest>Repairs - Coming Soon</ServiceTest><Tooltip  title="Pool Repairs - Coming Soon" aria-label="add"><Fab2><ServicePool onClick={this.perPoolRepair.bind(this)} PoolRepair = {this.state.PoolRepair}/></Fab2></Tooltip></ServiceGridSplit>
+                                  </Options3p1>
+                              :this.state.PoolClean ?
+                              <Options4>
+                                <div>
+                                          <ServiceTest> Location & Date<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                          <div style = {{"width": "105px","height": "40px","color": 'grey'}}>
+                                            <Select
+                                              styles= {customStyles}
+                                              onChange={this.handleIndoorLoc}
+                                              options={options}
+                                              value={this.state.genCleanloc}
+                                              placeholder="Location..."
+                                              
+                                            />
+                                          </div>
+                                          <DatePicker
+                                          selected={this.state.dateTime}
+                                          value={this.state.dateTime}
+                                          onChange={this.handleChange2}
+                                          minDate={addDays(new Date(),2)}                                        
                                           showTimeSelect
+                                          timeFormat="HH:mm"
+                                          timeIntervals={30}
+                                          timeCaption="Time"
+                                          customInput={<ExampleCustomInput />}
+                                          dateFormat="MM/dd/yy"
+                                          shouldCloseOnSelect={false} 
                                           excludeTimes={[
                                                 setHours(setMinutes(new Date(), 0), 0),
                                                 setHours(setMinutes(new Date(), 0), 0),
@@ -2712,53 +2755,65 @@ return (
                                                 setHours(setMinutes(new Date(), 0), 23),
                                                 setHours(setMinutes(new Date(), 30), 23)
                                               ]} 
-                                          timeFormat="HH:mm"
-                                          timeCaption="Time"
-                                          dateFormat="MMMM d, yyyy h:mm aa"
-                                          customInput={<ExampleCustomInput />}
-                                          shouldCloseOnSelect={false} />
-                                      
-                                      <div style = {{"width": "150px","height": "22px","color": 'grey'}}>
-                                        <Select
-                                          styles= {customStyles}
-                                          onChange={this.handlePoolLoc}
-                                          options={options}
-                                          value={this.state.poolLoc}
-                                          placeholder="Location..."
-                                          
-                                        />
-                                      </div> 
-                                </Options>
-                                <ContentTitle> Required Services <Info onClick = {this.showPoolServicesInfo.bind(this)} showPoolServicesInfo = {this.state.showPoolServicesInfo}/>
-                                  <span><hr width="300"/></span>
-                                </ContentTitle>
-
-                              {!this.state.PoolMaint && !this.state.PoolClean ?
-                                  <Options3p1>
-                                    <ServiceGridSplit><ServiceTest> Pool Cleaning</ServiceTest><Tooltip  title="Pool Cleaning" aria-label="add"><Fab2><Installations onClick={this.genPoolClean.bind(this)} PoolClean = {this.state.PoolClean}/></Fab2></Tooltip> </ServiceGridSplit>
-                                    <ServiceGridSplit><ServiceTest>Pool Maintanance</ServiceTest><Tooltip  title="Pool Maintanance" aria-label="add"><Fab2><Maintanance onClick={this.periodMaint.bind(this)} PoolMaint = {this.state.PoolMaint}/></Fab2></Tooltip></ServiceGridSplit>
-                                    <ServiceGridSplit><ServiceTest>Repairs - Coming Soon</ServiceTest><Tooltip  title="Pool Repairs - Coming Soon" aria-label="add"><Fab2><ServicePool onClick={this.perPoolRepair.bind(this)} PoolRepair = {this.state.PoolRepair}/></Fab2></Tooltip></ServiceGridSplit>
-                                  </Options3p1>
-                              :this.state.PoolClean ?
-                              <Options4>
-                                <ServiceGridSplit><ServiceTest> Pool Cleaning</ServiceTest><Tooltip  title="Pool Cleaning" aria-label="add"><Fab2><Installations onClick={this.genPoolClean.bind(this)} PoolClean = {this.state.PoolClean}/></Fab2></Tooltip> </ServiceGridSplit>
+                                              />
+                                      </div>
                                 <div>
-                                    <ServiceTest> Promo Code </ServiceTest>
-                                    <FormInput
-                                        id="fname"
-                                        size="10"
-                                        maxlength="7"
-                                        type="text"
-                                        name="fname"
-                                        placeholder="Code"
-                                        onKeyUp = {this.handlePoolGenCleaningPromo}
-                                        min="0" max="9999999"
-                                        required
-                                    />
-                                      <ServiceTest> Frequency </ServiceTest>
+                                  <ServiceGridSplit><ServiceTest> Pool Cleaning</ServiceTest><Tooltip  title="Pool Cleaning" aria-label="add"><Fab2><Installations onClick={this.genPoolClean.bind(this)} PoolClean = {this.state.PoolClean}/></Fab2></Tooltip> </ServiceGridSplit>
+                                    <div style = {{"margin-top":"10px"}}>
+                                        <FormInput
+                                          id="fname"
+                                          size="10"
+                                          maxlength="7"
+                                          type="text"
+                                          name="fname"
+                                          placeholder="Promo Code?"
+                                          onKeyUp={this.handlePoolGenCleaningPromo}
+                                          min="0" max="9999999"
+                                          required
+                                        />
+                                    </div>
+                                </div>
+                                <div>
+                                      <ServiceTest> How Often? <span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
                                       <Checkbox toggle label = "  OnceOFF" onChange={ this.poolPConce }  disabled = {poolPConceStatus} />
                                       <Checkbox toggle label = "  Weekly" onChange={ this.poolPCweek }  disabled = {poolPCweekStatus} />
                                       <Checkbox toggle label = "  Monthly" onChange={ this.poolPCmonth }  disabled = {poolPCmonthStatus} />
+                                      {this.state.poolPCweek?
+                                              <div>
+                                              <ServiceTest> No. of Weeks<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                              <Form>
+                                                <FormInput
+                                                        id="fname"
+                                                        size="10"
+                                                        type="number"
+                                                        name="fname"
+                                                        placeholder="2"
+                                                        onChange ={this.handlepoolPCweek.bind(this)}
+                                                        min="2" max="10"
+                                                        required
+                                                    />
+                                              </Form>
+                                              </div>
+                                              : this.state.poolPCmonth?
+                                              <div>
+                                              <ServiceTest> No. of Months<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                              <Form>
+                                                <FormInput
+                                                        id="fname"
+                                                        size="10"
+                                                        type="number"
+                                                        name="fname"
+                                                        placeholder="2"
+                                                        onChange ={this.handlepoolPCmonth.bind(this)}
+                                                        min="2" max="10"
+                                                        required
+                                                    />
+                                              </Form>
+                                              </div>
+                                                                                                                                       
+                                              :null
+
+                                            }
                                 </div>
                                   
                                   <div>
@@ -2957,42 +3012,136 @@ return (
                                       }
                                   </div>
 
-                                  <div>
-                                      <ServiceTest> Pool Issues</ServiceTest>
-                                      <Checkbox toggle label = "  Cloudy" onChange={ this.poolPCcloudy } disabled =  {poolPCcloudyStatus}/>
-                                      <ServiceTest> Algae</ServiceTest>
-                                      <div>
-                                        <Checkbox toggle label = "  Green" onChange={ this.poolPCgreenAlgae }  disabled = {poolPCgreenAlgaeStatus} />
-                                        <Checkbox toggle label = "  Mustard" onChange={ this.poolPCmustardAlgae }  disabled = {poolPCmustardAlgaeStatus}/>
-                                        <Checkbox toggle label = "  Black" onChange={ this.poolPCblackAlgae }  disabled = {poolPCblackAlgaeStatus} />
-                                      
-                                      </div>
-                                  </div>
-
 
                                   </Options4>
                               : this.state. PoolMaint?
                               <Options4>
                               <div>
-                                  <ServiceTest> Promo Code </ServiceTest>
-                                  <FormInput
+                                          <ServiceTest> Location & Date<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                          <div style = {{"width": "105px","height": "40px","color": 'grey'}}>
+                                            <Select
+                                              styles= {customStyles}
+                                              onChange={this.handleIndoorLoc}
+                                              options={options}
+                                              value={this.state.genCleanloc}
+                                              placeholder="Location..."
+                                              
+                                            />
+                                          </div>
+                                          <DatePicker
+                                          selected={this.state.dateTime}
+                                          value={this.state.dateTime}
+                                          onChange={this.handleChange2}
+                                          minDate={addDays(new Date(),2)}                                        
+                                          showTimeSelect
+                                          timeFormat="HH:mm"
+                                          timeIntervals={30}
+                                          timeCaption="Time"
+                                          customInput={<ExampleCustomInput />}
+                                          dateFormat="MM/dd/yy"
+                                          shouldCloseOnSelect={false} 
+                                          excludeTimes={[
+                                                setHours(setMinutes(new Date(), 0), 0),
+                                                setHours(setMinutes(new Date(), 0), 0),
+                                                setHours(setMinutes(new Date(), 30), 0),
+                                                setHours(setMinutes(new Date(), 0), 1),
+                                                setHours(setMinutes(new Date(), 30), 1),
+                                                setHours(setMinutes(new Date(), 0), 2),
+                                                setHours(setMinutes(new Date(), 30), 2),
+                                                setHours(setMinutes(new Date(), 0), 3),
+                                                setHours(setMinutes(new Date(), 30), 3),
+                                                setHours(setMinutes(new Date(), 0), 4),
+                                                setHours(setMinutes(new Date(), 30), 4),
+                                                setHours(setMinutes(new Date(), 0), 5),
+                                                setHours(setMinutes(new Date(), 30), 5),
+                                                setHours(setMinutes(new Date(), 0), 6),
+                                                setHours(setMinutes(new Date(), 30), 6),
+                                                setHours(setMinutes(new Date(), 0), 7),
+                                                setHours(setMinutes(new Date(), 30), 7),
+                                                setHours(setMinutes(new Date(), 0), 8),
+                                                setHours(setMinutes(new Date(), 30), 8),
+                                                setHours(setMinutes(new Date(), 0), 9),
+                                                setHours(setMinutes(new Date(), 30), 9),
+                                                setHours(setMinutes(new Date(), 30), 14),
+                                                setHours(setMinutes(new Date(), 0), 15),
+                                                setHours(setMinutes(new Date(), 30), 15),
+                                                setHours(setMinutes(new Date(), 0), 16),
+                                                setHours(setMinutes(new Date(), 30), 16),
+                                                setHours(setMinutes(new Date(), 0), 17),
+                                                setHours(setMinutes(new Date(), 30), 17),
+                                                setHours(setMinutes(new Date(), 0), 18),
+                                                setHours(setMinutes(new Date(), 30), 18),
+                                                setHours(setMinutes(new Date(), 0), 19),
+                                                setHours(setMinutes(new Date(), 30), 19),
+                                                setHours(setMinutes(new Date(), 0), 20),
+                                                setHours(setMinutes(new Date(), 30), 20),
+                                                setHours(setMinutes(new Date(), 0), 21),
+                                                setHours(setMinutes(new Date(), 30), 21),
+                                                setHours(setMinutes(new Date(), 0), 22),
+                                                setHours(setMinutes(new Date(), 30), 22),
+                                                setHours(setMinutes(new Date(), 0), 23),
+                                                setHours(setMinutes(new Date(), 30), 23)
+                                              ]} 
+                                              />
+                                      </div>
+                                
+                              <div>
+                                <ServiceGridSplit><ServiceTest>Pool Maintanance</ServiceTest><Tooltip  title="Pool Maintanance" aria-label="add"><Fab2><Maintanance onClick={this.periodMaint.bind(this)} PoolMaint = {this.state.PoolMaint}/></Fab2></Tooltip></ServiceGridSplit>
+                                <FormInput
                                       id="fname"
                                       size="10"
                                       maxlength="7"
                                       type="text"
                                       name="fname"
-                                      placeholder="Code"
+                                      placeholder="Prome Code?"
                                       onKeyUp = {this.handlePoolMaintanancePromo}
                                       min="0" max="9999999"
                                       required
                                   />
-                                     <ServiceTest> Frequency </ServiceTest>
-                                    <Checkbox toggle label = "  Monthly" onChange={ this.poolPMonce } disabled = {poolPMonceStatus} />
-                                    <Checkbox toggle label = "  Quaterly" onChange={ this.poolPMweek } disabled = {poolPMweekStatus} />
-                                    <Checkbox toggle label = "  Yearly" onChange={ this.poolPMmonth } disabled = {poolPMmonthStatus} />
                               </div>
-                              <ServiceGridSplit><ServiceTest>Pool Maintanance</ServiceTest><Tooltip  title="Pool Maintanance" aria-label="add"><Fab2><Maintanance onClick={this.periodMaint.bind(this)} PoolMaint = {this.state.PoolMaint}/></Fab2></Tooltip></ServiceGridSplit>
+                              <div>
+                                    <ServiceTest> How Often? <span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                    <Checkbox toggle label = "  Monthly" onChange={ this.poolPMmonth } disabled = {poolPMmonthStatus} />
+                                    <Checkbox toggle label = "  Quaterly" onChange={ this.poolPMquarter } disabled = {poolPMquarterStatus} />
+                                    <Checkbox toggle label = "  Yearly" onChange={ this.poolPMyear } disabled = {poolPMyearStatus} />
+                                    {this.state.poolPMonce?
+                                              <div>
+                                              <ServiceTest> No. of Months<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                              <Form>
+                                                <FormInput
+                                                        id="fname"
+                                                        size="10"
+                                                        type="number"
+                                                        name="fname"
+                                                        placeholder="2"
+                                                        onChange ={this.handlepoolPMmonth.bind(this)}
+                                                        min="2" max="10"
+                                                        required
+                                                    />
+                                              </Form>
+                                              </div>
+                                              : this.state.poolPMweek?
+                                              <div>
+                                              <ServiceTest> No. of Quarters<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                              <Form>
+                                                <FormInput
+                                                        id="fname"
+                                                        size="10"
+                                                        type="number"
+                                                        name="fname"
+                                                        placeholder="2"
+                                                        onChange ={this.handlepoolPMquarter.bind(this)}
+                                                        min="2" max="4"
+                                                        required
+                                                    />
+                                              </Form>
+                                              </div>
+                                                                                                                                       
+                                              :null
 
+                                            }
+                              
+                              </div>
                               <div>
                                       <ServiceTest> Pool Dimensions <Info2 onClick = {this.showPoolShapes.bind(this)} showPoolShapes = {this.state.showPoolShapes}/></ServiceTest>
                                       <select id="areaSize" onChange={this.handlePoolShapePMSelect} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
@@ -3188,20 +3337,26 @@ return (
                                       : null
                                       }
                                   </div>
-                              <div>
-                                    <ServiceTest> Pool Issues</ServiceTest>
-                                    <Checkbox toggle label = "  Cloudy" onChange={ this.poolPMcloudy }  disabled = {poolPMcloudyStatus}/>
-                                    <ServiceTest> Algae</ServiceTest>
-                                    <div>
-                                      <Checkbox toggle label = "  Green" onChange={ this.poolPMgreenAlgae }  disabled = {poolPMgreenAlgaeStatus} />
-                                      <Checkbox toggle label = "  Mustard" onChange={ this.poolPMmustardAlgae }  disabled = {poolPMmustardAlgaeStatus} />
-                                      <Checkbox toggle label = "  Black" onChange={ this.poolPMblackAlgae }  disabled = {poolPMblackAlgaeStatus} />
-                                    </div>
-                              </div>
+
 
                               </Options4>
                               : null
                               }
+                              <ContentTitle> Enter Details 
+                                  <span><hr width="300"/></span>
+                                </ContentTitle>
+                                <EnterDetails>
+                                <select id="dropdown" onChange={this.handleDropdownChange} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
+                                          <option value="N/A">Pool Issues</option>
+                                          <option value="Cloudy">Cloudy</option>
+                                      </select>
+                                      <select id="dropdown" onChange={this.handleDropdownChange2} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
+                                          <option value="N/A">Algae</option>
+                                          <option value="Green">Green</option>
+                                          <option value="Mustard">Mustard</option>
+                                          <option value="Black">Black</option>
+                                      </select> 
+                                </EnterDetails>
                                 <ContentTitle> Service Details & Costs
                                   <span><hr width="300"/></span>
                                 </ContentTitle>
