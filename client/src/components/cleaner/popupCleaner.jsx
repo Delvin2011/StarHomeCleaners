@@ -232,6 +232,7 @@ class Cleaner extends React.Component {
           poolPMmonth : false, poolPMmonthPrice : 0, poolPMquarter: false, poolPMquarterPrice : 0, poolPMyear: false, poolPMyearPrice : 0,
           poolPConce : false, poolPConcePrice : 0, poolPCweek: false, poolPCweekPrice : 0, poolPCmonth: false, poolPCmonthPrice : 0,
           
+          poolAlgaePrice :0,poolCloudyPrice : 0,
           poolPMgreenAlgae : false, poolPMgreenAlgaePrice : 0, poolPMmustardAlgae: false, poolPMmustardAlgaePrice : 0, poolPMblackAlgae: false, poolPMblackAlgaePrice : 0,
           poolPCgreenAlgae : false, poolPCgreenAlgaePrice : 0, poolPCmustardAlgae: false, poolPCmustardAlgaePrice : 0, poolPCblackAlgae: false, poolPCblackAlgaePrice : 0,
           poolPCcloudy : false, poolPCcloudyPrice : 0,
@@ -348,6 +349,8 @@ class Cleaner extends React.Component {
         this.handlePoolTrianglePMvolumeB  = this.handlePoolTrianglePMvolumeB.bind(this); this.handlePoolTrianglePMvolumeH = this.handlePoolTrianglePMvolumeH.bind(this); this.handlePoolTrianglePMvolumeD  = this.handlePoolTrianglePMvolumeD.bind(this); this.handlePoolTrianglePMvolumeS = this.handlePoolTrianglePMvolumeS.bind(this); 
         this.handlePoolIrregularPMvolumeL  = this.handlePoolIrregularPMvolumeL.bind(this); this.handlePoolIrregularPMvolumeA = this.handlePoolIrregularPMvolumeA.bind(this); this.handlePoolIrregularPMvolumeB  = this.handlePoolIrregularPMvolumeB.bind(this); this.handlePoolIrregularPMvolumeD = this.handlePoolIrregularPMvolumeD.bind(this);  this.handlePoolIrregularPMvolumeS = this.handlePoolIrregularPMvolumeS.bind(this);
 
+        //this.handlePoolAlgae = this.handlePoolAlgae.bind(this);
+
         this.poolPMmonth= this.poolPMmonth.bind(this); this.poolPMquarter= this.poolPMquarter.bind(this); this.poolPMyear= this.poolPMyear.bind(this);
         this.poolPConce= this.poolPConce.bind(this); this.poolPCweek= this.poolPCweek.bind(this); this.poolPCmonth= this.poolPCmonth.bind(this);
         
@@ -358,7 +361,8 @@ class Cleaner extends React.Component {
         this.handlepoolPCweek= this.handlepoolPCweek.bind(this); this.handlepoolPCmonth= this.handlepoolPCmonth.bind(this);
         this.handlepoolPMmonth= this.handlepoolPMmonth.bind(this); this.handlepoolPMquarter= this.handlepoolPMquarter.bind(this);
     
-    
+        this.handlePoolAlgae = this.handlePoolAlgae.bind(this);
+        this.handlePoolissues = this.handlePoolissues.bind(this);
       }
 
     handleDropdownChange(e) {
@@ -1015,6 +1019,18 @@ showPoolServicesInfo(event) { this.setState({ showPoolServicesInfo: !this.state.
     this.setState({ value: option }); 
 };
 
+handlePoolAlgae(e) {
+  this.setState({ 
+    poolAlgaePrice: e.target.value === "Green"? 1.5 : e.target.value === "Mustard"? 1.75 : e.target.value === "Black"? 2  : 1
+    });
+  }
+
+  handlePoolissues(e) {
+    this.setState({ 
+      poolCloudyPrice: e.target.value === "Cloudy"? 1.25 : 1
+      });
+    }
+
 
 
 render() {  
@@ -1154,16 +1170,17 @@ const poolPCalgae = this.state.poolPCgreenAlgae ? "Green" : this.state.poolPCmus
 const poolPMalgae = this.state.poolPMgreenAlgae ? "Green" : this.state.poolPMmustardAlgae ? "Mustard" : this.state.poolPMblackAlgae ? "Black" : "";
 
 const poolPCvolPriceMultiplier = poolPCvolume > 0 && poolPCvolume <= 100 ? 1 : poolPCvolume > 100 && poolPCvolume <= 250 ? 1.5 : poolPCvolume > 250 && poolPCvolume <= 500 ? 1.75 : poolPCvolume > 500 && poolPCvolume <= 750 ? 2 : poolPCvolume > 750 && poolPCvolume <= 1000 ? 2.5 : 0;
-const poolPCissuePriceMultiplier = this.state.poolPCcloudy? 1.25 : this.state.poolPCgreenAlgae? 1.5 : this.state.poolPCmustardAlgae? 1.75 : this.state.poolPCblackAlgae ? 2 : 1;
+//const poolPCissuePriceMultiplier = this.state.poolPCcloudy? 1.25 : this.state.poolPCgreenAlgae? 1.5 : this.state.poolPCmustardAlgae? 1.75 : this.state.poolPCblackAlgae ? 2 : 1;
 const poolPCfreqMultiplier = this.state.poolPConce ? 1 : this.state.poolPCweek ? 0.9 : this.state.poolPCmonth ? 0.95 : 0;
-const totalPCpool = this.state.PoolClean? (170 + (120 * poolPCvolPriceMultiplier * poolPCissuePriceMultiplier * poolPCfreqMultiplier)) * this.state.handlePoolGenCleaningPromo * PCfreqMultiplier: 0;
+const poolProblemsCosts = this.state.poolCloudyPrice > 1 && this.state.poolAlgaePrice > 1 ? this.state.poolAlgaePrice : this.state.poolCloudyPrice > 1 && this.state.poolAlgaePrice < 1.5 ? this.state.poolCloudyPrice : 1;
+const totalPCpool = this.state.PoolClean? (170 + (120 * poolPCvolPriceMultiplier * poolProblemsCosts * poolPCfreqMultiplier)) * this.state.handlePoolGenCleaningPromo * PCfreqMultiplier: 0;
 
 const poolPMvolPriceMultiplier = poolPMvolume > 0 && poolPMvolume <= 100 ? 1 : poolPMvolume > 100 && poolPMvolume <= 250 ? 1.5 : poolPMvolume > 250 && poolPMvolume <= 500 ? 1.75 : poolPMvolume > 500 && poolPMvolume <= 750 ? 2 : poolPMvolume > 750 && poolPMvolume <= 1000 ? 2.5 : 0;
-const poolPMissuePriceMultiplier = this.state.poolPMcloudy? 1.25 : this.state.poolPMgreenAlgae? 1.5 : this.state.poolPMmustardAlgae? 1.75 : this.state.poolPMblackAlgae ? 2 : 1;
+//const poolPMissuePriceMultiplier = this.state.poolPMcloudy? 1.25 : this.state.poolPMgreenAlgae? 1.5 : this.state.poolPMmustardAlgae? 1.75 : this.state.poolPMblackAlgae ? 2 : 1;
 const poolPMfreqMultiplier = this.state.poolPMonce ? 1 : this.state.poolPMweek ? 0.9 : this.state.poolPMmonth ? 0.95 : 0;
-const totalPMpool = this.state.PoolMaint? (170 + (220 * poolPMvolPriceMultiplier * poolPMissuePriceMultiplier * poolPMfreqMultiplier)) * this.state.handlePoolMaintanancePromo : 0;
+const totalPMpool = this.state.PoolMaint? (170 + (220 * poolPMvolPriceMultiplier * poolProblemsCosts * poolPMfreqMultiplier)) * this.state.handlePoolMaintanancePromo : 0;
 
-const totalPool = totalPCpool + totalPMpool;
+const totalPool = this.state.PoolClean? totalPCpool :  this.state.PoolMaint? totalPMpool : 0;
 const poolShape = this.state.poolShapePMSelect === "0" || this.state.poolShapePMSelect === "1" || this.state.poolShapePCSelect === "0" ||  this.state.poolShapePCSelect === "1" ? "Rectangular" :
                   this.state.poolShapePMSelect === "2" || this.state.poolShapePCSelect === "2" ? "Circular" : this.state.poolShapePMSelect === "3" || this.state.poolShapePCSelect === "3"? "Triangular":
                   this.state.poolShapePMSelect === "4" || this.state.poolShapePCSelect === "4" ? "Irregular" : null;
@@ -3104,7 +3121,7 @@ return (
                                     <Checkbox toggle label = "  Monthly" onChange={ this.poolPMmonth } disabled = {poolPMmonthStatus} />
                                     <Checkbox toggle label = "  Quaterly" onChange={ this.poolPMquarter } disabled = {poolPMquarterStatus} />
                                     <Checkbox toggle label = "  Yearly" onChange={ this.poolPMyear } disabled = {poolPMyearStatus} />
-                                    {this.state.poolPMonce?
+                                    {this.state.poolPMmonth?
                                               <div>
                                               <ServiceTest> No. of Months<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
                                               <Form>
@@ -3120,7 +3137,7 @@ return (
                                                     />
                                               </Form>
                                               </div>
-                                              : this.state.poolPMweek?
+                                              : this.state.poolPMquarter?
                                               <div>
                                               <ServiceTest> No. of Quarters<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
                                               <Form>
@@ -3346,11 +3363,11 @@ return (
                                   <span><hr width="300"/></span>
                                 </ContentTitle>
                                 <EnterDetails>
-                                <select id="dropdown" onChange={this.handleDropdownChange} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
+                                <select id="dropdown" onChange={this.handlePoolissues} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
                                           <option value="N/A">Pool Issues</option>
                                           <option value="Cloudy">Cloudy</option>
                                       </select>
-                                      <select id="dropdown" onChange={this.handleDropdownChange2} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
+                                      <select id="dropdown" onChange={this.handlePoolAlgae} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
                                           <option value="N/A">Algae</option>
                                           <option value="Green">Green</option>
                                           <option value="Mustard">Mustard</option>
@@ -3362,7 +3379,7 @@ return (
                                 </ContentTitle>
                                 <Options3>
                                   <div style = {{"margin-left" : "2px"}}>
-                                    <Message2>Booking</Message2>
+                                    <Message2>Details</Message2>
 
                                     <EventLog logs={this.state.locPool}/>
 
