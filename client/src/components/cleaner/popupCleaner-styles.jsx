@@ -303,12 +303,14 @@ export const CloseButton = styled.div`
     margin-left: 92.5%;
     margin-top: 2.5%;
     z-index: 15;
+    font-size: 16px;
 
     @media screen and (max-width: 800px){
       /*margin-left: 89.5%;*/
-      margin-left: 96.5%;
-      margin-top: 0.5%;
+      margin-left: 95.5%;
+      margin-top: 0.75%;
       padding-left: 0px;
+      font-size: 14px;
 }
 `;
 

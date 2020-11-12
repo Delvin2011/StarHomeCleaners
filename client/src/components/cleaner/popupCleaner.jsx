@@ -1548,7 +1548,7 @@ return (
                                               <Checkbox toggle label = "  Monthly" onChange={ this.endTenancyCleanMonth }  disabled = {endTenancyMonthStatus} />
                                               {this.state.endTenancyCleanMonth?
                                               <div>
-                                              <ServiceTest> No. of Months<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                              <ServiceTest> Months?<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
                                               <Form style = {{"color": "red", fontSize : "10px"}}>
                                                 <FormInput
                                                         id="fname"
@@ -1579,7 +1579,7 @@ return (
 
                                                 {this.state.sanitiseIndoorMonth?
                                                 <div>
-                                                <ServiceTest> No. of Months<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                                <ServiceTest> Months?<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
                                                 <Form>
                                                   <FormInput
                                                           id="fname"
@@ -1630,7 +1630,7 @@ return (
                                               
                                               {this.state.genIndoorCleanWeek?
                                               <div>
-                                              <ServiceTest> No. of Weeks<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                              <ServiceTest> Weeks?<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
                                               <Form>
                                                 <FormInput
                                                         id="fname"
@@ -1646,7 +1646,7 @@ return (
                                               </div>
                                               : this.state.genIndoorCleanMonth?
                                               <div>
-                                              <ServiceTest> No. of Months<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                              <ServiceTest> Months?<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
                                               <Form>
                                                 <FormInput
                                                         id="fname"
@@ -1676,7 +1676,7 @@ return (
                                               <Checkbox toggle label = "  Monthly" onChange={ this.afterBuildCleanMonth }  disabled = {afterBuildMonthStatus} />
                                               {this.state.afterBuildCleanWeek?
                                               <div>
-                                              <ServiceTest> No. of Weeks<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                              <ServiceTest> Weeks?<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
                                               <Form>
                                                 <FormInput
                                                         id="fname"
@@ -1692,7 +1692,7 @@ return (
                                               </div>
                                               : this.state.afterBuildCleanMonth?
                                               <div>
-                                              <ServiceTest> No. of Months<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                              <ServiceTest> Months?<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
                                               <Form>
                                                 <FormInput
                                                         id="fname"
@@ -2208,7 +2208,7 @@ return (
                                       <Checkbox toggle label = "  Monthly" onChange={ this.outdoorFBmonth }  disabled = {outdoorFBmonthStatus}/>
                                       {this.state.outdoorFBweek?
                                               <div>
-                                              <ServiceTest> No. of Weeks<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                              <ServiceTest> Weeks?<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
                                               <Form>
                                                 <FormInput
                                                         id="fname"
@@ -2224,7 +2224,7 @@ return (
                                               </div>
                                               : this.state.outdoorFBmonth?
                                               <div>
-                                              <ServiceTest> No. of Months<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                              <ServiceTest> Months?<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
                                               <Form>
                                                 <FormInput
                                                         id="fname"
@@ -2253,7 +2253,7 @@ return (
                                       <Checkbox toggle label = "  Monthly" onChange={ this.outdoorDCmonth }  disabled = {outdoorDCmonthStatus}/>
                                       {this.state.outdoorDCweek?
                                               <div>
-                                              <ServiceTest> No. of Weeks<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                              <ServiceTest> Weeks?<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
                                               <Form>
                                                 <FormInput
                                                         id="fname"
@@ -2269,7 +2269,7 @@ return (
                                               </div>
                                               : this.state.outdoorDCmonth?
                                               <div>
-                                              <ServiceTest> No. of Months<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                              <ServiceTest> Months?<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
                                               <Form>
                                                 <FormInput
                                                         id="fname"
@@ -2306,7 +2306,7 @@ return (
                                       <Checkbox toggle label = "  Monthly" onChange={ this.outdoorYCmonth }  disabled = {outdoorYCmonthStatus}/>
                                       {this.state.outdoorYCweek?
                                               <div>
-                                              <ServiceTest> No. of Weeks<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                              <ServiceTest> Weeks?<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
                                               <Form>
                                                 <FormInput
                                                         id="fname"
@@ -2322,7 +2322,7 @@ return (
                                               </div>
                                               : this.state.outdoorYCmonth?
                                               <div>
-                                              <ServiceTest> No. of Months<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                              <ServiceTest> Months?<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
                                               <Form>
                                                 <FormInput
                                                         id="fname"
@@ -2351,7 +2351,7 @@ return (
                                       <Checkbox toggle label = "  Monthly" onChange={ this.outdoorLMmonth }  disabled = {outdoorLMmonthStatus}/>
                                       {this.state.outdoorLMweek?
                                               <div>
-                                              <ServiceTest> No. of Weeks<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                              <ServiceTest> Weeks?<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
                                               <Form>
                                                 <FormInput
                                                         id="fname"
@@ -2367,7 +2367,7 @@ return (
                                               </div>
                                               : this.state.outdoorLMmonth?
                                               <div>
-                                              <ServiceTest> No. of Months<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                              <ServiceTest> Months?<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
                                               <Form>
                                                 <FormInput
                                                         id="fname"
@@ -2797,7 +2797,7 @@ return (
                                       <Checkbox toggle label = "  Monthly" onChange={ this.poolPCmonth }  disabled = {poolPCmonthStatus} />
                                       {this.state.poolPCweek?
                                               <div>
-                                              <ServiceTest> No. of Weeks<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                              <ServiceTest> Weeks?<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
                                               <Form>
                                                 <FormInput
                                                         id="fname"
@@ -2813,7 +2813,7 @@ return (
                                               </div>
                                               : this.state.poolPCmonth?
                                               <div>
-                                              <ServiceTest> No. of Months<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                              <ServiceTest> Months?<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
                                               <Form>
                                                 <FormInput
                                                         id="fname"
@@ -3123,7 +3123,7 @@ return (
                                     <Checkbox toggle label = "  Yearly" onChange={ this.poolPMyear } disabled = {poolPMyearStatus} />
                                     {this.state.poolPMmonth?
                                               <div>
-                                              <ServiceTest> No. of Months<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                              <ServiceTest> Months?<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
                                               <Form>
                                                 <FormInput
                                                         id="fname"
