@@ -305,7 +305,10 @@ export const CloseButton = styled.div`
     z-index: 15;
 
     @media screen and (max-width: 800px){
-      margin-left: 89.5%;
+      /*margin-left: 89.5%;*/
+      margin-left: 96.5%;
+      margin-top: 0.5%;
+      padding-left: 0px;
 }
 `;
 
@@ -334,7 +337,7 @@ export const TabsContainer = styled.div`
     @media screen and (max-width: 800px){
     margin-left: 2.5%;
     margin-right: 2.5%;
-    margin-top: -20px;
+    margin-top: 0px;
 }
 `;
 

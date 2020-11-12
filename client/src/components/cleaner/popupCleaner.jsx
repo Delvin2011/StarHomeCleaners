@@ -499,14 +499,14 @@ class Cleaner extends React.Component {
     afterBuildCleanWeek () { this.setState({handleAfterBuildersMonthFreq: 2,afterBuildCleanWeek: !this.state.afterBuildCleanWeek, priceABcleanWeek : this.state.afterBuildCleanWeek? 0 : 0.9}); }
     afterBuildCleanMonth () { this.setState({handleAfterBuildersWeekFreq: 2,afterBuildCleanMonth: !this.state.afterBuildCleanMonth, priceABcleanMonth : this.state.afterBuildCleanMonth? 0 : 0.95}); }
      
-    endTenancyCleanOnce () { this.setState({endTenancyCleanMonth: 2, endTenancyCleanOnce: !this.state.endTenancyCleanOnce, priceETcleanOnce : this.state.endTenancyCleanOnce? 0 : 1}); }
+    endTenancyCleanOnce () { this.setState({handleEndTenancyFreq: 2, endTenancyCleanOnce: !this.state.endTenancyCleanOnce, priceETcleanOnce : this.state.endTenancyCleanOnce? 0 : 1}); }
     endTenancyCleanMonth () { this.setState({endTenancyCleanMonth: !this.state.endTenancyCleanMonth, priceETcleanMonth : this.state.endTenancyCleanMonth? 0 : 0.95}); }
 
     sanitiseIndoorOnceOFF () { this.setState({handleSanitiseFreq:2, sanitiseIndoorOnceOFF: !this.state.sanitiseIndoorOnceOFF, priceSanitiseIndoorOnceOFF : this.state.sanitiseIndoorOnceOFF? 0 : 1}); }
     sanitiseIndoorMonth () { this.setState({sanitiseIndoorMonth: !this.state.sanitiseIndoorMonth, priceSanitiseIndoorMonth : this.state.sanitiseIndoorMonth? 0 : 0.9}); }
       
       
-
+s
     genIndoorCleanWalls () {
       this.setState({genIndoorCleanWalls: !this.state.genIndoorCleanWalls,
       genIndoorCleanWallsService : this.state.genIndoorCleanWalls? null : "Walls ",
@@ -799,7 +799,7 @@ class Cleaner extends React.Component {
         selectOutdoor(event) {
           this.setState({
             showPopupOutdoor: !this.state.showPopupOutdoor,
-            serviceIntervalOutdoor: this.state.outdoorYConce || this.state.outdoorLMonce || this.state.outdoorFBonce || this.state.outdoorDConce ? "OnceOFF" : this.state.outdoorYCweek || this.state.outdoorLMweek || this.state.outdoorFBweek || this.state.outdoorDCweek? "Weekly" : this.state.outdoorYCmonth || this.state.outdoorLMmonth || this.state.outdoorFBmonth || this.state.outdoorDCmonth? "Monthly" : "OnceOFF",
+            serviceIntervalOutdoor: this.state.outdoorYConce || this.state.outdoorLMonce || this.state.outdoorFBonce || this.state.outdoorDConce ? "Once" : this.state.outdoorYCweek || this.state.outdoorLMweek || this.state.outdoorFBweek || this.state.outdoorDCweek? "Weekly" : this.state.outdoorYCmonth || this.state.outdoorLMmonth || this.state.outdoorFBmonth || this.state.outdoorDCmonth? "Monthly" : "Once",
             OutdoorBookedService : this.state.YCoutdoorClean? "Yard Cleaning" : this.state.FBoutdoorClean ? "Flower Bedding" : this.state.DCoutdoorClean? "Driveway Cleaning" : this.state.LMoutdoorClean? "Lawn Mowing" : "",
             OutdoorYardSize : this.state.YCoutdoorClean? this.state.YCarea : this.state.FBoutdoorClean ? this.state.FBarea : this.state.DCoutdoorClean? this.state.DCarea : this.state.LMoutdoorClean? this.state.LMarea : ""          
           });
@@ -1160,8 +1160,8 @@ const poolPMgreenAlgaeStatus = this.state.poolPMmustardAlgae || this.state.poolP
 const poolPCcloudyStatus = this.state.poolPCmustardAlgae || this.state.poolPCblackAlgae || this.state.poolPCgreenAlgae? true : false; 
 const poolPMcloudyStatus = this.state.poolPMmustardAlgae || this.state.poolPMblackAlgae || this.state.poolPMgreenAlgae? true : false; 
 
-const poolPCfreq = this.state.poolPConce ? "OnceOFF" : this.state.poolPCweek ? "Weekly" : this.state.poolPCmonth ? "Monthly" : "";
-const poolPMfreq = this.state.poolPMonce ? "OnceOFF" : this.state.poolPMweek ? "Weekly" : this.state.poolPMmonth ? "Monthly" : "";
+const poolPCfreq = this.state.poolPConce ? "Once" : this.state.poolPCweek ? "Weekly" : this.state.poolPCmonth ? "Monthly" : "";
+const poolPMfreq = this.state.poolPMonce ? "Once" : this.state.poolPMweek ? "Weekly" : this.state.poolPMmonth ? "Monthly" : "";
 
 const PCfreqMultiplier = this.state.poolPCweek? this.state.handlepoolPCweek : this.state.poolPCmonth ? this.state.handlepoolPCmonth : 1;
 
@@ -1223,7 +1223,7 @@ return (
           <div>            
             <Popup>  
                 <PopupInner> 
-                <CloseButton className = 'remove-button' style = {{"color":"black"}} onClick = {this.props.closePopup} >&#10005;</CloseButton>
+                <CloseButton style = {{"color":"black", "zIndex": "1000"}} onClick = {this.props.closePopup} >&#10005;</CloseButton>
                 <TabsContainer >                  
                 <GridContainer >
                   <GridItem  >
@@ -1544,7 +1544,7 @@ return (
                                         <div>
                                         <ServiceTest> How Often? <span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
                                             <div style = {{"margin-top" : "0px"}}>
-                                              <Checkbox toggle label = "  OnceOFF" onChange={ this.endTenancyCleanOnce }  disabled = {endTenancyOnceStatus} />
+                                              <Checkbox toggle label = "  Once" onChange={ this.endTenancyCleanOnce }  disabled = {endTenancyOnceStatus} />
                                               <Checkbox toggle label = "  Monthly" onChange={ this.endTenancyCleanMonth }  disabled = {endTenancyMonthStatus} />
                                               {this.state.endTenancyCleanMonth?
                                               <div>
@@ -1574,7 +1574,7 @@ return (
                                           <div>
                                               <ServiceTest> How Often? <span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
                                               <div style = {{"margin-top" : "0px"}}>
-                                                <Checkbox toggle label = "  OnceOFF" onChange={ this.sanitiseIndoorOnceOFF }  disabled = {sanitiseOnceStatus} />
+                                                <Checkbox toggle label = "  Once" onChange={ this.sanitiseIndoorOnceOFF }  disabled = {sanitiseOnceStatus} />
                                                 <Checkbox toggle label = "  Monthly" onChange={ this.sanitiseIndoorMonth }  disabled = {sanitiseMonthStatus} />
 
                                                 {this.state.sanitiseIndoorMonth?
@@ -1624,7 +1624,7 @@ return (
                                           <div>
                                           <ServiceTest> How Often? <span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
                                             <div style = {{"margin-top" : "0px"}}>
-                                              <Checkbox toggle label = "  OnceOFF" onChange={ this.genIndoorCleanOnce }  disabled = {genIndoorCleanOnceStatus} />
+                                              <Checkbox toggle label = "  Once" onChange={ this.genIndoorCleanOnce }  disabled = {genIndoorCleanOnceStatus} />
                                               <Checkbox toggle label = "  Weekly" onChange={ this.genIndoorCleanWeek }  disabled = {genIndoorCleanWeekStatus} />
                                               <Checkbox toggle label = "  Monthly" onChange={ this.genIndoorCleanMonth }  disabled = {genIndoorCleanMonthStatus} />
                                               
@@ -1671,7 +1671,7 @@ return (
                                           <div>
                                           <ServiceTest> How Often? <span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
                                             <div style = {{"margin-top" : "0px"}}>
-                                              <Checkbox toggle label = "  OnceOFF" onChange={ this.afterBuildCleanOnce }  disabled = {afterBuildOnceStatus} />
+                                              <Checkbox toggle label = "  Once" onChange={ this.afterBuildCleanOnce }  disabled = {afterBuildOnceStatus} />
                                               <Checkbox toggle label = "  Weekly" onChange={ this.afterBuildCleanWeek }  disabled = {afterBuildWeekStatus} />
                                               <Checkbox toggle label = "  Monthly" onChange={ this.afterBuildCleanMonth }  disabled = {afterBuildMonthStatus} />
                                               {this.state.afterBuildCleanWeek?
@@ -2792,7 +2792,7 @@ return (
                                 </div>
                                 <div>
                                       <ServiceTest> How Often? <span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
-                                      <Checkbox toggle label = "  OnceOFF" onChange={ this.poolPConce }  disabled = {poolPConceStatus} />
+                                      <Checkbox toggle label = "  Once" onChange={ this.poolPConce }  disabled = {poolPConceStatus} />
                                       <Checkbox toggle label = "  Weekly" onChange={ this.poolPCweek }  disabled = {poolPCweekStatus} />
                                       <Checkbox toggle label = "  Monthly" onChange={ this.poolPCmonth }  disabled = {poolPCmonthStatus} />
                                       {this.state.poolPCweek?

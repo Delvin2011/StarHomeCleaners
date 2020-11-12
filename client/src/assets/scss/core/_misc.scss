@@ -111,6 +111,9 @@ label {
   line-height: 1.42857;
   color: $checkboxes-text-color;
   font-weight: 400;
+  @media screen and (max-width: 800px){
+    font-size: 12px;
+  }
 }
 small {
   font-size: 75%;
