@@ -49,19 +49,32 @@ const navPillsStyle = theme => ({
     height: "auto",
     opacity: "1",
     maxWidth: "100%",
-    margin: "0 5px"
+    margin: "0 5px",
+    [theme.breakpoints.down("md")]: {
+      padding: "5px 7px",
+      minWidth: "75px",
+      minHeight: "50px",
+    }
   },
   pillsWithIcons: {
     borderRadius: "4px"
   },
   tabIcon: {
+    [theme.breakpoints.down("md")]: {
+      width: "20px",
+      height: "20px",
+      margin: "5px 0 !important"
+    },
     width: "30px",
     height: "30px",
     display: "block",
     margin: "15px 0 !important",
+    
     "&, & *": {
       letterSpacing: "normal !important"
     }
+
+
   },
   horizontalPills: {
     width: "100%",
@@ -71,6 +84,9 @@ const navPillsStyle = theme => ({
     }
   },
   contentWrapper: {
+    [theme.breakpoints.down("md")]: {
+      marginTop: "10px"
+    },
     marginTop: "20px"
   },
   primary: {
@@ -126,6 +142,10 @@ const navPillsStyle = theme => ({
     justifyContent: "center"
   },
   tabWrapper: {
+    [theme.breakpoints.down("md")]: {
+      fontSize: "10px",
+      lineHeight: "10px",
+    },
     color: "inherit",
     position: "relative",
     fontSize: "12px",

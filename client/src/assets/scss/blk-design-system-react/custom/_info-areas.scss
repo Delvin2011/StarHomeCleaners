@@ -16,7 +16,10 @@
     }
     p{
         color: $opacity-gray-8;
-        line-height: 24px;
+        line-height: 0px;
+        @media screen and (max-width: 800px){
+          line-height: 2px;
+        }
     }
 }
 
@@ -49,11 +52,15 @@ hr {
 .info-horizontal{
     .icon{
         float: left;
-        margin-top: 24px;
+        margin-top: 0px;
         margin-right: 10px;
 
         >i{
             font-size: $h1-font-size;
+        }
+
+        @media screen and (max-width: 800px){
+          margin-top: 5px;
         }
     }
     .description{
