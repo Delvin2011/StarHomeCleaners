@@ -155,6 +155,9 @@ class Cleaner extends React.Component {
           genCleanloc: "",
           outdoorLoc: "",
           poolLoc: "",
+          //genCleanlocDistance: 0,
+          outdoorLocDistance: 0,
+          poolLocDistance: 0,
 
           total2: 0,
 
@@ -386,15 +389,18 @@ class Cleaner extends React.Component {
 
         handleOutdoorLoc = option => {
         this.logs5.shift();
-        this.logs5.unshift("Location : " + option.value);
-          this.setState({ outdoorLoc: option
+        this.logs5.unshift("Location : " + option.label);
+          this.setState({ outdoorLoc: option,
+            outdoorLocDistance: parseInt(option.value * 1),
           });
+
         }
 
         handlePoolLoc= option => {
           this.locationPool.shift();
-          this.locationPool.unshift("Location : " + option.value);
-            this.setState({ poolLoc: option
+          this.locationPool.unshift("Location : " + option.label);
+            this.setState({ poolLoc: option,
+              poolLocDistance: parseInt(option.value * 1)
             });
           }
   
@@ -596,7 +602,7 @@ s
       //this.logs3.shift();
       //this.logs3.unshift("Location : " + option.value);
         this.setState({ genCleanloc: option,
-          IndoorLocation : "Location : " + option.value
+          IndoorLocation : "Location : " + option.label
 
         });
       }
@@ -1127,16 +1133,18 @@ const DCfreqMultiplier = this.state.outdoorDCweek? this.state.handleoutdoorDCwee
 
 const OutdoorAreaLW = this.state.YCoutdoorClean? this.state.handleYCareaL * this.state.handleYCareaW : this.state.LMoutdoorClean? this.state.handleLMareaL * this.state.handleLMareaW : this.state.FBoutdoorClean? this.state.handleFBareaL * this.state.handleFBareaW : this.state.DCoutdoorClean? this.state.handleDCareaL * this.state.handleDCareaW : 0;
 
+var OutdoorDistancePricing = this.state.outdoorLocDistance > 0 && this.state.outdoorLocDistance > 30 ? this.state.outdoorLocDistance - 30 : 0;
+OutdoorDistancePricing = OutdoorDistancePricing * 2;
 const PriceAreaLW = (OutdoorAreaLW > 0 && OutdoorAreaLW <= 20)? 100 : (OutdoorAreaLW > 20 && OutdoorAreaLW <= 75)? 150 : (OutdoorAreaLW > 75 && OutdoorAreaLW <= 150)? 200 : (OutdoorAreaLW > 150 && OutdoorAreaLW <= 250)? 250 : 0;
 const testYC = this.state.YCarea[0] === undefined || this.state.YCarea[0] === "Area : 0" ? PriceAreaLW : this.state.YCareaPrice;
 const testLM = this.state.LMarea[0] === undefined || this.state.LMarea[0] === "Area : 0" ? PriceAreaLW : this.state.LMareaPrice;
 const testFB = this.state.FBarea[0] === undefined || this.state.FBarea[0] === "Area : 0" ? PriceAreaLW : this.state.FBareaPrice;
 const testDC = this.state.DCarea[0] === undefined || this.state.DCarea[0] === "Area : 0" ? PriceAreaLW : this.state.DCareaPrice;
 
-const totalYC = this.state.outdoorYConce || this.state.outdoorYCweek || this.state.outdoorYCmonth ? (150 + testYC * (this.state.outdoorYConcePrice + this.state.outdoorYCweekPrice + this.state.outdoorYCmonthPrice)) * this.state.handleYCoutdoorPromo * YCfreqMultiplier: 0;
-const totalLM = this.state.outdoorLMonce || this.state.outdoorLMweek || this.state.outdoorLMmonth ? (150 + testLM * (this.state.outdoorLMoncePrice + this.state.outdoorLMweekPrice + this.state.outdoorLMmonthPrice)) * this.state.handleLMoutdoorPromo * LMfreqMultiplier: 0;
-const totalFB = this.state.outdoorFBonce || this.state.outdoorFBweek || this.state.outdoorFBmonth ? (150 + testFB * (this.state.outdoorFBoncePrice + this.state.outdoorFBweekPrice + this.state.outdoorFBmonthPrice)) * this.state.handleFBoutdoorPromo * FBfreqMultiplier: 0;
-const totalDC = this.state.outdoorDConce || this.state.outdoorDCweek || this.state.outdoorDCmonth ? (150 + testDC * (this.state.outdoorDConcePrice + this.state.outdoorDCweekPrice + this.state.outdoorDCmonthPrice)) * this.state.handleDCoutdoorPromo * DCfreqMultiplier: 0;
+const totalYC = this.state.outdoorYConce || this.state.outdoorYCweek || this.state.outdoorYCmonth ? (150 + OutdoorDistancePricing + testYC * (this.state.outdoorYConcePrice + this.state.outdoorYCweekPrice + this.state.outdoorYCmonthPrice)) * this.state.handleYCoutdoorPromo * YCfreqMultiplier: 0;
+const totalLM = this.state.outdoorLMonce || this.state.outdoorLMweek || this.state.outdoorLMmonth ? (150 + OutdoorDistancePricing + testLM * (this.state.outdoorLMoncePrice + this.state.outdoorLMweekPrice + this.state.outdoorLMmonthPrice)) * this.state.handleLMoutdoorPromo * LMfreqMultiplier: 0;
+const totalFB = this.state.outdoorFBonce || this.state.outdoorFBweek || this.state.outdoorFBmonth ? (150 + OutdoorDistancePricing + testFB * (this.state.outdoorFBoncePrice + this.state.outdoorFBweekPrice + this.state.outdoorFBmonthPrice)) * this.state.handleFBoutdoorPromo * FBfreqMultiplier: 0;
+const totalDC = this.state.outdoorDConce || this.state.outdoorDCweek || this.state.outdoorDCmonth ? (150 + OutdoorDistancePricing + testDC * (this.state.outdoorDConcePrice + this.state.outdoorDCweekPrice + this.state.outdoorDCmonthPrice)) * this.state.handleDCoutdoorPromo * DCfreqMultiplier: 0;
 const totalOutdoor = this.state.YCoutdoorClean? totalYC : 0 + this.state.LMoutdoorClean ? totalLM : 0 + this.state.FBoutdoorClean ? totalFB : 0 + this.state.DCoutdoorClean ? totalDC : 0;
 
 /******************Pool***************/
@@ -1168,17 +1176,19 @@ const PCfreqMultiplier = this.state.poolPCweek? this.state.handlepoolPCweek : th
 
 const poolPCalgae = this.state.poolPCgreenAlgae ? "Green" : this.state.poolPCmustardAlgae ? "Mustard" : this.state.poolPCblackAlgae ? "Black" : "";
 const poolPMalgae = this.state.poolPMgreenAlgae ? "Green" : this.state.poolPMmustardAlgae ? "Mustard" : this.state.poolPMblackAlgae ? "Black" : "";
-
+//const PoolDistancePricing = this.state.poolLocDistance > 0 && this.state.poolLocDistance > 30 ? (this.state.poolLocDistance - 30)*2 : 0;
 const poolPCvolPriceMultiplier = poolPCvolume > 0 && poolPCvolume <= 100 ? 1 : poolPCvolume > 100 && poolPCvolume <= 250 ? 1.5 : poolPCvolume > 250 && poolPCvolume <= 500 ? 1.75 : poolPCvolume > 500 && poolPCvolume <= 750 ? 2 : poolPCvolume > 750 && poolPCvolume <= 1000 ? 2.5 : 0;
 //const poolPCissuePriceMultiplier = this.state.poolPCcloudy? 1.25 : this.state.poolPCgreenAlgae? 1.5 : this.state.poolPCmustardAlgae? 1.75 : this.state.poolPCblackAlgae ? 2 : 1;
 const poolPCfreqMultiplier = this.state.poolPConce ? 1 : this.state.poolPCweek ? 0.9 : this.state.poolPCmonth ? 0.95 : 0;
 const poolProblemsCosts = this.state.poolCloudyPrice > 1 && this.state.poolAlgaePrice > 1 ? this.state.poolAlgaePrice : this.state.poolCloudyPrice > 1 && this.state.poolAlgaePrice < 1.5 ? this.state.poolCloudyPrice : 1;
-const totalPCpool = this.state.PoolClean? (170 + (120 * poolPCvolPriceMultiplier * poolProblemsCosts * poolPCfreqMultiplier)) * this.state.handlePoolGenCleaningPromo * PCfreqMultiplier: 0;
+var PoolDistancePricing = this.state.poolLocDistance > 0 && this.state.poolLocDistance > 30 ? this.state.poolLocDistance - 30 : 0;
+PoolDistancePricing = PoolDistancePricing * 2;
+const totalPCpool = this.state.PoolClean? (170 + PoolDistancePricing + (120 * poolPCvolPriceMultiplier * poolProblemsCosts * poolPCfreqMultiplier)) * this.state.handlePoolGenCleaningPromo * PCfreqMultiplier: 0;
 
 const poolPMvolPriceMultiplier = poolPMvolume > 0 && poolPMvolume <= 100 ? 1 : poolPMvolume > 100 && poolPMvolume <= 250 ? 1.5 : poolPMvolume > 250 && poolPMvolume <= 500 ? 1.75 : poolPMvolume > 500 && poolPMvolume <= 750 ? 2 : poolPMvolume > 750 && poolPMvolume <= 1000 ? 2.5 : 0;
 //const poolPMissuePriceMultiplier = this.state.poolPMcloudy? 1.25 : this.state.poolPMgreenAlgae? 1.5 : this.state.poolPMmustardAlgae? 1.75 : this.state.poolPMblackAlgae ? 2 : 1;
 const poolPMfreqMultiplier = this.state.poolPMonce ? 1 : this.state.poolPMweek ? 0.9 : this.state.poolPMmonth ? 0.95 : 0;
-const totalPMpool = this.state.PoolMaint? (170 + (220 * poolPMvolPriceMultiplier * poolProblemsCosts * poolPMfreqMultiplier)) * this.state.handlePoolMaintanancePromo : 0;
+const totalPMpool = this.state.PoolMaint? (170 + PoolDistancePricing + (220 * poolPMvolPriceMultiplier * poolProblemsCosts * poolPMfreqMultiplier)) * this.state.handlePoolMaintanancePromo : 0;
 
 const totalPool = this.state.PoolClean? totalPCpool :  this.state.PoolMaint? totalPMpool : 0;
 const poolShape = this.state.poolShapePMSelect === "0" || this.state.poolShapePMSelect === "1" || this.state.poolShapePCSelect === "0" ||  this.state.poolShapePCSelect === "1" ? "Rectangular" :
