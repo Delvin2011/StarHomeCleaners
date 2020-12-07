@@ -38,6 +38,12 @@ const imagesStyles = {
     bottom: "0",
     left: "0",
     padding: "1.25rem"
+  },
+  imgHoverOpacity: {
+    "&:hover": {
+      opacity: 0.5,
+      cursor: "pointer"
+    }
   }
 };
 

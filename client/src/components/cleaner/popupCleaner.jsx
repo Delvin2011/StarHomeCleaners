@@ -1050,14 +1050,14 @@ const x = "" + this.state.dateTime;
 const y = "" + this.state.dateTimeOutdoor;
 const poolTime = "" + this.state.dateTimePool;
 
-const maintMonthStatus = this.state.maintYear || this.state.maintQuat ? true : false;
+/*const maintMonthStatus = this.state.maintYear || this.state.maintQuat ? true : false;
 const maintQuatStatus = this.state.maintMonth || this.state.maintYear ? true : false;
-const maintYearStatus = this.state.maintMonth || this.state.maintQuat ? true : false;
+const maintYearStatus = this.state.maintMonth || this.state.maintQuat ? true : false;*/
 
 /***************************Indoor******************************** */
-const cleanOnceStatus = this.state.cleanMonth || this.state.cleanWeek ? true : false;
+/*const cleanOnceStatus = this.state.cleanMonth || this.state.cleanWeek ? true : false;
 const cleanWeekStatus = this.state.cleanOnceOFF || this.state.cleanMonth ? true : false;
-const cleanMonthStatus = this.state.cleanOnceOFF || this.state.cleanWeek ? true : false;
+const cleanMonthStatus = this.state.cleanOnceOFF || this.state.cleanWeek ? true : false;*/
 
 const genIndoorCleanOnceStatus = this.state.genIndoorCleanMonth || this.state.genIndoorCleanWeek ? true : false; const genIndoorCleanWeekStatus = this.state.genIndoorCleanOnce || this.state.genIndoorCleanMonth ? true : false; const genIndoorCleanMonthStatus = this.state.genIndoorCleanOnce || this.state.genIndoorCleanWeek ? true : false;
 const afterBuildOnceStatus = this.state.afterBuildCleanWeek || this.state.afterBuildCleanMonth ? true : false; const afterBuildWeekStatus = this.state.afterBuildCleanOnce || this.state.afterBuildCleanMonth ? true : false; const afterBuildMonthStatus = this.state.afterBuildCleanOnce || this.state.afterBuildCleanWeek ? true : false;
@@ -1089,10 +1089,10 @@ const totalEndTenancyIndoorClean =  this.state.endTenancyCleanOnce || this.state
 const totalSanitiseIndoor = this.state.sanitiseIndoorOnceOFF || this.state.sanitiseIndoorMonth? (230 + this.state.bedPrice + this.state.bathPrice) * (this.state.priceSanitiseIndoorOnceOFF + this.state.priceSanitiseIndoorMonth) * (this.state.priceSanitiseIndoorOnceOFF + this.state.priceSanitiseIndoorMonth) * this.state.handleIndoorSanitisePromo * SanitiseFreqMultiplier : 0;
 const totalIndoor = this.state.IndoorGenClean ? totalGenIndoorClean :  this.state.IndoorAfterBuildClean ? totalAfterBuildIndoorClean : this.state.IndoorEndTenancyClean ? totalEndTenancyIndoorClean : this.state.IndoorSanitise ? totalSanitiseIndoor : 0;
 /********************Outdoor*****************/
-const outdoorYCwholeYardStatus = this.state.outdoorYCfrontYard || this.state.outdoorYCbackYard || this.state.outdoorYCsideYard? true : false;
-const outdoorNotWholeStatus = this.state.outdoorYCwholeYard ? true : false;
+/*const outdoorYCwholeYardStatus = this.state.outdoorYCfrontYard || this.state.outdoorYCbackYard || this.state.outdoorYCsideYard? true : false;
+const outdoorNotWholeStatus = this.state.outdoorYCwholeYard ? true : false;*/
 
-/************** */
+/************** 
 const outdoorLMwholeYardStatus = this.state.outdoorLMfrontYard || this.state.outdoorLMbackYard || this.state.outdoorLMsideYard? true : false;
 const outdoorLMnotWholeStatus = this.state.outdoorLMwholeYard ? true : false;
 
@@ -1100,7 +1100,7 @@ const outdoorFBwholeYardStatus = this.state.outdoorFBfrontYard || this.state.out
 const outdoorFBnotWholeStatus = this.state.outdoorFBwholeYard ? true : false;
 
 const outdoorDCwholeYardStatus = this.state.outdoorDCfrontYard || this.state.outdoorDCbackYard || this.state.outdoorDCsideYard? true : false;
-const outdoorDCnotWholeStatus = this.state.outdoorDCwholeYard ? true : false;
+const outdoorDCnotWholeStatus = this.state.outdoorDCwholeYard ? true : false;*/
 
 const outDoorServiceRequired = this.state.YCoutdoorCleanDisplay? this.state.YCoutdoorCleanDisplay : this.state.LMoutdoorCleanDisplay? this.state.LMoutdoorCleanDisplay : this.state.FBoutdoorCleanDisplay? this.state.FBoutdoorCleanDisplay : this.state.DCoutdoorCleanDisplay? this.state.DCoutdoorCleanDisplay : '';
 
@@ -1163,10 +1163,10 @@ const poolVolume = this.state.PoolClean? poolPCvolume.toFixed(0) * 1000 : this.s
 const poolPConceStatus = this.state.poolPCweek || this.state.poolPCmonth ? true : false; const poolPCweekStatus = this.state.poolPConce || this.state.poolPCmonth ? true : false; const poolPCmonthStatus = this.state.poolPCweek || this.state.poolPConce ? true : false;
 const poolPMmonthStatus = this.state.poolPMquarter || this.state.poolPMyear ? true : false; const poolPMquarterStatus = this.state.poolPMmonth || this.state.poolPMyear ? true : false; const poolPMyearStatus = this.state.poolPMmonth || this.state.poolPMquarter ? true : false;
 
-const poolPCgreenAlgaeStatus = this.state.poolPCmustardAlgae || this.state.poolPCblackAlgae || this.state.poolPCcloudy? true : false; const poolPCmustardAlgaeStatus = this.state.poolPCgreenAlgae || this.state.poolPCblackAlgae || this.state.poolPCcloudy? true : false; const poolPCblackAlgaeStatus = this.state.poolPCmustardAlgae || this.state.poolPCgreenAlgae || this.state.poolPCcloudy? true : false;
+/*const poolPCgreenAlgaeStatus = this.state.poolPCmustardAlgae || this.state.poolPCblackAlgae || this.state.poolPCcloudy? true : false; const poolPCmustardAlgaeStatus = this.state.poolPCgreenAlgae || this.state.poolPCblackAlgae || this.state.poolPCcloudy? true : false; const poolPCblackAlgaeStatus = this.state.poolPCmustardAlgae || this.state.poolPCgreenAlgae || this.state.poolPCcloudy? true : false;
 const poolPMgreenAlgaeStatus = this.state.poolPMmustardAlgae || this.state.poolPMblackAlgae || this.state.poolPMcloudy? true : false; const poolPMmustardAlgaeStatus = this.state.poolPMgreenAlgae || this.state.poolPMblackAlgae || this.state.poolPMcloudy? true : false; const poolPMblackAlgaeStatus = this.state.poolPMmustardAlgae || this.state.poolPMgreenAlgae || this.state.poolPMcloudy? true : false;
 const poolPCcloudyStatus = this.state.poolPCmustardAlgae || this.state.poolPCblackAlgae || this.state.poolPCgreenAlgae? true : false; 
-const poolPMcloudyStatus = this.state.poolPMmustardAlgae || this.state.poolPMblackAlgae || this.state.poolPMgreenAlgae? true : false; 
+const poolPMcloudyStatus = this.state.poolPMmustardAlgae || this.state.poolPMblackAlgae || this.state.poolPMgreenAlgae? true : false; */
 
 const poolPCfreq = this.state.poolPConce ? "Once" : this.state.poolPCweek ? "Weekly" : this.state.poolPCmonth ? "Monthly" : "";
 const poolPMfreq = this.state.poolPMonce ? "Once" : this.state.poolPMweek ? "Weekly" : this.state.poolPMmonth ? "Monthly" : "";

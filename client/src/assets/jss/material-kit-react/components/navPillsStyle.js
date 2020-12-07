@@ -50,7 +50,7 @@ const navPillsStyle = theme => ({
     opacity: "1",
     maxWidth: "100%",
     margin: "0 5px",
-    [theme.breakpoints.down("md")]: {
+    [theme.breakpoints.down("lg")]: {
       padding: "5px 7px",
       minWidth: "75px",
       minHeight: "50px",
@@ -60,7 +60,7 @@ const navPillsStyle = theme => ({
     borderRadius: "4px"
   },
   tabIcon: {
-    [theme.breakpoints.down("md")]: {
+    [theme.breakpoints.down("lg")]: {
       width: "20px",
       height: "20px",
       margin: "5px 0 !important"
@@ -84,7 +84,7 @@ const navPillsStyle = theme => ({
     }
   },
   contentWrapper: {
-    [theme.breakpoints.down("md")]: {
+    [theme.breakpoints.down("lg")]: {
       marginTop: "10px"
     },
     marginTop: "20px"
@@ -159,3 +159,10 @@ const navPillsStyle = theme => ({
 });
 
 export default navPillsStyle;
+
+
+/*xs, extra-small: 0px
+sm, small: 600px
+md, medium: 960px
+lg, large: 1280px
+xl, extra-large: 1920px*/

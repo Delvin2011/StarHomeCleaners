@@ -37,13 +37,14 @@ const useStyles = makeStyles(styles);
 export default function CostlyDIY(props) {
   const classes = useStyles();
   const [GetIndoorService, setGetIndoorService] = useState(false);
-  const { ...rest } = props;
+  const { items,...rest } = props;
   const imageClasses = classNames(
     classes.imgRaised,
     classes.imgRoundedCircle,
     classes.imgFluid
   );
   const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
+  //console.log(props.location.state[0]);
   return (
 
     <div>
