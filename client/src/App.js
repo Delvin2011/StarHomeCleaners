@@ -11,6 +11,8 @@ import AboutUsPage from "./views/AboutUsPage/AboutUsPage.js";
 import ProductPage from "./views/ProductPage/product.jsx";
 import TransactionFailed from "./views/TransactionFailed/TransactionFailed.js";
 import TransactionSuccess from "./views/TransactionSuccess/TransactionSuccess.js";
+import CheckoutPage from "./views/checkout/checkout.jsx";
+import DecorShopCollectionPage from "./views/ShopingPage/decorShopCollection/decorShopCollection.jsx"
 
 import FAQsPage from "./views/FAQsPage/FAQsPage.js";
 import MessengerCustomerChat from 'react-messenger-customer-chat';
@@ -70,13 +72,16 @@ class App extends React.Component {
         <Switch>
             <Route path="/about-us" component={AboutUsPage} />
             <Route path="/FAQs" component={FAQsPage} />
+            <Route path="/checkout" component = {CheckoutPage}/>
             <Route path="/Blogs" component={Blogs} />
             <Route path="/CostlyDIY" component={CostlyDIY} />
             <Route path="/DecorShop" component={ShopingPage}/>
+            <Route path="/Collection" component = {DecorShopCollectionPage}/> 
             <Route path="/product" component={ProductPage}/>
             <Route path="/TransactionFailed" component={TransactionFailed} />
             <Route path="/TransactionSuccess" component={TransactionSuccess} />
             <Route path="/" component={() => <CleaningPage/>}/>
+            
 
         </Switch>
       </div>

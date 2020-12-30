@@ -72,7 +72,7 @@ const ShopingPage = ({ props, history }) => {
   const navImageClasses = classNames(classes.imgRounded, classes.imgGallery, classes.imgHoverOpacity);
   const items = [
     {
-      Name : "Country Walking Backpack - 30L",
+      name : "Country Walking Backpack - 30L",
       Description : "Foam straps and back - 4 pads | 2 thumb-holes | Waist & chest belt.;4 zipped pockets | 2 Bottle holders | Stick holders | Elastic for your jacket.;Volume: 30 litres | Weight: 616 g | Dimensions: 56 x 26 x 20 cm.;Component resistant to abrasion (ground and back) | Guaranteed 10 years.;Simple back | No ventilation system.",
       imageUrl : {
         Url1 : "https://i.ibb.co/W0RMXKW/b1-min.png", 
@@ -80,7 +80,7 @@ const ShopingPage = ({ props, history }) => {
         Url3 : "https://i.ibb.co/W0RMXKW/b1-min.png",
         Url4 : "https://i.ibb.co/W0RMXKW/b1-min.png",
       },      
-      Price : "$20",
+      price : "20",
       Available: true,
       id : 1
     }
@@ -227,7 +227,7 @@ const ShopingPage = ({ props, history }) => {
 
 
             </GridContainer>  
-            <p style = {{"textAlign" : "center",  marginTop: "-75px"}}><CustomButton onClick = {() => setGetIndoorService(!GetIndoorService)} style = {{"background": "#9c27b0"}}>View More</CustomButton></p>        
+            <p style = {{"textAlign" : "center",  marginTop: "-75px"}}><CustomButton onClick={() => { history.push('/Collection');}} style = {{"background": "#9c27b0"}}>View More</CustomButton></p>        
           </div>                
             <div className={classes.container}>
               <SectionCarousel/>

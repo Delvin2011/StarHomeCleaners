@@ -7,8 +7,9 @@ import SectionCarousel from "../Components/Sections/SectionCarousel.js";
 import SectionDownload from "../Components/Sections/SectionDownload.js";
 import FormInput from 'components/form-input2/form-input';
 import {Form} from 'components/cleaner/popupCleaner-styles'; 
-
+import { connect } from 'react-redux';
 import ProductCarousel from "./productCarousel.js";
+import { addDecoItem } from '../../redux/decoCart/decoCart-actions';
 
 // core components
 
@@ -16,41 +17,35 @@ import Footer from "components/Footer/Footer.js";
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
 import Parallax from "components/Parallax2/Parallax.js";
-
-import {
-  ViewButton
-} from 'components/blog-item/blog-item-styles';
-//import profile from "assets/img/faces/christian.jpg";
 import profile from '../../assets/img/logo1.png';
 import CustomButton from "components/CustomButtons/Button";
 
-import {GiVacuumCleaner} from 'react-icons/gi';
-import {GiWheelbarrow} from 'react-icons/gi';
-import {FaSwimmingPool} from 'react-icons/fa';
-import NavPills from "components/NavPills/NavPills.js";
-
-import {withRouter} from 'react-router-dom';
 import styles from "assets/jss/material-kit-react/views/profilePage.js";
-
+import {withRouter} from 'react-router-dom';
 
 const useStyles = makeStyles(styles);
 
 const ProductPage = (props) => {
+  console.log(props.history.location.state);
+  var items = props.history.location.state; //props.location.state[0];
+
   const classes = useStyles();
   const [quantity, setQuantity] = useState('1');
-  const { items,...rest } = props;
+  const { price,name,Description,imageUrl} = items;
   const imageClasses = classNames(
     classes.imgRaised,
     classes.imgRoundedCircle,
     classes.imgFluid
   );
+  const TotalPrice = parseFloat(price) * parseFloat(quantity);
   const navImageClasses = classNames(classes.imgRounded, classes.imgGallery, classes.imgHoverOpacity);
   const onSetQuantity = useCallback((ev)  => {
     setQuantity(ev.target.value);
+    items.Quantity = quantity;
+    items.TotalPrice = parseFloat(price) * parseFloat(quantity);
   }, []);
 
-  const unitPrice = String(props.location.state[0].Price).split("$");
-  const Price = parseFloat(unitPrice[1]) * parseFloat(quantity);
+
 
   return (
 
@@ -65,11 +60,11 @@ const ProductPage = (props) => {
                     <img src={profile} alt="..." className={imageClasses} />
                   </div>
                   <div className={classes.name}>
-                    <h3 className={classes.title}>{props.location.state[0].Name}</h3>
+                    <h3 className={classes.title}>{name}</h3>
                   </div>
                   <div className={classes.description}>
                     <p className={classes.description}>
-                    {props.location.state[0].Description}
+                    {Description}
                     </p>
                   </div>
                 </div>
@@ -79,10 +74,10 @@ const ProductPage = (props) => {
             <div className={classes.container} >
               <GridContainer justify="center">
                 <GridItem xs={12} sm={12} md={8}>
-                  <ProductCarousel item = {props.location.state[0].imageUrl}/>
+                  <ProductCarousel item = {imageUrl}/>
                 </GridItem>
                 <GridItem xs={12} sm={12} md={4} style = {{"marginTop": "20px"}}>
-                <div ><h3>Unit Price : {props.location.state[0].Price}</h3></div>
+                <div ><h3>Unit Price : R {price}</h3></div>
                 <div>
                   <h3>Quantity : </h3>
                     <Form style = {{"color": "red", fontSize : "10px", width : "50px"}}>                 
@@ -98,8 +93,9 @@ const ProductPage = (props) => {
                       />
                     </Form>
                 </div>
-                <div ><h3>Total : ${Price}</h3></div>
-            <p style = {{"textAlign" : "center"}}><CustomButton  style = {{"background": "#9c27b0"}}>Add to Cart</CustomButton></p>        
+                <div ><h3>Total : R {TotalPrice}</h3></div>
+                <p style = {{"textAlign" : "center"}}><CustomButton  style = {{"background": "#9c27b0"}} onClick={() => props.addDecoItem(items)}>Add to Cart</CustomButton></p>  
+                <p style = {{"textAlign" : "center"}}><CustomButton  style = {{"background": "#e91e63"}} onClick={() => {props.history.push('/checkout');}}>Go to Checkout</CustomButton></p>      
 
                 </GridItem>
               </GridContainer>
@@ -111,4 +107,12 @@ const ProductPage = (props) => {
   );
 }
 
-export default (ProductPage);
+
+const mapDispatchToProps = dispatch => ({
+  addDecoItem: items => dispatch(addDecoItem(items))
+});
+
+export default withRouter(connect(
+  null,
+  mapDispatchToProps
+)(ProductPage)); 

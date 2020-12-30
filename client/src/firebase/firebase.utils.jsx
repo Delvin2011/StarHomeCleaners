@@ -67,6 +67,19 @@ export const getUserCartRef = async userId => {
   }
 };
 
+export const getUserDecorCartRef = async userId => {
+  const cartsRef = firestore.collection('DecorCart').where('userId', '==', userId);
+  const snapShot = await cartsRef.get();
+
+  if (snapShot.empty) {
+    const DecorCartDocRef = firestore.collection('DecorCart').doc();
+    await DecorCartDocRef.set({ userId, DecoCartItems: [] });
+    return DecorCartDocRef;
+  } else {
+    return snapShot.docs[0].ref;
+  }
+};
+
 
 
 export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
