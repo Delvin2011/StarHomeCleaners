@@ -24,9 +24,13 @@ import {GoSignOut} from "react-icons/go";
 import {MdLiveHelp} from "react-icons/md";
 import { ImNewspaper } from "react-icons/im";
 import {SiMicroDotBlog} from "react-icons/si";
+import {MdShoppingBasket} from "react-icons/md";
+
 
 
 import {selectCurrentUser} from '../../redux/user/user-selectors';
+import {selectCartItemsCount} from '../../redux/cart/cart-selectors';
+import {selectDecoCartItemsCount} from '../../redux/decoCart/decoCart-selectors';
 import {signOutStart} from '../../redux/user/user-actions';
 
 
@@ -41,7 +45,8 @@ import styles from "assets/jss/material-kit-react/components/headerLinksStyle.js
 
 const useStyles = makeStyles(styles);
 
- function HeaderLinks({currentUser,signOutStart}) {
+    itemCount: selectCartItemsCount
+ function HeaderLinks({currentUser,signOutStart,itemCount,decoItemCount}) {
   const classes = useStyles();
   const [Email, setEmail] = useState(false);
   const [Phone, setPhone] = useState(false);
@@ -59,11 +64,22 @@ const useStyles = makeStyles(styles);
             className={classes.navLink}
             onClick = {() => setBooking(!Booking)}
           >
-            <SiMicroDotBlog className={classes.icons} /> Book  a Service
+            <SiMicroDotBlog className={classes.icons} /> Book a Service
         </Button>
         </ListItem>
 
         <ListItem className={classes.listItem}>
+
+{        /*<ListItem className={classes.listItem}>
+          <Button
+              href="DecorShop"
+              color="transparent"
+              target="_blank"
+              className={classes.navLink}
+            >
+              <MdShoppingBasket className={classes.icons} /> Shop
+            </Button>
+        </ListItem>*/}
 
         {currentUser?
 
@@ -90,20 +106,46 @@ const useStyles = makeStyles(styles);
         }
         </ListItem>
 
+        {/*currentUser?  
+          <ListItem className={classes.listItem}>
+          <Button
+              //href="blogs-page"
+              color="transparent"
+              target="_blank"
+              className={classes.navLink}
+              onClick = {() => setGetBookings(!GetBookings)}
+            >
+              <FaBookReader className={classes.icons} /> Bookings ({itemCount}) & Cart ({decoItemCount})
+          </Button>
+          </ListItem>
+          :
+          <ListItem className={classes.listItem}>
+          <Button
+              //href="blogs-page"
+              color="transparent"
+              target="_blank"
+              className={classes.navLink}
+              onClick = {() => setGetBookings(!GetBookings)}
+            >
+              <FaBookReader className={classes.icons} /> Bookings & Cart
+          </Button>
+          </ListItem>*/
+        }
+
         <ListItem className={classes.listItem}>
-        <Button
-            //href="blogs-page"
-            color="transparent"
-            target="_blank"
-            className={classes.navLink}
-            onClick = {() => setGetBookings(!GetBookings)}
-          >
-            <FaBookReader className={classes.icons} /> Bookings & Promos
-        </Button>
-        </ListItem>
+          <Button
+              //href="blogs-page"
+              color="transparent"
+              target="_blank"
+              className={classes.navLink}
+              onClick = {() => setGetBookings(!GetBookings)}
+            >
+              <FaBookReader className={classes.icons} /> Bookings & Promotions
+          </Button>
+          </ListItem>
 
 
-        <ListItem className={classes.listItem}>
+          <ListItem className={classes.listItem}>
 
         <Button
             href="about-us"
@@ -215,7 +257,9 @@ const mapDispatchToProps = dispatch => ({
 //createStructuredSelector - properties that we want point to the correct selector
 //will get our state into the subsequent selector: currentUser, hidden
 const mapStateToProps = createStructuredSelector({ //state will be the root.reducer
-  currentUser : selectCurrentUser
+  currentUser : selectCurrentUser,
+  itemCount: selectCartItemsCount,
+  decoItemCount: selectDecoCartItemsCount
 }); //naming mapStateToProps can be anything
 
 export default connect(mapStateToProps,mapDispatchToProps)(HeaderLinks);

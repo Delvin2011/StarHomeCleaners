@@ -5,7 +5,7 @@ import classNames from "classnames";
 import { makeStyles } from "@material-ui/core/styles";
 import {connect} from 'react-redux';
 import {createStructuredSelector} from 'reselect'; //bcoz we gonna be pulling stufff off the state
-
+import CustomButton from "../../components/CustomButtons/Button";
 import CheckoutItem from '../../components/checkout-item/checkout-item';
 import {selectDecoCartItems,selectDecoCartTotal} from '../../redux/decoCart/decoCart-selectors';
 import './checkout.scss';
@@ -16,6 +16,7 @@ import GridItem from "components/Grid/GridItem.js";
 import Parallax from "components/Parallax2/Parallax.js";
 import styles from "assets/jss/material-kit-react/views/profilePage.js";
 import profile from '../../assets/img/logo1.png';
+import DecoCheckoutDetails from '../../components/decoShop/decoCheckoutDetails/decoCheckoutDetails';
 const useStyles = makeStyles(styles);
 
 
@@ -23,6 +24,7 @@ const useStyles = makeStyles(styles);
 const CheckoutPage = ({props,decoCartItems,total}) => {
     const classes = useStyles();
     const { ...rest } = props;
+    const [checkoutDetails, setCheckoutDetails] = useState(false);
     const imageClasses = classNames(
       classes.imgRaised,
       classes.imgRoundedCircle,
@@ -59,13 +61,13 @@ const CheckoutPage = ({props,decoCartItems,total}) => {
                 <span>Product</span>
             </div>
             <div className = 'header-block'>
-                <span>Description</span>
+                <span>Name</span>
             </div>
             <div className = 'header-block'>
                 <span>Quantity</span>
             </div>
             <div className = 'header-block'>
-                <span>Price</span>
+                <span>Unit Price</span>
             </div>
             <div className = 'header-block'>
                 <span>Remove</span>
@@ -80,10 +82,11 @@ const CheckoutPage = ({props,decoCartItems,total}) => {
 
         <div className = 'total'>
             <span>
-                TOTAL: R{total}
+                TOTAL: R{total.toFixed(2)}
             </span>
-
-        </div>      
+        </div>  
+        <p style = {{"textAlign" : "center"}}><CustomButton style = {{"marginTop" : "12.5px", "background": "#e91e63"}} onClick = {() => setCheckoutDetails(!checkoutDetails)} >Pay Now     R{total.toFixed(2)}</CustomButton></p>     
+     
     </div>
     </GridContainer>
             <div >
@@ -92,6 +95,11 @@ const CheckoutPage = ({props,decoCartItems,total}) => {
           </div>
         </div>     
         <Footer />
+
+        {checkoutDetails ?
+          <DecoCheckoutDetails showCheckoutDetails = {() => setCheckoutDetails(!checkoutDetails)}/>          
+          : null
+        }   
     </div>
 
 
@@ -101,8 +109,7 @@ const CheckoutPage = ({props,decoCartItems,total}) => {
 
 const mapStateToProps = createStructuredSelector ({
     decoCartItems: selectDecoCartItems,
-    total: selectDecoCartTotal
-})
+    total: selectDecoCartTotal})
 
 export default connect(mapStateToProps)(CheckoutPage);
 

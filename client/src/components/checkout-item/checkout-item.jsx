@@ -8,7 +8,7 @@ import './checkout-item.scss';
 //so as to have access to the cartItem and the clearItem function
 
 const CheckoutItem = ({decoCartItem, clearItem, addItem, removeItem}) => {
-    const {name, imageUrl, Quantity, TotalPrice} = decoCartItem;
+    const {name, imageUrl, quantity, price} = decoCartItem;
     return( //disstructuring the values we are going to need
         <div className = 'checkout-item'>
             <div className = 'image-container'>
@@ -17,10 +17,10 @@ const CheckoutItem = ({decoCartItem, clearItem, addItem, removeItem}) => {
             <span className = 'name'>{name}</span>
             <span className = 'quantity'>
                 <div className = 'arrow' onClick = {() => removeItem(decoCartItem)}>&#10094;</div>
-                    <span className = 'value'>{Quantity}</span>
+                    <span className = 'value'>{quantity}</span>
                 <div className = 'arrow' onClick = {() => addItem(decoCartItem)}>&#10095;</div>
             </span>
-            <span className = 'price'>{TotalPrice}</span>
+            <span className = 'price'>R{price}</span>
             <div className = 'remove-button' onClick = {() =>clearItem(decoCartItem)}>&#10005;</div>
         </div>
     );

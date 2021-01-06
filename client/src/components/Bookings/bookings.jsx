@@ -1,5 +1,5 @@
 import React from 'react';  
-import {Popup,PopupInner,ContentTitle,CloseButton,TabsContainer,DetailHeader,Details,BookingDetail,TCList} from './bookings-styles'; 
+import {Popup,PopupInner,ContentTitle,CloseButton,TabsContainer,DetailHeader,Details,BookingDetail,TCList,CartDetails} from './bookings-styles'; 
 import {connect} from 'react-redux';
 import {createStructuredSelector} from 'reselect'; //bcoz we gonna be pulling stufff off the state
 
@@ -11,16 +11,22 @@ import {GiRead} from 'react-icons/gi';
 import {GiStarsStack} from 'react-icons/gi';
 
 import {selectCartItems} from '../../redux/cart/cart-selectors';
+import {selectDecoCartItems} from '../../redux/decoCart/decoCart-selectors';
 import { clearItemFromCart } from '../../redux/cart/cart-actions';
+import {clearDecoItemFromCart} from '../../redux/decoCart/decoCart-actions';
 import {selectCurrentUser} from '../../redux/user/user-selectors';
 import SignIn from '../sign-in/sign-in';
 import CustomButton from "../CustomButtons/Button";
+import {MdShoppingBasket} from "react-icons/md";
+import {withRouter} from 'react-router-dom';
+
 class Bookings extends React.Component {  
  
     constructor(props){
         super(props);  
         this.state = {
-          showPopupSignIn: false
+          showPopupSignIn: false,
+          showPopup: false
         } 
 
     }
@@ -31,6 +37,12 @@ class Bookings extends React.Component {
       });
     }
 
+     showPopup(event) {
+      this.setState({
+        showPopup: !this.state.showPopup
+      });
+    }
+
 
 render() {  
 const status = "Pending";
@@ -38,8 +50,8 @@ const status = "Pending";
 const id = this.props.currentUser ? this.props.currentUser.id : '';
 const PromoCode = this.props.currentUser ? id.slice(0,5).toUpperCase() : '';
 const FriendCode = this.props.currentUser ? id.slice(-5).toUpperCase() : '';
-//console.log(this.props.cartItems);
-return (          
+console.log(this.state.showPopup);
+return (  <div>{!this.state.showPopup ?     
             <Popup>  
                 <PopupInner> 
                 <CloseButton className = 'remove-button' style = {{"color":"black"}} onClick = {this.props.closePopup} >&#10005;</CloseButton>
@@ -109,6 +121,62 @@ return (
                           )
                         },
                         {
+                          tabButton: "Shopping Cart",
+                          tabIcon: MdShoppingBasket,
+                          tabContent: (
+                          <div>
+                            { this.props.currentUser ? 
+                                this.props.decoCartItems.length > 0 ?
+                                  <div style = {{"marginTop": "-5px"}}>
+                                        <ContentTitle> Details <span><hr width="300"/></span> </ContentTitle> 
+                                          <CartDetails>
+                                            <DetailHeader>Product</DetailHeader>
+                                            <DetailHeader>Category</DetailHeader>
+                                            <DetailHeader>Quantity</DetailHeader>
+                                            <DetailHeader>Price</DetailHeader>
+                                            <DetailHeader>Dispatch Status</DetailHeader>
+                                          </CartDetails>                                   
+                                          {
+                                            Object.entries(this.props.decoCartItems).map(([key, val]) => 
+                                            <CartDetails key={key}>
+                                              <BookingDetail>{this.props.decoCartItems[key].name}</BookingDetail>
+                                              <BookingDetail>N/A</BookingDetail>
+                                              <BookingDetail>{this.props.decoCartItems[key].quantity}</BookingDetail>
+                                              <BookingDetail>{this.props.decoCartItems[key].price}</BookingDetail>
+                                              <BookingDetail>{status}</BookingDetail>
+                                              <Tooltip title="Cancel Booking" aria-label="add"><BookingDetail onClick = {() => this.props.clearDecoItem(this.props.decoCartItems[key])} style = {{"cursor": "pointer","alignItems": "left"}}>&#10005;</BookingDetail></Tooltip>
+                                            </CartDetails>
+                                              )                        
+                                          }  
+                                          <p style = {{"textAlign" : "center", "marginBottom" : "10px"}}><CustomButton  style = {{"background": "#e91e63"}} onClick={() => {this.props.history.push('/checkout');this.showPopup();}}>Go to Checkout</CustomButton></p>                      
+                                  </div>  
+                                  
+                                : <ContentTitle> No Previous Bookings<span><hr width="300"/></span> </ContentTitle>
+                              
+                              : 
+                              <div>  
+                                <ContentTitle> Sign IN/UP <span><hr width="300"/></span> </ContentTitle>
+                                <br/>
+                                <DetailHeader>Why?</DetailHeader>
+                                <TCList>
+                                    <br/>
+                                        <li>View items in cart.</li>
+                                        <li>Remove some items in cart if need be.</li>
+                                        <li>Check dispatch status of items paid for.</li>
+                                </TCList>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <p style = {{"textAlign" : "center"}}><CustomButton  onClick = {this.showPopupSignIn.bind(this)} style = {{"marginTop" : "12.5px", "background": "#e91e63"}} >Sign In/Up</CustomButton></p>     
+ 
+                              </div>
+                            }
+
+                            </div>
+
+                          )
+                        },
+                        {
                           tabButton: "Promotions",
                           tabIcon: GiStarsStack,
                           tabContent: (
@@ -166,23 +234,25 @@ return (
                     : null
                 }
             </Popup> 
-
+          : null}</div>
         );  
     }  
 }  
 
 const mapDispatchToProps = dispatch => ({
   clearItem: item => dispatch(clearItemFromCart(item)),
+  clearDecoItem: item => dispatch(clearDecoItemFromCart(item))
 });
 
 const mapStateToProps = createStructuredSelector ({
   cartItems: selectCartItems,
+  decoCartItems: selectDecoCartItems,
   currentUser : selectCurrentUser
 });
 
 
 
-export default connect(mapStateToProps,mapDispatchToProps)(Bookings);
+export default withRouter(connect(mapStateToProps,mapDispatchToProps)(Bookings));
 
 /*  <ContentTitle> Services Rating
     <span><hr width="300"/></span>

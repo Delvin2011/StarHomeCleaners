@@ -25,6 +25,7 @@ const useStyle = makeStyles(style);
 export default function ProductCarousel(props) {
   const classes = useStyles();
   const classe = useStyle();
+  console.log(props.item.imageUrl);
   const { item,...rest } = props;
   const settings = {
     dots: true,
@@ -34,7 +35,7 @@ export default function ProductCarousel(props) {
     slidesToScroll: 1,
     autoplay: true
   };
-  console.log(item);
+  
   return (
     <div className={classe.section} style = {{marginTop: "-50px"}}>
 
@@ -44,47 +45,16 @@ export default function ProductCarousel(props) {
             <Card carousel>
               <Carousel {...settings}>
                 <div>
-                  <img src={image2} alt="First slide" className="slick-image" />
-                  <div className="slick-caption" >
-                  <h3 >
-                  <BsPeopleCircle className={classes.icons} /> 
-                  {" "}Wendy
-                    </h3>
-                    <h4 >
-                      <RiMessage3Line className={classes.icons} />
-                      {" "}Thank you for disinfecting our house.
-                    </h4>
-                  </div>
+                  <img src={props.item.imageUrl} alt="First slide" className="slick-image" />
                 </div>
                 <div>
-                  <img
-                    src={image2}
-                    alt="Second slide"
-                    className="slick-image"
-                  />
-                  <div className="slick-caption">
-                  <h3 >
-                  <BsPeopleCircle className={classes.icons} /> 
-                  {" "}Isaiah Chigs
-                    </h3>
-                    <h4 >
-                      <RiMessage3Line className={classes.icons} />
-                      {" "} Our garden is now sparkling clean.
-                    </h4>
-                  </div>
+                  <img src={props.item.imageUrl2} alt="Second slide" className="slick-image"/>
                 </div>
                 <div>
-                  <img src={image3} alt="Third slide" className="slick-image" />
-                  <div className="slick-caption">
-                  <h3 >
-                  <BsPeopleCircle className={classes.icons} /> 
-                      {" "}Reginald T
-                    </h3>
-                    <h4 >
-                      <RiMessage3Line className={classes.icons}/>
-                      {" "}Thank you for your amazing services.
-                    </h4>
-                  </div>
+                  <img src={props.item.imageUrl3} alt="Third slide" className="slick-image" />
+                </div>
+                <div>
+                  <img src={props.item.imageUrl3} alt="Fourth slide" className="slick-image" />
                 </div>
               </Carousel>
             </Card>

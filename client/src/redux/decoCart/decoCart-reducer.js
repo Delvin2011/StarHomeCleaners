@@ -36,13 +36,13 @@ const decoCartReducer = (state = INITIAL_STATE, action) => {
         case DecoCartActionTypes.CLEAR_DECOCART:
             return{
                 ...state,
-                cartItems: []
+                decoCartItems: []
             }; 
         
         case DecoCartActionTypes.SET_DECOCART_FROM_FIREBASE:
             return {
                 ...state,
-                cartItems: action.payload
+                decoCartItems: action.payload
             };
 
             default:

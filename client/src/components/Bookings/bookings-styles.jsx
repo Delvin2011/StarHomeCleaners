@@ -54,6 +54,20 @@ export const Details = styled.div`
     }
 `;
 
+export const CartDetails = styled.div`
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 2px;
+  justify-items: center;
+  text-align: center;
+  font-size: 14px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    @media screen and (max-width: 800px){
+
+    }
+`;
+
+
 export const Popup = styled.div`
     position: fixed;  
     width: 100%;  
