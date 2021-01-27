@@ -25,7 +25,7 @@ import { TiArrowRepeatOutline } from "react-icons/ti";
 import {GiVacuumCleaner} from 'react-icons/gi';
 import {AiTwotoneBuild} from 'react-icons/ai';
 import {FaUserClock} from 'react-icons/fa';
-import {GiSpray} from 'react-icons/gi';
+import {GiSofa} from 'react-icons/gi'; 
 // 
 
 
@@ -547,7 +547,7 @@ export const EndTenancyIcon = styled(FaUserClock)`
 `;
 
 
-export const SanitiseIcon = styled(GiSpray)`
+export const Sofas = styled(GiSofa)`
   color: red;
   width: 50px;
   height: 50px;

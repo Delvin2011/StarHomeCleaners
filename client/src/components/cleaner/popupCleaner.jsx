@@ -1,5 +1,5 @@
 import React from 'react';  
-import {Popup,PopupInner,ContentTitle,CloseButton,LogoContainer2,TabsContainer,EnterDetails,Options,Options2,Options3,GenCleanIcon,AfterBuildIcon,EndTenancyIcon,SanitiseIcon,Fab2,Message,Message2,Wheelbarrow, Options4,Options5,Info,Flowers,Driveway,Maintanance,Installations,ServicePool,Options3p1,ServiceGridSplit,ServiceName,Form,ServiceTest,Info2} from './popupCleaner-styles'; 
+import {Popup,PopupInner,ContentTitle,CloseButton,LogoContainer2,TabsContainer,EnterDetails,Options,Options2,Options3,GenCleanIcon,AfterBuildIcon,EndTenancyIcon,Sofas,Fab2,Message,Message2,Wheelbarrow, Options4,Options5,Info,Flowers,Driveway,Maintanance,Installations,ServicePool,Options3p1,ServiceGridSplit,ServiceName,Form,ServiceTest,Info2} from './popupCleaner-styles'; 
 import Outdoor from './outdoor/outdoor';
 import Indoor from './indoor/indoor';
 import Pool from './pool/pool';
@@ -21,7 +21,7 @@ import 'react-input-range/lib/css/index.css';
 import LawnMower from './LawnMower2.svg';
 import LawnMowerSelect from './LawnMower3.svg';
 
-import DatePicker from "react-datepicker";
+import DatePicker from "react-datepicker"; 
  
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -188,7 +188,9 @@ class Cleaner extends React.Component {
           afterBuildCleanOnce: false, afterBuildCleanWeek: false, afterBuildCleanMonth: false,
           endTenancyCleanOnce: false, endTenancyCleanMonth: false,
           sanitiseIndoorOnceOFF: false, sanitiseIndoorMonth: false,
-
+          IndoorCarpets: false, IndoorCouches: false, IndoorMattress: false, IndoorRugs: false, IndoorChairs: false,
+          IndoorCarpetsBedrooms: false, IndoorCarpetsLounge: false, IndoorCarpetsLounge : 0, priceCarpetsBedrooms: 0,
+          NumOfBeds: 1,
           genIndoorDetergents: false, afterBuilderDetergents: false, endTenancyDetergents: false, IndoorDetergents : false,
           priceGenIndoorDetergents: 0, priceAfterBuilderDetergents: 0, priceEndTenancyDetergents: 0,
 
@@ -197,6 +199,9 @@ class Cleaner extends React.Component {
           
           handleIndoorGenPromo: 1, handleIndoorEndTenencyPromo: 1, handleIndoorAfterBuildPromo: 1, handleIndoorSanitisePromo: 1,
           IndoorBookedService : "",
+          priceCouches : 0, priceIndoorMattress : 0,
+          handleNumberOfRugs: 1,
+          handleNumberOfChairs: 1,
           /***************** Outdoor ********************/
           outdoorYCwholeYard: false, outdoorYCfrontYard: false, outdoorYCbackYard: false, outdoorYCsideYard: false,
           outdoorLMwholeYard: false, outdoorLMfrontYard: false, outdoorLMbackYard: false, outdoorLMsideYard: false,
@@ -253,6 +258,13 @@ class Cleaner extends React.Component {
         this.afterBuildCleanOnce = this.afterBuildCleanOnce.bind(this); this.afterBuildCleanWeek = this.afterBuildCleanWeek.bind(this); this.afterBuildCleanMonth= this.afterBuildCleanMonth.bind(this);
         this.endTenancyCleanOnce = this.endTenancyCleanOnce.bind(this); this.endTenancyCleanMonth = this.endTenancyCleanMonth.bind(this);
         this.sanitiseIndoorOnceOFF= this.sanitiseIndoorOnceOFF.bind(this); this.sanitiseIndoorMonth= this.sanitiseIndoorMonth.bind(this);
+
+        this.IndoorCarpets= this.IndoorCarpets.bind(this); this.IndoorCouches= this.IndoorCouches.bind(this); this.IndoorCarpetsBedrooms= this.IndoorCarpetsBedrooms.bind(this); this.IndoorCarpetsLounge= this.IndoorCarpetsLounge.bind(this);
+        this.IndoorMattress= this.IndoorMattress.bind(this); this.IndoorRugs= this.IndoorRugs.bind(this);
+        this.IndoorChairs= this.IndoorChairs.bind(this);
+        this.handleNumberOfRugs  = this.handleNumberOfRugs.bind(this);
+        this.handleNumberOfChairs  = this.handleNumberOfChairs.bind(this);
+        
         
 
         this.genIndoorCleanWalls= this.genIndoorCleanWalls.bind(this);
@@ -282,6 +294,8 @@ class Cleaner extends React.Component {
         this.handleAfterBuildersWeekFreq  = this.handleAfterBuildersWeekFreq.bind(this);
         this.handleAfterBuildersMonthFreq  = this.handleAfterBuildersMonthFreq.bind(this);
         
+        // Couches and carpets
+        this.handleCouches = this.handleCouches.bind(this); this.handleMattress = this.handleMattress.bind(this); this.handleRugs = this.handleRugs.bind(this); this.handleChairs = this.handleChairs.bind(this);
 
 
         /***********Outdoor Services Handling*************/
@@ -373,7 +387,9 @@ class Cleaner extends React.Component {
       //this.logs.unshift("Bedrooms : " + e.target.value);
       this.setState({ Beds: "Beds : " + e.target.value,
         bedPrice: e.target.value === "1"? 30 : e.target.value === "2"? 60 : e.target.value === "3"? 90 : e.target.value === "4"? 120 : e.target.value === "5"? 150 : 0,
-        bedRooms: e.target.value === "1"? e.target.value + " Bedroom" : e.target.value  + " Bedrooms" });
+        bedRooms: e.target.value === "1"? e.target.value + " Bedroom" : e.target.value  + " Bedrooms",
+        NumOfBeds: parseInt(e.target.value) });
+        
       }
       
     handleDropdownChange2(e) {
@@ -450,6 +466,7 @@ class Cleaner extends React.Component {
         handleIndoorGenPromo: 1,
         handleGenCleaningWeekFreq: 2,
         handleGenCleaningMonthFreq: 2,
+        Beds : null, Baths : null,
         priceGenIndoorCleanWalls : 0, priceGenIndoorCleanWindows : 0, priceGenIndoorCleanLaundry : 0, priceGenIndoorDetergents : 0,
         IndoorGenClean: this.state.IndoorAfterBuildClean === true || this.state.IndoorEndTenancyClean === true || this.state.IndoorSanitise === true ? false : !this.state.IndoorGenClean,
         IndoorCleanService: this.state.IndoorAfterBuildClean === true || this.state.IndoorEndTenancyClean === true || this.state.IndoorSanitise === true || this.state.IndoorGenClean? null : "General",
@@ -464,6 +481,7 @@ class Cleaner extends React.Component {
         handleIndoorAfterBuildPromo: 1,
         handleAfterBuildersWeekFreq: 2,
         handleAfterBuildersMonthFreq: 2,
+        Beds : null, Baths : null,
         priceAfterBuildIndoorCleanWalls : 0, priceAfterBuildIndoorCleanWindows : 0, priceAfterBuilderDetergents : 0,
         IndoorAfterBuildClean: this.state.IndoorGenClean === true || this.state.IndoorEndTenancyClean === true || this.state.IndoorSanitise === true ? false : !this.state.IndoorAfterBuildClean,
         IndoorAfterBuildCleanService: this.state.IndoorGenClean === true || this.state.IndoorEndTenancyClean === true || this.state.IndoorSanitise === true || this.state.IndoorAfterBuildClean? null : "After Builders",
@@ -477,6 +495,7 @@ class Cleaner extends React.Component {
         endTenancyCleanOnce : false, endTenancyCleanMonth : false,
         handleIndoorEndTenencyPromo: 1,
         handleEndTenancyFreq: 2,
+        Beds : null, Baths : null,
         priceEndTenancyIndoorCleanWalls : 0, priceEndTenancyIndoorCleanWindows : 0, priceEndTenancyDetergents : 0,
         IndoorEndTenancyClean: this.state.IndoorAfterBuildClean === true || this.state.IndoorGenClean === true || this.state.IndoorSanitise === true ? false : !this.state.IndoorEndTenancyClean,
         IndoorEndTenancyCleanService: this.state.IndoorAfterBuildClean === true || this.state.IndoorGenClean === true || this.state.IndoorSanitise === true || this.state.IndoorEndTenancyClean? null : "End of Tenancy",
@@ -490,9 +509,18 @@ class Cleaner extends React.Component {
         priceSanitiseIndoorOnceOFF : 0, priceSanitiseIndoorMonth : 0,
         handleIndoorSanitisePromo: 1,
         handleSanitiseFreq: 2,
+        Beds : null, Baths : null,
         IndoorSanitise: this.state.IndoorAfterBuildClean === true || this.state.IndoorEndTenancyClean === true || this.state.IndoorGenClean === true ? false : !this.state.IndoorSanitise,
         IndoorSanitiseService: this.state.IndoorAfterBuildClean === true || this.state.IndoorEndTenancyClean === true || this.state.IndoorGenClean === true || this.state.IndoorSanitise? null : "Antiviral Sanitisation",
         IndoorSanitisePrice: this.state.IndoorSanitise? 0 : 30
+      });
+    }
+
+
+    IndoorSofas(event) {
+      this.setState({
+        IndoorCarpets: false, IndoorCouches: false, IndoorMattress: false, IndoorRugs: false, IndoorChairs: false,
+        IndoorCarpetsBedrooms: false, IndoorCarpetsLounge: false
       });
     }
 
@@ -510,9 +538,18 @@ class Cleaner extends React.Component {
 
     sanitiseIndoorOnceOFF () { this.setState({handleSanitiseFreq:2, sanitiseIndoorOnceOFF: !this.state.sanitiseIndoorOnceOFF, priceSanitiseIndoorOnceOFF : this.state.sanitiseIndoorOnceOFF? 0 : 1}); }
     sanitiseIndoorMonth () { this.setState({sanitiseIndoorMonth: !this.state.sanitiseIndoorMonth, priceSanitiseIndoorMonth : this.state.sanitiseIndoorMonth? 0 : 0.9}); }
-      
-      
-s
+     
+    IndoorCarpets () { this.setState({IndoorCarpets: !this.state.IndoorCarpets,IndoorCarpetsBedrooms : false, IndoorCarpetsLounge: false, }); }
+    IndoorCarpetsBedrooms () { this.setState({IndoorCarpetsBedrooms: !this.state.IndoorCarpetsBedrooms, priceCarpetsBedrooms : 500}); }
+    IndoorCarpetsLounge () { this.setState({IndoorCarpetsLounge: !this.state.IndoorCarpetsLounge, priceCarpetsLounge : 550}); }
+    
+    
+    IndoorCouches () { this.setState({IndoorCouches: !this.state.IndoorCouches, priceCouches : 0, handleCouches : "", Beds : null, Baths : null,Beds: null}); }
+    IndoorMattress () { this.setState({IndoorMattress: !this.state.IndoorMattress, Beds: null, handleMattress : "",priceIndoorMattress: 0 }); }
+    IndoorRugs () { this.setState({handleRugs: "", priceIndoorRugs: 0, IndoorRugs: !this.state.IndoorRugs, handleNumberOfRugs : 1, Beds : null, Baths : null,}); }
+    IndoorChairs () { this.setState({handleChairs: "", priceIndoorChairs: 0, IndoorChairs: !this.state.IndoorChairs, handleNumberOfChairs : 1, Beds : null, Baths : null,}); }
+
+
     genIndoorCleanWalls () {
       this.setState({genIndoorCleanWalls: !this.state.genIndoorCleanWalls,
       genIndoorCleanWallsService : this.state.genIndoorCleanWalls? null : "Walls ",
@@ -655,7 +692,16 @@ s
 
     handleAfterBuildersWeekFreq(event) { event.preventDefault(); this.setState({ handleAfterBuildersWeekFreq: event.target.value})};
     handleAfterBuildersMonthFreq(event) { event.preventDefault(); this.setState({ handleAfterBuildersMonthFreq: event.target.value})};
-    
+
+
+  // Sofas and Carpets
+  handleCouches(event) { event.preventDefault(); this.setState({ handleCouches: event.target.value, priceCouches : 170 * parseInt(event.target.value.split(" ")[0])})};
+  handleMattress(event) { event.preventDefault(); this.setState({ handleMattress: event.target.value, priceIndoorMattress : event.target.value === "Single"? 250 : event.target.value === "Double"? 300 : event.target.value === "Queen"? 350 : event.target.value === "King"? 400 : 0})};
+  handleRugs(event) { event.preventDefault(); this.setState({ handleRugs: event.target.value, priceIndoorRugs : event.target.value === "Small"? 150 : event.target.value === "Medium"? 250 : event.target.value === "Large"? 350 : event.target.value === "X Large"? 400 : 0})};
+  handleNumberOfRugs(event) { event.preventDefault(); this.setState({ handleNumberOfRugs: parseInt(event.target.value)})};
+  handleNumberOfChairs(event) { event.preventDefault(); this.setState({ handleNumberOfChairs: parseInt(event.target.value)})};
+  handleChairs(event) { event.preventDefault(); this.setState({ handleChairs: event.target.value, priceIndoorChairs : event.target.value === "Dining"? 100 : event.target.value === "Office"? 130 : 0})};
+
     /**************Outdoor Services Handling********************/
 
     showOutdoorServicesInfo(event) {
@@ -1064,6 +1110,21 @@ const afterBuildOnceStatus = this.state.afterBuildCleanWeek || this.state.afterB
 const sanitiseOnceStatus = this.state.sanitiseIndoorMonth ? true : false; const sanitiseMonthStatus = this.state.sanitiseIndoorOnceOFF ? true : false;
 const endTenancyOnceStatus = this.state.endTenancyCleanMonth ? true : false; const endTenancyMonthStatus = this.state.endTenancyCleanOnce ? true : false;
 
+
+const CouchesStatus = this.state.IndoorCarpets || this.state.IndoorMattress || this.state.IndoorRugs || this.state.IndoorChairs ? true : false;
+const CarpetsStatus = this.state.IndoorCouches || this.state.IndoorMattress || this.state.IndoorRugs || this.state.IndoorChairs ? true : false;
+const MattressStatus = this.state.IndoorCouches || this.state.IndoorCarpets || this.state.IndoorRugs || this.state.IndoorChairs ? true : false;
+const RugsStatus = this.state.IndoorCouches || this.state.IndoorCarpets || this.state.IndoorMattress || this.state.IndoorChairs ? true : false;
+const ChairsStatus = this.state.IndoorCouches || this.state.IndoorCarpets || this.state.IndoorMattress || this.state.IndoorRugs ? true : false;
+
+var option = this.state.IndoorCouches ? "Couches" : this.state.IndoorCarpets ? "Carpets" : this.state.IndoorMattress ? "Mattress" : this.state.IndoorRugs ? "Rugs" : this.state.IndoorChairs ? "Chairs" : "";
+var size = this.state.IndoorCouches ? this.state.handleCouches : this.state.IndoorMattress ? this.state.handleMattress : this.state.IndoorRugs ? this.state.handleRugs : this.state.IndoorChairs ? this.state.handleChairs : this.state.IndoorCarpetsBedrooms && !this.state.IndoorCarpetsLounge? "Bedrooms" : this.state.IndoorCarpetsLounge && !this.state.IndoorCarpetsBedrooms? "Lounge" : (this.state.IndoorCarpetsBedrooms && this.state.IndoorCarpetsLounge) ? "Bedrooms & Lounge" : "";
+option = option + " - " + size;
+const priceCouches = this.state.priceCouches; const priceCarpets = this.state.IndoorCarpetsBedrooms && !this.state.IndoorCarpetsLounge ? this.state.priceCarpetsBedrooms * this.state.NumOfBeds : !this.state.IndoorCarpetsBedrooms && this.state.IndoorCarpetsLounge ? this.state.priceCarpetsLounge : this.state.IndoorCarpetsBedrooms && this.state.IndoorCarpetsLounge?  (this.state.priceCarpetsBedrooms * this.state.NumOfBeds) + this.state.priceCarpetsLounge : 0;
+const priceMattress = this.state.priceIndoorMattress * this.state.NumOfBeds;
+const priceRugs = this.state.priceIndoorRugs * this.state.handleNumberOfRugs;
+const priceChairs = this.state.priceIndoorChairs * this.state.handleNumberOfChairs;
+
 const gIN_Walls = this.state.genIndoorCleanWalls ? this.state.genIndoorCleanWallsService : ""; const gIN_Windows = this.state.genIndoorCleanWindows ? this.state.genIndoorCleanWindowsService : ""; const gIN_Oven = this.state.genIndoorCleanLaundry ? this.state.genIndoorCleanLaundryService : "";
 const gIN_Extra = gIN_Walls + gIN_Windows + gIN_Oven;
 
@@ -1086,7 +1147,7 @@ const AfterBuildersFreqMultiplier = this.state.afterBuildCleanWeek ? this.state.
 const totalGenIndoorClean = this.state.genIndoorCleanOnce || this.state.genIndoorCleanWeek || this.state.genIndoorCleanMonth? (150 + this.state.bedPrice + this.state.bathPrice + this.state.priceGenIndoorCleanWalls + this.state.priceGenIndoorCleanWindows + this.state.priceGenIndoorCleanLaundry + this.state.priceGenIndoorDetergents) * (this.state.priceGenIndoorCleanOnce + this.state.priceGenIndoorCleanWeek + this.state.priceGenIndoorCleanMonth) * this.state.handleIndoorGenPromo * GenCleanFreqMultiplier : 0;
 const totalAfterBuildIndoorClean = this.state.afterBuildCleanOnce || this.state.afterBuildCleanWeek || this.state.afterBuildCleanMonth?  (180 + this.state.bedPrice + this.state.bathPrice + this.state.priceAfterBuildIndoorCleanWalls + this.state.priceAfterBuildIndoorCleanWindows + this.state.priceAfterBuilderDetergents) * (this.state.priceABcleanOnce + this.state.priceABcleanWeek + this.state.priceABcleanMonth) * this.state.handleIndoorAfterBuildPromo * AfterBuildersFreqMultiplier: 0;
 const totalEndTenancyIndoorClean =  this.state.endTenancyCleanOnce || this.state.endTenancyCleanMonth ? (180 + this.state.bedPrice + this.state.bathPrice + this.state.priceEndTenancyIndoorCleanWalls + this.state.priceEndTenancyIndoorCleanWindows + this.state.priceEndTenancyDetergents) * (this.state.priceETcleanOnce + this.state.priceETcleanMonth) * this.state.handleIndoorEndTenencyPromo * EndTenancyFreqMultiplier : 0;
-const totalSanitiseIndoor = this.state.sanitiseIndoorOnceOFF || this.state.sanitiseIndoorMonth? (230 + this.state.bedPrice + this.state.bathPrice) * (this.state.priceSanitiseIndoorOnceOFF + this.state.priceSanitiseIndoorMonth) * (this.state.priceSanitiseIndoorOnceOFF + this.state.priceSanitiseIndoorMonth) * this.state.handleIndoorSanitisePromo * SanitiseFreqMultiplier : 0;
+const totalSanitiseIndoor = this.state.IndoorCouches ? priceCouches : this.state.IndoorCarpets ? priceCarpets : this.state.IndoorMattress ? priceMattress : this.state.IndoorRugs? priceRugs : this.state.IndoorChairs ? priceChairs : 0; //this.state.sanitiseIndoorOnceOFF || this.state.sanitiseIndoorMonth? (230 + this.state.bedPrice + this.state.bathPrice) * (this.state.priceSanitiseIndoorOnceOFF + this.state.priceSanitiseIndoorMonth) * (this.state.priceSanitiseIndoorOnceOFF + this.state.priceSanitiseIndoorMonth) * this.state.handleIndoorSanitisePromo * SanitiseFreqMultiplier : 0;
 const totalIndoor = this.state.IndoorGenClean ? totalGenIndoorClean :  this.state.IndoorAfterBuildClean ? totalAfterBuildIndoorClean : this.state.IndoorEndTenancyClean ? totalEndTenancyIndoorClean : this.state.IndoorSanitise ? totalSanitiseIndoor : 0;
 /********************Outdoor*****************/
 /*const outdoorYCwholeYardStatus = this.state.outdoorYCfrontYard || this.state.outdoorYCbackYard || this.state.outdoorYCsideYard? true : false;
@@ -1198,13 +1259,15 @@ const poolShape = this.state.poolShapePMSelect === "0" || this.state.poolShapePM
 const poolIssue = poolPCalgae !== ""? poolPCalgae  + " Algae": poolPMalgae !== ""? poolPMalgae + " Algae": this.state.poolPCcloudy || this.state.poolPMcloudy ? "Cloudyness" : null;
 const poolRequiredService = this.state.PoolClean? "General Cleaning" : this.state.PoolMaint ? "Maintenance" : "";
 const options = locations;
+
+console.log(priceCouches);
 const ExampleCustomInput = ({ value, onClick }) => (
     <CustomButton style = {{"background": "#e91e63"}} onClick={onClick} size="sm">{
       value?
       value
       :     
       "Date & Time"
-    }   
+    }  
     </CustomButton>
   );
 
@@ -1582,12 +1645,15 @@ return (
 
                                           : this.state.IndoorSanitise ?
                                           <div>
-                                              <ServiceTest> How Often? <span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                              <ServiceTest> Option? <span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
                                               <div style = {{"margin-top" : "0px"}}>
-                                                <Checkbox toggle label = "  Once" onChange={ this.sanitiseIndoorOnceOFF }  disabled = {sanitiseOnceStatus} />
-                                                <Checkbox toggle label = "  Monthly" onChange={ this.sanitiseIndoorMonth }  disabled = {sanitiseMonthStatus} />
+                                                <Checkbox toggle label = "  Couches" onChange={ this.IndoorCouches }  disabled = {CouchesStatus} />
+                                                <Checkbox toggle label = "  Carpets" onChange={ this.IndoorCarpets }  disabled = {CarpetsStatus} />
+                                                <Checkbox toggle label = "  Mattress" onChange={ this.IndoorMattress }  disabled = {MattressStatus} />
+                                                <Checkbox toggle label = "  Rugs" onChange={ this.IndoorRugs }  disabled = {RugsStatus} />
+                                                <Checkbox toggle label = "  Chairs" onChange={ this.IndoorChairs }  disabled = {ChairsStatus} />
 
-                                                {this.state.sanitiseIndoorMonth?
+                                                {/*this.state.sanitiseIndoorMonth?
                                                 <div>
                                                 <ServiceTest> Months?<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
                                                 <Form>
@@ -1603,7 +1669,7 @@ return (
                                                       />
                                                 </Form>
                                                 </div>
-                                                : null
+                                                : null*/
                                                 }
                                               </div>
                                             </div>
@@ -1726,9 +1792,78 @@ return (
 
                                           :this.state.IndoorSanitise ?
                                           <div>
-                                            <ServiceTest> Extra Services</ServiceTest>
-                                            <Message style = {{"margin-top" : "0px"}}>
-                                            </Message>
+                                            <ServiceTest>Size</ServiceTest>
+                                            { this.state.IndoorCouches?
+                                              <select id="areaSize" onChange={this.handleCouches} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
+                                                <option value="0">Seater</option>
+                                                <option value="6 Seater">6 Seater</option>
+                                                <option value="5 Seater">5 Seater</option>
+                                                <option value="4 Seater">4 Seater</option>
+                                                <option value="3 Seater">3 Seater</option>
+                                                <option value="2 Seater">2 Seater</option>
+                                                <option value="1 Seater">1 Seater</option>
+                                              </select>
+                                              : this.state.IndoorMattress ?
+                                                  <select id="areaSize" onChange={this.handleMattress} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
+                                                    <option value="0">Mattress</option>
+                                                    <option value="Single">Single</option>
+                                                    <option value="Double">Double</option>
+                                                    <option value="Queen">Queen</option>
+                                                    <option value="King">King</option>
+                                                  </select>
+
+                                                  : this.state.IndoorRugs ?
+                                                  <div>
+                                                    <select id="areaSize" onChange={this.handleRugs} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
+                                                      <option value="0">Rugs</option>
+                                                      <option value="Small">Small</option>
+                                                      <option value="Medium">Medium</option>
+                                                      <option value="Large">Large</option>
+                                                      <option value="X Large">X Large</option>
+                                                    </select>                                                 
+                                                      <ServiceTest> # of Rugs?<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                                      <Form>
+                                                        <FormInput
+                                                                id="fname"
+                                                                size="10"
+                                                                type="number"
+                                                                name="fname"
+                                                                placeholder="1"
+                                                                onChange ={this.handleNumberOfRugs.bind(this)}
+                                                                min="1" max="10"
+                                                                required
+                                                            />
+                                                      </Form>
+                                                    </div>
+                                                    : this.state.IndoorChairs ?
+                                                    <div>
+                                                      <select id="areaSize" onChange={this.handleChairs} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
+                                                        <option value="0">Chairs</option>
+                                                        <option value="Dining">Dining</option>
+                                                        <option value="Office">Office</option>
+                                                      </select>
+                                                      <ServiceTest> # of Chairs?<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                                      <Form>
+                                                        <FormInput
+                                                                id="fname"
+                                                                size="10"
+                                                                type="number"
+                                                                name="fname"
+                                                                placeholder="1"
+                                                                onChange ={this.handleNumberOfChairs.bind(this)}
+                                                                min="1" max="10"
+                                                                required
+                                                            />
+                                                      </Form>
+                                                    </div>
+                                                      :this.state.IndoorCarpets ?
+                                                      <div>
+                                                        <Checkbox toggle label = "  Bedrooms" onChange={ this.IndoorCarpetsBedrooms} />
+                                                        <Checkbox toggle label = "  Lounge" onChange={ this.IndoorCarpetsLounge} />
+                                                
+                                                      </div>
+                                                      : null
+                                            }
                                           </div>
                                           : <div>
                                             <ServiceGridSplit><ServiceTest>End of Tenancy</ServiceTest><Tooltip title="End of Tenancy Cleaning" aria-label="add"><Fab2><EndTenancyIcon onClick={this.endTenancyIndoorClean.bind(this)} IndoorEndTenancyClean = {this.state.IndoorEndTenancyClean}/></Fab2></Tooltip> </ServiceGridSplit>                                   
@@ -1783,7 +1918,7 @@ return (
                                           </div>
 
                                           : <div>
-                                          <ServiceGridSplit><ServiceTest>Sanitisation</ServiceTest><Tooltip title="Antiviral Sanitisation" aria-label="add"><Fab2><SanitiseIcon onClick={this.sanitiseIndoorClean.bind(this)} IndoorSanitise = {this.state.IndoorSanitise}/></Fab2></Tooltip> </ServiceGridSplit>                                   
+                                          <ServiceGridSplit><ServiceTest> Sofa & Carpet</ServiceTest><Tooltip title="Sofas and Carpets" aria-label="add"><Fab2><Sofas onClick={this.sanitiseIndoorClean.bind(this)} IndoorSanitise = {this.state.IndoorSanitise}/></Fab2></Tooltip> </ServiceGridSplit>                                   
                                                 {this.state.IndoorSanitise ?
                                                   <div style = {{"margin-top":"10px"}}>
                                                       <FormInput
@@ -1803,11 +1938,18 @@ return (
  
                                             </div>
                                         } 
-                                    </Options4>                        
+                                    </Options4> 
+                                       
+
+                                  {   this.state.IndoorRugs || this.state.IndoorCouches || this.state.IndoorChairs ?
+                                  null
+                                  :
+                                    <div>
                                     <ContentTitle> Enter Details <Info onClick = {this.showTcsIn.bind(this)} showTcIn = {this.state.showTcIn}/>
                                     <span><hr width="300"/></span>
                                     </ContentTitle>                                  
-                                    <EnterDetails>                                      
+                                    <EnterDetails> 
+                                    {this.state.IndoorCarpets || this.state.IndoorMattress? <ServiceTest> No. of Bedrooms?<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest> : null}
                                       <select id="dropdown" onChange={this.handleDropdownChange} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
                                           <option value="N/A">Bedrooms</option>
                                           <option value="1">1 Bedroom</option>
@@ -1816,14 +1958,17 @@ return (
                                           <option value="4">4 Bedrooms</option>
                                           <option value="5">5 Bedrooms</option>
                                       </select>
-                                      <select id="dropdown" onChange={this.handleDropdownChange2} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
+                                      {this.state.IndoorCarpets || this.state.IndoorMattress?
+                                      null
+                                      :
+                                        <select id="dropdown" onChange={this.handleDropdownChange2} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
                                           <option value="N/A">Bathrooms</option>
                                           <option value="1">1 Bathroom</option>
                                           <option value="2">2 Bathrooms</option>
                                           <option value="3">3 Bathrooms</option>
                                           <option value="4">4 Bathrooms</option>
                                           <option value="5">5 Bathrooms</option>
-                                      </select> 
+                                      </select> }
                                       { this.state.IndoorCleanService?
                                           <Checkbox toggle label = "  Detergents?" onChange={ this.genIndoorDetergents }/>
 
@@ -1836,7 +1981,8 @@ return (
                                           : null
                                       }
                                     </EnterDetails>
-                                    
+                                    </div>}
+                                      
                                     <ContentTitle style = {{"margin-top" : "10px"}}> Service Details & Costs
                                       <span><hr width="300"/></span>
                                     </ContentTitle>
@@ -1844,6 +1990,10 @@ return (
                                       <div>
                                         <Message2 style = {{"margin-left" : "1px"}}>Home Details</Message2>
                                         {this.state.IndoorLocation !== ""? <Message>{this.state.IndoorLocation}</Message> : null}
+                                        {this.state.events4.length !== 0 ?
+                                          <Message>Date : {x.replace("GMT+0200 (South Africa Standard Time)","")}</Message> 
+                                        : null
+                                        } 
                                         {this.state.Beds !== "" && this.state.Baths === "" ?
                                           <Message>{this.state.Beds}</Message>
                                           : this.state.Beds === "" && this.state.Baths !== "" ?
@@ -1852,23 +2002,22 @@ return (
                                               <Message>{this.state.Beds}, {this.state.Baths}</Message>
                                               : null
                                         }
-                                        {this.state.events4.length !== 0 ?
-                                          <Message>Date : {x.replace("GMT+0200 (South Africa Standard Time)","")}</Message> 
-                                        : null
-                                        }   
+  
                                                             
                                       </div>
                                       <div>
-                                        <Message2>Extras</Message2>
+                                        <Message2>Extra Info</Message2>
 
                                         <Message>{extrasIN}</Message>
+                                        <Message>{size !== undefined? option : ""}</Message>
+                                        
                                         
                                       </div>
                                       <div>
                                       <Message2>Costs</Message2>
-                                          {this.state.IndoorCleanService || this.state.IndoorAfterBuildCleanService || this.state.IndoorEndTenancyCleanService || this.state.IndoorSanitiseService?
+                                          {this.state.IndoorCleanService || this.state.IndoorAfterBuildCleanService || this.state.IndoorEndTenancyCleanService || this.state.IndoorSanitiseService? 
                                           <div>
-                                            {this.state.genIndoorCleanOnce || this.state.afterBuildCleanOnce || this.state.endTenancyCleanOnce || this.state.sanitiseIndoorOnceOFF? 
+                                            {this.state.genIndoorCleanOnce || this.state.afterBuildCleanOnce || this.state.endTenancyCleanOnce || this.state.sanitiseIndoorOnceOFF || this.state.IndoorCouches || this.state.IndoorCarpets || this.state.IndoorMattress || this.state.IndoorRugs || this.state.IndoorChairs ? 
                                               <Message>Total : R {totalIndoor.toFixed(2)}</Message>
                                               : this.state.afterBuildCleanWeek || this.state.genIndoorCleanWeek  ?
                                                 <div>
