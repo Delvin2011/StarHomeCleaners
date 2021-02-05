@@ -169,6 +169,7 @@ class Cleaner extends React.Component {
           IndoorAfterBuildClean: false,
           IndoorEndTenancyClean: false,
           IndoorSanitise: false,
+          IndoorItems: false,
           IndoorCleanService: "",
           IndoorAfterBuildCleanService: "",
           IndoorEndTenancyCleanService: "",
@@ -189,11 +190,22 @@ class Cleaner extends React.Component {
           endTenancyCleanOnce: false, endTenancyCleanMonth: false,
           sanitiseIndoorOnceOFF: false, sanitiseIndoorMonth: false,
           IndoorCarpets: false, IndoorCouches: false, IndoorMattress: false, IndoorRugs: false, IndoorChairs: false,
-          IndoorCarpetsBedrooms: false, IndoorCarpetsLounge: false, IndoorCarpetsLounge : 0, priceCarpetsBedrooms: 0,
+          IndoorCarpetsBedrooms: false, IndoorCarpetsBigBedrooms: false, IndoorCarpetsLounge: false, IndoorCarpetsLounge : 0, priceCarpetsBedrooms: 0,
           NumOfBeds: 1,
+          IndoorSingleMattress: false, IndoorDoubleMattress: false, IndoorQueenMattress: false, IndoorKingMattress: false,
+          IndoorSmallRugs:false, IndoorMediumRugs: false, IndoorLargerRugs: false,
+          IndoorDiningChair:false, IndoorOfficeChair: false,
+          handleCouches_Carpets : "",         
           genIndoorDetergents: false, afterBuilderDetergents: false, endTenancyDetergents: false, IndoorDetergents : false,
           priceGenIndoorDetergents: 0, priceAfterBuilderDetergents: 0, priceEndTenancyDetergents: 0,
 
+          smCarpets:"", bgCarpets: "", lngCarpets: "", isCheckedSmCarpets : false, isCheckedBgCarpets : false, isCheckedLgrCarpets : false, 
+          snglMattress:"", dbleMattress: "", lgrMattress: "", isCheckedSnglMattress : false, isCheckedDblelMattress : false, isCheckedLgrMattress : false,
+          smRugs:"", mdRugs: "", lgRugs: "", isCheckedSmRugs : false, isCheckedMdRugs : false, isCheckedLgrRugs : false,
+          diningChairs:"", officeChairs: "", isCheckedDiningChairs : false, isCheckedOfficeChairs : false,
+          smCarpetsPrice : 1, bgCarpetsPrice : 1, lngCarpetsPrice : 1, snglMattressPrice : 1, dbleMattressPrice : 1, lgrMattressPrice : 1, smRugsPrice : 1, mdRugsPrice : 1, lgRugsPrice : 1, diningChairsPrice : 1, officeChairsPrice : 1,
+
+          IndoorSmCarpetsQuantity : 1,
           priceGenIndoorCleanWalls: 0, priceGenIndoorCleanWindows: 0, priceGenIndoorCleanLaundry: 0,
           priceAfterBuildIndoorCleanWalls: 0, priceAfterBuildIndoorCleanWindows: 0,
           
@@ -259,13 +271,24 @@ class Cleaner extends React.Component {
         this.endTenancyCleanOnce = this.endTenancyCleanOnce.bind(this); this.endTenancyCleanMonth = this.endTenancyCleanMonth.bind(this);
         this.sanitiseIndoorOnceOFF= this.sanitiseIndoorOnceOFF.bind(this); this.sanitiseIndoorMonth= this.sanitiseIndoorMonth.bind(this);
 
-        this.IndoorCarpets= this.IndoorCarpets.bind(this); this.IndoorCouches= this.IndoorCouches.bind(this); this.IndoorCarpetsBedrooms= this.IndoorCarpetsBedrooms.bind(this); this.IndoorCarpetsLounge= this.IndoorCarpetsLounge.bind(this);
+        this.IndoorCarpets= this.IndoorCarpets.bind(this); this.IndoorCouches= this.IndoorCouches.bind(this); this.IndoorCarpetsBedrooms= this.IndoorCarpetsBedrooms.bind(this); this.IndoorCarpetsBigBedrooms= this.IndoorCarpetsBigBedrooms.bind(this); this.IndoorCarpetsLounge= this.IndoorCarpetsLounge.bind(this);
+        this.IndoorSmCarpetsQuantity = this.IndoorSmCarpetsQuantity.bind(this); this.IndoorBgCarpetsQuantity = this.IndoorBgCarpetsQuantity.bind(this);
         this.IndoorMattress= this.IndoorMattress.bind(this); this.IndoorRugs= this.IndoorRugs.bind(this);
-        this.IndoorChairs= this.IndoorChairs.bind(this);
-        this.handleNumberOfRugs  = this.handleNumberOfRugs.bind(this);
-        this.handleNumberOfChairs  = this.handleNumberOfChairs.bind(this);
+
+        this.IndoorSingleMattress= this.IndoorSingleMattress.bind(this); this.IndoorDoubleMattress= this.IndoorDoubleMattress.bind(this); this.IndoorLargerMattress= this.IndoorLargerMattress.bind(this);
+        this.SingleMattressQuantity= this.SingleMattressQuantity.bind(this); this.DoubleMattressQuantity= this.DoubleMattressQuantity.bind(this); this.LargerMattressQuantity= this.LargerMattressQuantity.bind(this);
         
+        this.IndoorSmallRugs= this.IndoorSmallRugs.bind(this); this.IndoorMediumRugs= this.IndoorMediumRugs.bind(this); this.IndoorLargerRugs= this.IndoorLargerRugs.bind(this);
+        this.SmallRugsQuantity= this.SmallRugsQuantity.bind(this); this.MediumRugsQuantity= this.MediumRugsQuantity.bind(this); this.LargerRugsQuantity= this.LargerRugsQuantity.bind(this);
+
+        this.IndoorDiningChair= this.IndoorDiningChair.bind(this); this.IndoorOfficeChair= this.IndoorOfficeChair.bind(this);
+        this.DiningChairQuantity= this.DiningChairQuantity.bind(this); this.OfficeChairQuantity= this.OfficeChairQuantity.bind(this);
         
+        //this.IndoorChairs= this.IndoorChairs.bind(this);
+        //this.handleNumberOfRugs  = this.handleNumberOfRugs.bind(this);
+        //this.handleNumberOfChairs  = this.handleNumberOfChairs.bind(this);
+        //this.IndoorSingleMattress= this.IndoorSingleMattress.bind(this); this.IndoorDoubleMattress= this.IndoorDoubleMattress.bind(this); this.IndoorQueenMattress= this.IndoorQueenMattress.bind(this); this.IndoorKingMattress= this.IndoorKingMattress.bind(this);
+
 
         this.genIndoorCleanWalls= this.genIndoorCleanWalls.bind(this);
         this.genIndoorCleanWindows= this.genIndoorCleanWindows.bind(this);
@@ -296,7 +319,9 @@ class Cleaner extends React.Component {
         
         // Couches and carpets
         this.handleCouches = this.handleCouches.bind(this); this.handleMattress = this.handleMattress.bind(this); this.handleRugs = this.handleRugs.bind(this); this.handleChairs = this.handleChairs.bind(this);
-
+        
+        //Select either Couches, Carpets, Mattress, Rugs, Chairs
+        this.handleCouches_Carpets = this.handleCouches_Carpets.bind(this);
 
         /***********Outdoor Services Handling*************/
         this.handleOutdoorPropertType = this.handleOutdoorPropertType.bind(this);
@@ -539,17 +564,69 @@ class Cleaner extends React.Component {
     sanitiseIndoorOnceOFF () { this.setState({handleSanitiseFreq:2, sanitiseIndoorOnceOFF: !this.state.sanitiseIndoorOnceOFF, priceSanitiseIndoorOnceOFF : this.state.sanitiseIndoorOnceOFF? 0 : 1}); }
     sanitiseIndoorMonth () { this.setState({sanitiseIndoorMonth: !this.state.sanitiseIndoorMonth, priceSanitiseIndoorMonth : this.state.sanitiseIndoorMonth? 0 : 0.9}); }
      
+    /*************************************Carpets******************************************** */
     IndoorCarpets () { this.setState({IndoorCarpets: !this.state.IndoorCarpets,IndoorCarpetsBedrooms : false, IndoorCarpetsLounge: false, }); }
-    IndoorCarpetsBedrooms () { this.setState({IndoorCarpetsBedrooms: !this.state.IndoorCarpetsBedrooms, priceCarpetsBedrooms : 500}); }
-    IndoorCarpetsLounge () { this.setState({IndoorCarpetsLounge: !this.state.IndoorCarpetsLounge, priceCarpetsLounge : 550}); }
+
+    IndoorSmCarpetsQuantity(event) {event.preventDefault(); this.setState({smCarpets : event.target.value + " X Sm", smCarpetsPrice: parseInt(event.target.value) * 400});}
+    IndoorCarpetsBedrooms () { this.setState({isCheckedSmCarpets : !this.state.IndoorCarpetsBedrooms ? true : false, IndoorCarpetsBedrooms: !this.state.IndoorCarpetsBedrooms, SmCarpetsQuantity : 1, smCarpets : ""}); }
+    IndoorCarpetsBigBedrooms () { this.setState({isCheckedBgCarpets : !this.state.IndoorCarpetsBigBedrooms ? true : false,IndoorCarpetsBigBedrooms: !this.state.IndoorCarpetsBigBedrooms, bgCarpets : ""}); }
+    IndoorBgCarpetsQuantity(event) {event.preventDefault(); this.setState({bgCarpets : event.target.value + " X Bg", bgCarpetsPrice: parseInt(event.target.value) * 500});}
+    IndoorCarpetsLounge (event) { this.setState({isCheckedLgrCarpets : !this.state.IndoorCarpetsLounge ? true : false,IndoorCarpetsLounge: !this.state.IndoorCarpetsLounge, lngCarpets : "Lounge", lngCarpetsPrice: 550}); }
     
-    
+    /*****to be removed */
     IndoorCouches () { this.setState({IndoorCouches: !this.state.IndoorCouches, priceCouches : 0, handleCouches : "", Beds : null, Baths : null,Beds: null}); }
     IndoorMattress () { this.setState({IndoorMattress: !this.state.IndoorMattress, Beds: null, handleMattress : "",priceIndoorMattress: 0 }); }
     IndoorRugs () { this.setState({handleRugs: "", priceIndoorRugs: 0, IndoorRugs: !this.state.IndoorRugs, handleNumberOfRugs : 1, Beds : null, Baths : null,}); }
     IndoorChairs () { this.setState({handleChairs: "", priceIndoorChairs: 0, IndoorChairs: !this.state.IndoorChairs, handleNumberOfChairs : 1, Beds : null, Baths : null,}); }
 
+    /*************************************Mattress******************************************** */
+    SingleMattressQuantity (event) {event.preventDefault(); this.setState({snglMattress : event.target.value + " X Single", snglMattressPrice: parseInt(event.target.value) * 250});}
+    IndoorSingleMattress () { this.setState({isCheckedSnglMattress : !this.state.IndoorSingleMattress? true : false, IndoorSingleMattress: !this.state.IndoorSingleMattress, snglMattress: ""}); }
+    DoubleMattressQuantity (event) {event.preventDefault(); this.setState({dbleMattress : event.target.value + " X Double", dbleMattressPrice: parseInt(event.target.value) * 325});}
+    IndoorDoubleMattress () { this.setState({isCheckedDblelMattress : !this.state.IndoorDoubleMattress? true : false,IndoorDoubleMattress: !this.state.IndoorDoubleMattress, dbleMattress: ""}); }
+    LargerMattressQuantity (event) {event.preventDefault(); this.setState({lgrMattress : event.target.value + " X Larger", lgrMattressPrice: parseInt(event.target.value) * 425});}
+    IndoorLargerMattress () { this.setState({isCheckedLgrMattress : !this.state.IndoorLargerMattress? true : false,IndoorLargerMattress: !this.state.IndoorLargerMattress, lgrMattress: ""}); }
+    //IndoorKingMattress () { this.setState({IndoorKingMattress: !this.state.IndoorKingMattress, priceCarpetsBedrooms : 500}); }
 
+    /*************************************Rugs******************************************** */
+    SmallRugsQuantity (event) {event.preventDefault(); this.setState({smRugs : event.target.value + " X Small", smRugsPrice: parseInt(event.target.value) * 150});}
+    IndoorSmallRugs () { this.setState({isCheckedSmRugs : !this.state.IndoorSmallRugs ? true : false, IndoorSmallRugs: !this.state.IndoorSmallRugs, smRugs: ""}); }
+    MediumRugsQuantity (event) {event.preventDefault(); this.setState({mdRugs : event.target.value + " X Medium", mdRugsPrice: parseInt(event.target.value) * 250});}
+    IndoorMediumRugs () { this.setState({isCheckedMdRugs : !this.state.IndoorMediumRugs ? true : false, IndoorMediumRugs: !this.state.IndoorMediumRugs, mdRugs: ""}); }
+    LargerRugsQuantity (event) {event.preventDefault(); this.setState({lgRugs : event.target.value + " X Larger", lgRugsPrice: parseInt(event.target.value) * 350});}
+    IndoorLargerRugs () { this.setState({isCheckedLgrRugs : !this.state.IndoorLargerRugs ? true : false, IndoorLargerRugs: !this.state.IndoorLargerRugs, lgRugs: ""}); }
+    
+    /*************************************Chairs******************************************** */
+    DiningChairQuantity (event) {event.preventDefault(); this.setState({diningChairs : event.target.value + " X Dining", diningChairsPrice: parseInt(event.target.value) * 100});}
+    IndoorDiningChair () { this.setState({isCheckedDiningChairs : !this.state.IndoorDiningChair ? true : false, IndoorDiningChair: !this.state.IndoorDiningChair, diningChairs: ""}); }
+    OfficeChairQuantity (event) {event.preventDefault(); this.setState({officeChairs : event.target.value + " X Office", officeChairsPrice: parseInt(event.target.value) * 125});}
+    IndoorOfficeChair () { this.setState({isCheckedOfficeChairs : !this.state.IndoorOfficeChair ? true : false,IndoorOfficeChair: !this.state.IndoorOfficeChair, officeChairs: ""}); }
+    
+
+     
+  handleCouches(event) { event.preventDefault(); this.setState({ handleCouches: event.target.value, priceCouches : 150 * parseInt(event.target.value.split(" ")[0])})};
+  // Sofas and Carpets - to be removed
+  handleMattress(event) { event.preventDefault(); this.setState({ handleMattress: event.target.value, priceIndoorMattress : event.target.value === "Single"? 250 : event.target.value === "Double"? 300 : event.target.value === "Queen"? 350 : event.target.value === "King"? 400 : 0})};
+  handleRugs(event) { event.preventDefault(); this.setState({ handleRugs: event.target.value, priceIndoorRugs : event.target.value === "Small"? 150 : event.target.value === "Medium"? 250 : event.target.value === "Large"? 350 : event.target.value === "X Large"? 400 : 0})};
+  handleNumberOfRugs(event) { event.preventDefault(); this.setState({ handleNumberOfRugs: parseInt(event.target.value)})};
+  handleNumberOfChairs(event) { event.preventDefault(); this.setState({ handleNumberOfChairs: parseInt(event.target.value)})};
+  handleChairs(event) { event.preventDefault(); this.setState({ handleChairs: event.target.value, priceIndoorChairs : event.target.value === "Dining"? 100 : event.target.value === "Office"? 130 : 0})};
+
+
+  //Handling Couches, Carpets, Mattress, Rugs, Chairs
+  handleCouches_Carpets(event) { event.preventDefault(); this.setState({ handleCouches_Carpets: event.target.value,
+    snglMattressPrice: 0, dbleMattressPrice: 0, lgrMattressPrice : 0, 
+    smRugsPrice : 0, mdRugsPrice : 0, lgRugsPrice : 0,
+    diningChairsPrice : 0, officeChairsPrice : 0,
+    priceCouches : 0,
+    smCarpetsPrice: 0, bgCarpetsPrice: 0, lngCarpetsPrice : 0,
+    isCheckedSmCarpets : false, isCheckedSnglMattress : false, isCheckedSmRugs : false, isCheckedDiningChairs : false,
+    isCheckedBgCarpets : false, isCheckedDblelMattress : false, isCheckedMdRugs : false, isCheckedOfficeChairs : false,
+    isCheckedLgrCarpets : false, isCheckedLgrMattress : false, isCheckedLgrRugs : false
+
+  })};
+
+    
     genIndoorCleanWalls () {
       this.setState({genIndoorCleanWalls: !this.state.genIndoorCleanWalls,
       genIndoorCleanWallsService : this.state.genIndoorCleanWalls? null : "Walls ",
@@ -694,13 +771,6 @@ class Cleaner extends React.Component {
     handleAfterBuildersMonthFreq(event) { event.preventDefault(); this.setState({ handleAfterBuildersMonthFreq: event.target.value})};
 
 
-  // Sofas and Carpets
-  handleCouches(event) { event.preventDefault(); this.setState({ handleCouches: event.target.value, priceCouches : 170 * parseInt(event.target.value.split(" ")[0])})};
-  handleMattress(event) { event.preventDefault(); this.setState({ handleMattress: event.target.value, priceIndoorMattress : event.target.value === "Single"? 250 : event.target.value === "Double"? 300 : event.target.value === "Queen"? 350 : event.target.value === "King"? 400 : 0})};
-  handleRugs(event) { event.preventDefault(); this.setState({ handleRugs: event.target.value, priceIndoorRugs : event.target.value === "Small"? 150 : event.target.value === "Medium"? 250 : event.target.value === "Large"? 350 : event.target.value === "X Large"? 400 : 0})};
-  handleNumberOfRugs(event) { event.preventDefault(); this.setState({ handleNumberOfRugs: parseInt(event.target.value)})};
-  handleNumberOfChairs(event) { event.preventDefault(); this.setState({ handleNumberOfChairs: parseInt(event.target.value)})};
-  handleChairs(event) { event.preventDefault(); this.setState({ handleChairs: event.target.value, priceIndoorChairs : event.target.value === "Dining"? 100 : event.target.value === "Office"? 130 : 0})};
 
     /**************Outdoor Services Handling********************/
 
@@ -1117,13 +1187,19 @@ const MattressStatus = this.state.IndoorCouches || this.state.IndoorCarpets || t
 const RugsStatus = this.state.IndoorCouches || this.state.IndoorCarpets || this.state.IndoorMattress || this.state.IndoorChairs ? true : false;
 const ChairsStatus = this.state.IndoorCouches || this.state.IndoorCarpets || this.state.IndoorMattress || this.state.IndoorRugs ? true : false;
 
-var option = this.state.IndoorCouches ? "Couches" : this.state.IndoorCarpets ? "Carpets" : this.state.IndoorMattress ? "Mattress" : this.state.IndoorRugs ? "Rugs" : this.state.IndoorChairs ? "Chairs" : "";
-var size = this.state.IndoorCouches ? this.state.handleCouches : this.state.IndoorMattress ? this.state.handleMattress : this.state.IndoorRugs ? this.state.handleRugs : this.state.IndoorChairs ? this.state.handleChairs : this.state.IndoorCarpetsBedrooms && !this.state.IndoorCarpetsLounge? "Bedrooms" : this.state.IndoorCarpetsLounge && !this.state.IndoorCarpetsBedrooms? "Lounge" : (this.state.IndoorCarpetsBedrooms && this.state.IndoorCarpetsLounge) ? "Bedrooms & Lounge" : "";
-option = option + " - " + size;
-const priceCouches = this.state.priceCouches; const priceCarpets = this.state.IndoorCarpetsBedrooms && !this.state.IndoorCarpetsLounge ? this.state.priceCarpetsBedrooms * this.state.NumOfBeds : !this.state.IndoorCarpetsBedrooms && this.state.IndoorCarpetsLounge ? this.state.priceCarpetsLounge : this.state.IndoorCarpetsBedrooms && this.state.IndoorCarpetsLounge?  (this.state.priceCarpetsBedrooms * this.state.NumOfBeds) + this.state.priceCarpetsLounge : 0;
-const priceMattress = this.state.priceIndoorMattress * this.state.NumOfBeds;
-const priceRugs = this.state.priceIndoorRugs * this.state.handleNumberOfRugs;
-const priceChairs = this.state.priceIndoorChairs * this.state.handleNumberOfChairs;
+var option = this.state.handleCouches_Carpets;
+var sizeCarpets = this.state.IndoorCarpetsBedrooms && !this.state.IndoorCarpetsBigBedrooms? this.state.smCarpets :  !this.state.IndoorCarpetsBedrooms && this.state.IndoorCarpetsBigBedrooms? this.state.bgCarpets : this.state.IndoorCarpetsBedrooms && this.state.IndoorCarpetsBigBedrooms? this.state.smCarpets + " & " + this.state.bgCarpets : "";
+var tes = this.state.IndoorCarpetsLounge &&  (this.state.IndoorCarpetsBedrooms || this.state.IndoorCarpetsBigBedrooms)? this.state.lngCarpets  + " & " + sizeCarpets :  !this.state.IndoorCarpetsLounge ? sizeCarpets :  this.state.IndoorCarpetsLounge &&  (!this.state.IndoorCarpetsBedrooms || !this.state.IndoorCarpetsBigBedrooms)? this.state.lngCarpets  : "";
+//var size = this.state.handleCouches_Carpets == "Couches" ? this.state.handleCouches : this.state.handleCouches_Carpets == "Carpets" ? tes : "";//this.state.IndoorMattress ? this.state.handleMattress : this.state.IndoorRugs ? this.state.handleRugs : this.state.IndoorChairs ? this.state.handleChairs : this.state.IndoorCarpetsBedrooms && !this.state.IndoorCarpetsLounge? "Bedrooms" : this.state.IndoorCarpetsLounge && !this.state.IndoorCarpetsBedrooms? "Lounge" : (this.state.IndoorCarpetsBedrooms && this.state.IndoorCarpetsLounge) ? "Bedrooms & Lounge" : "";
+//option = option + " - " + size;
+var size = this.state.handleCouches_Carpets == "Couches" ? this.state.handleCouches : this.state.handleCouches_Carpets == "Carpets" ? this.state.smCarpets : this.state.handleCouches_Carpets == "Mattress" ? this.state.snglMattress : this.state.handleCouches_Carpets == "Rugs" ? this.state.smRugs : this.state.handleCouches_Carpets == "Chairs" ? this.state.diningChairs : ""; 
+var size2 = this.state.handleCouches_Carpets == "Carpets" ? this.state.bgCarpets : this.state.handleCouches_Carpets == "Mattress" ? this.state.dbleMattress : this.state.handleCouches_Carpets == "Rugs" ? this.state.mdRugs : this.state.handleCouches_Carpets == "Chairs" ? this.state.officeChairs : ""; 
+var size3 = this.state.handleCouches_Carpets == "Carpets" ? this.state.lngCarpets : this.state.handleCouches_Carpets == "Mattress" ? this.state.lgrMattress : this.state.handleCouches_Carpets == "Rugs" ? this.state.lgRugs : ""; 
+
+const priceCarpets = this.state.smCarpetsPrice + this.state.bgCarpetsPrice + this.state.lngCarpetsPrice;//this.state.IndoorCarpetsBedrooms && !this.state.IndoorCarpetsLounge ? this.state.priceCarpetsBedrooms * this.state.NumOfBeds : !this.state.IndoorCarpetsBedrooms && this.state.IndoorCarpetsLounge ? this.state.priceCarpetsLounge : this.state.IndoorCarpetsBedrooms && this.state.IndoorCarpetsLounge?  (this.state.priceCarpetsBedrooms * this.state.NumOfBeds) + this.state.priceCarpetsLounge : 0;
+const priceMattress = this.state.snglMattressPrice + this.state.dbleMattressPrice + this.state.lgrMattressPrice;
+const priceRugs = this.state.smRugsPrice + this.state.mdRugsPrice + this.state.lgRugsPrice;
+const priceChairs = this.state.diningChairsPrice + this.state.officeChairsPrice;
 
 const gIN_Walls = this.state.genIndoorCleanWalls ? this.state.genIndoorCleanWallsService : ""; const gIN_Windows = this.state.genIndoorCleanWindows ? this.state.genIndoorCleanWindowsService : ""; const gIN_Oven = this.state.genIndoorCleanLaundry ? this.state.genIndoorCleanLaundryService : "";
 const gIN_Extra = gIN_Walls + gIN_Windows + gIN_Oven;
@@ -1147,21 +1223,9 @@ const AfterBuildersFreqMultiplier = this.state.afterBuildCleanWeek ? this.state.
 const totalGenIndoorClean = this.state.genIndoorCleanOnce || this.state.genIndoorCleanWeek || this.state.genIndoorCleanMonth? (150 + this.state.bedPrice + this.state.bathPrice + this.state.priceGenIndoorCleanWalls + this.state.priceGenIndoorCleanWindows + this.state.priceGenIndoorCleanLaundry + this.state.priceGenIndoorDetergents) * (this.state.priceGenIndoorCleanOnce + this.state.priceGenIndoorCleanWeek + this.state.priceGenIndoorCleanMonth) * this.state.handleIndoorGenPromo * GenCleanFreqMultiplier : 0;
 const totalAfterBuildIndoorClean = this.state.afterBuildCleanOnce || this.state.afterBuildCleanWeek || this.state.afterBuildCleanMonth?  (180 + this.state.bedPrice + this.state.bathPrice + this.state.priceAfterBuildIndoorCleanWalls + this.state.priceAfterBuildIndoorCleanWindows + this.state.priceAfterBuilderDetergents) * (this.state.priceABcleanOnce + this.state.priceABcleanWeek + this.state.priceABcleanMonth) * this.state.handleIndoorAfterBuildPromo * AfterBuildersFreqMultiplier: 0;
 const totalEndTenancyIndoorClean =  this.state.endTenancyCleanOnce || this.state.endTenancyCleanMonth ? (180 + this.state.bedPrice + this.state.bathPrice + this.state.priceEndTenancyIndoorCleanWalls + this.state.priceEndTenancyIndoorCleanWindows + this.state.priceEndTenancyDetergents) * (this.state.priceETcleanOnce + this.state.priceETcleanMonth) * this.state.handleIndoorEndTenencyPromo * EndTenancyFreqMultiplier : 0;
-const totalSanitiseIndoor = this.state.IndoorCouches ? priceCouches : this.state.IndoorCarpets ? priceCarpets : this.state.IndoorMattress ? priceMattress : this.state.IndoorRugs? priceRugs : this.state.IndoorChairs ? priceChairs : 0; //this.state.sanitiseIndoorOnceOFF || this.state.sanitiseIndoorMonth? (230 + this.state.bedPrice + this.state.bathPrice) * (this.state.priceSanitiseIndoorOnceOFF + this.state.priceSanitiseIndoorMonth) * (this.state.priceSanitiseIndoorOnceOFF + this.state.priceSanitiseIndoorMonth) * this.state.handleIndoorSanitisePromo * SanitiseFreqMultiplier : 0;
+const totalSanitiseIndoor = this.state.handleCouches_Carpets == "Couches" ? this.state.priceCouches : this.state.handleCouches_Carpets == "Carpets"? priceCarpets : this.state.handleCouches_Carpets == "Mattress" ? priceMattress : this.state.handleCouches_Carpets == "Rugs" ? priceRugs : this.state.handleCouches_Carpets == "Chairs" ? priceChairs : 0; //this.state.sanitiseIndoorOnceOFF || this.state.sanitiseIndoorMonth? (230 + this.state.bedPrice + this.state.bathPrice) * (this.state.priceSanitiseIndoorOnceOFF + this.state.priceSanitiseIndoorMonth) * (this.state.priceSanitiseIndoorOnceOFF + this.state.priceSanitiseIndoorMonth) * this.state.handleIndoorSanitisePromo * SanitiseFreqMultiplier : 0;
 const totalIndoor = this.state.IndoorGenClean ? totalGenIndoorClean :  this.state.IndoorAfterBuildClean ? totalAfterBuildIndoorClean : this.state.IndoorEndTenancyClean ? totalEndTenancyIndoorClean : this.state.IndoorSanitise ? totalSanitiseIndoor : 0;
 /********************Outdoor*****************/
-/*const outdoorYCwholeYardStatus = this.state.outdoorYCfrontYard || this.state.outdoorYCbackYard || this.state.outdoorYCsideYard? true : false;
-const outdoorNotWholeStatus = this.state.outdoorYCwholeYard ? true : false;*/
-
-/************** 
-const outdoorLMwholeYardStatus = this.state.outdoorLMfrontYard || this.state.outdoorLMbackYard || this.state.outdoorLMsideYard? true : false;
-const outdoorLMnotWholeStatus = this.state.outdoorLMwholeYard ? true : false;
-
-const outdoorFBwholeYardStatus = this.state.outdoorFBfrontYard || this.state.outdoorFBbackYard || this.state.outdoorFBsideYard? true : false;
-const outdoorFBnotWholeStatus = this.state.outdoorFBwholeYard ? true : false;
-
-const outdoorDCwholeYardStatus = this.state.outdoorDCfrontYard || this.state.outdoorDCbackYard || this.state.outdoorDCsideYard? true : false;
-const outdoorDCnotWholeStatus = this.state.outdoorDCwholeYard ? true : false;*/
 
 const outDoorServiceRequired = this.state.YCoutdoorCleanDisplay? this.state.YCoutdoorCleanDisplay : this.state.LMoutdoorCleanDisplay? this.state.LMoutdoorCleanDisplay : this.state.FBoutdoorCleanDisplay? this.state.FBoutdoorCleanDisplay : this.state.DCoutdoorCleanDisplay? this.state.DCoutdoorCleanDisplay : '';
 
@@ -1260,7 +1324,7 @@ const poolIssue = poolPCalgae !== ""? poolPCalgae  + " Algae": poolPMalgae !== "
 const poolRequiredService = this.state.PoolClean? "General Cleaning" : this.state.PoolMaint ? "Maintenance" : "";
 const options = locations;
 
-console.log(priceCouches);
+
 const ExampleCustomInput = ({ value, onClick }) => (
     <CustomButton style = {{"background": "#e91e63"}} onClick={onClick} size="sm">{
       value?
@@ -1647,29 +1711,49 @@ return (
                                           <div>
                                               <ServiceTest> Option? <span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
                                               <div style = {{"margin-top" : "0px"}}>
-                                                <Checkbox toggle label = "  Couches" onChange={ this.IndoorCouches }  disabled = {CouchesStatus} />
+                                                {/*<Checkbox toggle label = "  Couches" onChange={ this.IndoorCouches }  disabled = {CouchesStatus} />
                                                 <Checkbox toggle label = "  Carpets" onChange={ this.IndoorCarpets }  disabled = {CarpetsStatus} />
                                                 <Checkbox toggle label = "  Mattress" onChange={ this.IndoorMattress }  disabled = {MattressStatus} />
                                                 <Checkbox toggle label = "  Rugs" onChange={ this.IndoorRugs }  disabled = {RugsStatus} />
                                                 <Checkbox toggle label = "  Chairs" onChange={ this.IndoorChairs }  disabled = {ChairsStatus} />
-
-                                                {/*this.state.sanitiseIndoorMonth?
+                                                */}
+                                                <select id="areaSize" onChange={this.handleCouches_Carpets} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
+                                                  <option value="0">Select</option>
+                                                  <option value="Couches">Couches</option>
+                                                  <option value="Carpets">Carpets</option>
+                                                  <option value="Mattress">Mattress</option>
+                                                  <option value="Rugs">Rugs</option>
+                                                  <option value="Chairs">Chairs</option>
+                                                </select>
+                                                {this.state.handleCouches_Carpets == "Carpets" ?
                                                 <div>
-                                                <ServiceTest> Months?<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
-                                                <Form>
-                                                  <FormInput
-                                                          id="fname"
-                                                          size="10"
-                                                          type="number"
-                                                          name="fname"
-                                                          placeholder="2"
-                                                          onChange ={this.handleSanitiseFreq.bind(this)}
-                                                          min="2" max="10"
-                                                          required
-                                                      />
-                                                </Form>
+                                                        <ServiceTest> Rooms?</ServiceTest>
+                                                        <Checkbox toggle label = "  Small" checked = {this.state.isCheckedSmCarpets} onChange={ this.IndoorCarpetsBedrooms} />
+                                                        <Checkbox toggle label = "  Big" checked = {this.state.isCheckedBgCarpets} onChange={ this.IndoorCarpetsBigBedrooms} />
+                                                        <Checkbox toggle label = "  Lounge" checked = {this.state.isCheckedLgrCarpets} onChange={ this.IndoorCarpetsLounge} />                                                
                                                 </div>
-                                                : null*/
+                                                : this.state.handleCouches_Carpets == "Mattress" ?
+                                                  <div>
+                                                          <ServiceTest> Bed Size?</ServiceTest>
+                                                          <Checkbox toggle label = "  Single" checked = {this.state.isCheckedSnglMattress} onChange={ this.IndoorSingleMattress} />
+                                                          <Checkbox toggle label = "  Double" checked = {this.state.isCheckedDblelMattress} onChange={ this.IndoorDoubleMattress} />
+                                                          <Checkbox toggle label = "  Larger" checked = {this.state.isCheckedLgrMattress} onChange={ this.IndoorLargerMattress} />                                                
+                                                  </div>
+                                                
+                                                : this.state.handleCouches_Carpets == "Rugs" ?
+                                                <div>
+                                                        <ServiceTest> Rug Size?</ServiceTest>
+                                                        <Checkbox toggle label = "  Small" checked = {this.state.isCheckedSmRugs} onChange={ this.IndoorSmallRugs} />
+                                                        <Checkbox toggle label = "  Medium" checked = {this.state.isCheckedMdRugs}  onChange={ this.IndoorMediumRugs} />
+                                                        <Checkbox toggle label = "  Larger" checked = {this.state.isCheckedLgrRugs}  onChange={ this.IndoorLargerRugs} />                                                
+                                                </div>
+                                                  : this.state.handleCouches_Carpets == "Chairs" ?
+                                                  <div>
+                                                        <ServiceTest> Chair Type?</ServiceTest>
+                                                        <Checkbox toggle label = "  Dining" checked = {this.state.isCheckedDiningChairs} onChange={ this.IndoorDiningChair} />
+                                                        <Checkbox toggle label = "  Office" checked = {this.state.isCheckedOfficeChairs} onChange={ this.IndoorOfficeChair} />
+                                                  </div>
+                                                :null
                                                 }
                                               </div>
                                             </div>
@@ -1793,7 +1877,7 @@ return (
                                           :this.state.IndoorSanitise ?
                                           <div>
                                             <ServiceTest>Size</ServiceTest>
-                                            { this.state.IndoorCouches?
+                                            { this.state.handleCouches_Carpets == "Couches" ?
                                               <select id="areaSize" onChange={this.handleCouches} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
                                                 <option value="0">Seater</option>
                                                 <option value="6 Seater">6 Seater</option>
@@ -1803,65 +1887,477 @@ return (
                                                 <option value="2 Seater">2 Seater</option>
                                                 <option value="1 Seater">1 Seater</option>
                                               </select>
-                                              : this.state.IndoorMattress ?
-                                                  <select id="areaSize" onChange={this.handleMattress} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
-                                                    <option value="0">Mattress</option>
-                                                    <option value="Single">Single</option>
-                                                    <option value="Double">Double</option>
-                                                    <option value="Queen">Queen</option>
-                                                    <option value="King">King</option>
-                                                  </select>
-
-                                                  : this.state.IndoorRugs ?
-                                                  <div>
-                                                    <select id="areaSize" onChange={this.handleRugs} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
-                                                      <option value="0">Rugs</option>
-                                                      <option value="Small">Small</option>
-                                                      <option value="Medium">Medium</option>
-                                                      <option value="Large">Large</option>
-                                                      <option value="X Large">X Large</option>
-                                                    </select>                                                 
-                                                      <ServiceTest> # of Rugs?<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
-                                                      <Form>
-                                                        <FormInput
-                                                                id="fname"
-                                                                size="10"
-                                                                type="number"
-                                                                name="fname"
-                                                                placeholder="1"
-                                                                onChange ={this.handleNumberOfRugs.bind(this)}
-                                                                min="1" max="10"
-                                                                required
-                                                            />
-                                                      </Form>
-                                                    </div>
-                                                    : this.state.IndoorChairs ?
+                                              : this.state.handleCouches_Carpets == "Mattress" ?
+                                                    this.state.IndoorSingleMattress && !this.state.IndoorDoubleMattress && !this.state.IndoorQueenMattress?
                                                     <div>
-                                                      <select id="areaSize" onChange={this.handleChairs} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
-                                                        <option value="0">Chairs</option>
-                                                        <option value="Dining">Dining</option>
-                                                        <option value="Office">Office</option>
-                                                      </select>
-                                                      <ServiceTest> # of Chairs?<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
                                                       <Form>
                                                         <FormInput
                                                                 id="fname"
                                                                 size="10"
                                                                 type="number"
                                                                 name="fname"
-                                                                placeholder="1"
-                                                                onChange ={this.handleNumberOfChairs.bind(this)}
-                                                                min="1" max="10"
+                                                                placeholder="# of Single"
+                                                                onChange ={this.SingleMattressQuantity.bind(this)}
+                                                                min="1" max="99999999"
                                                                 required
                                                             />
                                                       </Form>
                                                     </div>
-                                                      :this.state.IndoorCarpets ?
-                                                      <div>
-                                                        <Checkbox toggle label = "  Bedrooms" onChange={ this.IndoorCarpetsBedrooms} />
-                                                        <Checkbox toggle label = "  Lounge" onChange={ this.IndoorCarpetsLounge} />
-                                                
+                                                  : this.state.IndoorDoubleMattress && !this.state.IndoorSingleMattress && !this.state.IndoorQueenMattress?
+                                                    <div>
+                                                        <Form>
+                                                          <FormInput
+                                                                  id="fname"
+                                                                  size="15"
+                                                                  type="number"
+                                                                  name="fname"
+                                                                  placeholder="# of Double"
+                                                                  onChange ={this.DoubleMattressQuantity.bind(this)}
+                                                                  min="1" max="99999999"
+                                                                  required
+                                                              />
+                                                        </Form>
                                                       </div>
+                                                  : this.state.IndoorQueenMattress && !this.state.IndoorSingleMattress && !this.state.IndoorDoubleMattress?
+                                                    <div>
+                                                          <Form>
+                                                            <FormInput
+                                                                    id="fname"
+                                                                    size="10"
+                                                                    type="number"
+                                                                    name="fname"
+                                                                    placeholder="# of Larger"
+                                                                    onChange ={this.LargerMattressQuantity.bind(this)}
+                                                                    min="1" max="99999999"
+                                                                    required
+                                                                />
+                                                          </Form>
+                                                    </div>
+                                                  : this.state.IndoorQueenMattress && this.state.IndoorSingleMattress && !this.state.IndoorDoubleMattress?
+                                                    <div>
+                                                        <Form>
+                                                          <FormInput
+                                                                  id="fname"
+                                                                  size="10"
+                                                                  type="number"
+                                                                  name="fname"
+                                                                  placeholder="# of Single"
+                                                                  onChange ={this.SingleMattressQuantity.bind(this)}
+                                                                  min="1" max="99999999"
+                                                                  required
+                                                              />
+                                                        </Form>
+
+                                                        <Form>
+                                                            <FormInput
+                                                                    id="fname"
+                                                                    size="10"
+                                                                    type="number"
+                                                                    name="fname"
+                                                                    placeholder="# of Larger"
+                                                                    onChange ={this.DoubleMattressQuantity.bind(this)}
+                                                                    min="1" max="99999999"
+                                                                    required
+                                                                />
+                                                          </Form>
+                                                      </div>
+                                                  : this.state.IndoorQueenMattress && !this.state.IndoorSingleMattress && this.state.IndoorDoubleMattress?
+                                                    <div>
+                                                          <Form>
+                                                            <FormInput
+                                                                    id="fname"
+                                                                    size="10"
+                                                                    type="number"
+                                                                    name="fname"
+                                                                    placeholder="# of Double"
+                                                                    onChange ={this.DoubleMattressQuantity.bind(this)}
+                                                                    min="1" max="99999999"
+                                                                    required
+                                                                />
+                                                          </Form>
+
+                                                          <Form>
+                                                              <FormInput
+                                                                      id="fname"
+                                                                      size="10"
+                                                                      type="number"
+                                                                      name="fname"
+                                                                      placeholder="# of Larger"
+                                                                      onChange ={this.LargerMattressQuantity.bind(this)}
+                                                                      min="1" max="99999999"
+                                                                      required
+                                                                  />
+                                                            </Form>
+                                                        </div>                                                  
+                                                  : !this.state.IndoorQueenMattress && this.state.IndoorSingleMattress && this.state.IndoorDoubleMattress?
+                                                    <div>
+                                                          <Form>
+                                                            <FormInput
+                                                                    id="fname"
+                                                                    size="10"
+                                                                    type="number"
+                                                                    name="fname"
+                                                                    placeholder="# of Single"
+                                                                    onChange ={this.SingleMattressQuantity.bind(this)}
+                                                                    min="1" max="99999999"
+                                                                    required
+                                                                />
+                                                          </Form>
+                                                          <Form>
+                                                              <FormInput
+                                                                      id="fname"
+                                                                      size="10"
+                                                                      type="number"
+                                                                      name="fname"
+                                                                      placeholder="# of Double"
+                                                                      onChange ={this.DoubleMattressQuantity.bind(this)}
+                                                                      min="1" max="99999999"
+                                                                      required
+                                                                  />
+                                                            </Form>
+                                                        </div>
+                                                  : this.state.IndoorQueenMattress && this.state.IndoorSingleMattress && this.state.IndoorDoubleMattress?
+                                                    <div>
+                                                          <Form>
+                                                            <FormInput
+                                                                    id="fname"
+                                                                    size="10"
+                                                                    type="number"
+                                                                    name="fname"
+                                                                    placeholder="# of Single"
+                                                                    onChange ={this.SingleMattressQuantity.bind(this)}
+                                                                    min="1" max="99999999"
+                                                                    required
+                                                                />
+                                                          </Form>
+
+                                                          <Form>
+                                                              <FormInput
+                                                                      id="fname"
+                                                                      size="10"
+                                                                      type="number"
+                                                                      name="fname"
+                                                                      placeholder="# of Double"
+                                                                      onChange ={this.DoubleMattressQuantity.bind(this)}
+                                                                      min="1" max="99999999"
+                                                                      required
+                                                                  />
+                                                            </Form>
+
+                                                            <Form>
+                                                              <FormInput
+                                                                      id="fname"
+                                                                      size="10"
+                                                                      type="number"
+                                                                      name="fname"
+                                                                      placeholder="# of Larger"
+                                                                      onChange ={this.LargerMattressQuantity.bind(this)}
+                                                                      min="1" max="99999999"
+                                                                      required
+                                                                  />
+                                                            </Form>
+                                                        </div>
+                                                  : null
+                                                  : this.state.handleCouches_Carpets == "Rugs" ?
+                                                  this.state.IndoorSmallRugs && !this.state.IndoorMediumRugs && !this.state.IndoorLargerRugs?
+                                                    <div>
+                                                      <Form>
+                                                        <FormInput
+                                                                id="fname"
+                                                                size="10"
+                                                                type="number"
+                                                                name="fname"
+                                                                placeholder="# of Small"
+                                                                onChange ={this.SmallRugsQuantity.bind(this)}
+                                                                min="1" max="99999999"
+                                                                required
+                                                            />
+                                                      </Form>
+                                                    </div>
+                                                  : this.state.IndoorMediumRugs && !this.state.IndoorSmallRugs && !this.state.IndoorLargerRugs?
+                                                    <div>
+                                                        <Form>
+                                                          <FormInput
+                                                                  id="fname"
+                                                                  size="15"
+                                                                  type="number"
+                                                                  name="fname"
+                                                                  placeholder="# of Medium"
+                                                                  onChange ={this.MediumRugsQuantity.bind(this)}
+                                                                  min="1" max="99999999"
+                                                                  required
+                                                              />
+                                                        </Form>
+                                                      </div>
+                                                  : this.state.IndoorLargerRugs && !this.state.IndoorSmallRugs && !this.state.IndoorMediumRugs?
+                                                    <div>
+                                                          <Form>
+                                                            <FormInput
+                                                                    id="fname"
+                                                                    size="10"
+                                                                    type="number"
+                                                                    name="fname"
+                                                                    placeholder="# of Larger"
+                                                                    onChange ={this.LargerRugsQuantity.bind(this)}
+                                                                    min="1" max="99999999"
+                                                                    required
+                                                                />
+                                                          </Form>
+                                                    </div>
+                                                  : this.state.IndoorLargerRugs && this.state.IndoorSmallRugs && !this.state.IndoorMediumRugs?
+                                                    <div>
+                                                        <Form>
+                                                          <FormInput
+                                                                  id="fname"
+                                                                  size="10"
+                                                                  type="number"
+                                                                  name="fname"
+                                                                  placeholder="# of Small"
+                                                                  onChange ={this.SmallRugsQuantity.bind(this)}
+                                                                  min="1" max="99999999"
+                                                                  required
+                                                              />
+                                                        </Form>
+                                                        <Form>
+                                                            <FormInput
+                                                                    id="fname"
+                                                                    size="10"
+                                                                    type="number"
+                                                                    name="fname"
+                                                                    placeholder="# of Larger"
+                                                                    onChange ={this.LargerRugsQuantity.bind(this)}
+                                                                    min="1" max="99999999"
+                                                                    required
+                                                                />
+                                                        </Form>
+                                                      </div>
+                                                  : this.state.IndoorLargerRugs === true && this.state.IndoorMediumRugs === true && !this.state.IndoorSmallRugs?
+                                                    <div>
+                                                      <Form>
+                                                          <FormInput
+                                                                  id="fname"
+                                                                  size="10"
+                                                                  type="number"
+                                                                  name="fname"
+                                                                  placeholder="# of Medium"
+                                                                  onChange ={this.MediumRugsQuantity.bind(this)}
+                                                                  min="1" max="99999999"
+                                                                  required
+                                                              />
+                                                        </Form>
+
+                                                        <Form>
+                                                            <FormInput
+                                                                    id="fname"
+                                                                    size="10"
+                                                                    type="number"
+                                                                    name="fname"
+                                                                    placeholder="# of Larger"
+                                                                    onChange ={this.LargerRugsQuantity.bind(this)}
+                                                                    min="1" max="99999999"
+                                                                    required
+                                                                />
+                                                        </Form>
+                                                    </div>                                                  
+                                                  : !this.state.IndoorLargerRugs && this.state.IndoorSmallRugs && this.state.IndoorMediumRugs?
+                                                    <div>
+                                                          <Form>
+                                                            <FormInput
+                                                                    id="fname"
+                                                                    size="10"
+                                                                    type="number"
+                                                                    name="fname"
+                                                                    placeholder="# of Small"
+                                                                    onChange ={this.SmallRugsQuantity.bind(this)}
+                                                                    min="1" max="99999999"
+                                                                    required
+                                                                />
+                                                          </Form>
+                                                          <Form>
+                                                              <FormInput
+                                                                      id="fname"
+                                                                      size="10"
+                                                                      type="number"
+                                                                      name="fname"
+                                                                      placeholder="# of Medium"
+                                                                      onChange ={this.MediumRugsQuantity.bind(this)}
+                                                                      min="1" max="99999999"
+                                                                      required
+                                                                  />
+                                                            </Form>
+                                                        </div>
+                                                  : this.state.IndoorLargerRugs && this.state.IndoorSmallRugs && this.state.IndoorMediumRugs?
+                                                    <div>
+                                                          <Form>
+                                                            <FormInput
+                                                                    id="fname"
+                                                                    size="10"
+                                                                    type="number"
+                                                                    name="fname"
+                                                                    placeholder="# of Small"
+                                                                    onChange ={this.SmallRugsQuantity.bind(this)}
+                                                                    min="1" max="99999999"
+                                                                    required
+                                                                />
+                                                          </Form>
+
+                                                          <Form>
+                                                              <FormInput
+                                                                      id="fname"
+                                                                      size="10"
+                                                                      type="number"
+                                                                      name="fname"
+                                                                      placeholder="# of Medium"
+                                                                      onChange ={this.MediumRugsQuantity.bind(this)}
+                                                                      min="1" max="99999999"
+                                                                      required
+                                                                  />
+                                                            </Form>
+
+                                                            <Form>
+                                                              <FormInput
+                                                                      id="fname"
+                                                                      size="10"
+                                                                      type="number"
+                                                                      name="fname"
+                                                                      placeholder="# of Larger"
+                                                                      onChange ={this.LargerRugsQuantity.bind(this)}
+                                                                      min="1" max="99999999"
+                                                                      required
+                                                                  />
+                                                            </Form>
+                                                        </div>
+                                                  : null
+                                                    : this.state.handleCouches_Carpets == "Chairs" ?
+                                                    this.state.IndoorDiningChair && !this.state.IndoorOfficeChair?
+                                                          <div>
+                                                            <ServiceTest> # Dining Chairs<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                                            <Form>
+                                                              <FormInput
+                                                                      id="fname"
+                                                                      size="10"
+                                                                      type="number"
+                                                                      name="fname"
+                                                                      placeholder="1"
+                                                                      onChange ={this.DiningChairQuantity.bind(this)}
+                                                                      min="2" max="10"
+                                                                      required
+                                                                  />
+                                                            </Form>
+                                                          </div>
+                                                          : !this.state.IndoorDiningChair && this.state.IndoorOfficeChair?
+                                                          <div>
+                                                            <ServiceTest> # Office Chairs<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                                            <Form>
+                                                              <FormInput
+                                                                      id="fname"
+                                                                      size="10"
+                                                                      type="number"
+                                                                      name="fname"
+                                                                      placeholder="1"
+                                                                      onChange ={this.OfficeChairQuantity.bind(this)}
+                                                                      min="2" max="10"
+                                                                      required
+                                                                  />
+                                                            </Form>
+                                                          </div>
+
+                                                          : this.state.IndoorDiningChair && this.state.IndoorOfficeChair?
+                                                          <div>
+                                                            <ServiceTest> # Dining Chairs<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                                            <Form>
+                                                              <FormInput
+                                                                      id="fname"
+                                                                      size="10"
+                                                                      type="number"
+                                                                      name="fname"
+                                                                      placeholder="1"
+                                                                      onChange ={this.DiningChairQuantity.bind(this)}
+                                                                      min="2" max="10"
+                                                                      required
+                                                                  />
+                                                            </Form>
+                                                            <ServiceTest> # Office Chairs<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                                            <Form>
+                                                              <FormInput
+                                                                      id="fname"
+                                                                      size="10"
+                                                                      type="number"
+                                                                      name="fname"
+                                                                      placeholder="1"
+                                                                      onChange ={this.OfficeChairQuantity.bind(this)}
+                                                                      min="2" max="10"
+                                                                      required
+                                                                  />
+                                                            </Form>
+                                                          </div>
+
+                                                          : null
+                                                      :this.state.handleCouches_Carpets == "Carpets" ?
+
+                                                        this.state.IndoorCarpetsBedrooms && !this.state.IndoorCarpetsBigBedrooms?
+                                                          <div>
+                                                            <ServiceTest> # Small Rooms<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                                            <Form>
+                                                              <FormInput
+                                                                      id="fname"
+                                                                      size="10"
+                                                                      type="number"
+                                                                      name="fname"
+                                                                      placeholder="1"
+                                                                      onChange ={this.IndoorSmCarpetsQuantity.bind(this)}
+                                                                      min="1" max="10"
+                                                                      required
+                                                                  />
+                                                            </Form>
+                                                          </div>
+                                                        : this.state.IndoorCarpetsBigBedrooms && !this.state.IndoorCarpetsBedrooms?
+                                                          <div>
+                                                            <ServiceTest> # Big Rooms<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                                            <Form>
+                                                              <FormInput
+                                                                      id="fname2"
+                                                                      size="10"
+                                                                      type="number"
+                                                                      name="fname"
+                                                                      placeholder="1"
+                                                                      onChange ={this.IndoorBgCarpetsQuantity.bind(this)}
+                                                                      min="1" max="10"
+                                                                      required
+                                                                  />
+                                                            </Form>
+                                                          </div>
+                                                        : this.state.IndoorCarpetsBigBedrooms && this.state.IndoorCarpetsBedrooms?
+                                                        <div>
+                                                            <ServiceTest> # Small Rooms<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                                            <Form>
+                                                              <FormInput
+                                                                      id="fname3"
+                                                                      size="10"
+                                                                      type="number"
+                                                                      name="fname"
+                                                                      placeholder="1"
+                                                                      onChange ={this.IndoorSmCarpetsQuantity.bind(this)}
+                                                                      min="1" max="10"
+                                                                      required
+                                                                  />
+                                                            </Form>
+
+                                                            <ServiceTest> # Big Rooms<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest>
+                                                            <Form>
+                                                              <FormInput
+                                                                      id="fname4"
+                                                                      size="10"
+                                                                      type="number"
+                                                                      name="fname"
+                                                                      placeholder="1"
+                                                                      onChange ={this.IndoorBgCarpetsQuantity.bind(this)}
+                                                                      min="1" max="10"
+                                                                      required
+                                                                  />
+                                                            </Form>
+                                                        </div> 
+                                                        : null
                                                       : null
                                             }
                                           </div>
@@ -1941,7 +2437,7 @@ return (
                                     </Options4> 
                                        
 
-                                  {   this.state.IndoorRugs || this.state.IndoorCouches || this.state.IndoorChairs ?
+                                  { this.state.IndoorSanitise ?
                                   null
                                   :
                                     <div>
@@ -1949,7 +2445,6 @@ return (
                                     <span><hr width="300"/></span>
                                     </ContentTitle>                                  
                                     <EnterDetails> 
-                                    {this.state.IndoorCarpets || this.state.IndoorMattress? <ServiceTest> No. of Bedrooms?<span style = {{"color": "red", fontSize : "14px"}}>*</span></ServiceTest> : null}
                                       <select id="dropdown" onChange={this.handleDropdownChange} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
                                           <option value="N/A">Bedrooms</option>
                                           <option value="1">1 Bedroom</option>
@@ -1958,9 +2453,6 @@ return (
                                           <option value="4">4 Bedrooms</option>
                                           <option value="5">5 Bedrooms</option>
                                       </select>
-                                      {this.state.IndoorCarpets || this.state.IndoorMattress?
-                                      null
-                                      :
                                         <select id="dropdown" onChange={this.handleDropdownChange2} style = {{color: 'grey', cursor: "pointer", height: "22px","text-align": "center", "margin-top":"2px"}}>
                                           <option value="N/A">Bathrooms</option>
                                           <option value="1">1 Bathroom</option>
@@ -1968,7 +2460,7 @@ return (
                                           <option value="3">3 Bathrooms</option>
                                           <option value="4">4 Bathrooms</option>
                                           <option value="5">5 Bathrooms</option>
-                                      </select> }
+                                      </select> 
                                       { this.state.IndoorCleanService?
                                           <Checkbox toggle label = "  Detergents?" onChange={ this.genIndoorDetergents }/>
 
@@ -2006,18 +2498,18 @@ return (
                                                             
                                       </div>
                                       <div>
-                                        <Message2>Extra Info</Message2>
+                                      {this.state.IndoorSanitise && option != ""?<div><Message2>{option}</Message2><Message>{size}</Message><Message>{size2}</Message><Message>{size3}</Message></div> : <div><Message2>Extra Info</Message2><Message>{extrasIN}</Message></div>
 
-                                        <Message>{extrasIN}</Message>
-                                        <Message>{size !== undefined? option : ""}</Message>
+                                        //<Message>{extrasIN}</Message>
+                                        //<Message>{size !== undefined? option : ""}</Message>
                                         
-                                        
+                                      }
                                       </div>
                                       <div>
                                       <Message2>Costs</Message2>
                                           {this.state.IndoorCleanService || this.state.IndoorAfterBuildCleanService || this.state.IndoorEndTenancyCleanService || this.state.IndoorSanitiseService? 
                                           <div>
-                                            {this.state.genIndoorCleanOnce || this.state.afterBuildCleanOnce || this.state.endTenancyCleanOnce || this.state.sanitiseIndoorOnceOFF || this.state.IndoorCouches || this.state.IndoorCarpets || this.state.IndoorMattress || this.state.IndoorRugs || this.state.IndoorChairs ? 
+                                            {this.state.genIndoorCleanOnce || this.state.afterBuildCleanOnce || this.state.endTenancyCleanOnce || this.state.sanitiseIndoorOnceOFF || this.state.handleCouches_Carpets == "Rugs" || this.state.handleCouches_Carpets == "Couches" || this.state.handleCouches_Carpets == "Mattress" || this.state.handleCouches_Carpets == "Chairs" || this.state.handleCouches_Carpets == "Carpets" || this.state.IndoorMattress || this.state.IndoorRugs || this.state.IndoorChairs ? 
                                               <Message>Total : R {totalIndoor.toFixed(2)}</Message>
                                               : this.state.afterBuildCleanWeek || this.state.genIndoorCleanWeek  ?
                                                 <div>
@@ -3618,10 +4110,10 @@ return (
             {this.state.showPopupIndoor ?
                this.props.currentUser?
                 <Indoor showPopupIndoor = {this.state.showPopupIndoor} currentUser = {this.props.currentUser} closePopup={this.props.closePopup} dateTime = {this.state.dateTime} totalIndoor = {totalIndoor.toFixed(2)} genIndoorCleanWallsService = {this.state.genIndoorCleanWallsService} genIndoorCleanWindowsService = {this.state.genIndoorCleanWindowsService} genIndoorCleanLaundryService = {this.state.genIndoorCleanLaundryService} afterBuildIndoorCleanWallsService = {this.state.afterBuildIndoorCleanWallsService} serviceIntervalIndoor = {this.state.serviceIntervalIndoor}  IndoorDetergents = {this.state.IndoorDetergents}
-                afterBuildIndoorCleanWindowsService = {this.state.afterBuildIndoorCleanWindowsService} endTenancyIndoorCleanWallsService = {this.state.endTenancyIndoorCleanWallsService} endTenancyIndoorCleanWindowsService = {this.state.endTenancyIndoorCleanWindowsService} bedRooms = {this.state.bedRooms} bathRooms = {this.state.bathRooms} IndoorBookedService = {this.state.IndoorBookedService} IndoorExtras = {extrasIN}/>
+                afterBuildIndoorCleanWindowsService = {this.state.afterBuildIndoorCleanWindowsService} endTenancyIndoorCleanWallsService = {this.state.endTenancyIndoorCleanWallsService} endTenancyIndoorCleanWindowsService = {this.state.endTenancyIndoorCleanWindowsService} bedRooms = {this.state.bedRooms} bathRooms = {this.state.bathRooms} IndoorBookedService = {this.state.IndoorBookedService} IndoorExtras = {extrasIN} IndoorItemsCleaningOption = {this.state.handleCouches_Carpets} IndoorItem1  = {size} IndoorItem2  = {size2} IndoorItem3  = {size3}/>
                 : !this.props.currentUser?
                   <PromptSinIn currentUser = {this.props.currentUser} showPopupIndoor = {this.state.showPopupIndoor}  closePopup={this.props.closePopup} dateTime = {this.state.dateTime} totalIndoor = {totalIndoor.toFixed(2)} genIndoorCleanWallsService = {this.state.genIndoorCleanWallsService} genIndoorCleanWindowsService = {this.state.genIndoorCleanWindowsService} genIndoorCleanLaundryService = {this.state.genIndoorCleanLaundryService} afterBuildIndoorCleanWallsService = {this.state.afterBuildIndoorCleanWallsService} serviceIntervalIndoor = {this.state.serviceIntervalIndoor}  IndoorDetergents = {this.state.IndoorDetergents}
-                afterBuildIndoorCleanWindowsService = {this.state.afterBuildIndoorCleanWindowsService} endTenancyIndoorCleanWallsService = {this.state.endTenancyIndoorCleanWallsService} endTenancyIndoorCleanWindowsService = {this.state.endTenancyIndoorCleanWindowsService} bedRooms = {this.state.bedRooms} bathRooms = {this.state.bathRooms} IndoorBookedService = {this.state.IndoorBookedService} IndoorExtras = {extrasIN}/>
+                afterBuildIndoorCleanWindowsService = {this.state.afterBuildIndoorCleanWindowsService} endTenancyIndoorCleanWallsService = {this.state.endTenancyIndoorCleanWallsService} endTenancyIndoorCleanWindowsService = {this.state.endTenancyIndoorCleanWindowsService} bedRooms = {this.state.bedRooms} bathRooms = {this.state.bathRooms} IndoorBookedService = {this.state.IndoorBookedService} IndoorExtras = {extrasIN} IndoorItemsCleaningOption = {this.state.handleCouches_Carpets} IndoorItem1  = {size}  IndoorItem2  = {size2} IndoorItem3  = {size3}  />
                 : null
 
               :null

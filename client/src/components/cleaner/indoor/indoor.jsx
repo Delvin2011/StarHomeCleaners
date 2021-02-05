@@ -111,7 +111,7 @@ class Indoor extends React.Component {
         const min = 1;
         const max = 1000;
         const random = min + (Math.random() * (max - min));
-        const service = this.props.IndoorDetergents ? this.props.IndoorBookedService + " with Detergents" : this.props.IndoorBookedService;
+        const service = this.props.IndoorDetergents ? this.props.IndoorBookedService + " with Detergents" : this.props.IndoorItemsCleaningOption !==""? this.props.IndoorItemsCleaningOption : this.props.IndoorBookedService;
         const payment = "CAS";
         this.setState({
             spinner: true,
@@ -126,7 +126,7 @@ class Indoor extends React.Component {
                     bookingDate : new Date(),
                     category : "Indoor Services",
                     service : service,
-                    homeDetails : "Bedrooms : " + this.props.bedRooms + "; Bathrooms : " + this.props.bathRooms + "; Extras : " + this.props.IndoorExtras,
+                    homeDetails : this.props.IndoorItemsCleaningOption !==""? this.props.IndoorItem1 + this.props.IndoorItemsCleaningOption + " ; " + this.props.IndoorItem2 + this.props.IndoorItemsCleaningOption + " ; " + this.props.IndoorItem3 + this.props.IndoorItemsCleaningOption : "Bedrooms : " + this.props.bedRooms + "; Bathrooms : " + this.props.bathRooms + "; Extras : " + this.props.IndoorExtras,
                     serviceDate : dateTime.replace("GMT+0200 (South Africa Standard Time)",""),
                     frequency: this.props.serviceIntervalIndoor,
                     payment: payment,
@@ -146,7 +146,7 @@ class Indoor extends React.Component {
           "address": data.get('address'),
           "natureOfServices": service,
           "serviceIntervals": this.props.serviceIntervalIndoor, // + "," + this.state.serviceIntervalIndoorSanitise,
-          "extraServices": "Bedrooms : " + this.props.bedRooms + "; Bathrooms : " + this.props.bathRooms + "; Extras : " + this.props.IndoorExtras,
+          "extraServices": this.props.IndoorItemsCleaningOption !==""? this.props.IndoorItem1 + this.props.IndoorItemsCleaningOption + " ; " + this.props.IndoorItem2 + this.props.IndoorItemsCleaningOption + " ; " + this.props.IndoorItem3 + this.props.IndoorItemsCleaningOption : "Bedrooms : " + this.props.bedRooms + "; Bathrooms : " + this.props.bathRooms + "; Extras : " + this.props.IndoorExtras,
           "date": dateTime.replace("GMT+0200 (South Africa Standard Time)",""),
           "costs": "R " + this.props.totalIndoor
         })
@@ -217,28 +217,44 @@ class Indoor extends React.Component {
                                     <Right >
                                         <div style={{marginBottom:"20px"}}>
                                             <ContentTitle> Nature of Services </ContentTitle>                                
-                                            <Message4>Indoors</Message4>
+                                            {this.props.IndoorItemsCleaningOption !== ""?
+                                            <Message4>Indoors - {this.props.IndoorItemsCleaningOption}</Message4>
+                                             :   <Message4>Indoors</Message4>}
                                         </div>
                                         <div style={{marginBottom:"20px"}}>
-                                        <ContentTitle> Home Details </ContentTitle>                                   
-                                            <Message4>{this.props.bedRooms}</Message4>
-                                            <Message4>{this.props.bathRooms}</Message4>
+                                        <ContentTitle> Home Details </ContentTitle>   
+                                        {this.props.IndoorItemsCleaningOption !== ""?
+                                         <div>
+                                         <Message4>{this.props.IndoorItem1}</Message4>
+                                         <Message4>{this.props.IndoorItem2}</Message4>
+                                         <Message4>{this.props.IndoorItem3}</Message4>
+                                         </div> 
+                                         : <div>
+                                         <Message4>{this.props.bedRooms}</Message4>
+                                         <Message4>{this.props.bathRooms}</Message4>
+                                         </div>   
+                                        }                                
+
                                         </div>
                                         <div style={{marginBottom:"20px"}}>
-                                        <ContentTitle> Required Services </ContentTitle>    
+                                           
                                         {
                                             this.props.IndoorDetergents ?
-                                            <Message4>{this.props.IndoorBookedService + " with Detergents" }</Message4>
-
-                                            : <Message4>{this.props.IndoorBookedService  }</Message4>
-
+                                            <div><ContentTitle> Required Services </ContentTitle> <Message4>{this.props.IndoorBookedService + " with Detergents" }</Message4></div>
+                                            : this.props.IndoorItemsCleaningOption !== ""?
+                                            null                                            
+                                            : <div><ContentTitle> Required Services </ContentTitle> <Message4>{this.props.IndoorBookedService  }</Message4></div>
                                         }                               
                                             
                                         </div>
-                                        <div style={{marginBottom:"20px"}}>
-                                        <ContentTitle> Extra Services </ContentTitle> 
-                                        <Message4>{this.props.IndoorExtras}</Message4> 
-                                        </div>
+                                            { this.props.IndoorItemsCleaningOption !== ""?
+                                                null                                    
+                                                :
+                                            <div style={{marginBottom:"20px"}}>
+                                                <ContentTitle> Extra Services </ContentTitle> 
+                                                <Message4>{this.props.IndoorExtras}</Message4> 
+                                            </div>
+                                            }
                                         <div style={{marginBottom:"20px"}}>
                                         <ContentTitle> Services Intervals</ContentTitle> 
                                             <Message4>{this.props.serviceIntervalIndoor}</Message4>
