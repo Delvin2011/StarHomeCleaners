@@ -567,10 +567,10 @@ class Cleaner extends React.Component {
     /*************************************Carpets******************************************** */
     IndoorCarpets () { this.setState({IndoorCarpets: !this.state.IndoorCarpets,IndoorCarpetsBedrooms : false, IndoorCarpetsLounge: false, }); }
 
-    IndoorSmCarpetsQuantity(event) {event.preventDefault(); this.setState({smCarpets : event.target.value + " X Sm", smCarpetsPrice: parseInt(event.target.value) * 400});}
+    IndoorSmCarpetsQuantity(event) {event.preventDefault(); this.setState({smCarpets : event.target.value + " X Small", smCarpetsPrice: parseInt(event.target.value) * 400});}
     IndoorCarpetsBedrooms () { this.setState({isCheckedSmCarpets : !this.state.IndoorCarpetsBedrooms ? true : false, IndoorCarpetsBedrooms: !this.state.IndoorCarpetsBedrooms, SmCarpetsQuantity : 1, smCarpets : ""}); }
     IndoorCarpetsBigBedrooms () { this.setState({isCheckedBgCarpets : !this.state.IndoorCarpetsBigBedrooms ? true : false,IndoorCarpetsBigBedrooms: !this.state.IndoorCarpetsBigBedrooms, bgCarpets : ""}); }
-    IndoorBgCarpetsQuantity(event) {event.preventDefault(); this.setState({bgCarpets : event.target.value + " X Bg", bgCarpetsPrice: parseInt(event.target.value) * 500});}
+    IndoorBgCarpetsQuantity(event) {event.preventDefault(); this.setState({bgCarpets : event.target.value + " X Big", bgCarpetsPrice: parseInt(event.target.value) * 500});}
     IndoorCarpetsLounge (event) { this.setState({isCheckedLgrCarpets : !this.state.IndoorCarpetsLounge ? true : false,IndoorCarpetsLounge: !this.state.IndoorCarpetsLounge, lngCarpets : "Lounge", lngCarpetsPrice: 550}); }
     
     /*****to be removed */

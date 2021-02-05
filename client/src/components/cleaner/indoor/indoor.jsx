@@ -126,7 +126,7 @@ class Indoor extends React.Component {
                     bookingDate : new Date(),
                     category : "Indoor Services",
                     service : service,
-                    homeDetails : this.props.IndoorItemsCleaningOption !==""? this.props.IndoorItem1 + this.props.IndoorItemsCleaningOption + " ; " + this.props.IndoorItem2 + this.props.IndoorItemsCleaningOption + " ; " + this.props.IndoorItem3 + this.props.IndoorItemsCleaningOption : "Bedrooms : " + this.props.bedRooms + "; Bathrooms : " + this.props.bathRooms + "; Extras : " + this.props.IndoorExtras,
+                    homeDetails : this.props.IndoorItemsCleaningOption !==""? this.props.IndoorItem1 + " " + this.props.IndoorItemsCleaningOption + " ; " + this.props.IndoorItem2 + " " + this.props.IndoorItemsCleaningOption + " ; " + this.props.IndoorItem3 + " " + this.props.IndoorItemsCleaningOption : "Bedrooms : " + this.props.bedRooms + "; Bathrooms : " + this.props.bathRooms + "; Extras : " + this.props.IndoorExtras,
                     serviceDate : dateTime.replace("GMT+0200 (South Africa Standard Time)",""),
                     frequency: this.props.serviceIntervalIndoor,
                     payment: payment,
@@ -146,7 +146,7 @@ class Indoor extends React.Component {
           "address": data.get('address'),
           "natureOfServices": service,
           "serviceIntervals": this.props.serviceIntervalIndoor, // + "," + this.state.serviceIntervalIndoorSanitise,
-          "extraServices": this.props.IndoorItemsCleaningOption !==""? this.props.IndoorItem1 + this.props.IndoorItemsCleaningOption + " ; " + this.props.IndoorItem2 + this.props.IndoorItemsCleaningOption + " ; " + this.props.IndoorItem3 + this.props.IndoorItemsCleaningOption : "Bedrooms : " + this.props.bedRooms + "; Bathrooms : " + this.props.bathRooms + "; Extras : " + this.props.IndoorExtras,
+          "extraServices": this.props.IndoorItemsCleaningOption !==""? this.props.IndoorItem1 + " " + this.props.IndoorItemsCleaningOption + " ; " + this.props.IndoorItem2 + " " + this.props.IndoorItemsCleaningOption + " ; " + this.props.IndoorItem3 + " " + this.props.IndoorItemsCleaningOption : "Bedrooms : " + this.props.bedRooms + "; Bathrooms : " + this.props.bathRooms + "; Extras : " + this.props.IndoorExtras,
           "date": dateTime.replace("GMT+0200 (South Africa Standard Time)",""),
           "costs": "R " + this.props.totalIndoor
         })
