@@ -45,7 +45,7 @@ return (
                   <img src={profile} alt="..." className={imageClasses} />
                 </div>
                 <div className={classes.name}>
-                  <h3 className={classes.title}>StarHome Hand Crafted Decors</h3>
+                  <h3 className={classes.title}>StarHome Hand Crafted Decorse</h3>
                 </div>
                 <div className={classes.description}>
                   <p className={classes.description}>
