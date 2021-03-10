@@ -85,7 +85,7 @@ export default function SectionCarousel() {
                     </h3>
                     <h4>
                       <RiMessage3Line className={classes.icons} /> Thank you for
-                      a Job well done..
+                      a Job well done.
                     </h4>
                   </div>
                 </div>
