@@ -73,8 +73,6 @@ const initialValuesSignUp = {
   email: "",
   password: "",
   confirmPassword: "",
-  error: "",
-  success: "",
 };
 const SignIn = (props) => {
   const classes = useStyles();
@@ -189,6 +187,12 @@ const SignIn = (props) => {
                       <span className="btn-inner--text">Google</span>
                     </Button>
                   </div>
+                ) : currentUser ? (
+                  <div>
+                    <Heading style={{ color: "white" }}>
+                      Signed In With Credentials
+                    </Heading>
+                  </div>
                 ) : null}
               </div>
             </CardHeader>
@@ -197,37 +201,15 @@ const SignIn = (props) => {
                 <CardBody>
                   <Heading>Thank you!!!</Heading>
                   <CustomInput
-                    labelText="Email..."
-                    id="email"
                     formControlProps={{
                       fullWidth: true,
                     }}
-                    onChange={handleChange}
-                    name="email"
-                    value={values.email}
+                    value={currentUser.email}
                     inputProps={{
                       type: "email",
                       endAdornment: (
                         <InputAdornment position="end">
                           <Email className={classes.inputIconsColor} />
-                        </InputAdornment>
-                      ),
-                    }}
-                  />
-                  <CustomInput
-                    labelText="Password..."
-                    id="password"
-                    formControlProps={{
-                      fullWidth: true,
-                    }}
-                    onChange={handleChange}
-                    name="password"
-                    value={values.password}
-                    inputProps={{
-                      type: "password",
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <LockIcon className={classes.inputIconsColor} />
                         </InputAdornment>
                       ),
                     }}
@@ -291,32 +273,54 @@ const SignIn = (props) => {
                   <div>
                     {spinner && !currentUser ? (
                       error ? (
-                        <Button
-                          className="my-2"
-                          color="primary"
-                          type="button"
-                          type="submit"
-                        >
-                          Error : Re-Submit
-                        </Button>
+                        <div>
+                          {error.code === "auth/wrong-password" ? (
+                            <Heading style={{ color: "red" }}>
+                              Wrong credentials.
+                            </Heading>
+                          ) : error.code === "auth/user-not-found" ? (
+                            <Heading style={{ color: "red" }}>
+                              Account not found.
+                            </Heading>
+                          ) : null}
+                          <div>
+                            <Button
+                              className="my-2"
+                              color="primary"
+                              type="submit"
+                            >
+                              Error : Re-Submit
+                            </Button>
+                            <Button
+                              className="my-2"
+                              color="primary"
+                              type="button"
+                              onClick={closePopupSignIn}
+                            >
+                              Close
+                            </Button>
+                          </div>
+                        </div>
                       ) : (
-                        <Button className="my-4" color="primary" type="button">
+                        <Button className="my-4" color="primary">
                           Loading...
                         </Button>
                       )
                     ) : (
-                      <Button className="my-2" color="primary" type="submit">
-                        Sign In
-                      </Button>
+                      <div>
+                        <Button className="my-2" color="primary" type="submit">
+                          Sign In
+                        </Button>
+                        <Button
+                          className="my-2"
+                          color="primary"
+                          type="button"
+                          onClick={closePopupSignIn}
+                        >
+                          Close
+                        </Button>
+                      </div>
                     )}
-                    <Button
-                      className="my-2"
-                      color="primary"
-                      type="button"
-                      onClick={closePopupSignIn}
-                    >
-                      Close
-                    </Button>
                   </div>
                 </CardFooter>
                 <CardFooter className={classes.cardFooter}>
@@ -385,19 +389,18 @@ const SignIn = (props) => {
                 ) : googleSpinner && currentUser ? (
                   <div>
                     <Heading style={{ color: "white" }}>Signed In</Heading>
-                    <Button
-                      className="btn-icon mt-2 mb-2 ml-0"
-                      color="primary"
-                      //onClick={/*() => {
-                      // setGoogleSpinner(!googleSpinner);
-                      // onGoogleSignIn();
-                      //}*/}
-                    >
+                    <Button className="btn-icon mt-2 mb-2 ml-0" color="primary">
                       <span className="btn-inner--icon mr-1">
                         <img alt="..." src={require("assets/img/google.svg")} />
                       </span>
                       <span className="btn-inner--text">Google</span>
                     </Button>
+                  </div>
+                ) : currentUser ? (
+                  <div>
+                    <Heading style={{ color: "white" }}>
+                      Signed Up With Credentials
+                    </Heading>
                   </div>
                 ) : null}
               </div>
@@ -405,39 +408,17 @@ const SignIn = (props) => {
             {currentUser ? (
               <div>
                 <CardBody>
-                  <p className={classes.divider}>Signed Up : Thank you</p>
+                  <Heading>Thank you!!!</Heading>
                   <CustomInput
-                    labelText="Email..."
-                    id="email"
                     formControlProps={{
                       fullWidth: true,
                     }}
-                    onChange={handleChangeSignUp}
-                    name="email"
-                    value={initialValuesSignUp.email}
+                    value={currentUser.displayName}
                     inputProps={{
-                      type: "email",
+                      type: "text",
                       endAdornment: (
                         <InputAdornment position="end">
-                          <Email className={classes.inputIconsColor} />
-                        </InputAdornment>
-                      ),
-                    }}
-                  />
-                  <CustomInput
-                    labelText="Password..."
-                    id="password"
-                    formControlProps={{
-                      fullWidth: true,
-                    }}
-                    onChange={handleChangeSignUp}
-                    name="password"
-                    value={initialValuesSignUp.password}
-                    inputProps={{
-                      type: "password",
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <LockIcon className={classes.inputIconsColor} />
+                          <People className={classes.inputIconsColor} />
                         </InputAdornment>
                       ),
                     }}
@@ -538,28 +519,55 @@ const SignIn = (props) => {
                 <CardFooter className={classes.cardFooter}>
                   <div className="text-center">
                     {spinner && !currentUser ? (
-                      initialValuesSignUp.error ? (
-                        <Button className="my-2" color="primary" type="submit">
-                          Error : Re-Submit
-                        </Button>
+                      error ? (
+                        <div>
+                          {error.code === "auth/email-already-in-use" ? (
+                            <Heading style={{ color: "red" }}>
+                              Account already exist.
+                            </Heading>
+                          ) : error.code === "auth/weak-password" ? (
+                            <Heading style={{ color: "red" }}>
+                              Password to contain more that 6 characters.
+                            </Heading>
+                          ) : null}
+                          <div>
+                            <Button
+                              className="my-2"
+                              color="primary"
+                              type="submit"
+                            >
+                              Error : Re-Submit
+                            </Button>
+                            <Button
+                              className="my-2"
+                              color="primary"
+                              type="button"
+                              onClick={closePopupSignIn}
+                            >
+                              Close
+                            </Button>
+                          </div>
+                        </div>
                       ) : (
-                        <Button className="my-4" color="primary" type="button">
+                        <Button className="my-4" color="primary">
                           Loading...
                         </Button>
                       )
                     ) : (
-                      <Button className="my-2" color="primary" type="submit">
-                        Sign Up
-                      </Button>
+                      <div>
+                        <Button className="my-2" color="primary" type="submit">
+                          Sign Up
+                        </Button>
+                        <Button
+                          className="my-2"
+                          color="primary"
+                          type="button"
+                          onClick={closePopupSignIn}
+                        >
+                          Close
+                        </Button>
+                      </div>
                     )}
-                    <Button
-                      className="my-2"
-                      color="primary"
-                      type="button"
-                      onClick={closePopupSignIn}
-                    >
-                      Close
-                    </Button>
                   </div>
                 </CardFooter>
               </div>
