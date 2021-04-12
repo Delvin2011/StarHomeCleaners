@@ -12,7 +12,7 @@ import ProductPage from "./views/ProductPage/product.jsx";
 import TransactionFailed from "./views/TransactionFailed/TransactionFailed.js";
 import TransactionSuccess from "./views/TransactionSuccess/TransactionSuccess.js";
 import CheckoutPage from "./views/checkout/checkout.jsx";
-import DecorShopCollectionPage from "./views/ShopingPage/decorShopCollection/decorShopCollection.jsx";
+//import DecorShopCollectionPage from "./views/ShopingPage/decorShopCollection/decorShopCollection.jsx";
 
 import FAQsPage from "./views/FAQsPage/FAQsPage.js";
 import MessengerCustomerChat from "react-messenger-customer-chat";
@@ -74,9 +74,6 @@ class App extends React.Component {
           <Route path="/checkout" component={CheckoutPage} />
           <Route path="/Blogs" component={Blogs} />
           <Route path="/CostlyDIY" component={CostlyDIY} />
-          <Route path="/DecorShop" component={ShopingPage} />
-          <Route path="/Collection" component={DecorShopCollectionPage} />
-          <Route path="/product" component={ProductPage} />
           <Route path="/TransactionFailed" component={TransactionFailed} />
           <Route path="/TransactionSuccess" component={TransactionSuccess} />
           <Route path="/" component={() => <CleaningPage />} />
@@ -95,6 +92,10 @@ const mapDispatchToProps = (dispatch) => ({
 });
 //App doesn't need the current user state, apart from the header component, it only sets the default state.
 //Therefore passing null.
+
+/*          <Route path="/DecorShop" component={ShopingPage} />
+          <Route path="/Collection" component={DecorShopCollectionPage} />
+          <Route path="/product" component={ProductPage} />*/
 export default connect(
   mapStateToProps,
   mapDispatchToProps

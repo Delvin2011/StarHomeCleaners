@@ -18,18 +18,24 @@ export const selectDecoCartItemsCount = createSelector(
   [selectDecoCartItems],
   (
     decoCartItems //returns the total quantity of items
-  ) => 0
-  /*decoCartItems.reduce(
+  ) =>
+    decoCartItems.reduce(
       (accumulatedQuantity, decoCartItem) =>
         accumulatedQuantity + decoCartItem.quantity,
       0
-    ) */ //accumulating the quantity of each of our cart items
+    ) //accumulating the quantity of each of our cart items
 );
 
 export const selectDecoCartTotal = createSelector(
   [selectDecoCartItems],
-  (decoCartItems) => 0 //returns the total quantity of items
-  //decoCartItems.reduce((accumulatedQuantity, decoCartItem) => accumulatedQuantity + decoCartItem.quantity * decoCartItem.price ,0) //accumulating the quantity of each of our cart items
+  (
+    decoCartItems //returns the total quantity of items
+  ) =>
+    decoCartItems.reduce(
+      (accumulatedQuantity, decoCartItem) =>
+        accumulatedQuantity + decoCartItem.quantity * decoCartItem.price,
+      0
+    ) //accumulating the quantity of each of our cart items
 );
 /*Flow
 - Passing the reducer state in to the selector and gets the cart object.

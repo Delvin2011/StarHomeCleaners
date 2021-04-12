@@ -44,7 +44,11 @@ import { Modal, Spinner } from "reactstrap";
 const useStyles = makeStyles(styles);
 
 itemCount: selectCartItemsCount;
-function HeaderLinks({ currentUser, signOutStart, itemCount, decoItemCount }) {
+function HeaderLinks({
+  currentUser,
+  signOutStart,
+  itemCount /*, decoItemCount */,
+}) {
   const classes = useStyles();
   const [Email, setEmail] = useState(false);
   const [Phone, setPhone] = useState(false);
@@ -286,7 +290,7 @@ const mapStateToProps = createStructuredSelector({
   //state will be the root.reducer
   currentUser: selectCurrentUser,
   itemCount: selectCartItemsCount,
-  decoItemCount: selectDecoCartItemsCount,
+  //decoItemCount: selectDecoCartItemsCount,
 }); //naming mapStateToProps can be anything
 
 export default connect(

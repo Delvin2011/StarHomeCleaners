@@ -83,7 +83,6 @@ export function* signOut() {
 
 export function* signUp({ payload: { email, password, displayName } }) {
   try {
-    console.log(email);
     const { user } = yield auth.createUserWithEmailAndPassword(email, password);
     yield put(signUpSuccess({ user, additionalData: { displayName } }));
   } catch (error) {
@@ -112,7 +111,6 @@ export function* onSignOutStart() {
 }
 
 export function* onSignUpStart() {
-  console.log("Tk");
   yield takeLatest(UserActionTypes.SIGN_UP_START, signUp);
 }
 
