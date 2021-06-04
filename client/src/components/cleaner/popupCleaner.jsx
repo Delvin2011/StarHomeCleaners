@@ -2787,10 +2787,6 @@ const cleanMonthStatus = this.state.cleanOnceOFF || this.state.cleanWeek ? true 
     //this.state.bgCarpetsPrice +
     //this.state.lngCarpetsPrice;
 
-    console.log(this.state.smCarpetsPrice);
-    console.log(this.state.bgCarpetsPrice);
-    console.log(this.state.lngCarpetsPrice);
-
     var priceSMbed = this.state.IndoorCarpetsBedrooms
       ? this.state.smCarpetsPrice
       : 0;
@@ -2933,9 +2929,9 @@ const cleanMonthStatus = this.state.cleanOnceOFF || this.state.cleanWeek ? true 
     const totalIndoor = this.state.IndoorGenClean
       ? 1.1 * totalGenIndoorClean
       : this.state.IndoorAfterBuildClean
-      ? 1.1 * totalAfterBuildIndoorClean
+      ? 1.3 * totalAfterBuildIndoorClean
       : this.state.IndoorEndTenancyClean
-      ? 1.1 * totalEndTenancyIndoorClean
+      ? 1.3 * totalEndTenancyIndoorClean
       : this.state.IndoorSanitise
       ? totalSanitiseIndoor
       : 0;
