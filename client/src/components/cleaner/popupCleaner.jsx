@@ -526,6 +526,7 @@ class Cleaner extends React.Component {
     this.afterBuildIndoorCleanWindows = this.afterBuildIndoorCleanWindows.bind(
       this
     );
+    this.afterBuildIndoorCleanOven = this.afterBuildIndoorCleanOven.bind(this);
 
     this.endTenancyIndoorCleanWalls = this.endTenancyIndoorCleanWalls.bind(
       this
@@ -941,6 +942,7 @@ class Cleaner extends React.Component {
       Baths: null,
       priceAfterBuildIndoorCleanWalls: 0,
       priceAfterBuildIndoorCleanWindows: 0,
+      priceAfterBuildIndoorCleanOven: 0,
       priceAfterBuilderDetergents: 0,
       IndoorAfterBuildClean:
         this.state.IndoorGenClean === true ||
@@ -1475,6 +1477,18 @@ class Cleaner extends React.Component {
       priceAfterBuildIndoorCleanWindows: this.state.afterBuildIndoorCleanWindows
         ? 0
         : 60,
+    });
+  }
+
+  afterBuildIndoorCleanOven() {
+    this.setState({
+      afterBuildIndoorCleanOven: !this.state.afterBuildIndoorCleanOven,
+      afterBuildIndoorCleanOvenService: this.state.afterBuildIndoorCleanOven
+        ? null
+        : " Oven  ",
+      priceAfterBuildIndoorCleanOven: this.state.afterBuildIndoorCleanOven
+        ? 0
+        : 80,
     });
   }
 
@@ -2824,7 +2838,11 @@ const cleanMonthStatus = this.state.cleanOnceOFF || this.state.cleanWeek ? true 
     const afIN_Windows = this.state.afterBuildIndoorCleanWindows
       ? this.state.afterBuildIndoorCleanWindowsService
       : "";
-    const afIN_Extra = afIN_Walls + afIN_Windows;
+
+    const afIN_Oven = this.state.afterBuildIndoorCleanOven
+      ? this.state.afterBuildIndoorCleanOvenService
+      : "";
+    const afIN_Extra = afIN_Walls + afIN_Windows + afIN_Oven;
 
     const etIN_Walls = this.state.endTenancyIndoorCleanWalls
       ? this.state.endTenancyIndoorCleanWallsService
@@ -2842,7 +2860,8 @@ const cleanMonthStatus = this.state.cleanOnceOFF || this.state.cleanWeek ? true 
         ? gIN_Extra
         : afIN_Extra !== "" &&
           (this.state.afterBuildIndoorCleanWallsService ||
-            this.state.afterBuildIndoorCleanWindowsService)
+            this.state.afterBuildIndoorCleanWindowsService ||
+            this.state.afterBuildIndoorCleanOvenService)
         ? afIN_Extra
         : etIN_Extra !== "" &&
           (this.state.endTenancyIndoorCleanWallsService ||
@@ -2893,6 +2912,7 @@ const cleanMonthStatus = this.state.cleanOnceOFF || this.state.cleanWeek ? true 
             this.state.bathPrice +
             this.state.priceAfterBuildIndoorCleanWalls +
             this.state.priceAfterBuildIndoorCleanWindows +
+            this.state.priceAfterBuildIndoorCleanOven +
             this.state.priceAfterBuilderDetergents) *
           (this.state.priceABcleanOnce +
             this.state.priceABcleanWeek +
@@ -5092,6 +5112,11 @@ const poolPMcloudyStatus = this.state.poolPMmustardAlgae || this.state.poolPMbla
                                       onChange={
                                         this.afterBuildIndoorCleanWindows
                                       }
+                                    />
+                                    <Checkbox
+                                      toggle
+                                      label="  Oven"
+                                      onChange={this.afterBuildIndoorCleanOven}
                                     />
                                   </div>
                                 </div>
@@ -7930,6 +7955,9 @@ const poolPMcloudyStatus = this.state.poolPMmustardAlgae || this.state.poolPMbla
               IndoorDetergents={this.state.IndoorDetergents}
               afterBuildIndoorCleanWindowsService={
                 this.state.afterBuildIndoorCleanWindowsService
+              }
+              afterBuildIndoorCleanOvenService={
+                this.state.afterBuildIndoorCleanOvenService
               }
               endTenancyIndoorCleanWallsService={
                 this.state.endTenancyIndoorCleanWallsService
