@@ -987,7 +987,7 @@ class Cleaner extends React.Component {
         this.state.IndoorSanitise === true ||
         this.state.IndoorEndTenancyClean
           ? null
-          : "End of Tenancy",
+          : "Deep Cleaning",
       IndoorEndTenancyCleanPrice: this.state.IndoorEndTenancyClean ? 0 : 30,
     });
   }
@@ -1559,7 +1559,7 @@ class Cleaner extends React.Component {
         : this.state.IndoorAfterBuildClean
         ? "After Builders"
         : this.state.IndoorEndTenancyClean
-        ? "End of Tenancy"
+        ? "Deep Cleaning"
         : this.state.IndoorSanitise
         ? "Antiviral Sanitisation"
         : "",
@@ -2951,7 +2951,7 @@ const cleanMonthStatus = this.state.cleanOnceOFF || this.state.cleanWeek ? true 
       : this.state.IndoorAfterBuildClean
       ? 1.3 * totalAfterBuildIndoorClean
       : this.state.IndoorEndTenancyClean
-      ? 1.3 * totalEndTenancyIndoorClean
+      ? 2 * totalEndTenancyIndoorClean
       : this.state.IndoorSanitise
       ? totalSanitiseIndoor
       : 0;
@@ -5038,9 +5038,9 @@ const poolPMcloudyStatus = this.state.poolPMmustardAlgae || this.state.poolPMbla
                               ) : (
                                 <div>
                                   <ServiceGridSplit>
-                                    <ServiceTest>End of Tenancy</ServiceTest>
+                                    <ServiceTest>Deep Cleaning</ServiceTest>
                                     <Tooltip
-                                      title="End of Tenancy Cleaning"
+                                      title="Deep Cleaning"
                                       aria-label="add"
                                     >
                                       <Fab2>
