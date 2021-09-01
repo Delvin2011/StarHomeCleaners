@@ -1561,7 +1561,7 @@ class Cleaner extends React.Component {
         : this.state.IndoorEndTenancyClean
         ? "Deep Cleaning"
         : this.state.IndoorSanitise
-        ? "Antiviral Sanitisation"
+        ? "Upholstery Cleaning"
         : "",
     });
   }
