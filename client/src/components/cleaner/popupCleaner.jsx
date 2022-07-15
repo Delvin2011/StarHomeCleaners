@@ -1441,7 +1441,7 @@ class Cleaner extends React.Component {
   genIndoorDetergents() {
     this.setState({
       genIndoorDetergents: !this.state.genIndoorDetergents,
-      priceGenIndoorDetergents: this.state.genIndoorDetergents ? 0 : 35,
+      priceGenIndoorDetergents: this.state.genIndoorDetergents ? 0 : 90,
     });
   }
 
@@ -1495,7 +1495,7 @@ class Cleaner extends React.Component {
   afterBuilderDetergents() {
     this.setState({
       afterBuilderDetergents: !this.state.afterBuilderDetergents,
-      priceAfterBuilderDetergents: this.state.afterBuilderDetergents ? 0 : 70,
+      priceAfterBuilderDetergents: this.state.afterBuilderDetergents ? 0 : 120,
     });
   }
 
@@ -1527,7 +1527,7 @@ class Cleaner extends React.Component {
   endTenancyDetergents() {
     this.setState({
       endTenancyDetergents: !this.state.endTenancyDetergents,
-      priceEndTenancyDetergents: this.state.endTenancyDetergents ? 0 : 50,
+      priceEndTenancyDetergents: this.state.endTenancyDetergents ? 0 : 100,
     });
   }
 
