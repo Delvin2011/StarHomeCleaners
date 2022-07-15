@@ -1434,7 +1434,7 @@ class Cleaner extends React.Component {
       genIndoorCleanWindowsService: this.state.genIndoorCleanWindows
         ? null
         : "Windows",
-      priceGenIndoorCleanWindows: this.state.genIndoorCleanWindows ? 0 : 40,
+      priceGenIndoorCleanWindows: this.state.genIndoorCleanWindows ? 0 : 100,
     });
   }
 
@@ -1451,7 +1451,7 @@ class Cleaner extends React.Component {
       genIndoorCleanLaundryService: this.state.genIndoorCleanLaundry
         ? null
         : " Oven ",
-      priceGenIndoorCleanLaundry: this.state.genIndoorCleanLaundry ? 0 : 50,
+      priceGenIndoorCleanLaundry: this.state.genIndoorCleanLaundry ? 0 : 60,
     });
   }
 
@@ -1476,7 +1476,7 @@ class Cleaner extends React.Component {
         : " Windows  ",
       priceAfterBuildIndoorCleanWindows: this.state.afterBuildIndoorCleanWindows
         ? 0
-        : 60,
+        : 100,
     });
   }
 
@@ -1488,7 +1488,7 @@ class Cleaner extends React.Component {
         : " Oven  ",
       priceAfterBuildIndoorCleanOven: this.state.afterBuildIndoorCleanOven
         ? 0
-        : 80,
+        : 100,
     });
   }
 
@@ -1520,7 +1520,7 @@ class Cleaner extends React.Component {
         : " Windows  ",
       priceEndTenancyIndoorCleanWindows: this.state.endTenancyIndoorCleanWindows
         ? 0
-        : 50,
+        : 100,
     });
   }
 
@@ -2947,11 +2947,11 @@ const cleanMonthStatus = this.state.cleanOnceOFF || this.state.cleanWeek ? true 
 
     //Calculating total amounts for indoor options
     const totalIndoor = this.state.IndoorGenClean
-      ? 1.1 * totalGenIndoorClean
+      ? 1.2 * totalGenIndoorClean
       : this.state.IndoorAfterBuildClean
-      ? 1.3 * totalAfterBuildIndoorClean
+      ? 1.4 * totalAfterBuildIndoorClean
       : this.state.IndoorEndTenancyClean
-      ? 2 * totalEndTenancyIndoorClean
+      ? 2.1 * totalEndTenancyIndoorClean
       : this.state.IndoorSanitise
       ? totalSanitiseIndoor
       : 0;
@@ -3192,11 +3192,11 @@ const cleanMonthStatus = this.state.cleanOnceOFF || this.state.cleanWeek ? true 
         : 0;
     const totalOutdoor = this.state.YCoutdoorClean
       ? totalYC
-      : 0 + this.state.LMoutdoorClean
+      : 0 + this.state.LMoutdoorClean * 1.2
       ? totalLM
-      : 0 + this.state.FBoutdoorClean
+      : 0 + this.state.FBoutdoorClean * 1.2
       ? totalFB
-      : 0 + this.state.DCoutdoorClean
+      : 0 + this.state.DCoutdoorClean * 1.2
       ? totalDC
       : 0;
 
@@ -3394,9 +3394,9 @@ const poolPMcloudyStatus = this.state.poolPMmustardAlgae || this.state.poolPMbla
       : 0;
 
     const totalPool = this.state.PoolClean
-      ? totalPCpool
+      ? totalPCpool * 1.2
       : this.state.PoolMaint
-      ? totalPMpool
+      ? totalPMpool * 1.2
       : 0;
     const poolShape =
       this.state.poolShapePMSelect === "0" ||
