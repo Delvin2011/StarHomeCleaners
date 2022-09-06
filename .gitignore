@@ -27,4 +27,6 @@ yarn-error.log*
 # compiled css
 *.css
 
-stripe-button.jsx
+/client/src/components/stripe-button/stripe-button.jsx
+server.js
+mail.js
