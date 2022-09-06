@@ -1,6 +1,4 @@
-<h1>JWipe - Disk Sanitization</h1>
-
-### [YouTube Demonstration](https://youtu.be/7eJexJVCqJo)
+<h1>Home Cleaning - Online Booking Plartform</h1>
 
 <h2>Description</h2>
 An online booking plartform, offering high quality janitorial cleaning services, that leaves your home sparkling clean. By following simple steps to make a booking, our well trained and experienced team will come and transform your home into the cleanest and healthiest place. For Domestic Cleaning, Commercial cleaning, Deep Cleaning,Capett Cleaning and Yard cleaning.
@@ -15,6 +13,7 @@ An online booking plartform, offering high quality janitorial cleaning services,
 - <b>Nodemailer</b>
 - <b>Html</b>
 - <b>CSS</b>
+- <b>Payfast Payment Gateway</b>
 
 <h2>Program walk-through:</h2>
 
